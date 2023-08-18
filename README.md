@@ -10,5 +10,5 @@ CTF and Bug Bounty Hunting WriteUps
 
 ### HackTheBox
 <ol>
-  <li>[Lame 10.10.10.3](./CTF/hackthebox.com/1.md)</li>
+  <li><a href="./CTF/hackthebox.com/1.md" target="_blank">Lame 10.10.10.3</a></li>
 </ol>
