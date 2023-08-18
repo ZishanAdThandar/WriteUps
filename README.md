@@ -1,6 +1,6 @@
 # WriteUp
 CTF and Bug Bounty Hunting WriteUps
-- [Bug Bounty](#bug-bounty)
+- [Bug Bounty PoC](#bug-bounty)
 - [CTF](#CTF)
   - [HackTheBox](#hackthebox)
 - [About Me](#about-me)
