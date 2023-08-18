@@ -8,7 +8,7 @@ CTF and Bug Bounty Hunting WriteUps
 ## Bug Bounty
 <ol>
   <li><a href="/bugbounty/1.md" target="_blank">Hunting methodology and experience of my First Stored XSS on Edmodo.com</a></li>
-  <li><a href="/bugbounty/2.md" target="_blank"></a></li>
+  <li><a href="/bugbounty/2.md" target="_blank">Just 5 minute to get my 2nd stored XSS on Edmodo.com</a></li>
 </ol>
 
 ## CTF
