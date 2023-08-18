@@ -1,8 +1,9 @@
-# WriteUp
+# Cyber Security WriteUps
 CTF and Bug Bounty Hunting WriteUps
 - [Bug Bounty PoC](#bug-bounty)
 - [CTF](#CTF)
   - [HackTheBox](#hackthebox)
+  - [Vulnhub](#vulnhub)
 - [About Me](#about-me)
 
 ## Bug Bounty
