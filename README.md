@@ -2,8 +2,8 @@
 CTF and Bug Bounty Hunting WriteUps
 - [Bug Bounty PoC](#bug-bounty)
 - [CTF](#CTF)
-  - [HackTheBox](#hackthebox)
   - [Vulnhub](#vulnhub)
+  - [HackTheBox](#hackthebox)
 - [About Me](#about-me)
 
 ## Bug Bounty
@@ -14,16 +14,17 @@ CTF and Bug Bounty Hunting WriteUps
 
 ## CTF
 
-### HackTheBox
-<ol>
-  <li><a href="./CTF/hackthebox.com/1.md" target="_blank">Lame 10.10.10.3</a></li>
-</ol>
-
 ### VulnHub
 <ol>
   <li><a href="./CTF/vulnhub/1.md" target="_blank"></a></li>
   <li><a href="./CTF/vulnhub/1.md" target="_blank"></a></li>
 </ol>
+
+### HackTheBox
+<ol>
+  <li><a href="./CTF/hackthebox.com/1.md" target="_blank">Lame 10.10.10.3</a></li>
+</ol>
+
 
 ## About Me
 Twitter: <a href="https://twitter.com/ZishanAdThandar">https://twitter.com/ZishanAdThandar</a><br>
