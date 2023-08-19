@@ -1,5 +1,9 @@
 # CrackTheHash
 
+- [Tools](#tools)
+- [Level 1](#level-1)
+- [level 2](#level-2)
+
 Room Link: https://tryhackme.com/room/crackthehash
 
 Badges: https://tryhackme.com/ZishanAdThandar/badges/hash-cracker
@@ -27,3 +31,4 @@ Badges: https://tryhackme.com/ZishanAdThandar/badges/hash-cracker
 4. hashid shows hash `e5d8870e5bdd26602cab8dbe07a942c8669e56d6` is SHA1 with salt. So, decrypted "e5d8870e5bdd26602cab8dbe07a942c8669e56d6:tryhackme" with salt SHA1 gives us the answer.
 
 Author: Zishan Ahamed Thandar
+
