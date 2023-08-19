@@ -26,6 +26,10 @@ CTF and Bug Bounty Hunting WriteUps
   <li><a href="./CTF/hackthebox.com/2.md" target="_blank">Legacy 10.10.10.4</a> Windows Easy</li>
 </ol>
 
+### TryHackMe
+<ol>
+  <li><a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/crackthehash.md">Crack the hash</a></li>
+</ol>
 
 ## About Me
 Twitter: <a href="https://twitter.com/ZishanAdThandar">https://twitter.com/ZishanAdThandar</a><br>
