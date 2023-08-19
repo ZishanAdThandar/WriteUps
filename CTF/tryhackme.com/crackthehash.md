@@ -21,4 +21,6 @@ Badges: https://tryhackme.com/ZishanAdThandar/badges/hash-cracker
 
 ## Level 2
 
-1. 
+1. Again same method shows SHA256 and used hashcat with `-m 1400` shows hash `F09EDCB1FCEFC6DFB23DC3505A882655FF77375ED8AA2D1C13F640FCCC2D0C85` is encrypted from `paule`.
+2. `hash-identifier` shows that hash cold be NTLM. So, used hashcat with `-m 1000` gives answer `n63umy8lkf4i`.
+3. 
