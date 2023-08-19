@@ -28,7 +28,7 @@ CTF and Bug Bounty Hunting WriteUps
 
 ### TryHackMe
 <ol>
-  <li><a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/crackthehash.md">Crack the hash</a></li>
+  <li><a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/crackthehash.md">Crack the hash</a> Cryptography Easy</li>
 </ol>
 
 ## About Me
