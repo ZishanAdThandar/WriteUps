@@ -18,7 +18,6 @@ CTF and Bug Bounty Hunting WriteUps
 ### VulnHub
 <ol>
   <li><a href="./CTF/vulnhub/1.md" target="_blank"></a></li>
-  <li><a href="./CTF/vulnhub/1.md" target="_blank"></a></li>
 </ol>
 
 ### HackTheBox
@@ -29,7 +28,7 @@ CTF and Bug Bounty Hunting WriteUps
 
 ### TryHackMe
 <ol>
-  <li><a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/crackthehash.md">Crack the hash</a> Cryptography Easy</li>
+  <li><a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/crackthehash.md" target="_blank">Crack the hash</a> Cryptography Easy</li>
 </ol>
 
 ## About Me
