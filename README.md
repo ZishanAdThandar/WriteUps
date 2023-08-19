@@ -24,6 +24,7 @@ CTF and Bug Bounty Hunting WriteUps
 <ol>
   <li><a href="./CTF/hackthebox.com/1.md" target="_blank">Lame 10.10.10.3</a> Linux Easy</li>
   <li><a href="./CTF/hackthebox.com/2.md" target="_blank">Legacy 10.10.10.4</a> Windows Easy</li>
+  <li><a href="./CTF/hackthebox.com/3.md" target="_blank">Devel 10.10.10.5</a> Windows Easy</li>
 </ol>
 
 ### TryHackMe
