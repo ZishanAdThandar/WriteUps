@@ -23,4 +23,7 @@ Badges: https://tryhackme.com/ZishanAdThandar/badges/hash-cracker
 
 1. Again same method shows SHA256 and used hashcat with `-m 1400` shows hash `F09EDCB1FCEFC6DFB23DC3505A882655FF77375ED8AA2D1C13F640FCCC2D0C85` is encrypted from `paule`.
 2. `hash-identifier` shows that hash cold be NTLM. So, used hashcat with `-m 1000` gives answer `n63umy8lkf4i`.
-3. 
+3.  As it is strating with `$6$`, so hash is `SHA512crypt`. So, it's decrypted with hashcat with `-m 1800` and the cracked hash is waka99.
+4. hashid shows hash `e5d8870e5bdd26602cab8dbe07a942c8669e56d6` is SHA1 with salt. So, decrypted "e5d8870e5bdd26602cab8dbe07a942c8669e56d6:tryhackme" with salt SHA1as `481616481616`.
+
+Author: Zishan Ahamed Thandar
