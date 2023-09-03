@@ -1,4 +1,4 @@
-<h1>L 10.10.10.3 Write Up</h1>
+<h1>Legacy 10.10.10.3 Write Up</h1>
 
 <h2>Contents</h2>
 
