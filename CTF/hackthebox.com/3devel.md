@@ -27,6 +27,6 @@ msfvenom command used,
 
 1. Used `local_exploit_suggester` module for this.
 2. After trying some suggested exploit `exploit/windows/local/ms10_015_kitrap0d` worked. The flags can now be obtained from
-c:\Users\babis\Desktop\user.txt.txt​ and c​ :\Users\Administrator\Desktop\root.txt.txt
+`c:\Users\babis\Desktop\user.txt.txt​` and `c​:\Users\Administrator\Desktop\root.txt.txt`
 
 Author: Zishan Ahamed Thandar
