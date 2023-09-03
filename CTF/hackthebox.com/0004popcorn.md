@@ -8,5 +8,19 @@
 
 Retired Medium Machine by ch4p
 
+## Tools
+1. Nmap
+2. gobuster
+3. Burp Suite Community Edition
+4. SearchExploit (OFFSEC exploitDB)
+
+## Enumeration
+
+## Exploitation
 
 
+## Priviledge Escalation
+
+
+
+Author: Zishan Ahamed Thandar
