@@ -1,4 +1,4 @@
-<h1>LAME 10.10.10.3 Write Up</h1>
+<h1>L 10.10.10.3 Write Up</h1>
 
 <h2>Contents</h2>
 
@@ -15,7 +15,7 @@ Retired Easy Machine by ch4p
    
 ## Enumeration
 
-1. Atfirst asusual running nmap with command `nmap -A 10.10.10.3` and it shows SMB is open. Server is running Windows.
+1. Atfirst asusual running nmap with command `nmap -A 10.10.10.4` and it shows SMB is open. Server is running Windows.
 
 ## Exploitation
 
