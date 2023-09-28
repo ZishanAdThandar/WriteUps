@@ -26,8 +26,11 @@ CTF and Bug Bounty Hunting WriteUps
 ### HackTheBox
 
 #### Easy HTB
-
-<a href="./CTF/hackthebox.com/0001lame.md" target="_blank">Lame 10.10.10.3 Linux Easy</a> <a href="./CTF/hackthebox.com/0002legacy.md" target="_blank">Legacy 10.10.10.4 Windows Easy</a> <a href="./CTF/hackthebox.com/0003devel.md" target="_blank">Devel 10.10.10.5 Windows Easy</a>
+<ol>
+<li><a href="./CTF/hackthebox.com/0001lame.md" target="_blank">Lame 10.10.10.3 Linux</a></li> 
+<li><a href="./CTF/hackthebox.com/0002legacy.md" target="_blank">Legacy 10.10.10.4 Windows</a></li> 
+<li><a href="./CTF/hackthebox.com/0003devel.md" target="_blank">Devel 10.10.10.5 Windows</a></li>
+</ol>
 
 #### Medium HTB
 
