@@ -4,9 +4,14 @@ CTF and Bug Bounty Hunting WriteUps
 - [CTF](#CTF)
   - [Vulnhub](#vulnhub)
   - [HackTheBox](#hackthebox)
-    - [Easy HTB](#easy-htb)
-    - [Medium HTB](#medium-htb)
-    - [Hard HTB](#hard-htb)
+    - [HackTheBox Linux Machines](#hackthebox-linux-machines)
+      - [Easy Linux HTB](#easy-htb)
+      - [Medium Linux HTB](#medium-htb)
+      - [Hard Linux HTB](#hard-htb)
+    - [HackTheBox Windows Machines](#hackthebox-linux-machines)
+      - [Easy Windows HTB](#easy-windows-htb)
+      - [Medium Windows HTB](#medium-windows-htb)
+      - [Hard Windows HTB](#hard-windows-htb)
   - [TryHackMe](#tryhackme)
 - [About Me](#about-me)
 
@@ -25,18 +30,28 @@ CTF and Bug Bounty Hunting WriteUps
 
 ### HackTheBox
 
-#### Easy HTB
+#### HackTheBox Linux Machines
+
+##### Easy Linux HTB
 <ol>
 <li><a href="./CTF/hackthebox.com/0001lame.md" target="_blank">Lame 10.10.10.3 Linux</a></li> 
-<li><a href="./CTF/hackthebox.com/0002legacy.md" target="_blank">Legacy 10.10.10.4 Windows</a></li> 
-<li><a href="./CTF/hackthebox.com/0003devel.md" target="_blank">Devel 10.10.10.5 Windows</a></li>
 </ol>
 
-#### Medium HTB
+##### Medium Linux HTB
 
 <a href="./CTF/hackthebox.com/0004popcorn.md" target="_blank">Popcorn 10.10.10.6 Linux Medium</a>
 
-#### Hard HTB
+##### Hard Linux HTB
+
+#### HackTheBox Windows Machines
+##### Easy Windows HTB
+<ol>
+<li><a href="./CTF/hackthebox.com/0002legacy.md" target="_blank">Legacy 10.10.10.4 Windows</a></li> 
+<li><a href="./CTF/hackthebox.com/0003devel.md" target="_blank">Devel 10.10.10.5 Windows</a></li>
+</ol>
+##### Medium Windows HTB
+##### Hard Windows HTB
+
 
 ### TryHackMe
 <ol>
