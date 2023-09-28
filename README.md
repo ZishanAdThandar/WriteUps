@@ -31,16 +31,14 @@ CTF and Bug Bounty Hunting WriteUps
 ### HackTheBox
 
 #### HackTheBox Linux Machines
-
 ##### Easy Linux HTB
 <ol>
 <li><a href="./CTF/hackthebox.com/0001lame.md" target="_blank">Lame 10.10.10.3 Linux</a></li> 
 </ol>
-
 ##### Medium Linux HTB
-
-<a href="./CTF/hackthebox.com/0004popcorn.md" target="_blank">Popcorn 10.10.10.6 Linux Medium</a>
-
+<ol>
+<li><a href="./CTF/hackthebox.com/0004popcorn.md" target="_blank">Popcorn 10.10.10.6 Linux Medium</a></li>
+</ol>
 ##### Hard Linux HTB
 
 #### HackTheBox Windows Machines
