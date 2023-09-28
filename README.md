@@ -24,11 +24,17 @@ CTF and Bug Bounty Hunting WriteUps
 </ol>
 
 ### HackTheBox
+
 #### Easy HTB
+
 <a href="./CTF/hackthebox.com/0001lame.md" target="_blank">Lame 10.10.10.3 Linux Easy</a> <a href="./CTF/hackthebox.com/0002legacy.md" target="_blank">Legacy 10.10.10.4 Windows Easy</a> <a href="./CTF/hackthebox.com/0003devel.md" target="_blank">Devel 10.10.10.5 Windows Easy</a>
+
 #### Medium HTB
+
+<a href="./CTF/hackthebox.com/0004popcorn.md" target="_blank">Popcorn 10.10.10.6 Linux Medium</a>
+
 #### Hard HTB
-a href="./CTF/hackthebox.com/0004popcorn.md" target="_blank">Popcorn 10.10.10.6 Linux Medium</a>
+
 ### TryHackMe
 <ol>
   <li><a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/crackthehash.md" target="_blank">Crack the hash</a> Cryptography Easy</li>
