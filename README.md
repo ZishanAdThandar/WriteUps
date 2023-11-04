@@ -66,7 +66,8 @@ Twitter: <a href="https://twitter.com/ZishanAdThandar">https://twitter.com/Zisha
 Youtube: <a href="https://youtube.com/ZishanAdThandar">https://youtube.com/ZishanAdThandar</a><br>
 Telegram: <a href="https://t.me/ZishanAdThandar">https://t.me/ZishanAdThandar</a>
 
-# Donate (Sponser me anonymously) 
+# Sponsor me anonymously 
 
 1. BTC `bc1q0qhgw5pdys7qqw07rcsyudu5wmv6208nhp5xtn`
 2. USDT (TRC20) `TGW1c7hzyszQNhQHM3aGa1nEKDNuyPueNE`
+
