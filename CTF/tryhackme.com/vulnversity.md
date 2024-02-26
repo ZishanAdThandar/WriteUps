@@ -76,7 +76,12 @@ Progress: 9932 / 1273834 (0.78%)
 
 ## Compromise the Webserver 
 
-1. 
+1. Question `What common file type you'd want to upload to exploit the server is blocked? Try a couple to find out.` Answer `.php`
+2. Run burpsuite as per instruction and user intruder. Use firefox extension, https://addons.mozilla.org/en-US/firefox/addon/burp-proxy-toggler-lite/
+3. Question `Run this attack, what extension is allowed?` Answer `.phtml`
+4. Now we need to make our shell with given instruction using https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php. Just replace ip to our netcat listening ip (tun0) and file extension to `.phtml`. Use `nc -lvnp 1234` to get shell.
+5. Now just upload the file and open http://10.10.65.81:3333/internal/uploads/ and click on the shell to get reverse shell.
+6. 
 
 Author: Zishan Ahamed Thandar
 
