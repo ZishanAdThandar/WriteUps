@@ -47,6 +47,35 @@ Nmap done: 1 IP address (1 host up) scanned in 36.77 seconds
 
 ## Locating directories using Gobuster 
    
+1. Port 3333 is http server, So web interface looks like that http://10.10.65.81:3333
+2. We can run directory busting tool gobuster as per given command with our own wordlist `gobuster dir -u http://10.10.65.81:3333 -w /usr/share/wordlist/SecLists/Discovery/Web-Content/directory-list-2.3-big.txt`
+Output of the command: 
+```bash
+===============================================================
+Gobuster v3.6
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://10.10.65.81:3333
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /opt/wordlist/SecLists/Discovery/Web-Content/directory-list-2.3-big.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.6
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/images               (Status: 301) [Size: 318] [--> http://10.10.65.81:3333/images/]
+/css                  (Status: 301) [Size: 315] [--> http://10.10.65.81:3333/css/]
+/js                   (Status: 301) [Size: 314] [--> http://10.10.65.81:3333/js/]
+/fonts                (Status: 301) [Size: 317] [--> http://10.10.65.81:3333/fonts/]
+/internal             (Status: 301) [Size: 320] [--> http://10.10.65.81:3333/internal/]
+Progress: 9932 / 1273834 (0.78%)
+```
+3. Question `What is the directory that has an upload form page?` Answer `/internal/`
+
+## Compromise the Webserver 
+
 1. 
 
 Author: Zishan Ahamed Thandar
