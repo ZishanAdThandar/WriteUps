@@ -36,9 +36,14 @@ Service Info: Host: VULNUNIVERSITY; OSs: Unix, Linux; CPE: cpe:/o:linux:linux_ke
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 36.77 seconds
 ```
-3. 
-4. 
-5. 
+3. Question `how many ports are open?` Answer `6`
+4. Question `What version of the squid proxy is running on the machine?` Answer `3.5.12`
+5. Question `How many ports will Nmap scan if the flag -p-400 was used?` Answer `400`
+6. Question `What is the most likely operating system this machine is running?` Answer `Ubuntu`
+7. Question `What port is the web server running on?` Answer `3333`
+8. Question `What is the flag for enabling verbose mode using Nmap?` Answer `-v`
+
+
    
 
 Author: Zishan Ahamed Thandar
