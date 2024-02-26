@@ -3,17 +3,19 @@
 - [Tools](#tools)
 - [Deploy the machine](#deploy-the-machine)
 - [Reconnaissance](#reconnaissance)
+- [Locating directories using Gobuster](#locating-directories-using-gobuster)
 
 Room Link: https://tryhackme.com/room/vulnversity
 
 ## Tools 
 
 1. NMap https://nmap.org/download
-2. 
+2. Gobuster https://github.com/OJ/gobuster
 
 ## Deploy the machine 
 
 1. Deploy The Machine by clicking Start The Machine
+2. Download ovpn file and connect to the network using command `sudo openvpn --config username.ovpn`.
 
 ## Reconnaissance
 
@@ -43,8 +45,9 @@ Nmap done: 1 IP address (1 host up) scanned in 36.77 seconds
 7. Question `What port is the web server running on?` Answer `3333`
 8. Question `What is the flag for enabling verbose mode using Nmap?` Answer `-v`
 
-
+## Locating directories using Gobuster 
    
+1. 
 
 Author: Zishan Ahamed Thandar
 
