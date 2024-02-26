@@ -4,6 +4,7 @@
 - [Deploy the machine](#deploy-the-machine)
 - [Reconnaissance](#reconnaissance)
 - [Locating directories using Gobuster](#locating-directories-using-gobuster)
+- [Privilege Escalation](#privilege-escalation)
 
 Room Link: https://tryhackme.com/room/vulnversity
 
@@ -81,8 +82,14 @@ Progress: 9932 / 1273834 (0.78%)
 3. Question `Run this attack, what extension is allowed?` Answer `.phtml`
 4. Now we need to make our shell with given instruction using https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php. Just replace ip to our netcat listening ip (tun0) and file extension to `.phtml`. Use `nc -lvnp 1234` to get shell.
 5. Now just upload the file and open http://10.10.65.81:3333/internal/uploads/ and click on the shell to get reverse shell.
-6. 
+6. Question `What is the name of the user who manages the webserver?` Answer `bill`. Use `ls /home` command to get username.
+7. Question `What is the user flag?` Answer is 32 alphanumeric string. Command used `cat /home/bill/user.txt`
 
+## Privilege Escalation 
+
+1. 
+
+    
 Author: Zishan Ahamed Thandar
 
 
