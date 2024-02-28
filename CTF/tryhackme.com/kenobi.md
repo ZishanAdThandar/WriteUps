@@ -79,6 +79,20 @@ Nmap done: 1 IP address (1 host up) scanned in 28.24 seconds
 
 ```
 2. Question `Using the nmap command above, how many shares have been found?` Answer `3`
+3. Connected to smb as `anonymous` user using given command `smbclient //10.10.56.134/anonymous` to read files
+```bash
+smbclient //10.10.56.134/anonymous
+Password for [WORKGROUP\root]:
+Try "help" to get a list of possible commands.
+smb: \> ls
+  .                                   D        0  Wed Sep  4 16:19:09 2019
+  ..                                  D        0  Wed Sep  4 16:26:07 2019
+  log.txt                             N    12237  Wed Sep  4 16:19:09 2019
+
+		9204224 blocks of size 1024. 6877096 blocks available
+```
+
+ 
 ## Gain initial access with ProFtpd
 ## Privilege Escalation with Path Variable Manipulation 
 
