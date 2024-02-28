@@ -91,8 +91,49 @@ smb: \> ls
 
 		9204224 blocks of size 1024. 6877096 blocks available
 ```
+4. Question `Once you're connected, list the files on the share. What is the file can you see?` Answer `log.txt`
+5. Then used given command to download files,
+```bash
+smbget -R smb://10.10.56.134/anonymous
+Password for [root] connecting to //10.10.56.134/anonymous: 
+Using workgroup WORKGROUP, user root
+smb://10.10.56.134/anonymous/log.txt                                                                        
+Downloaded 11.95kB in 6 seconds
+```
+6. Question `What port is FTP running on?` Answer `21` Got it from `log.txt`
+7. As given nmap scan command with script to scan port 111
+```bash
+nmap -p 111 --script=nfs-ls,nfs-statfs,nfs-showmount 10.10.56.134
+Starting Nmap 7.94 ( https://nmap.org ) at 2024-02-28 23:36 IST
+Nmap scan report for 10.10.56.134
+Host is up (0.16s latency).
 
- 
+PORT    STATE SERVICE
+111/tcp open  rpcbind
+| nfs-statfs: 
+|   Filesystem  1K-blocks  Used       Available  Use%  Maxfilesize  Maxlink
+|_  /var        9204224.0  1836540.0  6877088.0  22%   16.0T        32000
+| nfs-ls: Volume /var
+|   access: Read Lookup NoModify NoExtend NoDelete NoExecute
+| PERMISSION  UID  GID  SIZE  TIME                 FILENAME
+| rwxr-xr-x   0    0    4096  2019-09-04T08:53:24  .
+| rwxr-xr-x   0    0    4096  2019-09-04T12:27:33  ..
+| rwxr-xr-x   0    0    4096  2019-09-04T12:09:49  backups
+| rwxr-xr-x   0    0    4096  2019-09-04T10:37:44  cache
+| rwxrwxrwx   0    0    4096  2019-09-04T08:43:56  crash
+| rwxrwsr-x   0    50   4096  2016-04-12T20:14:23  local
+| rwxrwxrwx   0    0    9     2019-09-04T08:41:33  lock
+| rwxrwxr-x   0    108  4096  2019-09-04T10:37:44  log
+| rwxr-xr-x   0    0    4096  2019-01-29T23:27:41  snap
+| rwxr-xr-x   0    0    4096  2019-09-04T08:53:24  www
+|_
+| nfs-showmount: 
+|_  /var *
+
+Nmap done: 1 IP address (1 host up) scanned in 5.66 seconds
+```
+8. Question `What mount can we see?` Answer `/var`
+
 ## Gain initial access with ProFtpd
 ## Privilege Escalation with Path Variable Manipulation 
 
