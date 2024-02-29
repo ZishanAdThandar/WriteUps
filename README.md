@@ -61,6 +61,7 @@ CTF and Bug Bounty Hunting WriteUps
   <li><a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/theimpossiblechallenge.md" target="_blank">The Impossible Challenge</a> Cryptography Easy</li>
   <li><a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/vulnversity.md" target="_blank">Vuln University</a> (Vulnversity) Pentesting Easy</li>
   <li><a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/blue.md" target="_blank">Blue</a> Pentesting Easy</li>
+  <li><a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/kenobi.md" target="_blank">Kenobi</a> Pentesting Easy</li>
   
 </ol>
 
