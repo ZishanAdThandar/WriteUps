@@ -69,7 +69,9 @@ CTF and Bug Bounty Hunting WriteUps
 Twitter: <a href="https://twitter.com/ZishanAdThandar">https://twitter.com/ZishanAdThandar</a><br>
 Youtube: <a href="https://youtube.com/ZishanAdThandar">https://youtube.com/ZishanAdThandar</a><br>
 Telegram: <a href="https://t.me/ZishanAdThandar">https://t.me/ZishanAdThandar</a>
-
+Github: <a href="https://github.com/ZishanAdThandar">https://github.com/ZishanAdThandar</a>
+LinkedIN: <a href="https://www.linkedin.com/in/ZishanAdThandar">https://www.linkedin.com/in/ZishanAdThandar</a>
+<img src="https://tryhackme-badges.s3.amazonaws.com/ZishanAdThandar.png" alt="TryHackMe">
 # Sponsor me anonymously 
 
 1. BTC `bc1q0qhgw5pdys7qqw07rcsyudu5wmv6208nhp5xtn`
