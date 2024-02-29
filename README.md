@@ -56,14 +56,41 @@ CTF and Bug Bounty Hunting WriteUps
 
 
 ### TryHackMe
-<ol>
-  <li><a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/crackthehash.md" target="_blank">Crack the hash</a> Cryptography Easy</li>
-  <li><a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/theimpossiblechallenge.md" target="_blank">The Impossible Challenge</a> Cryptography Easy</li>
-  <li><a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/vulnversity.md" target="_blank">Vuln University</a> (Vulnversity) Pentesting Easy</li>
-  <li><a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/blue.md" target="_blank">Blue</a> Pentesting Easy</li>
-  <li><a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/kenobi.md" target="_blank">Kenobi</a> Pentesting Easy</li>
-  
-</ol>
+<a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/crackthehash.md" target="_blank">Crack the hash</a>
+<a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/theimpossiblechallenge.md" target="_blank">The Impossible Challenge</a> Cryptography Easy
+#### Offensive Pentesting Path
+- Getting Started
+  - Tutorial
+  - <a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/vulnversity.md" target="_blank">Vuln University</a> (Vulnversity) Pentesting Easy
+  - <a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/blue.md" target="_blank">Blue</a> Pentesting Easy
+  - <a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/kenobi.md" target="_blank">Kenobi</a> Pentesting Easy
+- Advanced Exploitation
+  - Steel Mountain
+  - Alfred
+  - Hack Park
+  - Game Zone
+  - Skynet
+  - Daily Bugle
+  - Overpass 2 Hacked
+  - Relevent
+  - Internal
+- Buffer Overflow Exploitation
+  - Buffer Overflow Prep
+  - Barinstorm
+  - Gatekeeper
+  - Brainpan 1
+- Active Directory
+  - Active Directory Basics
+  - Beaching Active Directory
+  - Lateral Movement and Pivoting
+  - Exploiting Active Directory
+  - Persisting Active Directory
+  - Credential Harvesting
+- Extra Credit
+  - Hacking with PowerShell
+  - Corp
+  - Mr Robot CTF
+  - Retro
 
 ## About Me
 Twitter: <a href="https://twitter.com/ZishanAdThandar">https://twitter.com/ZishanAdThandar</a><br>
