@@ -1,7 +1,9 @@
 # Daily Bugle
 
 - [Tools](#tools)
-- [Task](#task-1)
+- [Deploy](#deploy)
+- [Obtain user and root](#obtain-user-and-root)
+- [Credits](#credits)
 
 Room Link: https://tryhackme.com/room/dailybugle
 
