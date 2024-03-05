@@ -15,7 +15,7 @@ Room Link: https://tryhackme.com/room/dailybugle
 ## Deploy 
 
 1. Start the machine and open the ip in browser.
-2. 
+2. Opening the site shows favicon of joomla on main page and a image with a man masked as spider man, looks like an robber.
 3. Question `Access the web server, who robbed the bank?` Answer `spiderman`
 
 ## Obtain user and root
