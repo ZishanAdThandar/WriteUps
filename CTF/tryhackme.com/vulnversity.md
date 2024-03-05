@@ -85,7 +85,7 @@ Progress: 9932 / 1273834 (0.78%)
 4. Now we need to make our shell with given instruction using https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php. Just replace ip to our netcat listening ip (tun0) and file extension to `.phtml`. Use `nc -lvnp 1234` to get shell.
 5. Now just upload the file and open http://10.10.65.81:3333/internal/uploads/ and click on the shell to get reverse shell.
 6. Question `What is the name of the user who manages the webserver?` Answer `bill`. Use `ls /home` command to get username.
-7. Question `What is the user flag?` Answer `8bd7992fbe8a6ad22a63361004cfcedb` (32 alphanumeric characters). Command used `cat /home/bill/user.txt`
+7. Question `What is the user flag?` Answer `********************************` (32 alphanumeric characters). Command used `cat /home/bill/user.txt`
 
 ## Privilege Escalation 
 
@@ -110,7 +110,7 @@ WantedBy=multi-user.target
 7. Now we can add the service using `/bin/systemctl enable /tmp/ZishanAdThandar.service` command on reverse shell.
 8. Started netcat listner on the given port with `nc -lvnp 1337`.
 9. Now we need can run the command `/bin/systemctl start ZishanAdThandar` to start the service and immediately we will get reverse shell as root on another netcat listner.
-10. Question `Become root and get the last flag (/root/root.txt)` Answer `a58ff8579f0a9270368d33a9966c7fd5` (32 alphanumeric characters). Command used `cat /root/root.txt`
+10. Question `Become root and get the last flag (/root/root.txt)` Answer `********************************` (32 alphanumeric characters). Command used `cat /root/root.txt`
 
     
 Author: Zishan Ahamed Thandar
