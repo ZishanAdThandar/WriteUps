@@ -70,7 +70,7 @@ CTF and Bug Bounty Hunting WriteUps
   - Hack Park
   - Game Zone
   - Skynet
-  - [Daily Bugle](https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/dailybugle.md) Pentesting Hard
+  - [Daily Bugle](https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/dailybugle.md){:target="_blank"} Pentesting Hard
   - Overpass 2 Hacked
   - Relevent
   - Internal
