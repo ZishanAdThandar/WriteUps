@@ -3,7 +3,7 @@
 - [Tools](#tools)
 - [Forensics - Analyse the PCAP](#forensics---analyse-the-pcap)
 - [Research - Analyse the code](#research---analyse-the-code)
-- [Attack - Get back in!](#attack---get-back-in\!)
+- [Attack - Get back in!](#attack---get-back-in)
 
 Room Link: https://tryhackme.com/room/overpass2hacked
 
