@@ -218,7 +218,7 @@ See "man sudo_root" for details.
 
 kenobi@kenobi:~$ 
 ```
-6. Question `What is Kenobi's user flag (/home/kenobi/user.txt)?` Answer `d0b0f3f53b6caa532a83915e19224899` 32 alphanumeric characters. Get using `cat /home/kenobi/user.txt`
+6. Question `What is Kenobi's user flag (/home/kenobi/user.txt)?` Answer `********************************` 32 alphanumeric characters. Get using `cat /home/kenobi/user.txt`
 ## Privilege Escalation with Path Variable Manipulation 
 1. Question `What file looks particularly out of the ordinary?` Answer `/usr/bin/menu`
 ```bash
@@ -284,6 +284,6 @@ kenobi@kenobi:~$ /usr/bin/menu
 uid=0(root) gid=1000(kenobi) groups=1000(kenobi),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),110(lxd),113(lpadmin),114(sambashare)
 # 
 ```
-8. Question `What is the root flag (/root/root.txt)?` Answer `177b3cd8562289f37382721c28381f02` 32 alphanumeric chars. Command used `cat /root/root.txt`
+8. Question `What is the root flag (/root/root.txt)?` Answer `********************************` 32 alphanumeric chars. Command used `cat /root/root.txt`
    
 Author: Zishan Ahamed Thandar
