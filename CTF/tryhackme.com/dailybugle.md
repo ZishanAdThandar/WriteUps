@@ -14,6 +14,7 @@ Room Link: https://tryhackme.com/room/dailybugle
 3. SearchSploit https://www.exploit-db.com/searchsploit
 4. SQLMap https://github.com/sqlmapproject/sqlmap
 5. hashid https://pypi.org/project/hashID/
+6. John The Ripper https://www.openwall.com/john/
 
 ## Deploy 
 
