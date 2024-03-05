@@ -17,6 +17,5 @@ Room Link: https://tryhackme.com/room/overpass2hacked
 
 ## Attack - Get back in!
 
-## 
 
 Author: Zishan Ahamed Thandar
