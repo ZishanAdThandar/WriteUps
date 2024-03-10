@@ -61,7 +61,7 @@ hashcat -m 1710 "6d05358f090eea56a238af02e47d44ee5489d234810ef6240280857ec69712a
 
 1. Start Machine to get IP.
 2. Question `The attacker defaced the website. What message did they leave as a heading?` Answer `H4ck3d by CooctusClan`. Manually checking strings output for downloading deface page will show this. We can also use this command `strings overpass2.pcapng |grep "H4ck3d"`. Or simply opening the ip in browser will show this heading.
-3. We have repeat attackers steps. Now we can login to the ssh port 2222 opened by the backdoor as we saw in `strings` output. We already have username `james` and can use cracked password.
+3. We have repeat attackers steps. Now we can login to the ssh port 2222 opened by the backdoor as we saw in `strings` output. We already have username `james` and can use cracked password. We need to use `-oHostKeyAlgorithms=+ssh-rsa` to get ssh as there is an error.
 ```bash
 ssh -p 2222 james@10.10.136.126
 Unable to negotiate with 10.10.136.126 port 2222: no matching host key type found. Their offer: ssh-rsa
