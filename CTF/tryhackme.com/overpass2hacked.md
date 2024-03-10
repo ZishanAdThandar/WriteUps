@@ -46,8 +46,24 @@ Session completed
 
 
 ## Research - Analyse the code
+1. We have the backdoor link `https://github.com/NinjaJc01/ssh-backdoor`. We can find `hash` and `salt` details inside code. `https://raw.githubusercontent.com/NinjaJc01/ssh-backdoor/master/main.go`
+2. Question `What's the default hash for the backdoor?` Answer `bdd04d9bb7621687f5df9001f5098eb22bf19eac4c2c30b6f23efed4d24807277d0f8bfccb9e77659103d78c56e66d2d7d8391dfc885d0e9b68acd01fc2170e3`
+3. Question `What's the hardcoded salt for the backdoor?` Answer `1c362db832f3f864c8c2fe05f2002a05`.
+4. Question `What was the hash that the attacker used? - go back to the PCAP for this!` Answer `6d05358f090eea56a238af02e47d44ee5489d234810ef6240280857ec69712a3e5e370b8a41899d0196ade16c0d54327c5654019292cbfe0b5e98ad1fec71bed`. We can check it manually inside `strings` output. By using `strings overpass2.pcapng |grep "backdoor -a"` we can directly find the output.
+5. As we can find in the backdoor code that it is `sha512`. So we can decode it using `hashcat`.
+```bash
+hashcat -m 1710 "6d05358f090eea56a238af02e47d44ee5489d234810ef6240280857ec69712a3e5e370b8a41899d0196ade16c0d54327c5654019292cbfe0b5e98ad1fec71bed:1c362db832f3f864c8c2fe05f2002a05" --force /opt/wordlist/rockyou.txt --quiet
+6d05358f090eea56a238af02e47d44ee5489d234810ef6240280857ec69712a3e5e370b8a41899d0196ade16c0d54327c5654019292cbfe0b5e98ad1fec71bed:1c362db832f3f864c8c2fe05f2002a05:no******6
+```
+6. Question `Crack the hash using rockyou and a cracking tool of your choice. What's the password?` Answer `n********6`
 
 ## Attack - Get back in!
 
+1. Start Machine to get IP.
+2. Question `The attacker defaced the website. What message did they leave as a heading?` Answer `H4ck3d by CooctusClan`. Manually checking strings output for downloading deface page will show this. We can also use this command `strings overpass2.pcapng |grep "H4ck3d"`. Or simply opening the ip in browser will show this heading.
+3. We have repeat attackers steps. 
+4. Now we can login to the ssh port 2222 opened by the backdoor as we saw in `strings` output. We already have username `james` and can use cracked password.
+5. 
+6. 
 
 Author: Zishan Ahamed Thandar
