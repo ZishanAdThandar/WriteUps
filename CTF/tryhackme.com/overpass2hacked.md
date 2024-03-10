@@ -11,9 +11,8 @@ Room Link: https://tryhackme.com/room/overpass2hacked
 
 1. Wireshark https://www.wireshark.org/download.html
 2. Strings
-3. ssh
-4. John The Ripper https://www.openwall.com/john/
-5. hashcat https://hashcat.net/hashcat/
+3. John The Ripper https://www.openwall.com/john/
+4. hashcat https://hashcat.net/hashcat/
 
 ##  Forensics - Analyse the PCAP
 
