@@ -71,7 +71,7 @@ CTF and Bug Bounty Hunting WriteUps
   - Game Zone
   - Skynet
   - <a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/dailybugle.md" target="_blank">Daily Bugle</a> Pentesting Hard
-  - Overpass 2 Hacked
+  - <a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/overpass2hacked.md" target="_blank">Overpass 2 Hacked</a> Pentesting Hard
   - Relevent
   - Internal
 - Buffer Overflow Exploitation
