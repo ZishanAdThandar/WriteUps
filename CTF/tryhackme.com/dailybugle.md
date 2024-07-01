@@ -4,7 +4,7 @@
 - [Deploy](#deploy)
 - [Obtain user and root](#obtain-user-and-root)
 - [Credits](#credits)
-
+ 
 Room Link: https://tryhackme.com/room/dailybugle
 
 ## Tools 
