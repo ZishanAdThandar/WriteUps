@@ -1,4 +1,10 @@
 # Cyber Security WriteUps
+
+[![Sponser](https://img.shields.io/github/sponsors/ZishanAdThandar)](https://github.com/sponsors/ZishanAdThandar)
+[![ZishanAdThandar's WriteUps Repo stars](https://img.shields.io/github/stars/ZishanAdThandar/WriteUps)](https://github.com/ZishanAdThandar/WriteUps)
+[![YouTube](https://img.shields.io/youtube/channel/subscribers/UChgqXa2j7ZKkHX2Y76tSxoA)](https://youtube.com/@hackerstation)
+[![LinkTree](https://img.shields.io/badge/Link-Tree-bbd343)](https://zishanadthandar.github.io/linktree/)
+
 CTF and Bug Bounty Hunting WriteUps
 - [Bug Bounty PoC](#bug-bounty)
 - [CTF](#CTF)
