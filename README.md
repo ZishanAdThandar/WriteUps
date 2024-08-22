@@ -40,35 +40,15 @@ CTF and Bug Bounty Hunting WriteUps
 
 
 ### TryHackMe
-- Cryptography: [Crack the hash](/CTF/tryhackme.com/crackthehash.md), [The Impossible Challenge](/CTF/tryhackme.com/theimpossiblechallenge.md)
-- Getting Started: [Tutorial](/CTF/tryhackme.com/tutorial.md), [Vuln University (Vulnversity) Pentesting](/CTF/tryhackme.com/vulnversity.md), [Blue Pentesting](/CTF/tryhackme.com/blue.md), [Kenobi Pentesting](/CTF/tryhackme.com/kenobi.md)
+- Getting Started: [Tutorial](/CTF/tryhackme.com/tutorial.md), [Vuln University (Vulnversity) Machine](/CTF/tryhackme.com/vulnversity.md), [Blue Machine](/CTF/tryhackme.com/blue.md), [Kenobi Machine](/CTF/tryhackme.com/kenobi.md)
 - Advanced Exploitation
-  - Steel Mountain
-  - Alfred
-  - Hack Park
-  - Game Zone
-  - Skynet
-  - [Daily Bugle](/CTF/tryhackme.com/dailybugle.md) Pentesting Hard
-  - [Overpass 2 Hacked](/CTF/tryhackme.com/overpass2hacked.md) Pentesting Hard
-  - Relevent
-  - Internal
-- Buffer Overflow Exploitation
-  - Buffer Overflow Prep
-  - Barinstorm
-  - Gatekeeper
-  - Brainpan 1
-- Active Directory
-  - Active Directory Basics
-  - Beaching Active Directory
-  - Lateral Movement and Pivoting
-  - Exploiting Active Directory
-  - Persisting Active Directory
-  - Credential Harvesting
-- Extra Credit
-  - Hacking with PowerShell
-  - Corp
-  - Mr Robot CTF
-  - Retro
+  - [Daily Bugle Machine](/CTF/tryhackme.com/dailybugle.md) 
+  - [Overpass 2 Hacked Machine](/CTF/tryhackme.com/overpass2hacked.md) 
+- Buffer Overflow Exploitation:
+- Active Directory:
+- Extra Machines:
+- Web:
+- Cryptography: [Crack the hash](/CTF/tryhackme.com/crackthehash.md), [The Impossible Challenge](/CTF/tryhackme.com/theimpossiblechallenge.md)
 
 ## About Me
 
