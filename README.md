@@ -1,11 +1,12 @@
 # Cyber Security WriteUps
 
+CTF and Bug Bounty Hunting WriteUps
+
 [![LinkTree](https://img.shields.io/badge/Link-Tree-bbd343)](https://zishanadthandar.github.io/linktree/)
 [![YouTube](https://img.shields.io/youtube/channel/subscribers/UChgqXa2j7ZKkHX2Y76tSxoA)](https://youtube.com/@hackerstation)
 [![Sponser](https://img.shields.io/github/sponsors/ZishanAdThandar)](https://github.com/sponsors/ZishanAdThandar)
 [![ZishanAdThandar's WriteUps Repo stars](https://img.shields.io/github/stars/ZishanAdThandar/WriteUps)](https://github.com/ZishanAdThandar/WriteUps)
-private/blob/main/notes/CHEATSHEET/RDP.md
-CTF and Bug Bounty Hunting WriteUps
+
 - [Bug Bounty PoC](#bug-bounty)
 - [CTF](#ctf)
   - [Vulnhub](#vulnhub)
