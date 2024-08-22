@@ -79,14 +79,14 @@ CTF and Bug Bounty Hunting WriteUps
   - Retro
 
 ## About Me
-LinkedIN: [LinkedIn.com/in/ZishanAdThandar](https://www.linkedin.com/in/ZishanAdThandar)
-Youtube: [YouTube.com/ZishanAdThandar](https://youtube.com/ZishanAdThandar)
-LinkTree: [ZishanAdThandar.github.io/linktree](https://ZishanAdThandar.github.io/linktree)
-Twitter: [twitter.com/ZishanAdThandar](https://x.com/ZishanAdThandar)
-Telegram: [ZishanAdThandar.t.me](https://ZishanAdThandar.t.me)
-Github: [GitHub.com/ZishanAdThandar](https://github.com/ZishanAdThandar)
-Portfolio: [ZishanAdThandar.github.io](https://ZishanAdThandar.github.io)
-Resume: [ZishanAdThandar.github.io/CV.pdf](https://ZishanAdThandar.github.io/CV.pdf)
+- LinkedIN: [LinkedIn.com/in/ZishanAdThandar](https://www.linkedin.com/in/ZishanAdThandar)
+- Youtube: [YouTube.com/ZishanAdThandar](https://youtube.com/ZishanAdThandar)
+- LinkTree: [ZishanAdThandar.github.io/linktree](https://ZishanAdThandar.github.io/linktree)
+- Twitter: [twitter.com/ZishanAdThandar](https://x.com/ZishanAdThandar)
+- Telegram: [ZishanAdThandar.t.me](https://ZishanAdThandar.t.me)
+- Github: [GitHub.com/ZishanAdThandar](https://github.com/ZishanAdThandar)
+- Portfolio: [ZishanAdThandar.github.io](https://ZishanAdThandar.github.io)
+- Resume: [ZishanAdThandar.github.io/CV.pdf](https://ZishanAdThandar.github.io/CV.pdf)
 
 [![TryHackMe](https://tryhackme-badges.s3.amazonaws.com/ZishanAdThandar.png)](https://tryhackme.com/p/ZishanAdThandar)
 
