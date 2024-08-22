@@ -14,6 +14,7 @@ CTF and Bug Bounty Hunting WriteUps
     - [Easy HTB](#easy-htb)
     - [Medium HTB](#medium-htb)
   - [TryHackMe](#tryhackme)
+  - [PortSwiggerLab](#portswiggerlab)
 - [About Me](#about-me)
 
 ## Bug Bounty
