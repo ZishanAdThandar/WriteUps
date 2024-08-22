@@ -17,7 +17,7 @@ CTF and Bug Bounty Hunting WriteUps
 - [About Me](#about-me)
 
 ## Bug Bounty
-1. [Hunting methodology and experience of my First Stored XSS on Edmodo.com](/bugbounty/1.md){:target="_blank"}
+1. [Hunting methodology and experience of my First Stored XSS on Edmodo.com](/bugbounty/1.md)
 1. [Just 5 minute to get my 2nd stored XSS on Edmodo.com](/bugbounty/2.md)
 
 ## CTF
@@ -41,22 +41,23 @@ CTF and Bug Bounty Hunting WriteUps
 
 
 ### TryHackMe
-<a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/crackthehash.md" target="_blank">Crack the hash</a>
-<a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/theimpossiblechallenge.md" target="_blank">The Impossible Challenge</a> Cryptography Easy
+- Cryptography Easy
+  - [Crack the hash](/CTF/tryhackme.com/crackthehash.md)
+  - [The Impossible Challenge](/CTF/tryhackme.com/theimpossiblechallenge.md)
 #### Offensive Pentesting Path
 - Getting Started
-  - <a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/tutorial.md" target="_blank">Tutorial</a>
-  - <a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/vulnversity.md" target="_blank">Vuln University</a> (Vulnversity) Pentesting Easy
-  - <a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/blue.md" target="_blank">Blue</a> Pentesting Easy
-  - <a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/kenobi.md" target="_blank">Kenobi</a> Pentesting Easy
+  - [Tutorial](/CTF/tryhackme.com/tutorial.md)
+  - [Vuln University](/CTF/tryhackme.com/vulnversity.md) (Vulnversity) Pentesting Easy
+  - [Blue](/CTF/tryhackme.com/blue.md) Pentesting Easy
+  - [Kenobi](/CTF/tryhackme.com/kenobi.md) Pentesting Easy
 - Advanced Exploitation
   - Steel Mountain
   - Alfred
   - Hack Park
   - Game Zone
   - Skynet
-  - <a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/dailybugle.md" target="_blank">Daily Bugle</a> Pentesting Hard
-  - <a href="https://github.com/ZishanAdThandar/WriteUps/blob/main/CTF/tryhackme.com/overpass2hacked.md" target="_blank">Overpass 2 Hacked</a> Pentesting Hard
+  - [Daily Bugle](/CTF/tryhackme.com/dailybugle.md) Pentesting Hard
+  - [Overpass 2 Hacked](/CTF/tryhackme.com/overpass2hacked.md) Pentesting Hard
   - Relevent
   - Internal
 - Buffer Overflow Exploitation
@@ -78,15 +79,16 @@ CTF and Bug Bounty Hunting WriteUps
   - Retro
 
 ## About Me
-Twitter: <a href="https://twitter.com/ZishanAdThandar">https://twitter.com/ZishanAdThandar</a><br>
-Youtube: <a href="https://youtube.com/ZishanAdThandar">https://youtube.com/ZishanAdThandar</a><br>
-Telegram: <a href="https://t.me/ZishanAdThandar">https://t.me/ZishanAdThandar</a><br>
-Github: <a href="https://github.com/ZishanAdThandar">https://github.com/ZishanAdThandar</a><br>
-LinkedIN: <a href="https://www.linkedin.com/in/ZishanAdThandar">https://www.linkedin.com/in/ZishanAdThandar</a><br>
+LinkedIN: [LinkedIn.com/in/ZishanAdThandar](https://www.linkedin.com/in/ZishanAdThandar)
+Youtube: [YouTube.com/ZishanAdThandar](https://youtube.com/ZishanAdThandar)
+LinkTree: [ZishanAdThandar.github.io/linktree](https://ZishanAdThandar.github.io/linktree)
+Twitter: [twitter.com/ZishanAdThandar](https://x.com/ZishanAdThandar)
+Telegram: [ZishanAdThandar.t.me](https://ZishanAdThandar.t.me)
+Github: [GitHub.com/ZishanAdThandar](https://github.com/ZishanAdThandar)
+Portfolio: [ZishanAdThandar.github.io](https://ZishanAdThandar.github.io)
+Resume: [ZishanAdThandar.github.io/CV.pdf](https://ZishanAdThandar.github.io/CV.pdf)
 
-
-<img src="https://tryhackme-badges.s3.amazonaws.com/ZishanAdThandar.png" alt="TryHackMe"><br>
-
+[![TryHackMe](https://tryhackme-badges.s3.amazonaws.com/ZishanAdThandar.png)](https://tryhackme.com/p/ZishanAdThandar)
 
 # Be a Sponsor  
 
