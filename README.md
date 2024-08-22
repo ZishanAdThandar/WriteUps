@@ -7,25 +7,17 @@
 
 CTF and Bug Bounty Hunting WriteUps
 - [Bug Bounty PoC](#bug-bounty)
-- [CTF](#CTF)
+- [CTF](#ctf)
   - [Vulnhub](#vulnhub)
   - [HackTheBox](#hackthebox)
-    - [HackTheBox Linux Machines](#hackthebox-linux-machines)
-      - [Easy Linux HTB](#easy-linux-htb)
-      - [Medium Linux HTB](#medium-linux-htb)
-      - [Hard Linux HTB](#hard-linux-htb)
-    - [HackTheBox Windows Machines](#hackthebox-windows-machines)
-      - [Easy Windows HTB](#easy-windows-htb)
-      - [Medium Windows HTB](#medium-windows-htb)
-      - [Hard Windows HTB](#hard-windows-htb)
+    - [Easy HTB](#easy-htb)
+    - [Medium Linux HTB](#medium-htb)
   - [TryHackMe](#tryhackme)
 - [About Me](#about-me)
 
 ## Bug Bounty
-<ol>
-  <li><a href="/bugbounty/1.md" target="_blank">Hunting methodology and experience of my First Stored XSS on Edmodo.com</a></li>
-  <li><a href="/bugbounty/2.md" target="_blank">Just 5 minute to get my 2nd stored XSS on Edmodo.com</a></li>
-</ol>
+1. [Hunting methodology and experience of my First Stored XSS on Edmodo.com](/bugbounty/1.md)
+1. [Just 5 minute to get my 2nd stored XSS on Edmodo.com](/bugbounty/2.md)
 
 ## CTF
 
@@ -36,29 +28,15 @@ CTF and Bug Bounty Hunting WriteUps
 
 ### HackTheBox
 
-#### HackTheBox Linux Machines
-##### Easy Linux HTB
-<ol>
-<li><a href="./CTF/hackthebox.com/0001lame.md" target="_blank">Lame 10.10.10.3 Linux</a></li> 
-</ol>
+#### Easy HTB
 
-##### Medium Linux HTB
-<ol>
-<li><a href="./CTF/hackthebox.com/0004popcorn.md" target="_blank">Popcorn 10.10.10.6 Linux Medium</a></li>
-</ol>
+1. [Lame 10.10.10.3 Linux](./CTF/hackthebox.com/0001lame.md)
+1. [Legacy 10.10.10.4 Windows](./CTF/hackthebox.com/0002legacy.md)
+1. [Devel 10.10.10.5 Windows](./CTF/hackthebox.com/0003devel.md)
 
-##### Hard Linux HTB
+#### Medium Linux HTB
+1. [Popcorn 10.10.10.6 Linux ](./CTF/hackthebox.com/0004popcorn.md)
 
-#### HackTheBox Windows Machines
-##### Easy Windows HTB
-<ol>
-<li><a href="./CTF/hackthebox.com/0002legacy.md" target="_blank">Legacy 10.10.10.4 Windows</a></li> 
-<li><a href="./CTF/hackthebox.com/0003devel.md" target="_blank">Devel 10.10.10.5 Windows</a></li>
-</ol>
-
-##### Medium Windows HTB
-
-##### Hard Windows HTB
 
 
 ### TryHackMe
