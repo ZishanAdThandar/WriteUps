@@ -31,25 +31,17 @@ CTF and Bug Bounty Hunting WriteUps
 
 #### Easy HTB
 
-1. [Lame 10.10.10.3 Linux](./CTF/hackthebox.com/0001lame.md)
-1. [Legacy 10.10.10.4 Windows](./CTF/hackthebox.com/0002legacy.md)
-1. [Devel 10.10.10.5 Windows](./CTF/hackthebox.com/0003devel.md)
+- Linux: [Lame 10.10.10.3 Linux](./CTF/hackthebox.com/0001lame.md)
+- Windows: [Legacy 10.10.10.4 Windows](./CTF/hackthebox.com/0002legacy.md), [Devel 10.10.10.5 Windows](./CTF/hackthebox.com/0003devel.md)
 
 #### Medium HTB
-1. [Popcorn 10.10.10.6 Linux ](./CTF/hackthebox.com/0004popcorn.md)
+- Linux: [Popcorn 10.10.10.6 Linux ](./CTF/hackthebox.com/0004popcorn.md)
 
 
 
 ### TryHackMe
-- Cryptography Easy
-  - [Crack the hash](/CTF/tryhackme.com/crackthehash.md)
-  - [The Impossible Challenge](/CTF/tryhackme.com/theimpossiblechallenge.md)
-#### Offensive Pentesting Path
-- Getting Started
-  - [Tutorial](/CTF/tryhackme.com/tutorial.md)
-  - [Vuln University](/CTF/tryhackme.com/vulnversity.md) (Vulnversity) Pentesting Easy
-  - [Blue](/CTF/tryhackme.com/blue.md) Pentesting Easy
-  - [Kenobi](/CTF/tryhackme.com/kenobi.md) Pentesting Easy
+- Cryptography: [Crack the hash](/CTF/tryhackme.com/crackthehash.md), [The Impossible Challenge](/CTF/tryhackme.com/theimpossiblechallenge.md)
+- Getting Started: [Tutorial](/CTF/tryhackme.com/tutorial.md), [Vuln University (Vulnversity) Pentesting](/CTF/tryhackme.com/vulnversity.md), [Blue Pentesting](/CTF/tryhackme.com/blue.md), [Kenobi Pentesting](/CTF/tryhackme.com/kenobi.md)
 - Advanced Exploitation
   - Steel Mountain
   - Alfred
