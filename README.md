@@ -4,14 +4,14 @@
 [![YouTube](https://img.shields.io/youtube/channel/subscribers/UChgqXa2j7ZKkHX2Y76tSxoA)](https://youtube.com/@hackerstation)
 [![Sponser](https://img.shields.io/github/sponsors/ZishanAdThandar)](https://github.com/sponsors/ZishanAdThandar)
 [![ZishanAdThandar's WriteUps Repo stars](https://img.shields.io/github/stars/ZishanAdThandar/WriteUps)](https://github.com/ZishanAdThandar/WriteUps)
-
+private/blob/main/notes/CHEATSHEET/RDP.md
 CTF and Bug Bounty Hunting WriteUps
 - [Bug Bounty PoC](#bug-bounty)
 - [CTF](#ctf)
   - [Vulnhub](#vulnhub)
   - [HackTheBox](#hackthebox)
     - [Easy HTB](#easy-htb)
-    - [Medium Linux HTB](#medium-htb)
+    - [Medium HTB](#medium-htb)
   - [TryHackMe](#tryhackme)
 - [About Me](#about-me)
 
@@ -34,7 +34,7 @@ CTF and Bug Bounty Hunting WriteUps
 1. [Legacy 10.10.10.4 Windows](./CTF/hackthebox.com/0002legacy.md)
 1. [Devel 10.10.10.5 Windows](./CTF/hackthebox.com/0003devel.md)
 
-#### Medium Linux HTB
+#### Medium HTB
 1. [Popcorn 10.10.10.6 Linux ](./CTF/hackthebox.com/0004popcorn.md)
 
 
