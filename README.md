@@ -17,7 +17,7 @@ CTF and Bug Bounty Hunting WriteUps
 - [About Me](#about-me)
 
 ## Bug Bounty
-1. [Hunting methodology and experience of my First Stored XSS on Edmodo.com](/bugbounty/1.md)
+1. [Hunting methodology and experience of my First Stored XSS on Edmodo.com](/bugbounty/1.md){:target="_blank"}
 1. [Just 5 minute to get my 2nd stored XSS on Edmodo.com](/bugbounty/2.md)
 
 ## CTF
@@ -83,6 +83,8 @@ Youtube: <a href="https://youtube.com/ZishanAdThandar">https://youtube.com/Zisha
 Telegram: <a href="https://t.me/ZishanAdThandar">https://t.me/ZishanAdThandar</a><br>
 Github: <a href="https://github.com/ZishanAdThandar">https://github.com/ZishanAdThandar</a><br>
 LinkedIN: <a href="https://www.linkedin.com/in/ZishanAdThandar">https://www.linkedin.com/in/ZishanAdThandar</a><br>
+
+
 <img src="https://tryhackme-badges.s3.amazonaws.com/ZishanAdThandar.png" alt="TryHackMe"><br>
 
 
