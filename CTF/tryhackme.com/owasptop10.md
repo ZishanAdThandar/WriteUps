@@ -16,7 +16,7 @@
 - [[Severity 4] XML External Entity - DTD](#severity-4-xml-external-entity---dtd)
 - [[Severity 4] XML External Entity - XXE Payload](#severity-4-xml-external-entity---xxe-payload)
 - [[Severity 4] XML External Entity - Exploiting](#severity-4-xml-external-entity---exploiting)
-- [[Severity 5] Broken Access Control](#[Severity 5] Broken Access Control)
+- [[Severity 5] Broken Access Control](#severity-5-broken-access-control)
 - [[Severity 5] Broken Access Control (IDOR Challenge)](#severity-5-broken-access-control-idor-challenge)
 - [[Severity 6] Security Misconfiguration](#severity-6-security-misconfiguration)
 - [[Severity 7] Cross-site Scripting](#severity-7cross-site-scripting)
