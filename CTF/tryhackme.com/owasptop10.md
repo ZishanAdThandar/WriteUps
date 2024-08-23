@@ -38,6 +38,7 @@ Room Link: https://tryhackme.com/r/room/owasptop10
 ## Tools
 1. sqlite3
 2. [Cracktation.net](https://crackstation.net/)
+3. Burp Suite
    
 ## Introduction
 1. Join the machine
@@ -117,7 +118,21 @@ Room Link: https://tryhackme.com/r/room/owasptop10
 2. Question `How do you define a ROOT element?` Answer `!DOCTYPE`
 3. Question `How do you define a new ENTITY?` Answer `!ENTITY`
 ## [Severity 4] XML External Entity - XXE Payload
+1. Read this section carefully and click on Complete.
 ## [Severity 4] XML External Entity - Exploiting
+1. Now open http://machine_ip
+2. Used given payload in last section to print `falcon feast` and clicked on Complete.
+3. Again used payload from last section to read `/etc/passwd` and clicked on complete.
+4. Question `What is the name of the user in /etc/passwd` Answer `falcon`. We read it from output of last payload.
+5. Now we can use same payload with replacing file from `/etc/passwd` to ssh file location `/home/falcon/.ssh/id_rsa`.
+6. Question `Where is falcon's SSH key located?` Answer `/home/falcon/.ssh/id_rsa`.
+7. New payload to read SSH file,
+   ```xml
+   <?xml version="1.0"?>
+   <!DOCTYPE root [<!ENTITY read SYSTEM '/home/falcon/.ssh/id_rsa'>]>
+   <root>&read;</root>
+   ```
+8. Question `What are the first 18 characters for falcon's private key` Answer `MIIEogI****CAQEA7b`
 ## [Severity 5] Broken Access Control
 ## [Severity 5] Broken Access Control (IDOR Challenge)
 ## [Severity 6] Security Misconfiguration
