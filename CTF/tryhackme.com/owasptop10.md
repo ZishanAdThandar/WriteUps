@@ -25,6 +25,12 @@
 - [[Severity 8] Insecure Deserialization - Deserialization](#severity-8-insecure-deserialization---deserialization)
 - [[Severity 8] Insecure Deserialization - Cookies](#severity-8-insecure-deserialization---cookies)
 - [[Severity 8] Insecure Deserialization - Cookies Practical](#severity-8-insecure-deserialization---cookies-practical)
+- [[Severity 8] Insecure Deserialization - Code Execution](#severity-8-insecuredeserialization---code-execution)
+- [[Severity 9] Components With Known Vulnerabilities - Intro](#severity-9-components-with-known-vulnerabilities---intro)
+- [[Severity 9] Components With Known Vulnerabilities - Exploit](#severity-9-components-with-known-vulnerabilities---exploit)
+- [[Severity 9] Components With Known Vulnerabilities - Lab](#severity-9-components-with-known-vulnerabilities---lab)
+- [[Severity 10] Insufficient Logging and Monitoring](#severity-10-insufficient-logging-and-monitoring)
+- [What Next?](#what-next)
 
 Room Link: https://tryhackme.com/r/room/owasptop10
 
@@ -53,3 +59,9 @@ Room Link: https://tryhackme.com/r/room/owasptop10
 ## [Severity 8] Insecure Deserialization - Deserialization
 ## [Severity 8] Insecure Deserialization - Cookies
 ## [Severity 8] Insecure Deserialization - Cookies Practical
+## [Severity 8] Insecure Deserialization - Code Execution
+## [Severity 9] Components With Known Vulnerabilities - Intro
+## [Severity 9] Components With Known Vulnerabilities - Exploit
+## [Severity 9] Components With Known Vulnerabilities - Lab
+## [Severity 10] Insufficient Logging and Monitoring
+## What Next?
