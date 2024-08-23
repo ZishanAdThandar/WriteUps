@@ -1,6 +1,6 @@
 # Cyber Security WriteUps
 
-CTF and Bug Bounty Hunting WriteUps
+Welcome to my collection of Hack The Box (HTB), TryHackMe, Bug Bounty, and other CTF writeups! This repository serves as a comprehensive resource for cybersecurity enthusiasts, pentesters, bug bounty hunters, and learners who are eager to explore and understand various challenges and vulnerabilities. Each writeup is crafted with detailed steps, explanations, and insights, aiming to provide a clear understanding of the methodologies used to solve challenges and identify vulnerabilities. Whether you're a beginner or an advanced user, you'll find valuable content to enhance your skills.
 
 [![LinkTree](https://img.shields.io/badge/Link-Tree-bbd343)](https://zishanadthandar.github.io/linktree/)
 [![YouTube](https://img.shields.io/youtube/channel/subscribers/UChgqXa2j7ZKkHX2Y76tSxoA)](https://youtube.com/@hackerstation)
