@@ -193,8 +193,11 @@ Room Link: https://tryhackme.com/r/room/owasptop10
 4. Now to find the shell, open location of image. You can find all images in `/bootstrap/img` directory. Just open the directory in the link, you can get your uploaded shell there, `http://machine_ip/bootstrap/img/shell.php`. If you open the page, it will compile and execute the code to display character number of `/etc/passwd`.
 5. Question `How many characters are in /etc/passwd (use wc -c /etc/passwd to get the answer)` Answer `1611`
 ## [Severity 10] Insufficient Logging and Monitoring
+1. Read this section carefully.
+2. Question `What IP address is the attacker using?` Answer `49.99.13.16`. We can check lot of unauthorized login from this ip.
+3. Question `What kind of attack is being carried out?` Answer `Bruteforce`. As we can see many unatuthorized usernames requested.
 ## What Next?
-
+1. Just click Complete. Done!
 
 
 Author: Zishan Ahamed Thandar
