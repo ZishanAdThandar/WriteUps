@@ -36,10 +36,22 @@ Room Link: https://tryhackme.com/r/room/owasptop10
 
 ## Tools
 ## Introduction
+1. Join the machine
+2. Read Instructions and click on Complete.
 ## Accessing machines
+1. Goto Access and get ovpn file to connect https://tryhackme.com/access
+2. Or, Start attackbox for testing.
 ## [Severity 1] Injection 
+1. Read carefully this section and click on Complete.
 ## [Severity 1] OS Command Injection
+1. Read this section and mentioned [article](https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/#spawn-tty-shell), then  click on Complete. 
 ## [Severity 1] Command Injection Practical
+1. Start Machine and get Target IP from "Target Machine Information". Now, open http://machine_ip/evilshell.php.
+2. Now, type commands and submit. You can see output below.
+3. Question `What strange text file is in the website root directory?` Answer `drpepper.txt`. Running `ls` command will show this strange text file.
+4. Question `How many non-root/non-service/non-daemon users are there?` Answer `0`. Running `cat /etc/passwd` will show.
+5. Question `What user is this app running as?` Answer `www-data`. Used command `whoami`.
+6. Question `What is the user's shell set as?` Answer `/usr/sbin/nologin`. Command used `getent passwd www-data` or `cat /etc/passwd |grep www-data`.
 ## [Severity 2] Broken Authentication
 ## [Severity 2] Broken Authentication Practical
 ## [Severity 3] Sensitive Data Exposure (Introduction)
