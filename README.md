@@ -48,7 +48,7 @@
 - Buffer Overflow Exploitation:
 - Active Directory:
 - Extra Machines:
-- Web:
+- Web: [OWASP Top 10](/CTF/tryhackme.com/owasptop10.md)
 - Cryptography: [Crack the hash](/CTF/tryhackme.com/crackthehash.md), [The Impossible Challenge](/CTF/tryhackme.com/theimpossiblechallenge.md)
 
 ## About Me
