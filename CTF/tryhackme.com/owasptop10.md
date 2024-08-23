@@ -47,7 +47,7 @@ Room Link: https://tryhackme.com/r/room/owasptop10
 ## [Severity 1] OS Command Injection
 1. Read this section and mentioned [article](https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/#spawn-tty-shell), then  click on Complete. 
 ## [Severity 1] Command Injection Practical
-1. Start Machine and get Target IP from "Target Machine Information". Now, open http://machine_ip/evilshell.php.
+1. Start Machine and get Target IP from "Target Machine Information". Now, open `http://machine_ip/evilshell.php`.
 2. Now, type commands and submit. You can see output below.
 3. Question `What strange text file is in the website root directory?` Answer `drpepper.txt`. Running `ls` command will show this strange text file.
 4. Question `How many non-root/non-service/non-daemon users are there?` Answer `0`. Running `cat /etc/passwd` will show.
@@ -70,7 +70,36 @@ Room Link: https://tryhackme.com/r/room/owasptop10
 ## [Severity 3] Sensitive Data Exposure (Supporting Material 2)
 1. Read this section carefully and click on Complete.
 ## [Severity 3] Sensitive Data Exposure (Challenge)
-1. 
+1. If we open the machine link and check source, we can get a image link to `http://machine_ip/assets/images/lake-taupo.jpg`.
+2. Now if we navigate to `http://machine_ip/assets` directory, there is a sensitive databse file named `webapp.db`.
+3. Question `What is the name of the mentioned directory?` Answer `/assets`.
+4. Question `Navigate to the directory you found in question one. What file stands out as being likely to contain sensitive data?` Answer `webapp.db`. It's a file inside `/assets`.
+5. Now Downloding the file and analyzing the file with `file webapp.db` command shows it's a `sqlite3` file. Now, we can read the db file with `sqlite3 webapp.db`.
+6. If we use `.table` command to get table names, we will see there is two table named `session` and `users`. We can get column names using `PRAGMA table_info(users);` command.
+   ```bash
+    $> sqlite3 webapp.db 
+     SQLite version 3.37.2 2022-01-06 13:25:41
+     Enter ".help" for usage hints.
+    sqlite> .tables
+    sessions  users   
+    sqlite> PRAGMA table_info(users);
+    0|userID|TEXT|1||1
+    1|username|TEXT|1||0
+    2|password|TEXT|1||0
+    3|admin|INT|1||0
+    sqlite> 
+   ```
+7. `select * from users;` will show user's details inside the table. We can get admin hash there `6eea9b7ef191*******0f6c05ceb`.
+  ```bash
+    sqlite> select * from users;
+    4413096d9c933359b898b6202288a650|admin|6eea9b7ef191******f6c05ceb|1
+    23023b67a32488588db1e28579ced7ec|Bob|ad0234829205b9033196ba818f7a872b|1
+    4e8423b514eef575394ff78caed3254d|Alice|268b38ca7b84f44fa0a6cdc86e6301e0|0
+    sqlite> 
+  ```
+8. Question `Use the supporting material to access the sensitive data. What is the password hash of the admin user?` Answer `6eea9b7ef191*****dd0f6c05ceb`.
+9. Question `What is the admin's plaintext password?` Answer `qwe****op`. We can crack the hash using [CrackStation](https://crackstation.net/).
+10. Question `Login as the admin. What is the flag?` Answer `THM{Yzc2Yjd*************diMjdl}`. If we goto `http://machine_ip/login` and login with username `admin` and the cracked password `qw*****iop`, it will redirect to `http://machine_ip/console/`. There we can get the flag.
 ## [Severity 4] XML External Entity
 ## [Severity 4] XML External Entity - eXtensible Markup Language
 ## [Severity 4] XML External Entity - DTD
