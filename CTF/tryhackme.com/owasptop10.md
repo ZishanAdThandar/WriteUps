@@ -134,7 +134,12 @@ Room Link: https://tryhackme.com/r/room/owasptop10
    ```
 8. Question `What are the first 18 characters for falcon's private key` Answer `MIIEogI****CAQEA7b`
 ## [Severity 5] Broken Access Control
+1. Read this section carefully and click on Complete.
 ## [Severity 5] Broken Access Control (IDOR Challenge)
+1. If any machine is running, terminate that machine first. Then Start this Machine. Copy Target IP from "Target Machine Information".
+2. Read and understand how IDOR works and click on Complete.
+3. Open `http://machine_ip/` and login with username `note` and password `test123`, then click on Complete.
+4. Question `Look at other users notes. What is the flag?` Answer `flag{fivef***three}`. Got it by changing note id to 0 and visiting link `http://machine_ip/note.php?note=0`.
 ## [Severity 6] Security Misconfiguration
 ## [Severity 7] Cross-site Scripting
 ## [Severity 8] Insecure Deserialization
