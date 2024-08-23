@@ -158,11 +158,25 @@ Room Link: https://tryhackme.com/r/room/owasptop10
 ## [Severity 8] Insecure Deserialization
 1. If any machine is running, terminate that machine first. Then Start this Machine. Copy Target IP from "Target Machine Information".
 2. Read this section carefully.
-3. 
+3. Question `Who developed the Tomcat application?` Answer `The Apache Software Foundation`
+4. Question `What type of attack that crashes services can be performed with insecure deserialization?` Answer `Denial of Service`
 ## [Severity 8] Insecure Deserialization - Objects
+1. Read this section.
+2. Question `if a dog was sleeping, would this be: A) A State B) A Behaviour` Answer `A Behaviour`
 ## [Severity 8] Insecure Deserialization - Deserialization
+1. Read this section.
+2. Question `What is the name of the base-2 formatting that data is sent across a network as?` Answer `binary`
 ## [Severity 8] Insecure Deserialization - Cookies
+1. Read this section carefully.
+2. Question `If a cookie had the path of webapp.com/login , what would the URL that the user has to visit be?` Answer `webapp.com/login/`
+3. Question `What is the acronym for the web technology that Secure cookies work over?` Answer `https`
 ## [Severity 8] Insecure Deserialization - Cookies Practical
+1. Open `http://machine_ip/register`, create a account and login.
+2. Press `CTRL+SHIFT+I` and goto Storage section to read and edit cookies.
+3. Copy value of `sessionId` cookie and decode it with base64 decoder. Command to decode base64, `echo "gAN9cQAoWAkAAABzZXNzaW9uSWRxAVggAAAAN2Y1MWRiYWFhZjY2NDYwMzkyNTNiNTlkOTY3NTAwYWVxAlgLAAAAZW5jb2RlZGZsYWdxA1gYAAAAVEhNe2dvb2Rfb2xkX2Jhc2U2NF9odWh9cQR1Lg==" |base64 -d`. You will get the first flag.
+4. Question `1st flag (cookie value)` Answer `THM{good******se64_huh}`
+5. Then edit `userType` cookie value to `admin` from `user` and reload the page.
+6. Question `2nd flag (admin dashboard)` Answer `THM{heres******in_flag}`
 ## [Severity 8] Insecure Deserialization - Code Execution
 ## [Severity 9] Components With Known Vulnerabilities - Intro
 ## [Severity 9] Components With Known Vulnerabilities - Exploit
