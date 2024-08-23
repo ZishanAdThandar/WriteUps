@@ -156,6 +156,9 @@ Room Link: https://tryhackme.com/r/room/owasptop10
 8. Now used payload to change title from `` to ``. Payload used `<script>document.querySelector("#thm-title").textContent="I am a hacker"</script>`.
 9. Question `Change "XSS Playground" to "I am a hacker" by adding a comment and using Javascript.` Answer `websites_can_be_easily_defaced_with_xss`
 ## [Severity 8] Insecure Deserialization
+1. If any machine is running, terminate that machine first. Then Start this Machine. Copy Target IP from "Target Machine Information".
+2. Read this section carefully.
+3. 
 ## [Severity 8] Insecure Deserialization - Objects
 ## [Severity 8] Insecure Deserialization - Deserialization
 ## [Severity 8] Insecure Deserialization - Cookies
