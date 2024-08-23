@@ -65,3 +65,7 @@ Room Link: https://tryhackme.com/r/room/owasptop10
 ## [Severity 9] Components With Known Vulnerabilities - Lab
 ## [Severity 10] Insufficient Logging and Monitoring
 ## What Next?
+
+
+
+Author: Zishan Ahamed Thandar
