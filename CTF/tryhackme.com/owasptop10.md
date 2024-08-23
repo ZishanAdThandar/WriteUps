@@ -21,6 +21,10 @@
 - [[Severity 6] Security Misconfiguration](#severity-6-security-misconfiguration)
 - [[Severity 7] Cross-site Scripting](#severity-7cross-site-scripting)
 - [[Severity 8] Insecure Deserialization](#severity-8-insecure-deserialization)
+- [[Severity 8] Insecure Deserialization - Objects](#severity-8-insecure-deserialization---objects)
+- [[Severity 8] Insecure Deserialization - Deserialization](#severity-8-insecure-deserialization---deserialization)
+- [[Severity 8] Insecure Deserialization - Cookies](#severity-8-insecure-deserialization---cookies)
+- [[Severity 8] Insecure Deserialization - Cookies Practical](#severity-8-insecure-deserialization---cookies-practical)
 
 Room Link: https://tryhackme.com/r/room/owasptop10
 
@@ -45,3 +49,7 @@ Room Link: https://tryhackme.com/r/room/owasptop10
 ## [Severity 6] Security Misconfiguration
 ## [Severity 7] Cross-site Scripting
 ## [Severity 8] Insecure Deserialization
+## [Severity 8] Insecure Deserialization - Objects
+## [Severity 8] Insecure Deserialization - Deserialization
+## [Severity 8] Insecure Deserialization - Cookies
+## [Severity 8] Insecure Deserialization - Cookies Practical
