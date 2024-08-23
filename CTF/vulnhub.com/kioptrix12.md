@@ -9,6 +9,7 @@ Machine: https://www.vulnhub.com/entry/kioptrix-level-12-3,24/
 ## Tools
 1. [NMap](https://NMap.org)
 2. dirb
+3. Netcat
 
 ## Gaining Access
 1. Got IP with netdiscover, in my case IP is 192.168.0.13. At first as usual scanned with nmap.
