@@ -26,9 +26,7 @@
 ## CTF
 
 ### VulnHub
-<ol>
-  <li><a href="./CTF/vulnhub/1.md" target="_blank"></a></li>
-</ol>
+- [HackLAB: Vulnix](/CTF/vulnhub.com/hacklab-vulnix.md)
 
 ### HackTheBox
 
