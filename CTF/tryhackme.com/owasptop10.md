@@ -178,7 +178,10 @@ Room Link: https://tryhackme.com/r/room/owasptop10
 5. Then edit `userType` cookie value to `admin` from `user` and reload the page and it will redirect to the admin page and show the flag.
 6. Question `2nd flag (admin dashboard)` Answer `THM{heres******in_flag}`
 ## [Severity 8] Insecure Deserialization - Code Execution
-
+1. Start listner to listen with `nc -lvp 4444` command.
+2. Change cookie `userType` value to `user` from `admin`. Open `http://machine_ip/myprofile`, then click on `Exchange on vim` and after that `feedback`. Give feedback.
+3. We need to follow instructions carefully. First we need to change download [pickleme.py](https://assets.tryhackme.com/additional/cmn-owasptopten/pickleme.py) and  "YOUR_TRYHACKME_VPN_IP" with your TryHackMe VPN IP. To get IP of TryHackMe you can use `ifconfig tun0 |grep destination |cut -d" " -f10` command. Then run the python script with `python3 pickleme.py`. Copy the cookie and add a cookie with that value, name it `encodedPayload`. Reload feedback page. You will get a netcat shell. You can read flag using `cat ../flag.txt` command.
+4. Question `flag.txt` Answer `4a69a7***fd68`
 ## [Severity 9] Components With Known Vulnerabilities - Intro
 ## [Severity 9] Components With Known Vulnerabilities - Exploit
 ## [Severity 9] Components With Known Vulnerabilities - Lab
