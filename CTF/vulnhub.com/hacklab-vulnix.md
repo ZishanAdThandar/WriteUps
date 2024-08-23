@@ -1,7 +1,7 @@
 # HackLAB: Vulnix
 
 - [Tools](#tools)
-- [Getting Access](#getting-ccess)
+- [Gaining Access](#gaining-ccess)
 - [Priviledge Escalation](#priviledge-escalation)
 
 Machine: https://www.vulnhub.com/entry/hacklab-vulnix%2C48/
@@ -12,7 +12,7 @@ Now we can Download the 7z file and solve the machine by hosting it inside a vir
 2. [hydra](https://github.com/vanhauser-thc/thc-hydra)
 3. ssh
 
-## Getting Access
+## Gaining Access
 1. I used the Bridged Adapter setting so my ip is 192.168.0.8.
 2. At first scanned with nmap. Nmap Shows some open ports 22 ssh, 25 smtp, 79 finger, 110 POP3, 111 rpcbind etc. 
 3. If we run finger user enumeration script of pentestermonkey with command `perl finger-user-enum.pl -U /opt/metasploit-framework/embedded/framework/data/wordlists/unix_users.txt -t IP_ADRESS` we can get many usernames including user.
