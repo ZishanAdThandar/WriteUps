@@ -2,6 +2,21 @@
 
 Welcome to my collection of Hack The Box (HTB), TryHackMe, Bug Bounty, and other CTF writeups! This repository serves as a comprehensive resource for cybersecurity enthusiasts, pentesters, bug bounty hunters, and learners who are eager to explore and understand various challenges and vulnerabilities. Each writeup is crafted with detailed steps, explanations, and insights, aiming to provide a clear understanding of the methodologies used to solve challenges and identify vulnerabilities. Whether you're a beginner or an advanced user, you'll find valuable content to enhance your skills.
 
+Here’s an updated version incorporating bug bounty writeups:
+Introduction Paragraph
+
+markdown
+
+Welcome to my collection of Hack The Box (HTB), TryHackMe, bug bounty, and other CTF writeups! This repository serves as a comprehensive resource for cybersecurity enthusiasts, pentesters, bug bounty hunters, and learners who are eager to explore and understand various challenges and vulnerabilities. Each writeup is crafted with detailed steps, explanations, and insights, aiming to provide a clear understanding of the methodologies used to solve challenges and identify vulnerabilities. Whether you're a beginner or an advanced user, you'll find valuable content to enhance your skills.
+
+This repository is dedicated to sharing detailed and structured writeups for various Capture The Flag (CTF) challenges and bug bounty findings from platforms like Hack The Box (HTB), TryHackMe, and other sources. The goal is to help others in the cybersecurity community by providing clear, concise, and educational content. The writeups cover a range of topics, including web exploitation, privilege escalation, Active Directory, buffer overflow, bug bounty vulnerabilities, and more.
+
+### Features:
+- **Organized by Difficulty and Platform**: Easy access to writeups based on the challenge's difficulty level and platform, as well as bug bounty categories.
+- **Step-by-Step Guides**: Detailed walkthroughs with explanations of each step taken to solve challenges or identify vulnerabilities.
+- **Educational Content**: Learn about different tools, techniques, and methodologies used in ethical hacking, penetration testing, and bug hunting.
+- **Regular Updates**: New writeups will be added regularly as new challenges are completed and vulnerabilities are discovered.
+
 [![LinkTree](https://img.shields.io/badge/Link-Tree-bbd343)](https://zishanadthandar.github.io/linktree/)
 [![YouTube](https://img.shields.io/youtube/channel/subscribers/UChgqXa2j7ZKkHX2Y76tSxoA)](https://youtube.com/@hackerstation)
 [![Sponser](https://img.shields.io/github/sponsors/ZishanAdThandar)](https://github.com/sponsors/ZishanAdThandar)
