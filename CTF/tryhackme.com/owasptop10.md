@@ -20,13 +20,13 @@
 - [[Severity 5] Broken Access Control](#severity-5-broken-access-control)
 - [[Severity 5] Broken Access Control (IDOR Challenge)](#severity-5-broken-access-control-idor-challenge)
 - [[Severity 6] Security Misconfiguration](#severity-6-security-misconfiguration)
-- [[Severity 7] Cross-site Scripting](#severity-7cross-site-scripting)
+- [[Severity 7] Cross-site Scripting](#severity-7-cross-site-scripting)
 - [[Severity 8] Insecure Deserialization](#severity-8-insecure-deserialization)
 - [[Severity 8] Insecure Deserialization - Objects](#severity-8-insecure-deserialization---objects)
 - [[Severity 8] Insecure Deserialization - Deserialization](#severity-8-insecure-deserialization---deserialization)
 - [[Severity 8] Insecure Deserialization - Cookies](#severity-8-insecure-deserialization---cookies)
 - [[Severity 8] Insecure Deserialization - Cookies Practical](#severity-8-insecure-deserialization---cookies-practical)
-- [[Severity 8] Insecure Deserialization - Code Execution](#severity-8-insecuredeserialization---code-execution)
+- [[Severity 8] Insecure Deserialization - Code Execution](#severity-8-insecure-deserialization---code-execution)
 - [[Severity 9] Components With Known Vulnerabilities - Intro](#severity-9-components-with-known-vulnerabilities---intro)
 - [[Severity 9] Components With Known Vulnerabilities - Exploit](#severity-9-components-with-known-vulnerabilities---exploit)
 - [[Severity 9] Components With Known Vulnerabilities - Lab](#severity-9-components-with-known-vulnerabilities---lab)
@@ -34,6 +34,31 @@
 - [What Next?](#what-next)
 
 Room Link: https://tryhackme.com/r/room/owasptop10
+
+```bash
+
+ $$$$$$\  $$\      $$\  $$$$$$\   $$$$$$\  $$$$$$$\  
+$$  __$$\ $$ | $\  $$ |$$  __$$\ $$  __$$\ $$  __$$\ 
+$$ /  $$ |$$ |$$$\ $$ |$$ /  $$ |$$ /  \__|$$ |  $$ |
+$$ |  $$ |$$ $$ $$\$$ |$$$$$$$$ |\$$$$$$\  $$$$$$$  |
+$$ |  $$ |$$$$  _$$$$ |$$  __$$ | \____$$\ $$  ____/ 
+$$ |  $$ |$$$  / \$$$ |$$ |  $$ |$$\   $$ |$$ |      
+ $$$$$$  |$$  /   \$$ |$$ |  $$ |\$$$$$$  |$$ |      
+ \______/ \__/     \__|\__|  \__| \______/ \__|      
+                                                     
+                                                     
+                                                     
+$$$$$$$$\  $$$$$$\  $$$$$$$\    $$\   $$$$$$\        
+\__$$  __|$$  __$$\ $$  __$$\ $$$$ | $$$ __$$\       
+   $$ |   $$ /  $$ |$$ |  $$ |\_$$ | $$$$\ $$ |      
+   $$ |   $$ |  $$ |$$$$$$$  |  $$ | $$\$$\$$ |      
+   $$ |   $$ |  $$ |$$  ____/   $$ | $$ \$$$$ |      
+   $$ |   $$ |  $$ |$$ |        $$ | $$ |\$$$ |      
+   $$ |    $$$$$$  |$$ |      $$$$$$\\$$$$$$  /      
+   \__|    \______/ \__|      \______|\______/       
+                                                     
+                                                     
+```
 
 ## Tools
 1. sqlite3
