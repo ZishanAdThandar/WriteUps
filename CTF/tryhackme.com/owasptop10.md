@@ -113,6 +113,9 @@ Room Link: https://tryhackme.com/r/room/owasptop10
 4. Question `Can we validate XML documents against a schema?` Answer `Yes`
 5. Question `How can we specify XML version and encoding in XML document?` Answer `xml prolog`
 ## [Severity 4] XML External Entity - DTD
+1. Question `How do you define a new ELEMENT?` Answer `!ELEMENT`
+2. Question `How do you define a ROOT element?` Answer `!DOCTYPE`
+3. Question `How do you define a new ENTITY?` Answer `!ENTITY`
 ## [Severity 4] XML External Entity - XXE Payload
 ## [Severity 4] XML External Entity - Exploiting
 ## [Severity 5] Broken Access Control
