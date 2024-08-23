@@ -141,6 +141,10 @@ Room Link: https://tryhackme.com/r/room/owasptop10
 3. Open `http://machine_ip/` and login with username `note` and password `test123`, then click on Complete.
 4. Question `Look at other users notes. What is the flag?` Answer `flag{fivef***three}`. Got it by changing note id to 0 and visiting link `http://machine_ip/note.php?note=0`.
 ## [Severity 6] Security Misconfiguration
+1. If any machine is running, terminate that machine first. Then Start this Machine. Copy Target IP from "Target Machine Information".
+2. Read this section carefully, deploy the vm and click on Complete.
+3. If we open the `machine_ip`, we can get a webapp name `Pensive Notes`. After googling I got default username password in a github repo https://github.com/NinjaJc01/PensiveNotes. Default credential of Pensive Notes is `pensive:PensiveNotes`.
+4. Question `Hack into the webapp, and find the flag!` Answer `thm{4b95139*******a1f9d672e17}`
 ## [Severity 7] Cross-site Scripting
 ## [Severity 8] Insecure Deserialization
 ## [Severity 8] Insecure Deserialization - Objects
