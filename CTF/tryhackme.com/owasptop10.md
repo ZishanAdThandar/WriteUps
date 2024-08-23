@@ -36,6 +36,9 @@
 Room Link: https://tryhackme.com/r/room/owasptop10
 
 ## Tools
+1. sqlite3
+2. [Cracktation.net](https://crackstation.net/)
+   
 ## Introduction
 1. Join the machine
 2. Read Instructions and click on Complete.
@@ -101,7 +104,14 @@ Room Link: https://tryhackme.com/r/room/owasptop10
 9. Question `What is the admin's plaintext password?` Answer `qwe****op`. We can crack the hash using [CrackStation](https://crackstation.net/).
 10. Question `Login as the admin. What is the flag?` Answer `THM{Yzc2Yjd*************diMjdl}`. If we goto `http://machine_ip/login` and login with username `admin` and the cracked password `qw*****iop`, it will redirect to `http://machine_ip/console/`. There we can get the flag.
 ## [Severity 4] XML External Entity
+1. If any machine is running, terminate that machine first. Then Start this Machine. Copy Target IP from "Target Machine Information".
+2. Read this section carefully and click on Complete.
 ## [Severity 4] XML External Entity - eXtensible Markup Language
+1. Read this section carefully and then start answering.
+2. Question `Full form of XML` Answer `eXtensible Markup Language`
+3. Question `Is it compulsory to have XML prolog in XML documents?` Answer `No`
+4. Question `Can we validate XML documents against a schema?` Answer `Yes`
+5. Question `How can we specify XML version and encoding in XML document?` Answer `xml prolog`
 ## [Severity 4] XML External Entity - DTD
 ## [Severity 4] XML External Entity - XXE Payload
 ## [Severity 4] XML External Entity - Exploiting
