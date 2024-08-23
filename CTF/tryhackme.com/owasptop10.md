@@ -38,7 +38,8 @@ Room Link: https://tryhackme.com/r/room/owasptop10
 ## Tools
 1. sqlite3
 2. [Cracktation.net](https://crackstation.net/)
-3. Burp Suite
+3. Browser Debugging Tools (CTRL+SHIFT+I)
+4. Browser Source Code Viewer (CTRL+U)
    
 ## Introduction
 1. Join the machine
