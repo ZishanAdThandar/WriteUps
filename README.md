@@ -1,12 +1,5 @@
 # Cyber Security WriteUps
 
-Welcome to my collection of Hack The Box (HTB), TryHackMe, Bug Bounty, and other CTF writeups! This repository serves as a comprehensive resource for cybersecurity enthusiasts, pentesters, bug bounty hunters, and learners who are eager to explore and understand various challenges and vulnerabilities. Each writeup is crafted with detailed steps, explanations, and insights, aiming to provide a clear understanding of the methodologies used to solve challenges and identify vulnerabilities. Whether you're a beginner or an advanced user, you'll find valuable content to enhance your skills.
-
-Here’s an updated version incorporating bug bounty writeups:
-Introduction Paragraph
-
-markdown
-
 Welcome to my collection of Hack The Box (HTB), TryHackMe, bug bounty, and other CTF writeups! This repository serves as a comprehensive resource for cybersecurity enthusiasts, pentesters, bug bounty hunters, and learners who are eager to explore and understand various challenges and vulnerabilities. Each writeup is crafted with detailed steps, explanations, and insights, aiming to provide a clear understanding of the methodologies used to solve challenges and identify vulnerabilities. Whether you're a beginner or an advanced user, you'll find valuable content to enhance your skills.
 
 This repository is dedicated to sharing detailed and structured writeups for various Capture The Flag (CTF) challenges and bug bounty findings from platforms like Hack The Box (HTB), TryHackMe, and other sources. The goal is to help others in the cybersecurity community by providing clear, concise, and educational content. The writeups cover a range of topics, including web exploitation, privilege escalation, Active Directory, buffer overflow, bug bounty vulnerabilities, and more.
