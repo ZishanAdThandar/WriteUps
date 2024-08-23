@@ -52,6 +52,8 @@ Room Link: https://tryhackme.com/r/room/owasptop10
 4. Question `How many non-root/non-service/non-daemon users are there?` Answer `0`. Running `cat /etc/passwd` will show.
 5. Question `What user is this app running as?` Answer `www-data`. Used command `whoami`.
 6. Question `What is the user's shell set as?` Answer `/usr/sbin/nologin`. Command used `getent passwd www-data` or `cat /etc/passwd |grep www-data`.
+7. Question `What version of Ubuntu is running?` Answer ``. Command used `lsb_release -a`.
+8. Question `Print out the MOTD.  What favorite beverage is shown?` Answer `DR PEPPER`. Used command `cat /etc/update-motd.d/00-header`.
 ## [Severity 2] Broken Authentication
 ## [Severity 2] Broken Authentication Practical
 ## [Severity 3] Sensitive Data Exposure (Introduction)
