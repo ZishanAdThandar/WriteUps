@@ -1,7 +1,8 @@
 # HackLAB: Vulnix
 
 - [Tools](#tools)
-- [Steps to solve](#steps-to-solve)
+- [Getting Access](#getting-ccess)
+- [Priviledge Escalation](#priviledge-escalation)
 
 Machine: https://www.vulnhub.com/entry/hacklab-vulnix%2C48/
 
@@ -11,7 +12,7 @@ Now we can Download the 7z file and solve the machine by hosting it inside a vir
 2. [hydra](https://github.com/vanhauser-thc/thc-hydra)
 3. ssh
 
-## Steps to solve
+## Getting Access
 1. I used the Bridged Adapter setting so my ip is 192.168.0.8.
 2. At first scanned with nmap. Nmap Shows some open ports 22 ssh, 25 smtp, 79 finger, 110 POP3, 111 rpcbind etc. 
 3. If we run finger user enumeration script of pentestermonkey with command `perl finger-user-enum.pl -U /opt/metasploit-framework/embedded/framework/data/wordlists/unix_users.txt -t IP_ADRESS` we can get many usernames including user.
@@ -21,9 +22,11 @@ Now we can Download the 7z file and solve the machine by hosting it inside a vir
 7. Generate ssh key with ssh-keygen
 8. Now upload ssh key to the vulnix machine 
 9. Now we can `ssh` to the machine, with `ssh vulnix@192.168.0.8`.
-10. `sudo -l` shows `/etc/exports` is editable. So, added `/root  *(rw,sync,no_root_squash)` to root.
-11. Now rebooting the VM will add root to nfs, and we can mount root directory. 
-12. So we got the flag inside `trophy.txt` is `cc614640424f5bd60ce5d5264899c3be`.
+    
+## Priviledge Escalation  
+1. `sudo -l` shows `/etc/exports` is editable. So, added `/root  *(rw,sync,no_root_squash)` to root.
+2. Now rebooting the VM will add root to nfs, and we can mount root directory. 
+3. So we got the flag inside `trophy.txt` is `cc614640424f5bd60ce5d5264899c3be`.
 
 Author: Zishan Ahamed Thandar
 
