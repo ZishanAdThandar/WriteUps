@@ -146,6 +146,15 @@ Room Link: https://tryhackme.com/r/room/owasptop10
 3. If we open the `machine_ip`, we can get a webapp name `Pensive Notes`. After googling I got default username password in a github repo https://github.com/NinjaJc01/PensiveNotes. Default credential of Pensive Notes is `pensive:PensiveNotes`.
 4. Question `Hack into the webapp, and find the flag!` Answer `thm{4b95139*******a1f9d672e17}`
 ## [Severity 7] Cross-site Scripting
+1. If any machine is running, terminate that machine first. Then Start this Machine. Copy Target IP from "Target Machine Information".
+2. Read this section carefully, deploy the vm and click on Complete.
+3. Question `Navigate to http://machine_ip in your browser and click on the "Reflected XSS" tab on the navbar; craft a reflected XSS payload that will cause a popup saying "Hello".` Answer `ThereIsMoreToXSSThanYouThink`. Used payload `<script>alert("Hello")</script>`, PoC link http://machine_ip/reflected?keyword=%3Cscript%3Ealert(%22Hello%22)%3C/script%3E
+4. Question `On the same reflective page, craft a reflected XSS payload that will cause a popup with your machines IP address.` Answer `ReflectiveXss4TheWin`. Used payload `<script>alert(window.location.hostname)</script>`, PoC link http://machine_ip/reflected?keyword=%3Cscript%3Ealert(window.location.hostname)%3C/script%3E
+5. Now goto `http://machine_ip/stored` and create an account.
+6. Question `Then add a comment and see if you can insert some of your own HTML.` Answer `HTML_T4gs`. Commented `<img>` in `http://machine_ip/stored`.
+7. `On the same page, create an alert popup box appear on the page with your document cookies.` Answer `W3LL_D0N3_LVL2` Payload used `<script>alert(document.cookie)</script>`
+8. Now used payload to change title from `` to ``. Payload used `<script>document.querySelector("#thm-title").textContent="I am a hacker"</script>`.
+9. Question `Change "XSS Playground" to "I am a hacker" by adding a comment and using Javascript.` Answer `websites_can_be_easily_defaced_with_xss`
 ## [Severity 8] Insecure Deserialization
 ## [Severity 8] Insecure Deserialization - Objects
 ## [Severity 8] Insecure Deserialization - Deserialization
