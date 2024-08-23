@@ -55,8 +55,14 @@ Room Link: https://tryhackme.com/r/room/owasptop10
 7. Question `What version of Ubuntu is running?` Answer ``. Command used `lsb_release -a`.
 8. Question `Print out the MOTD.  What favorite beverage is shown?` Answer `DR PEPPER`. Used command `cat /etc/update-motd.d/00-header`.
 ## [Severity 2] Broken Authentication
+1. Read this section carefully and click on Complete.
 ## [Severity 2] Broken Authentication Practical
+1. If any machine is running, terminate that machine first. Then Start this Machine. Copy Target IP from "Target Machine Information" and open `http://MACHINE_IP:8888`.
+2. Question `What is the flag that you found in darren's account?` Answer `fe860794************74b667`. To get flag inside darren's account, register as " darren" and login. Here you need to use whitespace before darren's name.
+3. Test same trick with user `arthur` and click on Complete.
+4. Question `What is the flag that you found in arthur's account?` Answer `d9ac0f7************75e16e`.
 ## [Severity 3] Sensitive Data Exposure (Introduction)
+
 ## [Severity 3] Sensitive Data Exposure (Supporting Material 1)
 ## [Severity 3] Sensitive Data Exposure (Challenge)
 ## [Severity 4] XML External Entity
