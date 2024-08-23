@@ -175,9 +175,10 @@ Room Link: https://tryhackme.com/r/room/owasptop10
 2. Press `CTRL+SHIFT+I` and goto Storage section to read and edit cookies.
 3. Copy value of `sessionId` cookie and decode it with base64 decoder. Command to decode base64, `echo "gAN9cQAoWAkAAABzZXNzaW9uSWRxAVggAAAAN2Y1MWRiYWFhZjY2NDYwMzkyNTNiNTlkOTY3NTAwYWVxAlgLAAAAZW5jb2RlZGZsYWdxA1gYAAAAVEhNe2dvb2Rfb2xkX2Jhc2U2NF9odWh9cQR1Lg==" |base64 -d`. You will get the first flag.
 4. Question `1st flag (cookie value)` Answer `THM{good******se64_huh}`
-5. Then edit `userType` cookie value to `admin` from `user` and reload the page.
+5. Then edit `userType` cookie value to `admin` from `user` and reload the page and it will redirect to the admin page and show the flag.
 6. Question `2nd flag (admin dashboard)` Answer `THM{heres******in_flag}`
 ## [Severity 8] Insecure Deserialization - Code Execution
+
 ## [Severity 9] Components With Known Vulnerabilities - Intro
 ## [Severity 9] Components With Known Vulnerabilities - Exploit
 ## [Severity 9] Components With Known Vulnerabilities - Lab
