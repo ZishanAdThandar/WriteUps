@@ -11,6 +11,8 @@
 - [[Severity 3] Sensitive Data Exposure (Introduction)](#severity-3-sensitive-data-exposure-introduction)
 - [[Severity 3] Sensitive Data Exposure (Supporting Material 1)](#severity-3-sensitive-data-exposure-supporting-material-1)
 - [[Severity 3] Sensitive Data Exposure (Challenge)](#severity-3-sensitive-data-exposure-challenge)
+- [[Severity 4] XML External Entity](#severity-4-xml-external-entity)
+- [[Severity 4 XML External Entity - eXtensible Markup Language](#severity-4-xml-external-entity---extensible-markup-language)
 
 Room Link: https://tryhackme.com/r/room/owasptop10
 
@@ -25,4 +27,6 @@ Room Link: https://tryhackme.com/r/room/owasptop10
 ## [Severity 3] Sensitive Data Exposure (Introduction)
 ## [Severity 3] Sensitive Data Exposure (Supporting Material 1)
 ## [Severity 3] Sensitive Data Exposure (Challenge)
+## [Severity 4] XML External Entity
+## [Severity 4] XML External Entity - eXtensible Markup Language
 
