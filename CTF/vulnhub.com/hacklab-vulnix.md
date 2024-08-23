@@ -7,8 +7,9 @@ Machine: https://www.vulnhub.com/entry/hacklab-vulnix%2C48/
 
 Now we can Download the 7z file and solve the machine by hosting it inside a virtual box.
 ## Tools
-1. NMap
-2. ssh
+1. [NMap](https://nmap.org/)
+2. [hydra](https://github.com/vanhauser-thc/thc-hydra)
+3. ssh
 
 ## Steps to solve
 1. I used the Bridged Adapter setting so my ip is 192.168.0.8.
