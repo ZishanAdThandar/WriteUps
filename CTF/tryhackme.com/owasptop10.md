@@ -183,8 +183,15 @@ Room Link: https://tryhackme.com/r/room/owasptop10
 3. We need to follow instructions carefully. First we need to change download [pickleme.py](https://assets.tryhackme.com/additional/cmn-owasptopten/pickleme.py) and  "YOUR_TRYHACKME_VPN_IP" with your TryHackMe VPN IP. To get IP of TryHackMe you can use `ifconfig tun0 |grep destination |cut -d" " -f10` command. Then run the python script with `python3 pickleme.py`. Copy the cookie and add a cookie with that value, name it `encodedPayload`. Reload feedback page. You will get a netcat shell. You can read flag using `cat ../flag.txt` command.
 4. Question `flag.txt` Answer `4a69a7***fd68`
 ## [Severity 9] Components With Known Vulnerabilities - Intro
+1. Read Instructions and click on Complete.
 ## [Severity 9] Components With Known Vulnerabilities - Exploit
+1. Read Instructions and click on Complete.
 ## [Severity 9] Components With Known Vulnerabilities - Lab
+1. If any machine is running, terminate that machine first. Then Start this Machine. Copy Target IP from "Target Machine Information".
+2. When we open `http://machine_ip`, we get link to `http://machine_ip/admin.php` and `projectworlds.in` link. After searching bookstore on `projectworlds.in`, we get this page https://projectworlds.in/free-projects/php-projects/online-book-store-project-in-php/ with default credential username: admin@admin.com password: admin.
+3. After logging into admin panel, we can upload our shell by editing any book. Shell code, `<?php system('wc -c /etc/passwd'); ?>` in shell.php. After going to edit book, upload shell.php with `change` button.
+4. Now to find the shell, open location of image. You can find all images in `/bootstrap/img` directory. Just open the directory in the link, you can get your uploaded shell there, `http://machine_ip/bootstrap/img/shell.php`. If you open the page, it will compile and execute the code to display character number of `/etc/passwd`.
+5. Question `How many characters are in /etc/passwd (use wc -c /etc/passwd to get the answer)` Answer `1611`
 ## [Severity 10] Insufficient Logging and Monitoring
 ## What Next?
 
