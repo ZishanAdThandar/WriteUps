@@ -10,6 +10,7 @@
 - [[Severity 2] Broken Authentication Practical](#severity-2-broken-authentication-practical)
 - [[Severity 3] Sensitive Data Exposure (Introduction)](#severity-3-sensitive-data-exposure-introduction)
 - [[Severity 3] Sensitive Data Exposure (Supporting Material 1)](#severity-3-sensitive-data-exposure-supporting-material-1)
+- [[Severity 3] Sensitive Data Exposure (Supporting Material 2)](#severity-3-sensitive-data-exposure-supporting-material-2)
 - [[Severity 3] Sensitive Data Exposure (Challenge)](#severity-3-sensitive-data-exposure-challenge)
 - [[Severity 4] XML External Entity](#severity-4-xml-external-entity)
 - [[Severity 4] XML External Entity - eXtensible Markup Language](#severity-4-xml-external-entity---extensible-markup-language)
@@ -62,9 +63,14 @@ Room Link: https://tryhackme.com/r/room/owasptop10
 3. Test same trick with user `arthur` and click on Complete.
 4. Question `What is the flag that you found in arthur's account?` Answer `d9ac0f7************75e16e`.
 ## [Severity 3] Sensitive Data Exposure (Introduction)
-
+1. If any machine is running, terminate that machine first. Then Start this Machine. Copy Target IP from "Target Machine Information".
+2. Read this section carefully and click on Complete.
 ## [Severity 3] Sensitive Data Exposure (Supporting Material 1)
+1. Read this section carefully and click on Complete.
+## [Severity 3] Sensitive Data Exposure (Supporting Material 2)
+1. Read this section carefully and click on Complete.
 ## [Severity 3] Sensitive Data Exposure (Challenge)
+1. 
 ## [Severity 4] XML External Entity
 ## [Severity 4] XML External Entity - eXtensible Markup Language
 ## [Severity 4] XML External Entity - DTD
