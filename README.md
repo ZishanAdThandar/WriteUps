@@ -26,7 +26,7 @@
 ## CTF
 
 ### VulnHub
-- [HackLAB: Vulnix](/CTF/vulnhub.com/hacklab-vulnix.md), [Kioptrix: Level 1.2](/CTF/vulnhub.com/kioptrix12.md), [FristiLeaks: 1.3](/CTF/vulnhub.com/fristileaks13.md)
+- [HackLAB: Vulnix](/CTF/vulnhub.com/hacklab-vulnix.md), [Kioptrix: Level 1.2](/CTF/vulnhub.com/kioptrix12.md), [FristiLeaks: 1.3](/CTF/vulnhub.com/fristileaks13.md), [Escalate My Privileges: 1](/CTF/vulnhub.com/escalate-my-privileges-1.md)
 
 ### HackTheBox
 
