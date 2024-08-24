@@ -13,12 +13,12 @@
 Room Link: https://tryhackme.com/r/room/attacktivedirectory
 
 ## Tools
-1. NMap
+1. [NMap](NMap.org)
 2. [kerbrute](https://github.com/ropnop/kerbrute/releases)
-3. Impacket
-4. hashcat
-5. smbclient
-6. Evil-WinRM
+3. [Impacket](https://github.com/fortra/impacket)
+4. [hashcat](https://hashcat.net/hashcat/)
+5. [smbclient](https://www.samba.org/samba/docs/current/man-html/smbclient.1.html)
+6. [Evil-WinRM](https://github.com/Hackplayers/evil-winrm)
 
 ## Deploy The Machine
 1. Goto Access and get ovpn file to connect https://tryhackme.com/access Or, Start attackbox for testing.
