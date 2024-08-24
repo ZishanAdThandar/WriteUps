@@ -9,6 +9,7 @@ Machine: https://www.vulnhub.com/entry/escalate-my-privileges-1,448/
 ## Tools
 1. NMap
 2. netcat
+3. md5sum
 
 ## Gaining Access
 1. After Running the VM as bridged connection, I checked my gateway page to find IP. In my case ip is `192.168.0.11`.
