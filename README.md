@@ -11,7 +11,7 @@
 
 - [Bug Bounty PoC](#bug-bounty)
 - [CTF](#ctf)
-  - [Vulnhub](#vulnhub)
+  - [VulnHub](#vulnhub)
   - [HackTheBox](#hackthebox)
     - [Easy HTB](#easy-htb)
     - [Medium HTB](#medium-htb)
