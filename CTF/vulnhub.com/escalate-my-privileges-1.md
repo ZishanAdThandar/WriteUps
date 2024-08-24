@@ -7,7 +7,7 @@
 Machine: https://www.vulnhub.com/entry/escalate-my-privileges-1,448/ 
 
 ## Tools
-1. NMap
+1. [NMap](https://NMap.org)
 2. netcat
 3. md5sum
 
