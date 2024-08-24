@@ -146,12 +146,13 @@ getting file \backup_credentials.txt of size 48 as backup_credentials.txt (0.1 K
 smb: \> 
 
 ```
-3. Question `What utility can we use to map remote SMB shares?` Answer `smbclient`
-4. Question `Which option will list shares?` Answer `-L`
-5. Question `How many remote shares is the server listing?` Answer ``
-6. Question `There is one particular share that we have access to that contains a text file. Which share is it?` Answer ``
-7. Question `What is the content of the file?` Answer ``
-8. Question `Decoding the contents of the file, what is the full contents?` Answer ``
+3. Inside it there is a `base64` encoded string `YmFja3VwQHNwb29reXNlYy5sb2NhbDpiYWNrdXAyNTE3ODYw`. If we decode it using `cat backup_credentials.txt |base64 -d` command we will get `backup@spookysec.local:backup2517860`.
+4. Question `What utility can we use to map remote SMB shares?` Answer `smbclient`
+5. Question `Which option will list shares?` Answer `-L`
+6. Question `How many remote shares is the server listing?` Answer `6`
+7. Question `There is one particular share that we have access to that contains a text file. Which share is it?` Answer `backup`
+8. Question `What is the content of the file?` Answer `YmFja3VwQHNwb29reXNlYy5sb2NhbDpiYWNrdXAyNTE3ODYw`
+9. Question `Decoding the contents of the file, what is the full contents?` Answer `backup@spookysec.local:backup2517860`
 ## Elevating Privileges within the Domain
 
 ## Flag Submission Panel
