@@ -41,8 +41,9 @@
 
 
 ### TryHackMe
-- Getting Started: [Tutorial](/CTF/tryhackme.com/tutorial.md), [Vuln University (Vulnversity) Machine](/CTF/tryhackme.com/vulnversity.md), [Blue Machine](/CTF/tryhackme.com/blue.md), [Kenobi Machine](/CTF/tryhackme.com/kenobi.md)
-- Advanced Exploitation: [Daily Bugle Machine](/CTF/tryhackme.com/dailybugle.md), [Overpass 2 Hacked Machine](/CTF/tryhackme.com/overpass2hacked.md) 
+- Getting Started: [Tutorial](/CTF/tryhackme.com/tutorial.md)
+- Easy Machines: [Vuln University (Vulnversity)](/CTF/tryhackme.com/vulnversity.md), [Blue](/CTF/tryhackme.com/blue.md), [Kenobi](/CTF/tryhackme.com/kenobi.md)
+- Advanced Exploitation Machines: [Daily Bugle](/CTF/tryhackme.com/dailybugle.md), [Overpass 2 Hacked](/CTF/tryhackme.com/overpass2hacked.md) 
 - Buffer Overflow Exploitation:
 - Active Directory:
 - Extra Machines:
