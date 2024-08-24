@@ -112,11 +112,16 @@ Room Link: https://tryhackme.com/r/room/attacktivedirectory
 3. Question `We have two user accounts that we could potentially query a ticket from. Which user account can you query a ticket from with no password?` Answer `svc-admin`
 4. Question `Looking at the Hashcat Examples Wiki page, what type of Kerberos hash did we retrieve from the KDC? (Specify the full name)` Answer `Kerberos 5 AS-REP etype 23`. Source: https://hashcat.net/wiki/doku.php?id=example_hashes
 5. Question `What mode is the hash?` Answer `18200` Source: https://hashcat.net/wiki/doku.php?id=example_hashes
-6. We can save the `TGT hash` inside a file named `hash.txt` with given passwordlist and crack it with `hashcat -m 18200 hash.txt --wordlist passwordlist.txt`.
+6. We can save the `TGT hash` inside a file named `hash.txt` with given passwordlist and crack it with `hashcat -m 18200 hash.txt passwordlist.txt`.
 7. Question `Now crack the hash with the modified password list provided, what is the user accounts password?` Answer `management2005`
    
 ## Back to the Basics
-
+1. Question `What utility can we use to map remote SMB shares?` Answer `smbclient`
+2. Question `Which option will list shares?` Answer `-L`
+3. Question `How many remote shares is the server listing?` Answer ``
+4. Question `There is one particular share that we have access to that contains a text file. Which share is it?` Answer ``
+5. Question `What is the content of the file?` Answer ``
+6. Question `Decoding the contents of the file, what is the full contents?` Answer ``
 ## Elevating Privileges within the Domain
 
 ## Flag Submission Panel
