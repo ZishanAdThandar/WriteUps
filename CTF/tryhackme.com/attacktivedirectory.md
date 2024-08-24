@@ -3,7 +3,7 @@
 - [Tools](#tools)
 - [Deploy The Machine](#deploy-the-machine)
 - [Setup](#setup)
-- [Welcome to Attacktive Directory](#Welcome to-attacktive-directory)
+- [Welcome to Attacktive Directory](#Welcome-to-attacktive-directory)
 - [Enumerating Users via Kerberos](#enumerating-users-via-kerberos)
 - [Abusing Kerberos](#abusing-kerberos)
 - [Back to the Basics](#back-to-the-basics)
