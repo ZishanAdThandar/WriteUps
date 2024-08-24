@@ -3,7 +3,7 @@
 - [Tools](#tools)
 - [Deploy The Machine](#deploy-the-machine)
 - [Setup](#setup)
-- [Welcome to Attacktive Directory](#Welcome-to-attacktive-directory)
+- [Welcome to Attacktive Directory](#welcome-to-attacktive-directory)
 - [Enumerating Users via Kerberos](#enumerating-users-via-kerberos)
 - [Abusing Kerberos](#abusing-kerberos)
 - [Back to the Basics](#back-to-the-basics)
@@ -13,7 +13,9 @@
 Room Link: https://tryhackme.com/r/room/attacktivedirectory
 
 ## Tools
-
+1. NMap
+2. [kerbrute](https://github.com/ropnop/kerbrute/releases)
+3. 
 
 ## Deploy The Machine
 1. Goto Access and get ovpn file to connect https://tryhackme.com/access Or, Start attackbox for testing.
@@ -80,6 +82,21 @@ Room Link: https://tryhackme.com/r/room/attacktivedirectory
 4. Question `What invalid TLD do people commonly use for their Active Directory Domain?` Answer `.local`
 
 ## Enumerating Users via Kerberos
+1. Now, we will bruteforce Kerberos with [kerbrute](https://github.com/ropnop/kerbrute/releases) using given `userlist.txt` and `passwordlist.txt`. So, at first we need to download those wordlists and install `kerbrute`.
+2. Assign `spookysec.local` to machine ip is in `host` file. We can simply edit `/etc/hosts` file in Linux to assign domain to the ip.
+3. We can use this command `kerbrute userenum --dc spookysec.local -d spookysec.local userlist.txt` to enumerate users. We got some valid usernames after scanning.
+   ```bash
+   james@spookysec.local
+   svc-admin@spookysec.local
+   robin@spookysec.local
+   darkstar@spookysec.local
+   administrator@spookysec.local
+   backup@spookysec.local
+   paradox@spookysec.local
+   ```
+4. 
+
+## Abusing Kerberos
 
 ## Back to the Basics
 
