@@ -94,7 +94,9 @@ Room Link: https://tryhackme.com/r/room/attacktivedirectory
    backup@spookysec.local
    paradox@spookysec.local
    ```
-4. 
+4. Question `What command within Kerbrute will allow us to enumerate valid usernames?` Answer `userenum`.
+5. Question `What notable account is discovered? (These should jump out at you)` Answer `svc-admin`. `svc-admin` typically suggests a `service account` (`svc`) with `administrative privileges` (`admin`).
+6. Question `What is the other notable account is discovered? (These should jump out at you)` Answer `backup`.
 
 ## Abusing Kerberos
 
