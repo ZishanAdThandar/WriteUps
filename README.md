@@ -44,9 +44,7 @@
 - Getting Started: [Tutorial](/CTF/tryhackme.com/tutorial.md)
 - Easy Machines: [Vuln University (Vulnversity)](/CTF/tryhackme.com/vulnversity.md), [Blue](/CTF/tryhackme.com/blue.md), [Kenobi](/CTF/tryhackme.com/kenobi.md)
 - Advanced Exploitation Machines: [Daily Bugle](/CTF/tryhackme.com/dailybugle.md), [Overpass 2 Hacked](/CTF/tryhackme.com/overpass2hacked.md) 
-- Buffer Overflow Exploitation:
 - Active Directory: [Attacktive Directory](/CTF/tryhackme.com/attacktivedirectory.md)
-- Extra Machines:
 - Web: [OWASP Top 10](/CTF/tryhackme.com/owasptop10.md)
 - Cryptography: [Crack the hash](/CTF/tryhackme.com/crackthehash.md), [The Impossible Challenge](/CTF/tryhackme.com/theimpossiblechallenge.md)
 
