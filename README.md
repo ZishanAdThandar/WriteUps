@@ -7,7 +7,7 @@
 [![Sponser](https://img.shields.io/github/sponsors/ZishanAdThandar)](https://github.com/sponsors/ZishanAdThandar)
 [![ZishanAdThandar's WriteUps Repo stars](https://img.shields.io/github/stars/ZishanAdThandar/WriteUps)](https://github.com/ZishanAdThandar/WriteUps)
 
-[!Banner InfoSec Writeups](./banner.png)
+![Banner InfoSec Writeups](./banner.png)
 
 ## Contents
 
