@@ -113,7 +113,7 @@ WantedBy=multi-user.target
 10. Question `Become root and get the last flag (/root/root.txt)` Answer `********************************` (32 alphanumeric characters). Command used `cat /root/root.txt`
 
     
-Author: Zishan Ahamed Thandar
+Author: [Zishan Ahamed Thandar](https://github.com/ZishanAdThandar/WriteUps/tree/main?tab=readme-ov-file#about-me)
 
 
 

@@ -28,7 +28,7 @@ Now we can Download the 7z file and solve the machine by hosting it inside a vir
 2. Now rebooting the VM will add root to nfs, and we can mount root directory. 
 3. So we got the flag inside `trophy.txt` is `cc614640424f5bd60ce5d5264899c3be`.
 
-Author: Zishan Ahamed Thandar
+Author: [Zishan Ahamed Thandar](https://github.com/ZishanAdThandar/WriteUps/tree/main?tab=readme-ov-file#about-me)
 
 
 

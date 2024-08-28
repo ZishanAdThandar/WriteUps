@@ -206,4 +206,4 @@ TryHackMe{4ctive*****toryM4st3r}
 4. Question `administrator` Answer `TryHackMe{4ctiv******M4st3r}`
 
    
-Author: Zishan Ahamed Thandar
+Author: [Zishan Ahamed Thandar](https://github.com/ZishanAdThandar/WriteUps/tree/main?tab=readme-ov-file#about-me)

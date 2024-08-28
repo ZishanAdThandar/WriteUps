@@ -15,4 +15,4 @@ Room Link: https://tryhackme.com/room/relevant
 
 1.
 
-Author: Zishan Ahamed Thandar
+Author: [Zishan Ahamed Thandar](https://github.com/ZishanAdThandar/WriteUps/tree/main?tab=readme-ov-file#about-me)

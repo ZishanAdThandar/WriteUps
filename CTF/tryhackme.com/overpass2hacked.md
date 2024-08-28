@@ -93,4 +93,4 @@ uid=1000(james) gid=1000(james) euid=0(root) egid=0(root) groups=0(root),4(adm),
 thm{***************************}
 ```
 
-Author: Zishan Ahamed Thandar
+Author: [Zishan Ahamed Thandar](https://github.com/ZishanAdThandar/WriteUps/tree/main?tab=readme-ov-file#about-me)

@@ -29,4 +29,4 @@ msfvenom command used,
 2. After trying some suggested exploit `exploit/windows/local/ms10_015_kitrap0d` worked. The flags can now be obtained from
 `c:\Users\babis\Desktop\user.txt.txt​` and `c​:\Users\Administrator\Desktop\root.txt.txt`
 
-Author: Zishan Ahamed Thandar
+Author: [Zishan Ahamed Thandar](https://github.com/ZishanAdThandar/WriteUps/tree/main?tab=readme-ov-file#about-me)
