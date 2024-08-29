@@ -58,5 +58,6 @@ Room Link: https://tryhackme.com/r/room/ffuf
 7. Question `What option would you use to follow redirects?` Answer `-r`
 8. Question `How do you enable colorized output?` Answer `-c`
 ## About the author
+1. Author details here, just click on `Complete` and done.
 
 Author: [Zishan Ahamed Thandar](https://github.com/ZishanAdThandar/WriteUps/tree/main?tab=readme-ov-file#about-me)
