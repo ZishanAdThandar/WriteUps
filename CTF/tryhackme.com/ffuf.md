@@ -29,7 +29,12 @@ Room Link: https://tryhackme.com/r/room/ffuf
 ## Finding pages and directories
 1. If we run first command `ffuf -u http://MACHINE_IP/FUZZ -w /opt/wordlist/SecLists/Discovery/Web-Content/raft-medium-files-lowercase.txt` we can get some output.
 2. Question `What text file did you find?` Answer `robots.txt`
-3. 
+3. If we run second command given `ffuf -u http://MACHINE_IP/indexFUZZ -w /opt/wordlist/SecLists/Discovery/Web-Content/web-extensions.txt` , we can get output.
+4. Question `What two file extensions were found for the index page?` Answer `php,phps`
+5. Again we need to run third given command `ffuf -u http://MACHINE_IP/FUZZ -w /opt/wordlist/SecLists/Discovery/Web-Content/raft-medium-words-lowercase.txt -e .php,.txt` and observe the output.
+6. Question `What page has a size of 4840?` Answer `about.php`
+7. If we run last given command, `ffuf -u http://MACHINE_IP/FUZZ -w /opt/wordlist/SecLists/Discovery/Web-Content/raft-medium-directories-lowercase.txt`. We will get some directories.
+8. Question `How many directories are there?` Answer `4`
 ## Using filters
 ## Fuzzing parameters
 ## Finding vhosts and subdomains
