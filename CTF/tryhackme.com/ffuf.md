@@ -47,7 +47,16 @@ Room Link: https://tryhackme.com/r/room/ffuf
 ## Finding vhosts and subdomains
 1. Read the section properly, and mark it `Complete`.
 ## Proxifying ffuf traffic
+1. Read the section properly, and mark it `Complete`.
 ## Reviewing the options
+1. Observe output of `ffuf -h`.
+2. Question `How do you save the output to a markdown file (ffuf.md)?` Answer `-of md -o ffuf.md`
+3. Question `How do you re-use a raw http request file?` Answer `-request`
+4. Question `How do you strip comments from a wordlist?` Answer `-ic`
+5. Question `How would you read a wordlist from STDIN?` Answer `-w -`
+6. Question `How do you print full URLs and redirect locations?` Answer `-v`
+7. Question `What option would you use to follow redirects?` Answer `-r`
+8. Question `How do you enable colorized output?` Answer `-c`
 ## About the author
 
 Author: [Zishan Ahamed Thandar](https://github.com/ZishanAdThandar/WriteUps/tree/main?tab=readme-ov-file#about-me)
