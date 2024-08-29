@@ -13,6 +13,17 @@
 
 Room Link: https://tryhackme.com/r/room/ffuf
 
+```bash
+
+        /'___\  /'___\           /'___\       
+       /\ \__/ /\ \__/  __  __  /\ \__/       
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\      
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/      
+         \ \_\   \ \_\  \ \____/  \ \_\       
+          \/_/    \/_/   \/___/    \/_/       
+
+```
+
 ## Tools
 1. [HackiFy](https://github.com/ZishanAdThandar/HackiFy)
 2. [ffuf](https://github.com/ffuf/ffuf)
