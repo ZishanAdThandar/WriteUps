@@ -27,6 +27,9 @@ Room Link: https://tryhackme.com/r/room/ffuf
 3. Used the given command `ffuf -u http://MACHINE_IP/NORAJ -w /usr/share/wordlists/SecLists/Discovery/Web-Content/big.txt:NORAJ`, just replaced `seclists` location with `/opt/wordlist/SecLists/` as HackiFy install it inside `/opt/wordlist` directory.
 4. Question `What is the first file you found with a 200 status code?` Answer `favicon.ico`
 ## Finding pages and directories
+1. If we run first command `ffuf -u http://MACHINE_IP/FUZZ -w /opt/wordlist/SecLists/Discovery/Web-Content/raft-medium-files-lowercase.txt` we can get some output.
+2. Question `What text file did you find?` Answer `robots.txt`
+3. 
 ## Using filters
 ## Fuzzing parameters
 ## Finding vhosts and subdomains
