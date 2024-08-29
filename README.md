@@ -47,6 +47,7 @@
 - Easy Machines: [Vuln University (Vulnversity)](/CTF/tryhackme.com/vulnversity.md), [Blue](/CTF/tryhackme.com/blue.md), [Kenobi](/CTF/tryhackme.com/kenobi.md)
 - Advanced Exploitation Machines: [Daily Bugle](/CTF/tryhackme.com/dailybugle.md), [Overpass 2 Hacked](/CTF/tryhackme.com/overpass2hacked.md) 
 - Active Directory: [Attacktive Directory](/CTF/tryhackme.com/attacktivedirectory.md)
+- Tools: [ffuf](/CTF/tryhackme.com/ffuf.md)
 - Web: [OWASP Top 10](/CTF/tryhackme.com/owasptop10.md)
 - Cryptography: [Crack the hash](/CTF/tryhackme.com/crackthehash.md), [The Impossible Challenge](/CTF/tryhackme.com/theimpossiblechallenge.md)
 
