@@ -36,6 +36,9 @@ Room Link: https://tryhackme.com/r/room/ffuf
 7. If we run last given command, `ffuf -u http://MACHINE_IP/FUZZ -w /opt/wordlist/SecLists/Discovery/Web-Content/raft-medium-directories-lowercase.txt`. We will get some directories.
 8. Question `How many directories are there?` Answer `4`
 ## Using filters
+1. Question `After applying the fc filter, how many results were returned?` Answer `11`. Got by observing output of command `ffuf -u http://MACHINE_IP/FUZZ -w /opt/wordlist/SecLists/Discovery/Web-Content/raft-medium-files-lowercase.txt -fc 403`.
+2. Question `After applying the mc filter, how many results were returned?` Answer `6` . Got by observing output of command `ffuf -u http://MACHINE_IP/FUZZ -w /opt/wordlist/SecLists/Discovery/Web-Content/raft-medium-files-lowercase.txt -mc 200`
+3. Question `Which valuable file would have been hidden if you used -fc 403 instead of -fr?` Answer `wp-forum.phps`. Got by observing output difference between `-fc 403` command and command `ffuf -u http://MACHINE_IP/FUZZ -w /opt/wordlist/SecLists/Discovery/Web-Content/raft-medium-files-lowercase.txt  -fr '/\..*'`
 ## Fuzzing parameters
 ## Finding vhosts and subdomains
 ## Proxifying ffuf traffic
