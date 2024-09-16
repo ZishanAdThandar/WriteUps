@@ -4,9 +4,9 @@
 - [Level 1](#level-1)
 - [level 2](#level-2)
 
-Room Link: https://tryhackme.com/room/crackthehash
+Room Link: [https://tryhackme.com/room/crackthehash](https://tryhackme.com/room/crackthehash)
 
-Badges: https://tryhackme.com/ZishanAdThandar/badges/hash-cracker
+Badges: [https://tryhackme.com/ZishanAdThandar/badges/hash-cracker](https://tryhackme.com/ZishanAdThandar/badges/hash-cracker)
 
 ## Tools 
 
