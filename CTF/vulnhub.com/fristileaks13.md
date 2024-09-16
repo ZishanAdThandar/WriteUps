@@ -4,7 +4,7 @@
 - [Gaining Access](#gaining-access)
 - [Priviledge Escalation](#priviledge-escalation)
 
-Machine: https://www.vulnhub.com/entry/fristileaks-13,133/
+Machine: [https://www.vulnhub.com/entry/fristileaks-13,133/](https://www.vulnhub.com/entry/fristileaks-13,133/)
 
 ## Tools
 1. [NMap](https://nmap.org/)
