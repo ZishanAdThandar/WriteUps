@@ -5,7 +5,7 @@
 - [Obtain user and root](#obtain-user-and-root)
 - [Credits](#credits)
  
-Room Link: https://tryhackme.com/room/dailybugle
+Room Link: [https://tryhackme.com/room/dailybugle](https://tryhackme.com/room/dailybugle)
 
 ## Tools 
 
