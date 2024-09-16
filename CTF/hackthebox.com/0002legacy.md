@@ -1,7 +1,6 @@
-<h1>Legacy 10.10.10.3 Write Up</h1>
+# Legacy 10.10.10.3 Write Up
 
-<h2>Contents</h2>
-
+## Contents
 - [Tools](#tools)
 - [Enumeration](#enumeration)
 - [Exploitation](#exploitation)
