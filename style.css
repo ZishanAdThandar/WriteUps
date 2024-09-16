@@ -34,7 +34,9 @@
 	font-family: 'Courier New', Courier, monospace, 'Open Sans', sans-serif;
 }
 
-
+img {
+	max-width:80%;
+}
     /* NAVBAR BRAND Styles */
     
 /* Navbar Glow style */
