@@ -9,6 +9,8 @@
 
 Room Link: [https://tryhackme.com/room/blue](https://tryhackme.com/room/blue)
 
+Badgs: [https://tryhackme.com/ZishanAdThandar/badges/blue](https://tryhackme.com/ZishanAdThandar/badges/blue)
+
 ## Tools 
 
 1. NMap https://nmap.org/download
