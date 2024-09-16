@@ -1,4 +1,4 @@
-title: InfoSec WirteUps
+title: InfoSec WirteUps by Zishan Ahamed Thandar
 slogan: all you need to kNow
 #logo: "assets/uploads/profile.jpg"
 
@@ -12,10 +12,10 @@ collections:
 
 defaults:
   - scope:
-      path: /
+      path: ""  # This applies to all files
     values:
-      layout: post
-      author: Zishan Ahamed Thandar  
+      layout: default  # This sets the default layout if none is mentioned
+
   
 
 plugins:
