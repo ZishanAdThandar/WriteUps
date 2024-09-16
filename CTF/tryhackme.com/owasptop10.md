@@ -60,6 +60,8 @@ $$$$$$$$\  $$$$$$\  $$$$$$$\    $$\   $$$$$$\
                                                      
 ```
 
+Badges: https://tryhackme.com/ZishanAdThandar/badges/owasp-10
+
 ## Tools
 1. sqlite3
 2. [Cracktation.net](https://crackstation.net/)
