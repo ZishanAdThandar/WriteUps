@@ -6,7 +6,7 @@
 - [Gain initial access with ProFtpd](#gain-initial-access-with-progtpd)
 - [Privilege Escalation with Path Variable Manipulation](#privilege-escalation-with-path-variable-manipulation)
   
-Room Link: https://tryhackme.com/room/kenobi
+Room Link: [https://tryhackme.com/room/kenobi](https://tryhackme.com/room/kenobi)
 
 ## Tools 
 
