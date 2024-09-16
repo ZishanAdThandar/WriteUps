@@ -15,6 +15,7 @@ defaults:
       path: ""  # This applies to all files
     values:
       layout: default  # This sets the default layout if none is mentioned
+      css: "/assets/css/style.css"
 
   
 
