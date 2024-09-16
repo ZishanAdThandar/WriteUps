@@ -1,0 +1,45 @@
+title: ZishanAdThandar write ups and blogs
+slogan: all you need to kNow
+logo: "assets/uploads/profile.jpg"
+
+# baseurl: ""
+url: "https://ZishanAdThandar.github.io"
+
+collections:
+  notes:
+    output: true
+    #permalink: notes/:categories/:year/:month/:day/:title:output_ext
+
+defaults:
+  - scope:
+      path: bugbounty
+    values:
+      layout: post
+      author: Zishan Ahamed Thandar  
+  - scope:
+      path: CTF/tryhackme.com
+    values:
+      layout: post
+      author: Zishan Ahamed Thandar    
+  - scope:
+      path: CTF/vulnhub.com
+    values:
+      layout: post
+      author: Zishan Ahamed Thandar    
+  - scope:
+      path: CTF/hackthebox.com
+    values:
+      layout: post
+      author: Zishan Ahamed Thandar    
+
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jemoji
+  # - jekyll-paginate
+  - kramdown
+
+markdown: kramdown
+# paginate: 5
+# paginate_path: "/page:num"

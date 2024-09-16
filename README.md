@@ -13,11 +13,9 @@
 
 - [Bug Bounty PoC](#bug-bounty)
 - [CTF](#ctf)
+  - [TryHackMe](#tryhackme)
   - [VulnHub](#vulnhub)
   - [HackTheBox](#hackthebox)
-    - [Easy HTB](#easy-htb)
-    - [Medium HTB](#medium-htb)
-  - [TryHackMe](#tryhackme)
   - [PortSwiggerLab](#portswiggerlab)
 - [About Me](#about-me)
 
@@ -27,28 +25,24 @@
 
 ## CTF
 
-### VulnHub
-- [HackLAB: Vulnix](/CTF/vulnhub.com/hacklab-vulnix.md), [Kioptrix: Level 1.2](/CTF/vulnhub.com/kioptrix12.md), [FristiLeaks: 1.3](/CTF/vulnhub.com/fristileaks13.md), [Escalate My Privileges: 1](/CTF/vulnhub.com/escalate-my-privileges-1.md)
-
-### HackTheBox
-
-#### Easy HTB
-
-- Linux: [Lame 10.10.10.3 Linux](./CTF/hackthebox.com/0001lame.md)
-- Windows: [Legacy 10.10.10.4 Windows](./CTF/hackthebox.com/0002legacy.md), [Devel 10.10.10.5 Windows](./CTF/hackthebox.com/0003devel.md)
-
-#### Medium HTB
-- Linux: [Popcorn 10.10.10.6 Linux ](./CTF/hackthebox.com/0004popcorn.md)
-
-
-
 ### TryHackMe
 - Getting Started: [Tutorial](/CTF/tryhackme.com/tutorial.md)
 - Easy Machines: [Vuln University (Vulnversity)](/CTF/tryhackme.com/vulnversity.md), [Blue](/CTF/tryhackme.com/blue.md), [Kenobi](/CTF/tryhackme.com/kenobi.md)
 - Advanced Exploitation Machines: [Daily Bugle](/CTF/tryhackme.com/dailybugle.md), [Overpass 2 Hacked](/CTF/tryhackme.com/overpass2hacked.md) 
 - Active Directory: [Attacktive Directory](/CTF/tryhackme.com/attacktivedirectory.md)
+- Tools: [FFUF](/CTF/tryhackme.com/ffuf.md)
 - Web: [OWASP Top 10](/CTF/tryhackme.com/owasptop10.md)
 - Cryptography: [Crack the hash](/CTF/tryhackme.com/crackthehash.md), [The Impossible Challenge](/CTF/tryhackme.com/theimpossiblechallenge.md)
+
+### VulnHub
+- [HackLAB: Vulnix](/CTF/vulnhub.com/hacklab-vulnix.md), [Kioptrix: Level 1.2](/CTF/vulnhub.com/kioptrix12.md), [FristiLeaks: 1.3](/CTF/vulnhub.com/fristileaks13.md), [Escalate My Privileges: 1](/CTF/vulnhub.com/escalate-my-privileges-1.md)
+
+### HackTheBox
+- Easy HTB
+  - Linux: [Lame 10.10.10.3 Linux](./CTF/hackthebox.com/0001lame.md)
+  - Windows: [Legacy 10.10.10.4 Windows](./CTF/hackthebox.com/0002legacy.md), [Devel 10.10.10.5 Windows](./CTF/hackthebox.com/0003devel.md)
+- Medium HTB
+  - Linux: [Popcorn 10.10.10.6 Linux ](./CTF/hackthebox.com/0004popcorn.md)
 
 ## About Me
 
@@ -69,8 +63,8 @@
 
 # Be a Sponsor  
 
-1. https://github.com/sponsors/ZishanAdThandar
-2. https://ZishanAdThandar.github.io/sponsor/
+1. [https://github.com/sponsors/ZishanAdThandar](https://github.com/sponsors/ZishanAdThandar)
+2. [https://ZishanAdThandar.github.io/sponsor/](https://ZishanAdThandar.github.io/sponsor/)
 
 <!--
 1. BTC `bc1q0qhgw5pdys7qqw07rcsyudu5wmv6208nhp5xtn`
