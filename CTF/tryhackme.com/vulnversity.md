@@ -6,7 +6,7 @@
 - [Locating directories using Gobuster](#locating-directories-using-gobuster)
 - [Privilege Escalation](#privilege-escalation)
 
-Room Link: https://tryhackme.com/room/vulnversity
+Room Link: [https://tryhackme.com/room/vulnversity](https://tryhackme.com/room/vulnversity)
 
 ## Tools 
 
