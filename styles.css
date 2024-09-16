@@ -1,0 +1,276 @@
+@import url("https://fonts.googleapis.com/css2?family=Concert+One&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap");
+
+#particles-js canvas {
+    display: block;
+    vertical-align: bottom;
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+    -webkit-transition: opacity .8s ease, -webkit-transform 1.4s ease;
+    transition: opacity .8s ease, transform 1.4s ease
+}
+
+#particles-js {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -10;
+    top: 0;
+    left: 0;
+    background: #010204;
+}
+
+.text {
+	position: absolute;
+	top: 50%;
+	right: 50%;
+	transform: translate(50%,-50%);
+	color: $text;
+	max-width: 90%;
+	padding: 2em 3em;
+	background: rgba(0, 0, 0, 0.4);
+	text-shadow: 0px 0px 2px #131415;
+	font-family: 'Courier New', Courier, monospace, 'Open Sans', sans-serif;
+}
+
+
+    /* NAVBAR BRAND Styles */
+    
+/* Navbar Glow style */
+.navbar-brand {
+  color: #00ff00;
+  font-weight: bold;
+  animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00, 0 0 20px #00ff00, 0 0 25px #00ff00, 0 0 30px #00ff00, 0 0 35px #00ff00;
+  }
+  to {
+    text-shadow: 0 0 10px #fff, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00, 0 0 50px #00ff00, 0 0 60px #00ff00, 0 0 70px #00ff00;
+  }
+}
+
+/* Additional cool effect: Gradient and border animation */
+.navbar-brand {
+  background: linear-gradient(45deg, #00ff00, #ff00ff);
+  -webkit-background-clip: text;
+  color: transparent;
+  border: 2px solid transparent;
+  background-size: 200% 200%;
+  animation: gradient 2s ease infinite, glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+    /* NAVBAR START Styles */
+   
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.5) !important; /* Navbar background color with 50% opacity */
+      font-family: 'Courier New', Courier, monospace;
+    }
+    .navbar-brand,
+    .navbar-nav .nav-link {
+      color: #00ff00 !important;
+      transition: transform 0.3s ease; /* Transition for link zoom effect */
+      padding: 8px 15px;
+      border: 1px solid #00ff00;
+      border-radius: 5px;
+    }
+    .navbar-brand:hover,
+    .navbar-nav .nav-link:hover {
+      color: #fff !important;
+      transform: scale(1.05); /* Zoom effect on hover */
+      background-color: #00ff00;
+      text-decoration: none; /* Remove underline on hover */
+    }
+/* NAVBAR END Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #010204;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.3em;
+  margin: 0;
+  cursor: url('data:image/x-icon;base64,AAACAAEAICAAAAAAAACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAIAAAACAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAEAAAABQAAAAQAAAACAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAIAAAACAAAAAQAAAAAAAAACAAAABQAAAAgAAAAJAAAABwAAAAUAAAACAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAACAAAABAAAAAUAAAADAAAAAwAAAAsAAAAUAAAAFwAAABQAAAANAAAACAAAAAQAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAYAAAAHAAAABwAAAAYAAAAMAAAAIQAAACwAAAAxAAAAJQAAABcAAAALAAAABQAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAQAAAAFQAAABMAAAANAAAADAAAABgAAAA4AAAAVQAAAFgAAAA+AAAAHgAAAAwAAAAFAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEgAAACUAAAAtAAAAJAAAABcAAAAVAAAALwAAAFUAAAB3AAAAdAAAAFIAAAApAAAADAAAAAYAAAACAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjAAAARAAAAFYAAABEAAAAKgAAACkA/yL/AP8i/wAAAIYAAAB6AAAAVQAAACkAAAAMAAAABwAAAAQAAAACAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQAAABZAAAAeAAAAGUAAABHAP8i/wAAAP8AAAD/AP8i/wAAAHIAAABKAAAAIwAAABEAAAAKAAAABgAAAAMAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/yL/AP8i/wAAAGEAAACGAAAAfQAAAGcA/yL/AAAA/wAAAP8A/yL/AAAAZwAAAEMAAAAmAAAAHgAAABQAAAAJAAAABAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/Iv8AAAD/AP8i/wAAAIsAAACKAP8i/wAAAP8AAAD/AP8i/wAAAIEAAABpAAAAUAAAAEEAAAAwAAAAHQAAAAoAAAAFAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP8i/wAAAP8AAAD/AP8i/wAAAI0A/yL/AAAA/wAAAP8A/yL/AAAAgwAAAHgAAABsAAAAYwAAAEcAAAAoAAAACQAAAAQAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/yL/AAAA/wAAAP8AAAD/AP8i/wAAAP8AAAD/AP8i/wAAAI0AAACKAAAAhgAAAH4AAABvAAAASwAAACYAAAAHAAAABAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/Iv8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AP8i/wD/Iv8A/yL/AP8i/wAAAF8AAAA4AAAAFwAAAAUAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP8i/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8A/yL/AAAAPgAAACYAAAAOAAAAAwAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/yL/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AP8i/wAAAD4AAAAoAAAADwAAAAQAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/Iv8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wD/Iv8AAAA+AAAAKAAAAA8AAAAEAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP8i/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8A/yL/AAAAPgAAACgAAAAPAAAABAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/yL/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AP8i/wAAAD4AAAAoAAAADwAAAAQAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/Iv8AAAD/AAAA/wAAAP8AAAD/AAAA/wD/Iv8AAAA+AAAAKAAAAA8AAAAEAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP8i/wAAAP8AAAD/AAAA/wAAAP8A/yL/AAAAPQAAACcAAAAPAAAABAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/yL/AAAA/wAAAP8AAAD/AP8i/wAAAD0AAAAnAAAADwAAAAQAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/Iv8AAAD/AAAA/wD/Iv8AAAA8AAAAJgAAAA8AAAAEAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP8i/wAAAP8A/yL/AAAAOAAAACQAAAANAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/yL/AP8i/wAAABYAAAAkAAAACwAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/Iv8AAAAFAAAACQAAAAkAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//////////////////////////////////////////////////////////////////////4////8P///LD///wA///8AP///AB///wAP//8AD///AB///wA///8Af///AP///wH///8D////B////w////8f////P////3////8='), auto; 
+}
+
+
+
+/* Introduction */
+
+
+
+.introduction {padding: 0.5em;}
+#intropic {
+    animation-name: floating;  
+    animation-duration: 3s;    
+    animation-iteration-count: infinite; 
+    animation-timing-function: ease-in-out; 
+    margin-left: 30px;        
+    margin-top: 5px;           
+	padding: 1.5em;
+}
+
+@keyframes floating {
+    0% { transform: translate(0, 0px); }  
+    50% { transform: translate(0, -20px); } 
+    100% { transform: translate(0, 0px); }
+}
+
+
+@media (max-width: 850px) {
+  #intropic {
+  z-index: 1;
+    height: 90%;
+    width: 90%;
+  }
+}
+
+/* Introduction Ends */
+
+/* Links */
+
+.linkexternal {
+  display: inline-block;
+  border-style: solid;
+  border-radius: 25px;
+  padding: 0px 5px;
+  font-size: 1em;
+  margin-top: 0.5em;
+  border-color: yellow;
+}
+    .linkexternal:hover {
+      background-color: #ffc107; /* Change hover background color as needed */
+      color: #fff; /* Change hover text color as needed */
+	  box-shadow: 0 8px 20px rgba(145, 92, 182, .7);
+    }
+.linkexternal a:link, .linkexternal a:visited, .linkexternal a:hover, .linkexternal a:active {
+  text-decoration: none; 
+}
+
+/* Links */
+
+/*  -------------Services---------------- */
+    .card {
+      background-color: transparent !important; /* Make card background transparent */
+      border: none !important; 
+    }
+    
+
+/* -------------Services---------------- */
+
+
+/*  -------------Projects---------------- */
+
+.projects {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  /* Add this line to enable wrapping */
+}
+
+.proj {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+  border-color: yellow;
+  border-style: solid;
+  border-radius: 25px;
+  height: 100%;
+}
+
+@media (max-width: 850px) {
+  .proj {
+    display: inline;
+  }
+}
+
+
+/*  -------------contact----------------  */
+
+a.contact button:hover{
+  transform: scale(1.2);
+}
+
+.contact-right input, .contact-right textarea{
+  background-color: rgba(165, 55, 253, 0.5); /* Dark purple with 50% opacity */
+  color: #0f0; /* Green text color */
+  border: 2px solid #A800A8; /* Hacker purple border color */
+  margin: 4px;
+  font-weight: bold;
+}
+
+.contact-right button {
+  background-color: rgba(165, 55, 253, 0.8); /* Black with 50% opacity */
+  border: 2px solid #A800A8; /* Hacker purple border color */
+  color: #fff; /* White text color */
+  font-weight: bold;
+}
+
+.contact-right button:focus, .contact-right button:hover {
+  background-color: rgba(90, 34, 139, 0.9); /* Dark purple hover color with 90% opacity */
+  box-shadow: 0 8px 20px rgba(145, 92, 182, .7);
+}
+
+.contact-right input::placeholder, .contact-right textarea::placeholder {
+  color: rgba(255, 255, 255, 0.9); 
+}
+
+.contact-right input:hover,
+.contact-right textarea:hover,
+.contact-right input:focus,
+.contact-right textarea:focus {
+  background-color: rgba(50, 0, 50, 0.9); /* Dark purple hover color with 90% opacity */
+  color: #fff; /* White text color */
+  box-shadow: 0 10px 25px rgba(145, 92, 182, .8);
+}
+
+  /*-------------contact end---------------- */
+
+img:hover {
+  opacity: 50%;
+  filter: brightness(150%);
+}
+
+
+/* container load from below */
+
+.load-from-below {
+  opacity: 0;
+  transform: translateY(70px);
+  transition: opacity 3s ease, transform 2s ease;
+}
+
+.load-from-below.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* CARD mouseover effect */
+.card {
+    transition: transform 0.6s ease, border-color 1s ease, box-shadow 1s ease, background-color 0.6s ease;
+}
+.card:hover {
+    transform: scale(1.05);
+    border-color: #FFFF00 !important; /* not working may be for bootstrap, */
+    box-shadow: 0 8px 20px rgba(145, 92, 182, .7);
+    background-color: rgba(50, 50, 90, 0.3) !important; /* not working may be for bootstrap,  Dark background with 50% opacity */
+}
