@@ -4,7 +4,7 @@
 - [Gaining Access](#gaining-access)
 - [Priviledge Escalation](#priviledge-escalation)
 
-Machine: https://www.vulnhub.com/entry/escalate-my-privileges-1,448/ 
+Machine: [https://www.vulnhub.com/entry/escalate-my-privileges-1,448/ ](https://www.vulnhub.com/entry/escalate-my-privileges-1,448/ )
 
 ## Tools
 1. [NMap](https://NMap.org)
