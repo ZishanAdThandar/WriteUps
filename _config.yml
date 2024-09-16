@@ -8,7 +8,7 @@ url: "https://ZishanAdThandar.github.io"
 collections:
   notes:
     output: true
-    permalink: notes/:categories/:year/:month/:day/:title:output_ext
+    #permalink: notes/:categories/:year/:month/:day/:title:output_ext
 
 defaults:
   - scope:
