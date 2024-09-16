@@ -7,7 +7,7 @@
 - [Cracking](#cracking)
 - [Find flags](#find-flags)
 
-Room Link: https://tryhackme.com/room/blue
+Room Link: [https://tryhackme.com/room/blue](https://tryhackme.com/room/blue)
 
 ## Tools 
 
