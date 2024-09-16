@@ -198,4 +198,4 @@ flag{********************************}
 ```
 3. flag1 : `flag{********************************}` flag2: `flag{********************************}` flag3:`flag{********************************}`
 
-Author: [Zishan Ahamed Thandar](https://github.com/ZishanAdThandar/WriteUps/tree/main?tab=readme-ov-file#about-me)
+Author: [Zishan Ahamed Thandar](https://ZishanAdThandar.github.io)

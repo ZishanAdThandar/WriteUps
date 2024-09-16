@@ -30,4 +30,4 @@ Machine: https://www.vulnhub.com/entry/kioptrix-level-12-3,24/
 9. Now just use `sudo /bin/bash` to get root shell.
 10. Now we can find a file `Congrats.txt` inside `/root` directory and this is the flag file containing a big paragraph.
 
-Author: [Zishan Ahamed Thandar](https://github.com/ZishanAdThandar/WriteUps/tree/main?tab=readme-ov-file#about-me)
+Author: [Zishan Ahamed Thandar](https://ZishanAdThandar.github.io)

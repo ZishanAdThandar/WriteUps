@@ -226,4 +226,4 @@ $$$$$$$$\  $$$$$$\  $$$$$$$\    $$\   $$$$$$\
 1. Just click Complete. Done!
 
 
-Author: [Zishan Ahamed Thandar](https://github.com/ZishanAdThandar/WriteUps/tree/main?tab=readme-ov-file#about-me)
+Author: [Zishan Ahamed Thandar](https://ZishanAdThandar.github.io)

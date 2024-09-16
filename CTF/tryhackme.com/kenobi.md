@@ -286,4 +286,4 @@ uid=0(root) gid=1000(kenobi) groups=1000(kenobi),4(adm),24(cdrom),27(sudo),30(di
 ```
 8. Question `What is the root flag (/root/root.txt)?` Answer `********************************` 32 alphanumeric chars. Command used `cat /root/root.txt`
    
-Author: [Zishan Ahamed Thandar](https://github.com/ZishanAdThandar/WriteUps/tree/main?tab=readme-ov-file#about-me)
+Author: [Zishan Ahamed Thandar](https://ZishanAdThandar.github.io)

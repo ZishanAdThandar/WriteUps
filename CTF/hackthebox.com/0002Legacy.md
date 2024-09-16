@@ -24,4 +24,4 @@ Retired Easy Machine by ch4p
 1. After searching about SMB exploit got CVE-2008-4250. Then Searching more about CVE-2008-4250 shows a metasploit module `exploit/windows/smb/ms08_067_netapi`.
 2. Using that exploit in metasploit gives the "Administrator" shell on the machine. Now, we can get user and root flag.  
 
-Author: [Zishan Ahamed Thandar](https://github.com/ZishanAdThandar/WriteUps/tree/main?tab=readme-ov-file#about-me)
+Author: [Zishan Ahamed Thandar](https://ZishanAdThandar.github.io)

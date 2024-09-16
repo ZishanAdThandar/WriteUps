@@ -59,4 +59,4 @@ Retired Medium Machine by ch4p
   ```
 4. Also dirtycow, motd and many other exploits are possible. As the server kernel version is too old.
 
-Author: [Zishan Ahamed Thandar](https://github.com/ZishanAdThandar/WriteUps/tree/main?tab=readme-ov-file#about-me)
+Author: [Zishan Ahamed Thandar](https://ZishanAdThandar.github.io)

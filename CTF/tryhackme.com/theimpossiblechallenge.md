@@ -18,4 +18,4 @@ Room Link: https://tryhackme.com/room/theimpossiblechallenge
 4. There is zero width text, decoded with https://330k.github.io/misc_tools/unicode_steganography.html and got the password, "Password is *******".
 5. Used the password and unzipped the zip file to get the flag.
 
-Author: [Zishan Ahamed Thandar](https://github.com/ZishanAdThandar/WriteUps/tree/main?tab=readme-ov-file#about-me)
+Author: [Zishan Ahamed Thandar](https://ZishanAdThandar.github.io)

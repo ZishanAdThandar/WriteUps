@@ -184,4 +184,4 @@ sh-4.2# cat /root/root.txt
 
 1. We already completed the machine, just click on completed.
 
-Author: [Zishan Ahamed Thandar](https://github.com/ZishanAdThandar/WriteUps/tree/main?tab=readme-ov-file#about-me)
+Author: [Zishan Ahamed Thandar](https://ZishanAdThandar.github.io)

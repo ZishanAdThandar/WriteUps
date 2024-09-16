@@ -18,4 +18,4 @@ Room Link: https://tryhackme.com/room/tutorial
 5. There is a flag clearly visible on the homepage.
 6. Question `A flag is just a piece of text that's used to verify you've performed a certain action. In security challenges, users are asked to find flags to prove that they've successfully hacked a machine` Answer `flag{connection_verified}`
 
-Author: [Zishan Ahamed Thandar](https://github.com/ZishanAdThandar/WriteUps/tree/main?tab=readme-ov-file#about-me)
+Author: [Zishan Ahamed Thandar](https://ZishanAdThandar.github.io)

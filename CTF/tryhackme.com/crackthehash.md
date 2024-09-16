@@ -30,5 +30,5 @@ Badges: https://tryhackme.com/ZishanAdThandar/badges/hash-cracker
 3.  As it is strating with `$6$`, so hash is `SHA512crypt`. So, it's decrypted with hashcat with `-m 1800` and the cracked hash is the answer.
 4. hashid shows hash `e5d8870e5bdd26602cab8dbe07a942c8669e56d6` is SHA1 with salt. So, decrypted "e5d8870e5bdd26602cab8dbe07a942c8669e56d6:tryhackme" with salt SHA1 gives us the answer.
 
-Author: [Zishan Ahamed Thandar](https://github.com/ZishanAdThandar/WriteUps/tree/main?tab=readme-ov-file#about-me)
+Author: [Zishan Ahamed Thandar](https://ZishanAdThandar.github.io)
 
