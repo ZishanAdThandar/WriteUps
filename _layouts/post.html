@@ -4,9 +4,6 @@
   <body>
     {% include nav.html %}
     <main class="page">
-      <h1 class="page-title">{{page.title}}</h1>
-      <h5 class="page-date">{{page.date | date_to_string}}</h5>
-      <hr />
       {{content}}
     </main>
     {% include footer.html %}
