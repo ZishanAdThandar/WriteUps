@@ -1,4 +1,4 @@
-# The Impossible Challenge
+# Tutorial
 
 - [Tools](#tools)
 - [Task](#task-1)
