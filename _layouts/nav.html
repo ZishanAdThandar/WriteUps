@@ -1,0 +1,23 @@
+
+<div id="particles-js"></div>
+<header>
+  <img class="profile" src="{{site.data.owner.dp}}" alt="" />
+  <div class="bio">
+
+    <div class="social">
+      {% for i in site.data.owner.contact %}
+      <a href="{{i.url}}" target="_blank">
+        <img
+          src="{{site.url}}{{site.baseurl}}/assets/png/{{i.title}}.png"
+          alt=""
+          class="icon"
+        />
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</header>
+
+<nav>
+
+</nav>
