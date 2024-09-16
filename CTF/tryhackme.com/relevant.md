@@ -1,9 +1,9 @@
 # Relevant
 
 - [Tools](#tools)
-- [Pre-Engagement Briefing](#Pre-Engagement Briefing)
+- [Pre-Engagement Briefing](#pre-engagement-briefing)
 
-Room Link: https://tryhackme.com/room/relevant
+Room Link: [https://tryhackme.com/room/relevant](https://tryhackme.com/room/relevant)
 
 ## Tools 
 
