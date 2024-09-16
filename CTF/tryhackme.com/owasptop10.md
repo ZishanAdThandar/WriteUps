@@ -33,7 +33,7 @@
 - [[Severity 10] Insufficient Logging and Monitoring](#severity-10-insufficient-logging-and-monitoring)
 - [What Next?](#what-next)
 
-Room Link: https://tryhackme.com/r/room/owasptop10
+Room Link: [https://tryhackme.com/r/room/owasptop10](https://tryhackme.com/r/room/owasptop10)
 
 ```bash
 
@@ -60,7 +60,7 @@ $$$$$$$$\  $$$$$$\  $$$$$$$\    $$\   $$$$$$\
                                                      
 ```
 
-Badges: https://tryhackme.com/ZishanAdThandar/badges/owasp-10
+Badges: [https://tryhackme.com/ZishanAdThandar/badges/owasp-10](https://tryhackme.com/ZishanAdThandar/badges/owasp-10)
 
 ## Tools
 1. sqlite3
