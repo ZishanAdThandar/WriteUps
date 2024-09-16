@@ -40,7 +40,7 @@ Retired Medium Machine by ch4p
 ## Priviledge Escalation
 
 1. After importing linux-exploit-suggester.sh we can get a lot of priviledge escalation exploits.
-<img src="./img/4c.png?raw=true" width="80%" alt="linux-exploit-suggester"></li>
+<img src="./img/4c.png?raw=true" width="80%" alt="linux-exploit-suggester">
 2. One of them is full-nelson (http://vulnfactory.org/exploits/full-nelson.c). After importing it to the machine, we can compile it with `gcc full-nelson.c -o full-nelson`.
 3. Then We get root and root flag.
   ```bash
