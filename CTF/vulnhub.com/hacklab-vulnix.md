@@ -4,7 +4,7 @@
 - [Gaining Access](#gaining-ccess)
 - [Priviledge Escalation](#priviledge-escalation)
 
-Machine: https://www.vulnhub.com/entry/hacklab-vulnix%2C48/
+Machine: [https://www.vulnhub.com/entry/hacklab-vulnix%2C48/](https://www.vulnhub.com/entry/hacklab-vulnix%2C48/)
 
 Now we can Download the 7z file and solve the machine by hosting it inside a virtual box.
 ## Tools
