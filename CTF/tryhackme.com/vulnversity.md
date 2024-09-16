@@ -10,10 +10,10 @@ Room Link: [https://tryhackme.com/room/vulnversity](https://tryhackme.com/room/v
 
 ## Tools 
 
-1. NMap https://nmap.org/download
-2. Gobuster https://github.com/OJ/gobuster
-3. Burp Intruder https://portswigger.net/burp
-4. Burp Proxy Toggle Extension https://addons.mozilla.org/en-US/firefox/addon/burp-proxy-toggler-lite/
+1. [NMap](https://nmap.org/download) 
+2. [Gobuster](https://github.com/OJ/gobuster) 
+3. [Burp Intruder](https://portswigger.net/burp) 
+4. [Burp Proxy Toggle Extension](https://addons.mozilla.org/en-US/firefox/addon/burp-proxy-toggler-lite/)
 
 ## Deploy the machine 
 
