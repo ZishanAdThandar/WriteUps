@@ -10,7 +10,7 @@
 - [Elevating Privileges within the Domain](#elevating-privileges-within-the-domain)
 - [Flag Submission Panel](#flag-submission-panel)
 
-Room Link: https://tryhackme.com/r/room/attacktivedirectory
+Room Link: [https://tryhackme.com/r/room/attacktivedirectory](https://tryhackme.com/r/room/attacktivedirectory)
 
 ## Tools
 1. [NMap](NMap.org)
