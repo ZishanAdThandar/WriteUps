@@ -33,8 +33,8 @@
             line-height: 1.6;
         }
         
-        /* Content images (screenshots, diagrams) */
-        .content img:not(.badge) {
+        /* Regular content images */
+        .page img:not([src*="shields.io"]) {
             max-width: 100%;
             height: auto;
             display: block;
@@ -44,13 +44,13 @@
         }
         
         /* Badge images (shields.io buttons) */
-        img.badge {
-            display: inline-block;
-            margin: 0 0.2rem;
-            border: none;
-            box-shadow: none;
-            height: 20px;
-            vertical-align: middle;
+        img[src*="shields.io"] {
+            display: inline !important;
+            margin: 0 0.2rem !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: 20px !important;
+            vertical-align: middle !important;
         }
         
         /* Image captions */
@@ -181,8 +181,7 @@
                 font-size: 1.1rem;
             }
             
-            /* Slightly smaller images on mobile */
-            .content img:not(.badge) {
+            .page img:not([src*="shields.io"]) {
                 margin: 1rem auto;
             }
         }
@@ -222,7 +221,7 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="container py-4 content">
+    <main class="container py-4 page">
         {{ content }}
     </main>
 
@@ -241,7 +240,7 @@
                     <a href="https://t.me/zishanadthandarchannel" target="_blank" class="me-3"><i class="fab fa-telegram fa-lg"></i></a>
                     <a href="https://www.youtube.com/ZishanAdThandar?sub_confirmation=1" target="_blank"><i class="fab fa-youtube fa-lg"></i></a>
                     <br class="d-md-none">
-                    <a href="{{ "https://zishanadthandar.github.io/linktree" | relative_url }}" class="btn btn-hacker btn-sm mt-2 mt-md-0">
+                    <a href="https://zishanadthandar.github.io/linktree/" class="btn btn-hacker btn-sm mt-2 mt-md-0">
                         <i class="fas fa-link"></i> LinkTree
                     </a>
                 </div>
