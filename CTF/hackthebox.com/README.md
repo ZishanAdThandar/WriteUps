@@ -1,0 +1,16 @@
+---
+layout: default
+title: HackTheBox Writeups
+---
+
+<h1 class="mb-4">{{ page.title }}</h1>
+
+<ul>
+  {% for writeup in site.tryhackme %}
+    <li>
+      <a href="{{ writeup.url }}">{{ writeup.title }}</a>
+      <small class="text-muted">{{ writeup.date | date: "%b %d, %Y" }}</small>
+    </li>
+  {% endfor %}
+</ul>
+
