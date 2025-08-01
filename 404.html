@@ -1,0 +1,29 @@
+{% assign has_home = site.pages | where: "path", "README.md" | size %}
+{% if has_home == 0 %}
+
+<h1 class="mb-4">📂 Markdown Previews (Auto-Listed)</h1>
+
+<div class="row">
+  {% assign md_files = site.static_files | where_exp: "file", "file.path contains 'bugbounty/' or file.path contains 'CTF/'" %}
+  {% for file in md_files %}
+    {% if file.extname == ".md" %}
+      <div class="col-md-6">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">{{ file.name }}</h5>
+            <p class="card-text text-muted">{{ file.path }}</p>
+            <a href="{{ site.baseurl }}/{{ file.path }}" class="btn btn-hacker btn-sm">View</a>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+{% else %}
+
+<h1>404 - Not Found</h1>
+<p>The page you're looking for doesn't exist.</p>
+
+{% endif %}
+
