@@ -23,6 +23,7 @@ plugins:
   - kramdown
   - jekyll-auto-index
 
+
 markdown: kramdown
 # paginate: 5
 # paginate_path: "/page:num"
