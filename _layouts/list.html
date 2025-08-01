@@ -7,11 +7,14 @@ layout: default
 
 <ul class="list-group">
   {% assign folder_path = page.folder %}
-  {% assign writeups = site.static_files | where_exp: "file", "file.path contains folder_path and file.extname == '.md'" %}
-  {% for file in writeups %}
-    <li class="list-group-item bg-dark border-secondary">
-      <a href="{{ '/' | append: file.path }}">{{ file.name | remove: '.md' | replace: '-', ' ' | capitalize }}</a>
-    </li>
+  {% for file in site.static_files %}
+    {% if file.path contains folder_path and file.extname == ".md" %}
+      <li class="list-group-item bg-dark border-secondary">
+        <a href="{{ file.path | relative_url }}">
+          {{ file.name | remove: '.md' | replace: '-', ' ' | capitalize }}
+        </a>
+      </li>
+    {% endif %}
   {% endfor %}
 </ul>
 
