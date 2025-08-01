@@ -7,13 +7,27 @@ layout: default
 
 <ul class="list-group">
   {% assign folder_path = page.folder %}
-  {% for file in site.static_files %}
-    {% if file.path contains folder_path and file.extname == ".md" %}
-      <li class="list-group-item bg-dark border-secondary">
-        <a href="{{ file.path | relative_url }}">
-          {{ file.name | remove: '.md' | replace: '-', ' ' | capitalize }}
-        </a>
-      </li>
+  {% for file in site.pages %}
+    {% if file.path contains folder_path and file.path != page.path %}
+      {% assign file_title = file.title %}
+      {% if file_title %}
+        <li class="list-group-item bg-dark border-secondary">
+          <a href="{{ file.url | relative_url }}">{{ file_title }}</a>
+        </li>
+      {% else %}
+        {% assign lines = file.content | split: '\n' %}
+        {% assign h1_found = false %}
+        {% for line in lines %}
+          {% if line contains '# ' %}
+            {% assign heading = line | remove: '# ' %}
+            <li class="list-group-item bg-dark border-secondary">
+              <a href="{{ file.url | relative_url }}">{{ heading }}</a>
+            </li>
+            {% assign h1_found = true %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
     {% endif %}
   {% endfor %}
 </ul>
