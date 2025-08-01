@@ -3,14 +3,15 @@ layout: default
 ---
 
 <h1 class="mb-4">{{ page.title }}</h1>
+{{ content }}
 
-<ul>
-  {% for writeup in site.tryhackme %}
-    <li>
-      <a href="{{ writeup.url }}">{{ writeup.title }}</a>
-      <small class="text-muted">{{ writeup.date | date: "%b %d, %Y" }}</small>
+<ul class="list-group">
+  {% assign folder_path = page.folder %}
+  {% assign writeups = site.static_files | where_exp: "file", "file.path contains folder_path and file.extname == '.md'" %}
+  {% for file in writeups %}
+    <li class="list-group-item bg-dark border-secondary">
+      <a href="{{ '/' | append: file.path }}">{{ file.name | remove: '.md' | replace: '-', ' ' | capitalize }}</a>
     </li>
   {% endfor %}
 </ul>
-
 
