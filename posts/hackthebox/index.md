@@ -1,7 +1,7 @@
 ---
 layout: list
 title: HackTheBox Writeups
-folder: CTF/hackthebox.com
+folder: posts/hackthebox
 ---
 
 Explore public HackTheBox writeups below.
