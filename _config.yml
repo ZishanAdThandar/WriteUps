@@ -21,6 +21,7 @@ defaults:
 
 plugins:
   - kramdown
+  - jekyll-auto-index
 
 markdown: kramdown
 # paginate: 5
