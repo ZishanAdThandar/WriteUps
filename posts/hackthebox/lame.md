@@ -1,8 +1,8 @@
 # LAME - Machine
 
-| IP | OS | Creator | Difficulty |
-| --- | --- | --- | --- |
-| 10.10.10.3 | Linux | ch4p | Easy |
+> [!info]
+> IP 10.10.10.3 
+> Linux Easy
 
 ## Contents
 
