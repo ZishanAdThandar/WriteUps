@@ -1,8 +1,8 @@
 ---
 layout: list
-title: HackTheBox Writeups
+title: TryHackMe Writeups
 folder: posts/tryhackme
 ---
 
-Explore public HackTheBox writeups below.
+Explore public TryHackMe writeups below.
 

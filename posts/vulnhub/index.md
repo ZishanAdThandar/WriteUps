@@ -1,8 +1,8 @@
 ---
 layout: list
-title: HackTheBox Writeups
+title: Vulnhub Writeups
 folder: posts/vulnhub
 ---
 
-Explore public HackTheBox writeups below.
+Explore public Vulnhub writeups below.
 

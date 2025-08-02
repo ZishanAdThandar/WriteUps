@@ -1,8 +1,8 @@
 ---
 layout: list
-title: HackTheBox Writeups
+title: Offsec Writeups
 folder: posts/offsec
 ---
 
-Explore public HackTheBox writeups below.
+Explore public Offsec writeups below.
 
