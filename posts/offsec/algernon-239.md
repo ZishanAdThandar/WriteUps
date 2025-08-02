@@ -5,13 +5,8 @@
 - **Number of Flags** 1
 - **Vector Type** SmarterMail
 - **IP** 192.168.53.65
-
-
----
-
-| Name     | OS      | Job Roles                  | Skills                  |
-| -------- | ------- | -------------------------- | ----------------------- |
-| Algernon | Windows | Network Penetration Tester | Web Application Attacks |
+- **Job Roles** Network Penetration Tester
+- **Skills** Web Application Attacks
 
 ---
 
@@ -43,7 +38,8 @@ This lab demonstrates exploiting a remote code execution vulnerability in Smarte
 ## Recon
 
 - NMap scan
-```python
+
+```bash
 nmap -A 192.168.53.65
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-07-17 09:10 UTC
 Nmap scan report for 192.168.53.65
@@ -111,7 +107,8 @@ Nmap done: 1 IP address (1 host up) scanned in 37.88 seconds
 
 ## Basic Enumeration
 - Anonymous FTP login is enabled, allowing unauthenticated access.
-```python
+
+```bash
 ftp 192.168.53.65
 Connected to 192.168.53.65.
 220 Microsoft FTP Service
@@ -122,8 +119,7 @@ Password:
 Remote system type is Windows_NT.
 ```
 
-> [!TIP]
-> No sensitive data was found in the accessible FTP directories.(Rabbit Hole)
+**Note: No sensitive data was found in the accessible FTP directories.(Rabbit Hole)**
 
 - Port 80 is just a windows IIS page.
 - Port 9998 is a login page.
