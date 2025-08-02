@@ -13,15 +13,16 @@
 
 - [Bug Bounty PoC](#bug-bounty)
 - [CTF](#ctf)
+  - [HackTheBox](#hackthebox)
+  - [Offsec](#offsec)
   - [TryHackMe](#tryhackme)
   - [VulnHub](#vulnhub)
-  - [HackTheBox](#hackthebox)
   - [PortSwiggerLab](#portswiggerlab)
 - [About Me](#about-me)
 
 ## Bug Bounty
-1. [Hunting methodology and experience of my First Stored XSS on Edmodo.com](/post/bugbounty/1.md)
-1. [Just 5 minute to get my 2nd stored XSS on Edmodo.com](/post/bugbounty/2.md)
+- [Hunting methodology and experience of my First Stored XSS on Edmodo.com](/post/bugbounty/1.md)
+- [Just 5 minute to get my 2nd stored XSS on Edmodo.com](/post/bugbounty/2.md)
 
 ## CTF
 
