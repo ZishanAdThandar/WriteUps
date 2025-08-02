@@ -146,7 +146,7 @@ nc -lvnp 4444
 
 - After starting the listener, we can execute the exploit to get reverse shell.
 
-```python
+```bash
 python3 49216
 ```
 - We will get the shell in our netcat listener as **Administrator**
