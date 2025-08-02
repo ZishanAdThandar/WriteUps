@@ -19,13 +19,17 @@
 
 In this lab, we will exploit a remote code execution vulnerability in build 6985 of the SmarterMail application. This exercise enhances your skills in identifying and exploiting vulnerabilities for gaining access to systems.
 
+---
+
+# Summary
+
 This lab demonstrates exploiting a remote code execution vulnerability in SmarterMail build 6985 to gain SYSTEM-level access on a Windows server. Learners will identify the application version, leverage an RCE exploit, and use a reverse shell payload to compromise the target. This lab emphasizes web application exploitation and highlights the risks of unpatched software.
 
 ---
 
-# Learning Objectives
+## Learning Objectives
 
-## **After completion of this lab, learners will be able to:**
+**After completion of this lab, learners will be able to:**
 
 - Enumerate open ports and services to identify the SmarterMail application running on port 9998.
 - Confirm the application version and search for applicable exploits.
@@ -36,7 +40,7 @@ This lab demonstrates exploiting a remote code execution vulnerability in Smarte
 
 ---
 
-# Recon
+## Recon
 
 - NMap scan
 ```python
@@ -105,7 +109,7 @@ Nmap done: 1 IP address (1 host up) scanned in 37.88 seconds
 
 ---
 
-# Basic Enumeration
+## Basic Enumeration
 - Anonymous FTP login is enabled, allowing unauthenticated access.
 ```python
 ftp 192.168.53.65
@@ -118,14 +122,15 @@ Password:
 Remote system type is Windows_NT.
 ```
 
-> [!INFORMATION]
+> [!TIP]
 > No sensitive data was found in the accessible FTP directories.(Rabbit Hole)
 
 - Port 80 is just a windows IIS page.
 - Port 9998 is a login page.
 
 ---
-# Port 9998 Enumeration
+
+## Port 9998 Enumeration
 - Opening port 9998 in browser redirects to http://192.168.53.65:9998/interface/root#/login.
 - Which is a login page belongs to **smartmailer**.
 - Researching exploits for SmarterMail on Google we come across an interesting exploit.
@@ -173,7 +178,7 @@ Mode                LastWriteTime         Length Name
 
 
 PS C:\Users\Administrator\Desktop> type proof.txt
-76fb8ea14457c74151024aff61c2cbbb
+76fb8ea14********1c2cbbb
 ```
 
 ---
