@@ -24,19 +24,20 @@
 - [Hunting methodology and experience of my First Stored XSS on Edmodo.com](/posts/bugbounty/1.md)
 - [Just 5 minute to get my 2nd stored XSS on Edmodo.com](/posts/bugbounty/2.md)
 
+
 ## CTF
 
 ### HackTheBox
-- Easy HTB
-  - Linux: [Lame](./posts/hackthebox/lame.md)
-  - Windows: [Legacy](./posts/hackthebox/legacy.md), [Devel](./posts/hackthebox/devel.md)
-- Medium HTB
-  - Linux: [Popcorn](./posts/hackthebox/popcorn.md)
+
+- Linux: [Lame Easy](./posts/hackthebox/lame.md), [Popcorn Medium](./posts/hackthebox/popcorn.md)
+- Windows: [Legacy Easy](./posts/hackthebox/legacy.md), [Devel Easy](./posts/hackthebox/devel.md)
 
 ### Offsec
+
 - Windows: [Algernon](./posts/offsec/algernon.md),  [AuthBy](./posts/offsec/authby.md)
 
 ### TryHackMe
+
 - Getting Started: [Tutorial](/posts/tryhackme/tutorial.md)
 - Easy Machines: [Vuln University (Vulnversity)](/posts/tryhackme/vulnversity.md), [Blue](/posts/tryhackme/blue.md), [Kenobi](/posts/tryhackme/kenobi.md)
 - Advanced Exploitation Machines: [Daily Bugle](/posts/tryhackme/dailybugle.md), [Overpass 2 Hacked](/posts/tryhackme/overpass2hacked.md) 
@@ -46,6 +47,7 @@
 - Cryptography: [Crack the hash](/posts/tryhackme/crackthehash.md), [The Impossible Challenge](/posts/tryhackme/theimpossiblechallenge.md)
 
 ### VulnHub
+
 - [HackLAB: Vulnix](/posts/vulnhub/hacklab-vulnix.md), [Kioptrix: Level 1.2](/posts/vulnhub/kioptrix12.md), [FristiLeaks: 1.3](/posts/vulnhub/fristileaks13.md), [Escalate My Privileges: 1](/posts/vulnhub/escalate-my-privileges-1.md)
 
 
@@ -68,8 +70,8 @@
 
 # Be a Sponsor  
 
-1. [https://github.com/sponsors/ZishanAdThandar](https://github.com/sponsors/ZishanAdThandar)
-2. [https://ZishanAdThandar.github.io/sponsor/](https://ZishanAdThandar.github.io/sponsor/)
+- [https://github.com/sponsors/ZishanAdThandar](https://github.com/sponsors/ZishanAdThandar)
+- [https://ZishanAdThandar.github.io/sponsor/](https://ZishanAdThandar.github.io/sponsor/)
 
 <!--
 1. BTC `bc1q0qhgw5pdys7qqw07rcsyudu5wmv6208nhp5xtn`
