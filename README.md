@@ -21,32 +21,32 @@
 - [About Me](#about-me)
 
 ## Bug Bounty
-- [Hunting methodology and experience of my First Stored XSS on Edmodo.com](/post/bugbounty/1.md)
-- [Just 5 minute to get my 2nd stored XSS on Edmodo.com](/post/bugbounty/2.md)
+- [Hunting methodology and experience of my First Stored XSS on Edmodo.com](/posts/bugbounty/1.md)
+- [Just 5 minute to get my 2nd stored XSS on Edmodo.com](/posts/bugbounty/2.md)
 
 ## CTF
 
 ### HackTheBox
 - Easy HTB
-  - Linux: [Lame](./post/hackthebox/lame.md)
-  - Windows: [Legacy](./post/hackthebox/legacy.md), [Devel](./post/hackthebox/devel.md)
+  - Linux: [Lame](./posts/hackthebox/lame.md)
+  - Windows: [Legacy](./posts/hackthebox/legacy.md), [Devel](./posts/hackthebox/devel.md)
 - Medium HTB
-  - Linux: [Popcorn](./post/hackthebox/popcorn.md)
+  - Linux: [Popcorn](./posts/hackthebox/popcorn.md)
 
 ### Offsec
-- Windows: [Algernon](./post/offsec/algernon.md),  [AuthBy](./post/offsec/authby.md)
+- Windows: [Algernon](./posts/offsec/algernon.md),  [AuthBy](./posts/offsec/authby.md)
 
 ### TryHackMe
-- Getting Started: [Tutorial](/post/tryhackme/tutorial.md)
-- Easy Machines: [Vuln University (Vulnversity)](/post/tryhackme/vulnversity.md), [Blue](/post/tryhackme/blue.md), [Kenobi](/post/tryhackme/kenobi.md)
-- Advanced Exploitation Machines: [Daily Bugle](/post/tryhackme/dailybugle.md), [Overpass 2 Hacked](/post/tryhackme/overpass2hacked.md) 
-- Active Directory: [Attacktive Directory](/post/tryhackme/attacktivedirectory.md)
-- Tools: [FFUF](/post/tryhackme/ffuf.md)
-- Web: [OWASP Top 10](/post/tryhackme/owasptop10.md)
-- Cryptography: [Crack the hash](/post/tryhackme/crackthehash.md), [The Impossible Challenge](/post/tryhackme/theimpossiblechallenge.md)
+- Getting Started: [Tutorial](/posts/tryhackme/tutorial.md)
+- Easy Machines: [Vuln University (Vulnversity)](/posts/tryhackme/vulnversity.md), [Blue](/posts/tryhackme/blue.md), [Kenobi](/posts/tryhackme/kenobi.md)
+- Advanced Exploitation Machines: [Daily Bugle](/posts/tryhackme/dailybugle.md), [Overpass 2 Hacked](/posts/tryhackme/overpass2hacked.md) 
+- Active Directory: [Attacktive Directory](/posts/tryhackme/attacktivedirectory.md)
+- Tools: [FFUF](/posts/tryhackme/ffuf.md)
+- Web: [OWASP Top 10](/posts/tryhackme/owasptop10.md)
+- Cryptography: [Crack the hash](/posts/tryhackme/crackthehash.md), [The Impossible Challenge](/posts/tryhackme/theimpossiblechallenge.md)
 
 ### VulnHub
-- [HackLAB: Vulnix](/post/vulnhub/hacklab-vulnix.md), [Kioptrix: Level 1.2](/post/vulnhub/kioptrix12.md), [FristiLeaks: 1.3](/post/vulnhub/fristileaks13.md), [Escalate My Privileges: 1](/post/vulnhub/escalate-my-privileges-1.md)
+- [HackLAB: Vulnix](/posts/vulnhub/hacklab-vulnix.md), [Kioptrix: Level 1.2](/posts/vulnhub/kioptrix12.md), [FristiLeaks: 1.3](/posts/vulnhub/fristileaks13.md), [Escalate My Privileges: 1](/posts/vulnhub/escalate-my-privileges-1.md)
 
 
 ## About Me
