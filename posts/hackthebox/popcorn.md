@@ -1,8 +1,7 @@
 # Popcorn - Machine
 
-> [!note]
-> IP 10.10.10.6
-> Windows Medium
+IP 10.10.10.6
+Windows Medium
 
 ## Contents
 - [Tools](#tools)

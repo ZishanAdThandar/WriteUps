@@ -1,8 +1,7 @@
 # Devel - Machine
 
-> [!note]
-> IP 10.10.10.5
-> Windows Easy
+IP 10.10.10.5
+Easy Windows 
 
 ## Contents
 - [Tools](#tools)

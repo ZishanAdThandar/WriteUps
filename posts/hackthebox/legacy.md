@@ -1,8 +1,7 @@
 # Legacy - Machine
 
-> [!note]
-> IP 10.10.10.4
-> Windows Easy
+IP 10.10.10.4
+Easy Windows
 
 ## Contents
 - [Tools](#tools)
