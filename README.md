@@ -20,29 +20,33 @@
 - [About Me](#about-me)
 
 ## Bug Bounty
-1. [Hunting methodology and experience of my First Stored XSS on Edmodo.com](/bugbounty/1.md)
-1. [Just 5 minute to get my 2nd stored XSS on Edmodo.com](/bugbounty/2.md)
+1. [Hunting methodology and experience of my First Stored XSS on Edmodo.com](/post/bugbounty/1.md)
+1. [Just 5 minute to get my 2nd stored XSS on Edmodo.com](/post/bugbounty/2.md)
 
 ## CTF
 
-### TryHackMe
-- Getting Started: [Tutorial](/CTF/tryhackme.com/tutorial.md)
-- Easy Machines: [Vuln University (Vulnversity)](/CTF/tryhackme.com/vulnversity.md), [Blue](/CTF/tryhackme.com/blue.md), [Kenobi](/CTF/tryhackme.com/kenobi.md)
-- Advanced Exploitation Machines: [Daily Bugle](/CTF/tryhackme.com/dailybugle.md), [Overpass 2 Hacked](/CTF/tryhackme.com/overpass2hacked.md) 
-- Active Directory: [Attacktive Directory](/CTF/tryhackme.com/attacktivedirectory.md)
-- Tools: [FFUF](/CTF/tryhackme.com/ffuf.md)
-- Web: [OWASP Top 10](/CTF/tryhackme.com/owasptop10.md)
-- Cryptography: [Crack the hash](/CTF/tryhackme.com/crackthehash.md), [The Impossible Challenge](/CTF/tryhackme.com/theimpossiblechallenge.md)
-
-### VulnHub
-- [HackLAB: Vulnix](/CTF/vulnhub.com/hacklab-vulnix.md), [Kioptrix: Level 1.2](/CTF/vulnhub.com/kioptrix12.md), [FristiLeaks: 1.3](/CTF/vulnhub.com/fristileaks13.md), [Escalate My Privileges: 1](/CTF/vulnhub.com/escalate-my-privileges-1.md)
-
 ### HackTheBox
 - Easy HTB
-  - Linux: [Lame 10.10.10.3 Linux](./CTF/hackthebox.com/0001lame.md)
-  - Windows: [Legacy 10.10.10.4 Windows](./CTF/hackthebox.com/0002legacy.md), [Devel 10.10.10.5 Windows](./CTF/hackthebox.com/0003devel.md)
+  - Linux: [Lame](./post/CTF/hackthebox/lame.md)
+  - Windows: [Legacy](./post/CTF/hackthebox/legacy.md), [Devel](./post/CTF/hackthebox/devel.md)
 - Medium HTB
-  - Linux: [Popcorn 10.10.10.6 Linux ](./CTF/hackthebox.com/0004popcorn.md)
+  - Linux: [Popcorn](./post/CTF/hackthebox/popcorn.md)
+
+### Offsec
+- Windows: [Algernon](./post/CTF/offsec/algernon.md),  [AuthBy](./post/CTF/offsec/authby.md)
+
+### TryHackMe
+- Getting Started: [Tutorial](/post/CTF/tryhackme/tutorial.md)
+- Easy Machines: [Vuln University (Vulnversity)](/post/CTF/tryhackme/vulnversity.md), [Blue](/post/CTF/tryhackme/blue.md), [Kenobi](/post/CTF/tryhackme/kenobi.md)
+- Advanced Exploitation Machines: [Daily Bugle](/post/CTF/tryhackme/dailybugle.md), [Overpass 2 Hacked](/post/CTF/tryhackme/overpass2hacked.md) 
+- Active Directory: [Attacktive Directory](/post/CTF/tryhackme/attacktivedirectory.md)
+- Tools: [FFUF](/post/CTF/tryhackme/ffuf.md)
+- Web: [OWASP Top 10](/post/CTF/tryhackme/owasptop10.md)
+- Cryptography: [Crack the hash](/post/CTF/tryhackme/crackthehash.md), [The Impossible Challenge](/post/CTF/tryhackme/theimpossiblechallenge.md)
+
+### VulnHub
+- [HackLAB: Vulnix](/post/CTF/vulnhub/hacklab-vulnix.md), [Kioptrix: Level 1.2](/post/CTF/vulnhub/kioptrix12.md), [FristiLeaks: 1.3](/post/CTF/vulnhub/fristileaks13.md), [Escalate My Privileges: 1](/post/CTF/vulnhub/escalate-my-privileges-1.md)
+
 
 ## About Me
 
