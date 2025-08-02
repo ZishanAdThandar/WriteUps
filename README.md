@@ -27,6 +27,8 @@
 
 ## CTF
 
+---
+
 ### HackTheBox
 
 - Linux: [Lame Easy](./posts/hackthebox/lame.md), [Popcorn Medium](./posts/hackthebox/popcorn.md)
