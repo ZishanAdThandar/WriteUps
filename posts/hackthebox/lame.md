@@ -1,4 +1,8 @@
-# LAME 10.10.10.3 Write Up
+# LAME - Machine
+
+| IP | OS | Creator | Difficulty |
+| --- | --- | --- | --- |
+| 10.10.10.3 | Linux | ch4p | Easy |
 
 ## Contents
 
@@ -7,7 +11,6 @@
 - [Exploitaton](#exploitation)
 - [Walkthrough](#walkthrough)
 
-Retired Easy Machine by ch4p
 <img src="./img/1a.png?raw=true" width="80%" alt="Lame profile">
 
 ## Tools
