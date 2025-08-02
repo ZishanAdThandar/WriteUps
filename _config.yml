@@ -21,6 +21,7 @@ defaults:
 
 plugins:
   - kramdown
+  - jekyll-sitemap
 
 markdown: kramdown
 # paginate: 5
