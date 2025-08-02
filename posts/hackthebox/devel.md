@@ -1,7 +1,6 @@
 # Devel - Machine
 
-IP 10.10.10.5
-Easy Windows 
+10.10.10.5 Easy Windows 
 
 ## Contents
 - [Tools](#tools)
