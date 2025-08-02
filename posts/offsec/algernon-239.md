@@ -1,4 +1,4 @@
-# ​Algernon PlayGround
+# ​Proving Grounds - Easy Windows - Algernon
 
 - **Points** 10
 - **Level** Easy

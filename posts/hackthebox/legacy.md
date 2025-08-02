@@ -1,6 +1,6 @@
-# Legacy - Machine
+# Machine - Easy Windows - Legacy 
 
-10.10.10.4 Easy Windows
+IP 10.10.10.4 
 
 ## Contents
 - [Tools](#tools)

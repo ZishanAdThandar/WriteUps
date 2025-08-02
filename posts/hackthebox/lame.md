@@ -1,6 +1,6 @@
-# LAME - Machine
+# Machine - Easy Linux - Lame
 
-10.10.10.3 Easy Linux
+IP 10.10.10.3
 
 ## Contents
 

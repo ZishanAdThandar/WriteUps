@@ -1,6 +1,6 @@
-# Popcorn - Machine
+# Machine - Medium Windows - Popcorn
 
-10.10.10.6 Windows Medium
+IP 10.10.10.6 
 
 ## Contents
 - [Tools](#tools)
