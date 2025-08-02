@@ -28,25 +28,25 @@
 
 ### HackTheBox
 - Easy HTB
-  - Linux: [Lame](./post/CTF/hackthebox/lame.md)
-  - Windows: [Legacy](./post/CTF/hackthebox/legacy.md), [Devel](./post/CTF/hackthebox/devel.md)
+  - Linux: [Lame](./post/hackthebox/lame.md)
+  - Windows: [Legacy](./post/hackthebox/legacy.md), [Devel](./post/hackthebox/devel.md)
 - Medium HTB
-  - Linux: [Popcorn](./post/CTF/hackthebox/popcorn.md)
+  - Linux: [Popcorn](./post/hackthebox/popcorn.md)
 
 ### Offsec
-- Windows: [Algernon](./post/CTF/offsec/algernon.md),  [AuthBy](./post/CTF/offsec/authby.md)
+- Windows: [Algernon](./post/offsec/algernon.md),  [AuthBy](./post/offsec/authby.md)
 
 ### TryHackMe
-- Getting Started: [Tutorial](/post/CTF/tryhackme/tutorial.md)
-- Easy Machines: [Vuln University (Vulnversity)](/post/CTF/tryhackme/vulnversity.md), [Blue](/post/CTF/tryhackme/blue.md), [Kenobi](/post/CTF/tryhackme/kenobi.md)
-- Advanced Exploitation Machines: [Daily Bugle](/post/CTF/tryhackme/dailybugle.md), [Overpass 2 Hacked](/post/CTF/tryhackme/overpass2hacked.md) 
-- Active Directory: [Attacktive Directory](/post/CTF/tryhackme/attacktivedirectory.md)
-- Tools: [FFUF](/post/CTF/tryhackme/ffuf.md)
-- Web: [OWASP Top 10](/post/CTF/tryhackme/owasptop10.md)
-- Cryptography: [Crack the hash](/post/CTF/tryhackme/crackthehash.md), [The Impossible Challenge](/post/CTF/tryhackme/theimpossiblechallenge.md)
+- Getting Started: [Tutorial](/post/tryhackme/tutorial.md)
+- Easy Machines: [Vuln University (Vulnversity)](/post/tryhackme/vulnversity.md), [Blue](/post/tryhackme/blue.md), [Kenobi](/post/tryhackme/kenobi.md)
+- Advanced Exploitation Machines: [Daily Bugle](/post/tryhackme/dailybugle.md), [Overpass 2 Hacked](/post/tryhackme/overpass2hacked.md) 
+- Active Directory: [Attacktive Directory](/post/tryhackme/attacktivedirectory.md)
+- Tools: [FFUF](/post/tryhackme/ffuf.md)
+- Web: [OWASP Top 10](/post/tryhackme/owasptop10.md)
+- Cryptography: [Crack the hash](/post/tryhackme/crackthehash.md), [The Impossible Challenge](/post/tryhackme/theimpossiblechallenge.md)
 
 ### VulnHub
-- [HackLAB: Vulnix](/post/CTF/vulnhub/hacklab-vulnix.md), [Kioptrix: Level 1.2](/post/CTF/vulnhub/kioptrix12.md), [FristiLeaks: 1.3](/post/CTF/vulnhub/fristileaks13.md), [Escalate My Privileges: 1](/post/CTF/vulnhub/escalate-my-privileges-1.md)
+- [HackLAB: Vulnix](/post/vulnhub/hacklab-vulnix.md), [Kioptrix: Level 1.2](/post/vulnhub/kioptrix12.md), [FristiLeaks: 1.3](/post/vulnhub/fristileaks13.md), [Escalate My Privileges: 1](/post/vulnhub/escalate-my-privileges-1.md)
 
 
 ## About Me
