@@ -222,6 +222,8 @@ meterpreter > cat "c:\Users\Jon\Documents\flag3.txt"
 flag{********************************}
 ```
 
-- flag1 : `flag{********************************}` flag2: `flag{********************************}` flag3:`flag{********************************}`
+- flag1 : `flag{********************************}` 
+- flag2 : `flag{********************************}` 
+- flag3 : `flag{********************************}`
 
 Author: [Zishan Ahamed Thandar](https://ZishanAdThandar.github.io)
