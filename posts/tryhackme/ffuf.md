@@ -14,7 +14,6 @@
 Room Link: [https://tryhackme.com/r/room/ffuf](https://tryhackme.com/r/room/ffuf)
 
 ```bash
-
         /'___\  /'___\           /'___\       
        /\ \__/ /\ \__/  __  __  /\ \__/       
        \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\      

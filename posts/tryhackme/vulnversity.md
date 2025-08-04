@@ -26,7 +26,6 @@ Room Link: [https://tryhackme.com/room/vulnversity](https://tryhackme.com/room/v
 Output of the command:
 
 ```bash
-
 Starting Nmap 7.80 ( https://nmap.org ) at 2024-02-26 09:55 IST
 Nmap scan report for 10.10.135.130
 Host is up (0.20s latency).
@@ -59,7 +58,6 @@ Nmap done: 1 IP address (1 host up) scanned in 36.77 seconds
 Output of the command: 
 
 ```bash
-
 ===============================================================
 Gobuster v3.6
 by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
@@ -102,7 +100,6 @@ Progress: 9932 / 1273834 (0.78%)
 - At first I created a file on my machine named ZishanAdThander.service (with my ip, you can user your ip)
 
 ```bash
-
 [Unit]
 Description=ZishanAdThandar
 

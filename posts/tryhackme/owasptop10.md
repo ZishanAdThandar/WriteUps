@@ -36,7 +36,6 @@
 Room Link: [https://tryhackme.com/r/room/owasptop10](https://tryhackme.com/r/room/owasptop10)
 
 ```bash
-
  $$$$$$\  $$\      $$\  $$$$$$\   $$$$$$\  $$$$$$$\  
 $$  __$$\ $$ | $\  $$ |$$  __$$\ $$  __$$\ $$  __$$\ 
 $$ /  $$ |$$ |$$$\ $$ |$$ /  $$ |$$ /  \__|$$ |  $$ |

