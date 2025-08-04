@@ -90,10 +90,6 @@ OS details: Microsoft Windows Phone 7.5 or 8.0
 Network Distance: 2 hops
 Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
 
-TRACEROUTE (using port 3389/tcp)
-HOP RTT     ADDRESS
-1   0.17 ms 192.168.49.1
-2   0.47 ms 192.168.55.46
 
 OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 39.24 seconds
