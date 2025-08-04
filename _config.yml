@@ -8,21 +8,24 @@ url: "https://ZishanAdThandar.github.io"
 collections:
   notes:
     output: true
-   
 
 defaults:
   - scope:
       path: ""  # This applies to all files
     values:
-      layout: default  # This sets the default layout if none is mentioned
+      layout: default
       css: "style.css"
-
-  
 
 plugins:
   - kramdown
   - jekyll-sitemap
 
 markdown: kramdown
-# paginate: 5
-# paginate_path: "/page:num"
+highlighter: rouge
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+
