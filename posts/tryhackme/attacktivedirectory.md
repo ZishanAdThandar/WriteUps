@@ -128,6 +128,7 @@ $krb5asrep$23$svc-admin@SPOOKYSEC.LOCAL:92f01444cd97361751ec4fb5b5ea985a$04b60fa
 ## Back to the Basics
 
 - If we enumerate with smbclient we can see some shares. Used command `smbclient -L \\\\spookysec.local\\ -U 'svc-admin'` using password `management2005`. 
+
 ```bash
 smbclient -L \\\\spookysec.local\\ -U 'svc-admin'
 Password for [WORKGROUP\svc-admin]:

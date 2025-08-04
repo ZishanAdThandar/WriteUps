@@ -24,6 +24,7 @@ Room Link: [https://tryhackme.com/room/vulnversity](https://tryhackme.com/room/v
 
 - Scan ports of the machine with given command `nmap -sV 10.10.65.81`
 Output of the command:
+
 ```bash
 Starting Nmap 7.80 ( https://nmap.org ) at 2024-02-26 09:55 IST
 Nmap scan report for 10.10.135.130
@@ -54,6 +55,7 @@ Nmap done: 1 IP address (1 host up) scanned in 36.77 seconds
 - Port 3333 is http server, So web interface looks like that http://10.10.65.81:3333
 - We can run directory busting tool gobuster as per given command with our own wordlist `gobuster dir -u http://10.10.65.81:3333 -w /usr/share/wordlist/SecLists/Discovery/Web-Content/directory-list-2.3-big.txt`
 Output of the command: 
+
 ```bash
 ===============================================================
 Gobuster v3.6
@@ -94,6 +96,7 @@ Progress: 9932 / 1273834 (0.78%)
 - Question `On the system, search for all SUID files. Which file stands out?` Answer `/bin/systemctl` Because systemctl don't have suid permission normally.
 - Now we can start rooting the server.
 - At first I created a file on my machine named ZishanAdThander.service (with my ip, you can user your ip)
+
 ```bash
 [Unit]
 Description=ZishanAdThandar
