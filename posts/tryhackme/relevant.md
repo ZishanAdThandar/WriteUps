@@ -7,9 +7,9 @@ Room Link: [https://tryhackme.com/room/relevant](https://tryhackme.com/room/rele
 
 ## Tools 
 
-1. NMap https://nmap.org/download
-2. Metasploit https://www.metasploit.com/
-3. 
+- NMap https://nmap.org/download
+- Metasploit https://www.metasploit.com/
+- 
 
 ## Pre-Engagement Briefing
 

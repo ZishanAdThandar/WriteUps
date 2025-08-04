@@ -102,6 +102,7 @@ Nmap done: 1 IP address (1 host up) scanned in 37.88 seconds
 ---
 
 ## Basic Enumeration
+
 - Anonymous FTP login is enabled, allowing unauthenticated access.
 
 ```bash
@@ -123,6 +124,7 @@ Remote system type is Windows_NT.
 ---
 
 ## Port 9998 Enumeration
+
 - Opening port 9998 in browser redirects to http://192.168.53.65:9998/interface/root#/login.
 - Which is a login page belongs to **smartmailer**.
 - Researching exploits for SmarterMail on Google we come across an interesting exploit.
@@ -159,6 +161,7 @@ PS C:\Windows\system32>
 ---
 
 ## Flag Extraction
+
 - Now we can just navigate to **C:\Users\Administrator\Desktop** and read the flag inside **proof.txt** file.
 
 ```bash

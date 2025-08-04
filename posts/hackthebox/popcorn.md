@@ -3,12 +3,14 @@
 IP 10.10.10.6 
 
 ## Contents
+
 - [Tools](#tools)
 - [Enumeration](#enumeration)
 - [Exploitation](#exploitation)
 - [Priviledge Escalation](#priviledge-escalation)
 
 ## Tools
+
 - Nmap
 - gobuster / dirb / dirbuster
 - Burp Suite Community Edition / OWASP ZAP
