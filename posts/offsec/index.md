@@ -1,8 +1,5 @@
 ---
 layout: list
-title: Offsec Writeups
-folder: posts/offsec
+title: Bug Bounty Writeups
 ---
-
-Explore public Offsec writeups below.
 

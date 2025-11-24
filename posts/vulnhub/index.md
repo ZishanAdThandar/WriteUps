@@ -1,8 +1,5 @@
 ---
 layout: list
-title: Vulnhub Writeups
-folder: posts/vulnhub
+title: Bug Bounty Writeups
 ---
-
-Explore public Vulnhub writeups below.
 

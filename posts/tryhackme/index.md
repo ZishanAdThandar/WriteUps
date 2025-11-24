@@ -1,8 +1,5 @@
 ---
 layout: list
-title: TryHackMe Writeups
-folder: posts/tryhackme
+title: Bug Bounty Writeups
 ---
-
-Explore public TryHackMe writeups below.
 

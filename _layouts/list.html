@@ -1,32 +1,463 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <meta name="description" content="Index of writeups for {{ page.title }} · {{ site.author }}">
+  <meta name="keywords" content="HTB, THM, HackTheBox, TryHackMe, cybersecurity, pentesting, CTF, bug bounty, writeups">
 
-<h1 class="mb-4">{{ page.title }}</h1>
-{{ content }}
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔐</text></svg>">
 
-<div class="row g-3 mt-3">
-  {% assign folder_path = page.folder | default: page.dir %}
-  {% for p in site.pages %}
-    {% if p.path contains folder_path and p.path != page.path %}
-      <div class="col-sm-6 col-lg-4 d-flex">
-        <div class="card bg-dark border-secondary shadow-sm flex-fill">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title mb-2">{{ p.title | default: p.name }}</h5>
-            {% if p.excerpt %}
-              <p class="card-text small text-muted">{{ p.excerpt | strip_html | truncate: 140 }}</p>
-            {% endif %}
-            <div class="mt-auto d-flex justify-content-between align-items-center">
-              <span class="badge bg-secondary text-uppercase small">
-                {{ page.title | split: ' ' | first }}
-              </span>
-              <a href="{{ p.url | relative_url }}" class="btn btn-hacker btn-sm">
-                Read
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-main: #050814;
+      --bg-elevated: rgba(10, 15, 35, 0.95);
+      --bg-card: rgba(11, 17, 40, 0.96);
+      --accent: #00ff88;
+      --accent-soft: rgba(0, 255, 136, 0.2);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.25);
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.7);
+      --radius-lg: 18px;
+      --radius-full: 999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background: linear-gradient(to right, rgba(5, 8, 20, 0.96), rgba(5, 12, 35, 0.98));
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--accent) !important;
+      font-size: 1.05rem;
+    }
+
+    .navbar-nav .nav-link {
+      color: var(--text-muted) !important;
+      font-size: 0.9rem;
+      margin-left: 0.75rem;
+      position: relative;
+    }
+
+    .navbar-nav .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2px;
+      width: 0;
+      background: var(--accent);
+      transition: width 0.25s ease;
+    }
+
+    .navbar-nav .nav-link:hover::after,
+    .navbar-nav .nav-link:focus::after {
+      width: 100%;
+    }
+
+    .dropdown-menu {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .dropdown-item {
+      color: var(--text-main);
+      font-size: 0.9rem;
+    }
+
+    .dropdown-item:hover {
+      background-color: rgba(15, 23, 42, 0.95);
+      color: var(--accent);
+    }
+
+    /* PAGE LAYOUT */
+    main {
+      padding-top: 5.5rem;
+      padding-bottom: 3rem;
+    }
+
+    .page-shell {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .content-card {
+      background: radial-gradient(circle at top left, rgba(0, 255, 136, 0.08), transparent 55%),
+                  radial-gradient(circle at top right, rgba(56, 189, 248, 0.08), transparent 55%),
+                  var(--bg-card);
+      border-radius: 24px;
+      padding: 1.75rem 1.6rem;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .content-card::before {
+      content: "";
+      position: absolute;
+      inset: -25%;
+      background: radial-gradient(circle at 0 0, rgba(0, 255, 136, 0.08), transparent 60%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .content-card:hover::before {
+      opacity: 1;
+    }
+
+    .page-header-text {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .page-title {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .page-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 1.4rem;
+    }
+
+    .page-meta span + span::before {
+      content: "•";
+      margin: 0 0.4rem;
+      color: rgba(148, 163, 184, 0.7);
+    }
+
+    /* LIST STYLES */
+    .list-intro {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 1.4rem;
+    }
+
+    .writeup-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .writeup-item {
+      display: flex;
+      flex-direction: column;
+      padding: 0.9rem 1rem;
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 1));
+      margin-bottom: 0.65rem;
+      transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    }
+
+    .writeup-item:hover {
+      border-color: rgba(0, 255, 136, 0.65);
+      transform: translateY(-1px);
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.7);
+      background: radial-gradient(circle at top left, rgba(0, 255, 136, 0.06), rgba(15, 23, 42, 1));
+    }
+
+    .writeup-title {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.98rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .writeup-title a {
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .writeup-title a:hover {
+      color: var(--accent);
+    }
+
+    .writeup-meta {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      align-items: center;
+    }
+
+    .badge-tag {
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background-color: rgba(15, 23, 42, 0.85);
+      padding: 0.15rem 0.5rem;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .writeup-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+    }
+
+    /* PAGE CONTENT (optional description at top of list page) */
+    .page-content {
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    .page-content a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .page-content a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      padding: 1.8rem 0 1.5rem 0;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(30, 64, 175, 0.4);
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 1));
+      margin-top: 1rem;
+    }
+
+    footer .social-footer a {
+      color: var(--accent);
+      margin-right: 0.5rem;
+      font-size: 1rem;
+    }
+
+    footer .social-footer a:hover {
+      color: #4ade80;
+    }
+
+    .btn-linktree {
+      padding: 0.35rem 0.9rem;
+      border-radius: var(--radius-full);
+      background-color: var(--accent);
+      border: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #020617;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .btn-linktree:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 14px 35px rgba(16, 185, 129, 0.55);
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding-top: 5rem;
+        padding-bottom: 2.5rem;
+      }
+
+      .content-card {
+        padding: 1.4rem 1.2rem;
+        border-radius: 18px;
+      }
+
+      .page-title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation (same as default.html) -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="{{ "/" | relative_url }}">
+        $>_{{ site.title }}
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <!-- CTF Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="ctfDropdown" role="button" data-bs-toggle="dropdown">
+              <i class="fas fa-flag"></i> CTF Writeups
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="{{ "/posts/hackthebox" | relative_url }}"><i class="fas fa-cube"></i> HackTheBox</a></li>
+              <li><a class="dropdown-item" href="{{ "/posts/tryhackme" | relative_url }}"><i class="fas fa-laptop-code"></i> TryHackMe</a></li>
+              <li><a class="dropdown-item" href="{{ "/posts/offsec" | relative_url }}"><i class="fas fa-laptop-code"></i> Offsec</a></li>
+              <li><a class="dropdown-item" href="{{ "/posts/vulnhub" | relative_url }}"><i class="fas fa-server"></i> VulnHub</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{ "/posts/bugbounty" | relative_url }}"><i class="fas fa-bug"></i> Bug Bounty</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="https://zishanadthandar.github.io" target="_blank">
+              <i class="fas fa-user-secret"></i> Portfolio
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main>
+    <div class="container page-shell">
+      <div class="content-card">
+
+        <div class="page-header-text">
+          {{ site.title }} · Index
+        </div>
+        <h1 class="page-title">{{ page.title }}</h1>
+
+        <div class="page-meta">
+          <span><i class="fa-solid fa-layer-group"></i> Section listing</span>
+          {% if page.category %}
+          <span><i class="fa-solid fa-folder-open"></i> {{ page.category }}</span>
+          {% endif %}
+        </div>
+
+        <!-- Optional markdown content at top of list page -->
+        {% if page.content %}
+        <div class="page-content">
+          {{ content }}
+        </div>
+        {% endif %}
+
+        <p class="list-intro">
+          Browse all writeups in this section. Entries are auto-discovered from the same directory as this page.
+        </p>
+
+        {% comment %}
+        Collect pages in the same directory as this index page (e.g. posts/bugbounty/*.md)
+        {% endcomment %}
+        {% assign current_dir = page.path | replace: page.name, "" %}
+        {% assign entries = site.pages | where_exp: "p", "p.path contains current_dir" %}
+        {% assign entries = entries | where_exp: "p", "p.url != page.url" %}
+        {% assign entries = entries | sort: "date" | reverse %}
+
+        <ul class="writeup-list">
+          {% for p in entries %}
+          <li class="writeup-item">
+            <div class="writeup-title">
+              <i class="fa-solid fa-terminal"></i>
+              <a href="{{ p.url | relative_url }}">
+                {{ p.title | default: p.name | replace: ".md","" }}
               </a>
             </div>
+            <div class="writeup-meta">
+              {% if p.date %}
+              <span><i class="fa-regular fa-calendar"></i>
+                {{ p.date | date: "%b %d, %Y" }}
+              </span>
+              {% endif %}
+              {% if p.tags %}
+              <span>
+                {% for tag in p.tags %}
+                  <span class="badge-tag">{{ tag }}</span>
+                {% endfor %}
+              </span>
+              {% endif %}
+            </div>
+            {% if p.excerpt %}
+            <div class="writeup-desc">
+              {{ p.excerpt | strip_html | strip_newlines | truncate: 140 }}
+            </div>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+
+        {% if entries == empty %}
+        <p class="text-muted mt-2 mb-0">No writeups found in this section yet.</p>
+        {% endif %}
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6 mb-2 mb-md-0">
+          <p class="mb-1">
+            &copy; <script>document.write(new Date().getFullYear())</script> {{ site.author }}. All rights reserved.
+          </p>
+          <p class="text-muted mb-0">"The quieter you become, the more you are able to hear."</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <div class="social-footer mb-2">
+            <a href="https://twitter.com/zishanadthandar" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://github.com/zishanadthandar" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/zishanadthandar/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://t.me/zishanadthandarchannel" target="_blank"><i class="fab fa-telegram"></i></a>
+            <a href="https://www.youtube.com/ZishanAdThandar?sub_confirmation=1" target="_blank"><i class="fab fa-youtube"></i></a>
           </div>
+          <a href="https://zishanadthandar.github.io/linktree/" class="btn-linktree">
+            <i class="fas fa-link"></i> LinkTree
+          </a>
         </div>
       </div>
-    {% endif %}
-  {% endfor %}
-</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

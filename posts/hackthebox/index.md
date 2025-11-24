@@ -1,8 +1,5 @@
 ---
 layout: list
-title: HackTheBox Writeups
-folder: posts/hackthebox
+title: Bug Bounty Writeups
 ---
-
-Explore public HackTheBox writeups below.
 
