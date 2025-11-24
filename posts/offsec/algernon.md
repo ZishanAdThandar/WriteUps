@@ -1,3 +1,8 @@
+---
+layout: default
+title: ​Proving Grounds - Easy Windows - Algernon
+---
+
 # ​Proving Grounds - Easy Windows - Algernon
 
 - **Points** 10

@@ -1,3 +1,8 @@
+---
+layout: default
+title: The Impossible Challenge
+---
+
 # The Impossible Challenge
 
 - [Tools](#tools)

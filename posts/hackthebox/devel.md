@@ -1,3 +1,8 @@
+---
+layout: default
+title: Machine - Easy Windows - Devel
+---
+
 # Machine - Easy Windows - Devel
 
 IP 10.10.10.5 

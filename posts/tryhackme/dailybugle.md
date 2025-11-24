@@ -1,3 +1,8 @@
+---
+layout: default
+title: Daily Bugle
+---
+
 # Daily Bugle
 
 - [Tools](#tools)

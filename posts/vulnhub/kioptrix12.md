@@ -1,3 +1,8 @@
+---
+layout: default
+title: Kioptrix: Level 1.2
+---
+
 # Kioptrix: Level 1.2 
 
 - [Tools](#tools)

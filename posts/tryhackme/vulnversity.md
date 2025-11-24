@@ -1,3 +1,8 @@
+---
+layout: default
+title: VulnUniversity
+---
+
 # VulnUniversity
 
 - [Tools](#tools)

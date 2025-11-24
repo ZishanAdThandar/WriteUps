@@ -1,3 +1,8 @@
+---
+layout: default
+title: ffuf
+---
+
 # ffuf
 
 - [Tools](#tools)

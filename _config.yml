@@ -14,7 +14,6 @@ defaults:
       path: ""  # This applies to all files
     values:
       layout: default
-      css: "style.css"
 
 plugins:
   - kramdown

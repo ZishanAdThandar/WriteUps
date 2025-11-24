@@ -1,3 +1,8 @@
+---
+layout: default
+title: ​Proving Grounds - Intermediate Windows - AuthBy
+---
+
 # ​Proving Grounds - Intermediate Windows - AuthBy
 
 

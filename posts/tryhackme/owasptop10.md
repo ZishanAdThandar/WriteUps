@@ -1,3 +1,8 @@
+---
+layout: default
+title: Owasp Top 10
+---
+
 # Owasp Top 10
 
 - [Tools](#tools)

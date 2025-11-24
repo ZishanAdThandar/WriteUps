@@ -1,3 +1,8 @@
+---
+layout: default
+title: Machine - Easy Windows - Legacy
+---
+
 # Machine - Easy Windows - Legacy 
 
 IP 10.10.10.4 

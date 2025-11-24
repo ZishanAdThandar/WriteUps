@@ -5,30 +5,28 @@ layout: default
 <h1 class="mb-4">{{ page.title }}</h1>
 {{ content }}
 
-<ul class="list-group">
-  {% assign folder_path = page.folder %}
-  {% for file in site.pages %}
-    {% if file.path contains folder_path and file.path != page.path %}
-      {% assign file_title = file.title %}
-      {% if file_title %}
-        <li class="list-group-item bg-dark border-secondary">
-          <a href="{{ file.url | relative_url }}">{{ file_title }}</a>
-        </li>
-      {% else %}
-        {% assign lines = file.content | split: '\n' %}
-        {% assign h1_found = false %}
-        {% for line in lines %}
-          {% if line contains '# ' %}
-            {% assign heading = line | remove: '# ' %}
-            <li class="list-group-item bg-dark border-secondary">
-              <a href="{{ file.url | relative_url }}">{{ heading }}</a>
-            </li>
-            {% assign h1_found = true %}
-            {% break %}
-          {% endif %}
-        {% endfor %}
-      {% endif %}
+<div class="row g-3 mt-3">
+  {% assign folder_path = page.folder | default: page.dir %}
+  {% for p in site.pages %}
+    {% if p.path contains folder_path and p.path != page.path %}
+      <div class="col-sm-6 col-lg-4 d-flex">
+        <div class="card bg-dark border-secondary shadow-sm flex-fill">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title mb-2">{{ p.title | default: p.name }}</h5>
+            {% if p.excerpt %}
+              <p class="card-text small text-muted">{{ p.excerpt | strip_html | truncate: 140 }}</p>
+            {% endif %}
+            <div class="mt-auto d-flex justify-content-between align-items-center">
+              <span class="badge bg-secondary text-uppercase small">
+                {{ page.title | split: ' ' | first }}
+              </span>
+              <a href="{{ p.url | relative_url }}" class="btn btn-hacker btn-sm">
+                Read
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     {% endif %}
   {% endfor %}
-</ul>
-
+</div>

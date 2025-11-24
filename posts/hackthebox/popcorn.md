@@ -1,3 +1,8 @@
+---
+layout: default
+title: Machine - Medium Windows - Popcorn
+---
+
 # Machine - Medium Windows - Popcorn
 
 IP 10.10.10.6 

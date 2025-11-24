@@ -1,3 +1,8 @@
+---
+layout: default
+title: Escalate My Privileges: 1
+---
+
 # Escalate My Privileges: 1
 
 - [Tools](#tools)

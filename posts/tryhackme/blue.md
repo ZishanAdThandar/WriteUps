@@ -1,3 +1,8 @@
+---
+layout: default
+title: Blue
+---
+
 # Blue
 
 - [Tools](#tools)

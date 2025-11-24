@@ -1,3 +1,8 @@
+---
+layout: default
+title: Attacktive Directory
+---
+
 # Attacktive Directory
 
 - [Tools](#tools)

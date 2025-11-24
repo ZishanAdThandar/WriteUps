@@ -1,3 +1,8 @@
+---
+layout: default
+title: Machine - Easy Linux - Lame
+---
+
 # Machine - Easy Linux - Lame
 
 IP 10.10.10.3

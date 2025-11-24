@@ -1,3 +1,8 @@
+---
+layout: default
+title: HackLAB: Vulnix
+---
+
 # HackLAB: Vulnix
 
 - [Tools](#tools)
