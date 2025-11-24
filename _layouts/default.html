@@ -1,256 +1,394 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }} | {{ site.title }}</title>
-    <meta name="description" content="Professional cybersecurity writeups and guides">
-    <meta name="keywords" content="HTB, THM, HackTheBox, TryHackMe, cybersecurity, pentesting, CTF">
-    
-    <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔐</text></svg>">
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <meta name="description" content="Professional cybersecurity writeups and guides by {{ site.author }}">
+  <meta name="keywords" content="HTB, THM, HackTheBox, TryHackMe, cybersecurity, pentesting, CTF, bug bounty, writeups">
 
-    <!-- Bootstrap Dark -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-dark-5@1.1.3/dist/css/bootstrap-night.min.css" rel="stylesheet">
-    
-    <!-- Custom CSS -->
-    <style>
-        :root {
-            --hacker-green: #20c20e;
-            --terminal-bg: #0a0a0a;
-            --card-bg: #121212;
-        }
-        
-        body {
-            font-family: 'Ubuntu Mono', monospace;
-            background-color: var(--terminal-bg);
-            color: #e0e0e0;
-            line-height: 1.6;
-        }
-        
-        /* Regular content images */
-        .page img:not([src*="shields.io"]) {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 1.5rem auto;
-            border: 1px solid #333;
-            box-shadow: 0 0 10px rgba(32, 194, 14, 0.2);
-        }
-        
-        /* Badge images (shields.io buttons) */
-        img[src*="shields.io"] {
-            display: inline !important;
-            margin: 0 0.2rem !important;
-            border: none !important;
-            box-shadow: none !important;
-            height: 20px !important;
-            vertical-align: middle !important;
-        }
-        
-        /* Image captions */
-        .image-caption {
-            color: #888;
-            font-size: 0.9rem;
-            text-align: center;
-            margin-top: -1rem;
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-        
-        .navbar {
-            border-bottom: 1px solid var(--hacker-green);
-            background-color: rgba(10, 10, 10, 0.9) !important;
-        }
-        
-        .navbar-brand {
-            font-family: 'Share Tech Mono', monospace;
-            color: var(--hacker-green) !important;
-            font-weight: bold;
-        }
-        
-        .nav-link {
-            color: #e0e0e0 !important;
-            transition: all 0.3s;
-        }
-        
-        .nav-link:hover {
-            color: var(--hacker-green) !important;
-        }
-        
-        .dropdown-menu {
-            background-color: var(--card-bg);
-            border: 1px solid #333;
-        }
-        
-        .dropdown-item {
-            color: #e0e0e0;
-        }
-        
-        .dropdown-item:hover {
-            background-color: #333;
-            color: var(--hacker-green);
-        }
-        
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid #333;
-            transition: transform 0.3s;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--hacker-green);
-        }
-        
-        .card-title {
-            color: var(--hacker-green);
-        }
-        
-        a {
-            color: var(--hacker-green);
-            text-decoration: none;
-        }
-        
-        a:hover {
-            color: #0eff0e;
-            text-decoration: underline;
-        }
-        
-        .btn-hacker {
-            background-color: transparent;
-            color: var(--hacker-green);
-            border: 1px solid var(--hacker-green);
-            font-family: 'Share Tech Mono', monospace;
-        }
-        
-        .btn-hacker:hover {
-            background-color: rgba(32, 194, 14, 0.1);
-            color: #0eff0e;
-        }
-        
-        footer {
-            border-top: 1px solid var(--hacker-green);
-            background-color: rgba(10, 10, 10, 0.9);
-        }
-        
-        pre {
-            background-color: #121212;
-            border: 1px solid #333;
-            border-radius: 4px;
-            padding: 1rem;
-            overflow-x: auto;
-        }
-        
-        code {
-            color: var(--hacker-green);
-        }
-        
-        /* Terminal-like effect for headers */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Share Tech Mono', monospace;
-            color: var(--hacker-green);
-            position: relative;
-            display: inline-block;
-        }
-        
-        h1::after, h2::after, h3::after {
-            content: "|";
-            animation: blink 1s step-end infinite;
-            margin-left: 5px;
-        }
-        
-        @keyframes blink {
-            from, to { opacity: 1; }
-            50% { opacity: 0; }
-        }
-        
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .container {
-                padding-left: 15px;
-                padding-right: 15px;
-            }
-            
-            .navbar-brand {
-                font-size: 1.1rem;
-            }
-            
-            .page img:not([src*="shields.io"]) {
-                margin: 1rem auto;
-            }
-        }
-    </style>
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔐</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-main: #050814;
+      --bg-elevated: rgba(10, 15, 35, 0.95);
+      --bg-card: rgba(11, 17, 40, 0.96);
+      --accent: #00ff88;
+      --accent-soft: rgba(0, 255, 136, 0.2);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.25);
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.7);
+      --radius-lg: 18px;
+      --radius-full: 999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR (portfolio theme) */
+    .navbar {
+      background: linear-gradient(to right, rgba(5, 8, 20, 0.96), rgba(5, 12, 35, 0.98));
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--accent) !important;
+      font-size: 1.05rem;
+    }
+
+    .navbar-nav .nav-link {
+      color: var(--text-muted) !important;
+      font-size: 0.9rem;
+      margin-left: 0.75rem;
+      position: relative;
+    }
+
+    .navbar-nav .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2px;
+      width: 0;
+      background: var(--accent);
+      transition: width 0.25s ease;
+    }
+
+    .navbar-nav .nav-link:hover::after,
+    .navbar-nav .nav-link:focus::after {
+      width: 100%;
+    }
+
+    .dropdown-menu {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .dropdown-item {
+      color: var(--text-main);
+      font-size: 0.9rem;
+    }
+
+    .dropdown-item:hover {
+      background-color: rgba(15, 23, 42, 0.95);
+      color: var(--accent);
+    }
+
+    /* PAGE LAYOUT */
+    main {
+      padding-top: 5.5rem;
+      padding-bottom: 3rem;
+    }
+
+    .page-shell {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .content-card {
+      background: radial-gradient(circle at top left, rgba(0, 255, 136, 0.08), transparent 55%),
+                  radial-gradient(circle at top right, rgba(56, 189, 248, 0.08), transparent 55%),
+                  var(--bg-card);
+      border-radius: 24px;
+      padding: 1.75rem 1.6rem;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .content-card::before {
+      content: "";
+      position: absolute;
+      inset: -25%;
+      background: radial-gradient(circle at 0 0, rgba(0, 255, 136, 0.08), transparent 60%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .content-card:hover::before {
+      opacity: 1;
+    }
+
+    .page-header-text {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .page-title {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .page-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .page-meta span + span::before {
+      content: "•";
+      margin: 0 0.4rem;
+      color: rgba(148, 163, 184, 0.7);
+    }
+
+    .page {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text-main);
+    }
+
+    .page a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .page a:hover {
+      text-decoration: underline;
+    }
+
+    /* Images inside markdown content */
+    .page img:not([src*="shields.io"]) {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 1.5rem auto;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: 0 0 18px rgba(0, 0, 0, 0.7);
+      border-radius: 12px;
+    }
+
+    /* Badge images (shields.io buttons) */
+    .page img[src*="shields.io"] {
+      display: inline !important;
+      margin: 0 0.2rem !important;
+      border: none !important;
+      box-shadow: none !important;
+      height: 20px !important;
+      vertical-align: middle !important;
+    }
+
+    .image-caption {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-align: center;
+      margin-top: -1rem;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    /* Code blocks */
+    pre {
+      background-color: #020617;
+      border-radius: 12px;
+      border: 1px solid rgba(30, 64, 175, 0.7);
+      padding: 0.9rem 1rem;
+      overflow-x: auto;
+      font-size: 0.85rem;
+    }
+
+    code {
+      color: var(--accent);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    /* Footer (portfolio style) */
+    footer {
+      padding: 1.8rem 0 1.5rem 0;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(30, 64, 175, 0.4);
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 1));
+      margin-top: 1rem;
+    }
+
+    footer .social-footer a {
+      color: var(--accent);
+      margin-right: 0.5rem;
+      font-size: 1rem;
+    }
+
+    footer .social-footer a:hover {
+      color: #4ade80;
+    }
+
+    .btn-linktree {
+      padding: 0.35rem 0.9rem;
+      border-radius: var(--radius-full);
+      background-color: var(--accent);
+      border: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #020617;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .btn-linktree:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 14px 35px rgba(16, 185, 129, 0.55);
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding-top: 5rem;
+        padding-bottom: 2.5rem;
+      }
+
+      .content-card {
+        padding: 1.4rem 1.2rem;
+        border-radius: 18px;
+      }
+
+      .page-title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="{{ "/" | relative_url }}">
-                <i class="fas fa-terminal"></i> {{ site.title }}
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="{{ "/" | relative_url }}">
+        $>_{{ site.title }}
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+
+          <!-- CTF Dropdown (kept from old theme) -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="ctfDropdown" role="button" data-bs-toggle="dropdown">
+              <i class="fas fa-flag"></i> CTF Writeups
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="ctfDropdown" role="button" data-bs-toggle="dropdown">
-                            <i class="fas fa-flag"></i> CTF Writeups
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ "/posts/hackthebox" | relative_url }}"><i class="fas fa-cube"></i> HackTheBox</a></li>
-                            <li><a class="dropdown-item" href="{{ "/posts/tryhackme" | relative_url }}"><i class="fas fa-laptop-code"></i> TryHackMe</a></li>
-                            <li><a class="dropdown-item" href="{{ "/posts/offsec" | relative_url }}"><i class="fas fa-laptop-code"></i> Offsec</a></li>
-                            <li><a class="dropdown-item" href="{{ "/posts/vulnhub" | relative_url }}"><i class="fas fa-server"></i> VulnHub</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ "/posts/bugbounty" | relative_url }}"><i class="fas fa-bug"></i> Bug Bounty</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://zishanadthandar.github.io" target="_blank"><i class="fas fa-user-secret"></i> Portfolio</a>
-                    </li>
-                </ul>
-            </div>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="{{ "/posts/hackthebox" | relative_url }}"><i class="fas fa-cube"></i> HackTheBox</a></li>
+              <li><a class="dropdown-item" href="{{ "/posts/tryhackme" | relative_url }}"><i class="fas fa-laptop-code"></i> TryHackMe</a></li>
+              <li><a class="dropdown-item" href="{{ "/posts/offsec" | relative_url }}"><i class="fas fa-laptop-code"></i> Offsec</a></li>
+              <li><a class="dropdown-item" href="{{ "/posts/vulnhub" | relative_url }}"><i class="fas fa-server"></i> VulnHub</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{ "/posts/bugbounty" | relative_url }}"><i class="fas fa-bug"></i> Bug Bounty</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="https://zishanadthandar.github.io" target="_blank">
+              <i class="fas fa-user-secret"></i> Portfolio
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <div class="container page-shell">
+      <div class="content-card">
+
+        <!-- Optional page heading block -->
+        <div class="page-header-text">
+          {{ site.title }} · WriteUps
         </div>
-    </nav>
+        <h1 class="page-title">{{ page.title }}</h1>
 
-    <!-- Main Content -->
-    <main class="container py-4 page">
-        {{ content }}
-    </main>
-
-    <!-- Footer -->
-    <footer class="py-4 mt-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <p>&copy; <script>document.write(new Date().getFullYear())</script> {{ site.author }}. All rights reserved.</p>
-                    <p class="text-muted">"The quieter you become, the more you are able to hear."</p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <a href="https://twitter.com/zishanadthandar" target="_blank" class="me-3"><i class="fab fa-twitter fa-lg"></i></a>
-                    <a href="https://github.com/zishanadthandar" target="_blank" class="me-3"><i class="fab fa-github fa-lg"></i></a>
-                    <a href="https://www.linkedin.com/in/zishanadthandar/" target="_blank" class="me-3"><i class="fab fa-linkedin fa-lg"></i></a>
-                    <a href="https://t.me/zishanadthandarchannel" target="_blank" class="me-3"><i class="fab fa-telegram fa-lg"></i></a>
-                    <a href="https://www.youtube.com/ZishanAdThandar?sub_confirmation=1" target="_blank"><i class="fab fa-youtube fa-lg"></i></a>
-                    <br class="d-md-none">
-                    <a href="https://zishanadthandar.github.io/linktree/" class="btn btn-hacker btn-sm mt-2 mt-md-0">
-                        <i class="fas fa-link"></i> LinkTree
-                    </a>
-                </div>
-            </div>
+        <div class="page-meta">
+          {% if page.date %}
+            <span><i class="fa-regular fa-calendar"></i>
+              {{ page.date | date: "%b %d, %Y" }}
+            </span>
+          {% endif %}
+          {% if page.tags %}
+            <span><i class="fa-solid fa-tags"></i>
+              {{ page.tags | join: ", " }}
+            </span>
+          {% endif %}
+          {% if page.category %}
+            <span><i class="fa-solid fa-folder-open"></i>
+              {{ page.category }}
+            </span>
+          {% endif %}
         </div>
-    </footer>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+        <article class="page">
+          {{ content }}
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6 mb-2 mb-md-0">
+          <p class="mb-1">
+            &copy; <script>document.write(new Date().getFullYear())</script> {{ site.author }}. All rights reserved.
+          </p>
+          <p class="text-muted mb-0">"The quieter you become, the more you are able to hear."</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <div class="social-footer mb-2">
+            <a href="https://twitter.com/zishanadthandar" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://github.com/zishanadthandar" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/zishanadthandar/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://t.me/zishanadthandarchannel" target="_blank"><i class="fab fa-telegram"></i></a>
+            <a href="https://www.youtube.com/ZishanAdThandar?sub_confirmation=1" target="_blank"><i class="fab fa-youtube"></i></a>
+          </div>
+          <a href="https://zishanadthandar.github.io/linktree/" class="btn-linktree">
+            <i class="fas fa-link"></i> LinkTree
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
