@@ -1,9 +1,8 @@
 title: InfoSec WriteUps by Zishan Ahamed Thandar
-slogan: all you need to kNow
-#logo: "assets/uploads/profile.jpg"
-
-# baseurl: ""
-url: "https://ZishanAdThandar.github.io"
+slogan: Deep-dive cyber security, CTF & bug bounty
+url: "https://blog.zishanhack.com"
+baseurl: ""   # keep empty for root
+author: "Zishan Ahamed Thandar"
 
 collections:
   notes:
@@ -11,13 +10,11 @@ collections:
 
 defaults:
   - scope:
-      path: ""  # This applies to all files
+      path: ""
     values:
       layout: default
 
 plugins:
   - kramdown
   - jekyll-sitemap
-
-
 
