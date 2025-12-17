@@ -1,469 +1,791 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO -->
   <title>{{ page.title }} | {{ site.title }}</title>
-  <meta name="description" content="Index of writeups for {{ page.title }} · {{ site.author }}">
-  <meta name="keywords" content="HTB, THM, HackTheBox, TryHackMe, cybersecurity, pentesting, CTF, bug bounty, writeups">
-
+  <meta name="description" content="Browse all {{ page.title }} writeups and guides by {{ site.author }}">
+  <meta name="keywords" content="{{ page.title }}, CTF, cybersecurity, penetration testing, {{ site.author }}">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{ page.title }} | {{ site.title }}">
+  <meta property="og:description" content="Browse all {{ page.title }} writeups and guides by {{ site.author }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  
   <!-- Favicon -->
-
-  <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAKq0lEQVR4nOWbC3ATxxnHj9JJCnenExiMeRkwUL8futPDxvgFAZuUEAO2Q3ga8J3kF2DZBttgDNQBg3kmYB4pTHlkCJC0BTuQCW2nJaGEzpCmJSW8LGhTKGTyIHSaoUng6+zeQ5IlWSfFLhLdmf+wp1vv7vfb3W+/2zsI4n+UMoh5P+IoIZejhK0syZ9nKf7vHCX8GwnnSeF9dE9P81NQWeJJSYnMPC1HCqs5UviUowRQI5YS7rAUv9LYt1xDBHPSkcJ4aaSxYZmhSyEvagsUGQ5AWeoxqMg4gYXy6Lf8qM2QNaDGEcZNjjRnEsGYdLQwn6P4h8iQtH4VMDdxN1RmtamSYDwE4wfWShD4h/re/BwimJKOFF4QjTdDTngDzEpogYrME6oBIFkz2/CMQHWwlPCdjhKmEcGQdL0WDOJI4R4avWeHrYbZCS0wN3GXT8Y7qiB6m+gXSOFzQ++SMCLQE0sJh/F6H7AUG480J2EnWLNa/YaQPWSlvBwOEoGcuN7CQJbiv9XTFpgRs00BgFQ65ojfAJCT1NNmBOE/CaQllAjUxJFCJRqprLBlTsYjzdPthoqM435DyBnaIC+FJUSgJo4SjqBOPhfR6AIAQ0jaA6WpR/0CMDt+lxwjHCYCNXGkcAl1Mi9qk1sAik9I3AnzdHugUPcqzGd/hrWA3Qu88SCUjHkdytPehMoOPsNsek30A6RwiQjElE/k90RrVE8JMDN+R6cA1AjtHLxhP5SNPYa3RLR8UN0cJXyTQTT8kAi0lMiYh6MRMmlL3Ro0M247PD9qHTwzqA4HRil9ysFAW7BQHv2G7qEyM+NfcfEfxSmHYUzfxXgWGJmiEUSgJZYsGoejvv5Wp85Pj2yGjNBq4Gh1zwFIyONnhFbBtMhmp7rS+leK90n+GSLQEksV8ahz4wbW4s7mRW7Eo+poVHpYGWQPr4TcmBrIi18OLyStwEL53OgayB5uhbQB5U6w0vpZIS9S9Cnjw8TnBJYSBCLQEkcK61DncoauxOGvtG+DgbHAxOFWyE9YDjPYelVCZREMo0asA8UVk8IbcN3SVrieCNQt0KgpVkZv3JAlUJC0QrXhLiCSlsO4weK6d6ybJfljRKAljhIu2NfxQojTPg8vciv9Nt5RscwUYOmFjn7iQpcbEEPkP4WmFkcJt9U6K1kYAMl/gUeHLoRo7STlnqMh88eshQ2Fv4QDy87B0YYPoa3pCrStvwpvrrkIB2veh818K9Tk7oPZxjXK38j1xGhzQEfPl2OBexJ0pX3H6050iyX5JmSrCwCW5Jt8NVxWhqYe9JS4XpHxUX0muABYmLYe3lhzEd7eaPOq1nVX4ZWSd8CcuVGpB9UpgzXSxVCoP6zcQ3nHa68nTiTf5G4K30I3C2J3KRV2pgn9X8KGyzJQJbjyWO1ktwBayn+tynhHnWxudwIQo52M86khVlV97Kj8WDGcRra6AwCONL3puaFbnAAkU6Kzimem486ydBG+RtscAvCrxks+Azix9rLYYZrHdaK60fWEwQ1+AXCcJV4BzONeg+zwRjBpy1QtgVS6WtyyGB5MYYXAUqLTmhZXiwGg9e4rgP1L/yhOWXoBrlOvEaFOi3xZ1ZRP1pZDTngjtsVnADnhjeqdoK0dely+CgnDxMDH1L8IDFqxszkjKjGA1+s/8BlA/fQjIlQtj+vEMEZZIfrBNYh+ZFPdP2SLzwCSteX4Ou7cu7gxdxr8Lxs2XlbY8kNiAxoBTCFih1NCSmCGrh62CG/5ZPypDddh0og6EWgID3opOozfclhpf+Kjv8FquA0bO2gN3Ia58AnEnz2jzASfAXDStSfjZTGf2gH0uHIVYhPF01wDw2MQeAQiqsCStQnebm5XDaAh/6gEkxfrogTQGeuU0UdaDbdcjHcUguDJri4DEPXQBr1v2yH0OnUOksLE2SMLhcVTopbBNvNJVcbvKPktDqGdpvLgcoi9eN6pbW8A0EzwGUBFZis+wlYLQIYQ8rl9OVBv/A6SQstcIDw7shr2Vb7X6bRHI9/ReHZgGcT9wXUpTnh00ysET3Z5BFApncD4AkDW8K9tQN0RITx95gJEpaxycUgpIaVgTn8Z9lefh+Nrr2Ahb18/7Yiy5h2ly1wFsbYPVPfBE4COdnULgNHf2kBzVwTQ86OPIXx+i2pP7UmJi3ZCzP3LgQ9g0P126HlTXAbM/ncgfpR4eMHRZmA1AugYAf/L0qK4DpJ/l8vqNRb8t3gJRFVC3KnTgQlg1DftQP5TGvUP/wrDCnfY1y4tGqPTCmDQlkEyUwHJjBWMzGLQa0uB1Zqx9EwJGJhyMDFLIIWpgnRNHQ6u0jS1YKRKlfqS5myG6LsfddofR5+A8t0GIOqhDQbca4cf3BCN77PrLUgcukQadQFYyXBWWwxjNbVOYbOvGkNXAUdJjnHIIojf+wuIftjutl+yY0RC+W4BEPHABr1utQNx/TpoDp6G0dlNzqOulY03K6P5fZWmqQMTbd9ek3KbIO70byD6O/cgZHUpgIgHNuj7mQ163GiHp87+CaL19ud1bLzGbjxSCmN1Y0gtJNNL8NMjeoRGQnn0G7rnDQR65pAfvfEuMXYlxHzyZ5fosMtnQJ/P7MFOz79cgviRopMzMaWQFboM9P1KnYxHQqMmdzwdPTHS9uMt9zLjMhmaFZ1CSI9rgqzQGty27CRjvrrcfT4g7J5zzD+kbC++N7ZfBUwduQFyR2yAn4xcC6zW4gTA0XgjLQZGhj4lUDDjEFhbPoaGti+xUD6v4CAYtOKZAirrCUJ62GrIjdyE25wasR7G9hP9TkL9vu7bBZ7+h914JHmLQ0ffL8Zth6kRzbhDWT9e5RaAPPJjh1VD1avX4aenv3arqj3XcBlUFi0JdwAm67dJxjfjtqdHiqdGbEx19wHoIXl6WZx0XD1LegWWH7UVdwqpIwC0ruWR78x4BcLua9JMMLv1CXI7BZFbcduoDxgAY+m+JUDYOgCQ7imvveK3ewSARhKVRdPem/Gy8vMPeJwFcjuz4rYr7Tv2tVu2QcILACR3ANI1K5SzQmvLZdUAKrZfEmcNVeIRgGPbnW3ZjxVAmqZW2bIaWr/Exjl6fdngjr81nPhC2RWCGkAqs0yJ51edvK8awKq2r3BeH+wATAwKeMTXWUt/fkP1EqjeJ3ZcTxUHFwBOjs6UUNiibIHZyRtgxdG7Xo1ffvQOTDSJdYlBkd14uf6gAaBD4bDGCnpanAXGkFKYW9Lq0fg5luO4DHaAdDGk03XBD4BjLNgZmuhF4rRmLC5rX75G99A1KuvuISooAejQWQBT7mSAJwDytadngKAFoJMcoqO370xPJAAdWg50h6NuNzJSZY8XQEXmCXyE7AsAFI+rASDvDClMpV+HIo4A5OcQtQA62uXTixHCAwDUCaTpozepBqDMBm0xPhtMZZZCGlOLw2ZfAKA25fbVAPD6YgQld6+ROwMgByWyfAHgj7y126UAkqWXo7FnzwQtgNj3fu//y9EcH16PB7pywl/y7wOJnPBGZSYEo3z6QAIlfz87CSZ1CiCjC87vA10uAFhSOPu4p+pjEym8q+bjwidahJxRu4YWp/v//366W4vSjvvuCzjpA8lkFZ/DPSly+PTv1vf6RDboRQrrpI+kMQQ8E/5PpHw0/V9gbAvlITljggAAAABJRU5ErkJggg==" type="image/x-icon" />
-
+  <link rel="icon" href="data:image/png;base64,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" type="image/x-icon">
+  
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
+  
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
+  
   <style>
     :root {
-      --bg-main: #050814;
-      --bg-elevated: rgba(10, 15, 35, 0.95);
-      --bg-card: rgba(11, 17, 40, 0.96);
-      --accent: #00ff88;
-      --accent-soft: rgba(0, 255, 136, 0.2);
-      --text-main: #e5e7eb;
-      --text-muted: #9ca3af;
-      --border-subtle: rgba(148, 163, 184, 0.25);
-      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.7);
-      --radius-lg: 18px;
-      --radius-full: 999px;
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #11111f;
+      --bg-tertiary: #1a1a2e;
+      --bg-card: rgba(26, 26, 46, 0.95);
+      --accent-primary: #00ff88;
+      --accent-secondary: #38bdf8;
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --border-color: rgba(148, 163, 184, 0.15);
+      --shadow-glassy: 0 8px 32px rgba(0, 0, 0, 0.3);
+      --shadow-neon: 0 0 20px rgba(0, 255, 136, 0.15);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
     }
-
+    
     * {
       box-sizing: border-box;
-      scroll-behavior: smooth;
     }
-
+    
     body {
       margin: 0;
       padding: 0;
-      background-color: var(--bg-main);
-      color: var(--text-main);
-      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       min-height: 100vh;
-      overflow-x: hidden;
     }
-
-    /* NAVBAR */
+    
+    /* Navigation (same as default.html) */
     .navbar {
-      background: linear-gradient(to right, rgba(5, 8, 20, 0.96), rgba(5, 12, 35, 0.98));
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+      background: rgba(10, 10, 15, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1rem 0;
     }
-
+    
     .navbar-brand {
+      font-family: 'JetBrains Mono', monospace;
       font-weight: 700;
-      letter-spacing: 0.06em;
-      color: var(--accent) !important;
-      font-size: 1.05rem;
+      font-size: 1.1rem;
+      color: var(--accent-primary) !important;
+      letter-spacing: -0.5px;
     }
-
-    .navbar-nav .nav-link {
-      color: var(--text-muted) !important;
+    
+    .navbar-brand::after {
+      content: "_";
+      animation: blink 1s infinite;
+      color: var(--accent-primary);
+    }
+    
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    
+    .nav-link {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
       font-size: 0.9rem;
-      margin-left: 0.75rem;
-      position: relative;
+      color: var(--text-secondary) !important;
+      margin: 0 0.5rem;
+      padding: 0.5rem 0.75rem !important;
+      border-radius: var(--radius-sm);
+      transition: all 0.2s ease;
     }
-
-    .navbar-nav .nav-link::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      height: 2px;
-      width: 0;
-      background: var(--accent);
-      transition: width 0.25s ease;
+    
+    .nav-link:hover {
+      color: var(--accent-primary) !important;
+      background: rgba(0, 255, 136, 0.1);
     }
-
-    .navbar-nav .nav-link:hover::after,
-    .navbar-nav .nav-link:focus::after {
-      width: 100%;
+    
+    .nav-link.active {
+      color: var(--accent-primary) !important;
+      background: rgba(0, 255, 136, 0.1);
+      border: 1px solid rgba(0, 255, 136, 0.3);
     }
-
-    .dropdown-menu {
-      background-color: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-    }
-
-    .dropdown-item {
-      color: var(--text-main);
-      font-size: 0.9rem;
-    }
-
-    .dropdown-item:hover {
-      background-color: rgba(15, 23, 42, 0.95);
-      color: var(--accent);
-    }
-
-    /* PAGE LAYOUT */
+    
+    /* Main Content */
     main {
-      padding-top: 5.5rem;
-      padding-bottom: 3rem;
+      padding-top: 5rem;
+      min-height: calc(100vh - 200px);
     }
-
-    .page-shell {
-      max-width: 980px;
+    
+    .container-fluid {
+      max-width: 1200px;
       margin: 0 auto;
     }
-
-    .content-card {
-      background: radial-gradient(circle at top left, rgba(0, 255, 136, 0.08), transparent 55%),
-                  radial-gradient(circle at top right, rgba(56, 189, 248, 0.08), transparent 55%),
-                  var(--bg-card);
-      border-radius: 24px;
-      padding: 1.75rem 1.6rem;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      box-shadow: var(--shadow-soft);
+    
+    /* Category Header */
+    .category-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(56, 189, 248, 0.1));
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-color);
+    }
+    
+    .category-icon {
+      font-size: 3rem;
+      color: var(--accent-primary);
+      margin-bottom: 1rem;
+    }
+    
+    .category-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .category-description {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    /* Writeups Grid */
+    .writeups-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    
+    /* Writeup Card */
+    .writeup-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
       position: relative;
       overflow: hidden;
     }
-
-    .content-card::before {
-      content: "";
-      position: absolute;
-      inset: -25%;
-      background: radial-gradient(circle at 0 0, rgba(0, 255, 136, 0.08), transparent 60%);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
+    
+    .writeup-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-primary);
+      box-shadow: var(--shadow-neon);
     }
-
-    .content-card:hover::before {
+    
+    .writeup-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .writeup-card:hover::before {
       opacity: 1;
     }
-
-    .page-header-text {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-    }
-
-    .page-title {
-      font-size: 1.8rem;
+    
+    .writeup-category {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      background: rgba(0, 255, 136, 0.1);
+      color: var(--accent-primary);
+      border-radius: var(--radius-full);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
       font-weight: 600;
-      margin-bottom: 0.2rem;
-    }
-
-    .page-meta {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-bottom: 1.4rem;
-    }
-
-    .page-meta span + span::before {
-      content: "•";
-      margin: 0 0.4rem;
-      color: rgba(148, 163, 184, 0.7);
-    }
-
-    /* LIST STYLES */
-    .list-intro {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      margin-bottom: 1.4rem;
-    }
-
-    .writeup-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .writeup-item {
-      display: flex;
-      flex-direction: column;
-      padding: 0.9rem 1rem;
-      border-radius: 14px;
-      border: 1px solid rgba(148, 163, 184, 0.25);
-      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 1));
-      margin-bottom: 0.65rem;
-      transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-    }
-
-    .writeup-item:hover {
-      border-color: rgba(0, 255, 136, 0.65);
-      transform: translateY(-1px);
-      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.7);
-      background: radial-gradient(circle at top left, rgba(0, 255, 136, 0.06), rgba(15, 23, 42, 1));
-    }
-
-    .writeup-title {
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
-      font-size: 0.98rem;
-      font-weight: 500;
-      margin-bottom: 0.25rem;
-    }
-
-    .writeup-title a {
-      color: var(--text-main);
-      text-decoration: none;
-    }
-
-    .writeup-title a:hover {
-      color: var(--accent);
-    }
-
-    .writeup-meta {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      align-items: center;
-    }
-
-    .badge-tag {
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      background-color: rgba(15, 23, 42, 0.85);
-      padding: 0.15rem 0.5rem;
-      font-size: 0.72rem;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.5px;
+      margin-bottom: 1rem;
     }
-
-    .writeup-desc {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      margin-top: 0.35rem;
+    
+    .writeup-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+      line-height: 1.3;
     }
-
-    /* PAGE CONTENT (optional description at top of list page) */
-    .page-content {
-      margin-bottom: 1.5rem;
-      font-size: 0.9rem;
-      line-height: 1.7;
+    
+    .writeup-excerpt {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
-
-    .page-content a {
-      color: var(--accent);
-      text-decoration: none;
+    
+    .writeup-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
     }
-
-    .page-content a:hover {
-      text-decoration: underline;
-    }
-
-    /* Footer */
-    footer {
-      padding: 1.8rem 0 1.5rem 0;
+    
+    .writeup-date {
       font-size: 0.85rem;
       color: var(--text-muted);
-      border-top: 1px solid rgba(30, 64, 175, 0.4);
-      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 1));
+    }
+    
+    .writeup-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    
+    .writeup-tag {
+      padding: 0.2rem 0.6rem;
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--accent-secondary);
+      border-radius: var(--radius-full);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+    }
+    
+    .writeup-readtime {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: var(--bg-tertiary);
+      border-radius: var(--radius-xl);
+      border: 2px dashed var(--border-color);
+    }
+    
+    .empty-icon {
+      font-size: 3rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+    
+    .empty-title {
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .empty-description {
+      color: var(--text-muted);
+      max-width: 400px;
+      margin: 0 auto 1.5rem;
+    }
+    
+    /* Footer (same as default.html) */
+    footer {
+      background: var(--bg-tertiary);
+      padding: 3rem 0 2rem;
+      margin-top: 3rem;
+      border-top: 1px solid var(--border-color);
+    }
+    
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    
+    .footer-logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--accent-primary);
+      text-decoration: none;
+    }
+    
+    .footer-copyright {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .category-title {
+        font-size: 2rem;
+      }
+      
+      .writeups-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+    
+    /* Loading animation */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    
+    .loading {
+      animation: pulse 2s infinite;
+    }
+    
+    /* Search and Filter */
+    .search-container {
+      margin-bottom: 2rem;
+    }
+    
+    .search-box {
+      position: relative;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    
+    .search-input {
+      width: 100%;
+      padding: 1rem 1rem 1rem 3rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      color: var(--text-primary);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+    
+    .search-input:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: var(--shadow-neon);
+    }
+    
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+    }
+    
+    .filter-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
       margin-top: 1rem;
     }
-
-    footer .social-footer a {
-      color: var(--accent);
-      margin-right: 0.5rem;
-      font-size: 1rem;
-    }
-
-    footer .social-footer a:hover {
-      color: #4ade80;
-    }
-
-    .btn-linktree {
-      padding: 0.35rem 0.9rem;
+    
+    .filter-tag {
+      padding: 0.4rem 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
       border-radius: var(--radius-full);
-      background-color: var(--accent);
-      border: none;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: #020617;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      color: var(--text-secondary);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
     }
-
-    .btn-linktree:hover {
-      transform: translateY(-1px) scale(1.02);
-      box-shadow: 0 14px 35px rgba(16, 185, 129, 0.55);
-    }
-
-    @media (max-width: 768px) {
-      main {
-        padding-top: 5rem;
-        padding-bottom: 2.5rem;
-      }
-
-      .content-card {
-        padding: 1.4rem 1.2rem;
-        border-radius: 18px;
-      }
-
-      .page-title {
-        font-size: 1.5rem;
-      }
+    
+    .filter-tag:hover,
+    .filter-tag.active {
+      background: rgba(0, 255, 136, 0.1);
+      color: var(--accent-primary);
+      border-color: var(--accent-primary);
     }
   </style>
 </head>
 <body>
-
-  <!-- Navigation (same as default.html) -->
+  <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-    <div class="container">
+    <div class="container-fluid">
       <a class="navbar-brand" href="{{ "/" | relative_url }}">
-        $>_{{ site.title }}
+        $> {{ site.title | split: " " | first }}
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      
+      <div class="collapse navbar-collapse" id="navbarContent">
         <ul class="navbar-nav ms-auto">
-
           <li class="nav-item">
-            <a class="nav-link" href="{{ "/posts/blog" | relative_url }}"><i class="fas fa-pen-nib"></i> Blog</a>
+            <a class="nav-link" href="{{ "/" | relative_url }}">
+              <i class="fas fa-home"></i> Home
+            </a>
           </li>
-
-          <!-- CTF Dropdown -->
+          
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="ctfDropdown" role="button" data-bs-toggle="dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
               <i class="fas fa-flag"></i> CTF Writeups
             </a>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="{{ "/posts/hackthebox" | relative_url }}"><i class="fas fa-cube"></i> HackTheBox</a></li>
-              <li><a class="dropdown-item" href="{{ "/posts/tryhackme" | relative_url }}"><i class="fas fa-laptop-code"></i> TryHackMe</a></li>
-              <li><a class="dropdown-item" href="{{ "/posts/offsec" | relative_url }}"><i class="fas fa-laptop-code"></i> Offsec</a></li>
-              <li><a class="dropdown-item" href="{{ "/posts/vulnhub" | relative_url }}"><i class="fas fa-server"></i> VulnHub</a></li>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{{ "/posts/hackthebox" | relative_url }}">HackTheBox</a></li>
+              <li><a class="dropdown-item" href="{{ "/posts/tryhackme" | relative_url }}">TryHackMe</a></li>
+              <li><a class="dropdown-item" href="{{ "/posts/offsec" | relative_url }}">OffSec</a></li>
+              <li><a class="dropdown-item" href="{{ "/posts/vulnhub" | relative_url }}">VulnHub</a></li>
             </ul>
           </li>
-
+          
           <li class="nav-item">
-            <a class="nav-link" href="{{ "/posts/bugbounty" | relative_url }}"><i class="fas fa-bug"></i> Bug Bounty</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="https://zishanadthandar.github.io" target="_blank">
-              <i class="fas fa-user-secret"></i> Portfolio
+            <a class="nav-link" href="{{ "/posts/bugbounty" | relative_url }}">
+              <i class="fas fa-bug"></i> Bug Bounty
             </a>
           </li>
-
+          
+          <li class="nav-item">
+            <a class="nav-link" href="{{ "/posts/blog" | relative_url }}">
+              <i class="fas fa-pen-nib"></i> Blog
+            </a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Main -->
+  <!-- Main Content -->
   <main>
-    <div class="container page-shell">
-      <div class="content-card">
-
-        <div class="page-header-text">
-          {{ site.title }} · Index
+    <div class="container-fluid px-4">
+      <!-- Category Header -->
+      <div class="category-header">
+        {% if page.url contains 'hackthebox' %}
+        <div class="category-icon">
+          <i class="fas fa-cube"></i>
         </div>
-        <h1 class="page-title">{{ page.title }}</h1>
-
-        <div class="page-meta">
-          <span><i class="fa-solid fa-layer-group"></i> Section listing</span>
-          {% if page.category %}
-          <span><i class="fa-solid fa-folder-open"></i> {{ page.category }}</span>
-          {% endif %}
-        </div>
-
-        <!-- Optional markdown content at top of list page -->
-        {% if page.content %}
-        <div class="page-content">
-          {{ content }}
-        </div>
-        {% endif %}
-
-        <p class="list-intro">
-          Browse all writeups in this section. 
+        <h1 class="category-title">HackTheBox Writeups</h1>
+        <p class="category-description">
+          Detailed walkthroughs and solutions for HackTheBox machines, retired and active.
         </p>
-
-        {% comment %}
-        Collect pages in the same directory as this index page (e.g. posts/bugbounty/*.md)
-        {% endcomment %}
-        {% assign current_dir = page.path | replace: page.name, "" %}
-        {% assign entries = site.pages | where_exp: "p", "p.path contains current_dir" %}
-        {% assign entries = entries | where_exp: "p", "p.url != page.url" %}
-        {% assign entries = entries | sort: "date" | reverse %}
-
-        <ul class="writeup-list">
-          {% for p in entries %}
-          <li class="writeup-item">
-            <div class="writeup-title">
-              <i class="fa-solid fa-terminal"></i>
-              <a href="{{ p.url | relative_url }}">
-                {{ p.title | default: p.name | replace: ".md","" }}
-              </a>
-            </div>
-            <div class="writeup-meta">
-              {% if p.date %}
-              <span><i class="fa-regular fa-calendar"></i>
-                {{ p.date | date: "%b %d, %Y" }}
-              </span>
-              {% endif %}
-              {% if p.tags %}
-              <span>
-                {% for tag in p.tags %}
-                  <span class="badge-tag">{{ tag }}</span>
-                {% endfor %}
-              </span>
-              {% endif %}
-            </div>
-            {% if p.excerpt %}
-            <div class="writeup-desc">
-              {{ p.excerpt | strip_html | strip_newlines | truncate: 140 }}
-            </div>
-            {% endif %}
-          </li>
-          {% endfor %}
-        </ul>
-
-        {% if entries == empty %}
-        <p class="text-muted mt-2 mb-0">No writeups found in this section yet.</p>
+        
+        {% elsif page.url contains 'tryhackme' %}
+        <div class="category-icon">
+          <i class="fas fa-laptop-code"></i>
+        </div>
+        <h1 class="category-title">TryHackMe Writeups</h1>
+        <p class="category-description">
+          Step-by-step guides and solutions for TryHackMe rooms and challenges.
+        </p>
+        
+        {% elsif page.url contains 'offsec' %}
+        <div class="category-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h1 class="category-title">OffSec Writeups</h1>
+        <p class="category-description">
+          Penetration testing methodologies and offensive security techniques.
+        </p>
+        
+        {% elsif page.url contains 'vulnhub' %}
+        <div class="category-icon">
+          <i class="fas fa-server"></i>
+        </div>
+        <h1 class="category-title">VulnHub Writeups</h1>
+        <p class="category-description">
+          Vulnerability assessment and exploitation walkthroughs for VulnHub VMs.
+        </p>
+        
+        {% elsif page.url contains 'bugbounty' %}
+        <div class="category-icon">
+          <i class="fas fa-bug"></i>
+        </div>
+        <h1 class="category-title">Bug Bounty Reports</h1>
+        <p class="category-description">
+          Real-world bug bounty findings, methodologies, and exploitation techniques.
+        </p>
+        
+        {% elsif page.url contains 'blog' %}
+        <div class="category-icon">
+          <i class="fas fa-pen-nib"></i>
+        </div>
+        <h1 class="category-title">Security Blog</h1>
+        <p class="category-description">
+          Articles, tutorials, and insights on cybersecurity trends and techniques.
+        </p>
+        
+        {% else %}
+        <div class="category-icon">
+          <i class="fas fa-flag"></i>
+        </div>
+        <h1 class="category-title">{{ page.title | default: "All Writeups" }}</h1>
+        <p class="category-description">
+          Comprehensive collection of cybersecurity writeups and research.
+        </p>
         {% endif %}
-
       </div>
+
+      <!-- Optional page content at top -->
+      {% if page.content %}
+      <div class="page-content mb-4">
+        {{ content }}
+      </div>
+      {% endif %}
+
+      <!-- Search and Filter -->
+      <div class="search-container">
+        <div class="search-box">
+          <input type="text" class="search-input" placeholder="Search writeups..." id="searchInput">
+          <i class="fas fa-search search-icon"></i>
+        </div>
+        <div class="filter-tags" id="filterTags">
+          <!-- Tags will be populated by JavaScript -->
+        </div>
+      </div>
+
+      <!-- Writeups Grid -->
+      {% assign current_dir = page.path | replace: page.name, "" %}
+      {% assign entries = site.pages | where_exp: "p", "p.path contains current_dir" %}
+      {% assign entries = entries | where_exp: "p", "p.url != page.url" %}
+      {% assign entries = entries | sort: "date" | reverse %}
+      
+      <div class="writeups-grid" id="writeupsGrid">
+        {% for p in entries %}
+        <a href="{{ p.url | relative_url }}" class="writeup-card" 
+           data-title="{{ p.title | downcase }}"
+           data-excerpt="{{ p.excerpt | strip_html | downcase }}"
+           data-tags="{{ p.tags | join: ',' | downcase }}">
+          
+          {% if page.url contains 'hackthebox' %}
+          <span class="writeup-category">HTB</span>
+          {% elsif page.url contains 'tryhackme' %}
+          <span class="writeup-category">THM</span>
+          {% elsif page.url contains 'offsec' %}
+          <span class="writeup-category">OffSec</span>
+          {% elsif page.url contains 'vulnhub' %}
+          <span class="writeup-category">VulnHub</span>
+          {% elsif page.url contains 'bugbounty' %}
+          <span class="writeup-category">Bug Bounty</span>
+          {% elsif page.url contains 'blog' %}
+          <span class="writeup-category">Blog</span>
+          {% else %}
+          <span class="writeup-category">Writeup</span>
+          {% endif %}
+          
+          <h3 class="writeup-title">{{ p.title | default: p.name | replace: ".md","" }}</h3>
+          
+          {% if p.excerpt %}
+          <p class="writeup-excerpt">{{ p.excerpt | strip_html | strip_newlines | truncate: 140 }}</p>
+          {% endif %}
+          
+          <div class="writeup-meta">
+            <div>
+              {% if p.date %}
+              <div class="writeup-date">
+                <i class="far fa-calendar"></i> {{ p.date | date: "%b %d, %Y" }}
+              </div>
+              {% endif %}
+            </div>
+            
+            <div class="writeup-tags">
+              {% if p.tags %}
+                {% for tag in p.tags limit: 2 %}
+                <span class="writeup-tag">{{ tag }}</span>
+                {% endfor %}
+                {% if p.tags.size > 2 %}
+                <span class="writeup-tag">+{{ p.tags.size | minus: 2 }}</span>
+                {% endif %}
+              {% endif %}
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+
+      <!-- Empty State -->
+      {% if entries == empty %}
+      <div class="empty-state">
+        <div class="empty-icon">
+          <i class="fas fa-file-alt"></i>
+        </div>
+        <h3 class="empty-title">No writeups found</h3>
+        <p class="empty-description">
+          There are no writeups in this category yet. Check back soon!
+        </p>
+        <a href="{{ "/" | relative_url }}" class="btn btn-primary">
+          <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+      </div>
+      {% endif %}
     </div>
   </main>
 
   <!-- Footer -->
   <footer>
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-md-6 mb-2 mb-md-0">
-          <p class="mb-1">
-            &copy; <script>document.write(new Date().getFullYear())</script> {{ site.author }}. All rights reserved.
-          </p>
-          <p class="text-muted mb-0">"The quieter you become, the more you are able to hear."</p>
+    <div class="container-fluid px-4">
+      <div class="footer-content">
+        <a href="{{ "/" | relative_url }}" class="footer-logo">
+          $> {{ site.title | split: " " | first }}
+        </a>
+        
+        <div class="footer-links">
+          <a href="{{ "/posts/blog" | relative_url }}" class="footer-link">Blog</a>
+          <a href="{{ "/posts/hackthebox" | relative_url }}" class="footer-link">HackTheBox</a>
+          <a href="{{ "/posts/tryhackme" | relative_url }}" class="footer-link">TryHackMe</a>
+          <a href="{{ "/posts/bugbounty" | relative_url }}" class="footer-link">Bug Bounty</a>
         </div>
-        <div class="col-md-6 text-md-end">
-          <div class="social-footer mb-2">
-            <a href="https://twitter.com/zishanadthandar" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="https://github.com/zishanadthandar" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/zishanadthandar/" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://t.me/zishanadthandarchannel" target="_blank"><i class="fab fa-telegram"></i></a>
-            <a href="https://www.youtube.com/ZishanAdThandar?sub_confirmation=1" target="_blank"><i class="fab fa-youtube"></i></a>
-          </div>
-          <a href="https://zishanadthandar.github.io/linktree/" class="btn-linktree">
-            <i class="fas fa-link"></i> LinkTree
-          </a>
-        </div>
+      </div>
+      
+      <div class="footer-copyright">
+        &copy; {{ "now" | date: "%Y" }} {{ site.author }}. All rights reserved.<br>
+        <small>"The quieter you become, the more you are able to hear."</small>
       </div>
     </div>
   </footer>
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Search and filter functionality
+    const searchInput = document.getElementById('searchInput');
+    const writeupsGrid = document.getElementById('writeupsGrid');
+    const filterTags = document.getElementById('filterTags');
+    const writeupCards = Array.from(document.querySelectorAll('.writeup-card'));
+    
+    // Extract all unique tags
+    const allTags = new Set();
+    writeupCards.forEach(card => {
+      const tags = card.dataset.tags.split(',').filter(tag => tag.trim() !== '');
+      tags.forEach(tag => allTags.add(tag.trim()));
+    });
+    
+    // Create filter tags
+    Array.from(allTags).sort().forEach(tag => {
+      const tagElement = document.createElement('span');
+      tagElement.className = 'filter-tag';
+      tagElement.textContent = tag;
+      tagElement.dataset.tag = tag;
+      filterTags.appendChild(tagElement);
+    });
+    
+    // Search and filter logic
+    let activeFilters = new Set();
+    
+    function filterWriteups() {
+      const searchTerm = searchInput.value.toLowerCase().trim();
+      
+      writeupCards.forEach(card => {
+        const title = card.dataset.title;
+        const excerpt = card.dataset.excerpt;
+        const tags = card.dataset.tags.split(',').map(t => t.trim());
+        
+        const matchesSearch = !searchTerm || 
+          title.includes(searchTerm) || 
+          excerpt.includes(searchTerm);
+        
+        const matchesFilters = activeFilters.size === 0 || 
+          Array.from(activeFilters).every(filter => tags.includes(filter));
+        
+        card.style.display = (matchesSearch && matchesFilters) ? 'block' : 'none';
+      });
+      
+      // Update filter tags active state
+      document.querySelectorAll('.filter-tag').forEach(tagElement => {
+        if (activeFilters.has(tagElement.dataset.tag)) {
+          tagElement.classList.add('active');
+        } else {
+          tagElement.classList.remove('active');
+        }
+      });
+    }
+    
+    // Event listeners
+    searchInput.addEventListener('input', filterWriteups);
+    
+    filterTags.addEventListener('click', (e) => {
+      if (e.target.classList.contains('filter-tag')) {
+        const tag = e.target.dataset.tag;
+        
+        if (activeFilters.has(tag)) {
+          activeFilters.delete(tag);
+        } else {
+          activeFilters.add(tag);
+        }
+        
+        filterWriteups();
+      }
+    });
+    
+    // Clear all filters
+    const clearButton = document.createElement('span');
+    clearButton.className = 'filter-tag';
+    clearButton.textContent = 'Clear All';
+    clearButton.style.background = 'rgba(239, 68, 68, 0.1)';
+    clearButton.style.color = '#ef4444';
+    clearButton.style.borderColor = '#ef4444';
+    
+    clearButton.addEventListener('click', () => {
+      activeFilters.clear();
+      searchInput.value = '';
+      filterWriteups();
+    });
+    
+    filterTags.appendChild(clearButton);
+    
+    // Sort by date (newest first by default)
+    function sortWriteups(sortBy = 'date') {
+      const container = writeupsGrid;
+      const cards = Array.from(container.children);
+      
+      cards.sort((a, b) => {
+        if (sortBy === 'date') {
+          // Extract dates from meta info
+          const dateA = a.querySelector('.writeup-date')?.textContent || '';
+          const dateB = b.querySelector('.writeup-date')?.textContent || '';
+          return dateB.localeCompare(dateA);
+        } else if (sortBy === 'title') {
+          const titleA = a.querySelector('.writeup-title')?.textContent.toLowerCase() || '';
+          const titleB = b.querySelector('.writeup-title')?.textContent.toLowerCase() || '';
+          return titleA.localeCompare(titleB);
+        }
+        return 0;
+      });
+      
+      // Re-append sorted cards
+      cards.forEach(card => container.appendChild(card));
+    }
+    
+    // Add sort dropdown
+    const sortContainer = document.createElement('div');
+    sortContainer.className = 'text-end mb-3';
+    sortContainer.innerHTML = `
+      <select id="sortSelect" class="form-select" style="width:auto;display:inline-block;background:var(--bg-card);color:var(--text-primary);border-color:var(--border-color);">
+        <option value="date">Newest First</option>
+        <option value="title">Title A-Z</option>
+      </select>
+    `;
+    
+    document.querySelector('.search-container').appendChild(sortContainer);
+    
+    document.getElementById('sortSelect').addEventListener('change', (e) => {
+      sortWriteups(e.target.value);
+    });
+    
+    // Initialize
+    sortWriteups();
+  </script>
 </body>
 </html>
-

@@ -3,18 +3,46 @@ slogan: Deep-dive cyber security, CTF & bug bounty
 url: "https://blog.zishanhack.com"
 baseurl: ""   # keep empty for root
 author: "Zishan Ahamed Thandar"
+email: "zishanadthandar@wearehackerone.com"
+description: "Professional cybersecurity writeups, CTF solutions, and bug bounty reports by Zishan Ahamed Thandar. HackTheBox, TryHackMe, VulnHub, and real-world security research."
 
+# Collections
 collections:
-  notes:
+  posts:
     output: true
+    permalink: /:collection/:path/
 
+# Defaults
 defaults:
   - scope:
       path: ""
     values:
       layout: default
+  - scope:
+      path: "posts"
+      type: "posts"
+    values:
+      layout: default
+      author: "Zishan Ahamed Thandar"
 
+# Plugins
 plugins:
-  - kramdown
   - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-seo-tag
 
+# SEO
+logo: "/assets/images/logo.png"
+twitter_username: "zishanadthandar"
+github_username: "zishanadthandar"
+linkedin_username: "zishanadthandar"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
