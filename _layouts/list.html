@@ -1,787 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        {% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}
-    </title>
-    
-    <!-- SEO Tags -->
-    {% seo %}
-    
-    <!-- Jekyll Feed -->
-    {% feed_meta %}
-    
-    <!-- Hacker-style fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Space+Mono:wght@400;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Styles -->
-    <style>
-        :root {
-            --primary-dark: #0a0e17;
-            --secondary-dark: #101826;
-            --accent-green: #00ff88;
-            --accent-cyan: #00e0ff;
-            --accent-purple: #8a2be2;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0c0;
-            --text-muted: #6c757d;
-            --card-bg: #1a1f2e;
-            --border-color: #2a3b5a;
-            --glow-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
-            --terminal-green: #00ff00;
-            --hacker-red: #ff003c;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            font-family: 'JetBrains Mono', 'Source Code Pro', 'Courier New', monospace;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background-color: var(--primary-dark);
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(0, 255, 136, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(0, 224, 255, 0.05) 0%, transparent 20%);
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-        
-        /* Terminal-style header */
-        header {
-            background: linear-gradient(145deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
-            color: var(--text-primary);
-            padding: 2.5rem;
-            border-radius: 12px;
-            margin-bottom: 2.5rem;
-            box-shadow: var(--glow-shadow);
-            border: 1px solid var(--border-color);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
-            animation: scanline 3s linear infinite;
-        }
-        
-        @keyframes scanline {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-        
-        .site-title {
-            font-size: 2.8rem;
-            margin-bottom: 0.8rem;
-            background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-weight: 800;
-            letter-spacing: -1px;
-            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
-        }
-        
-        .site-tagline {
-            font-size: 1.3rem;
-            color: var(--accent-cyan);
-            margin-bottom: 2rem;
-            font-weight: 500;
-            opacity: 0.95;
-        }
-        
-        .page-header {
-            text-align: center;
-            margin-bottom: 3rem;
-            padding: 2rem;
-            background: rgba(26, 31, 46, 0.7);
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            backdrop-filter: blur(10px);
-        }
-        
-        .page-title {
-            font-size: 2.8rem;
-            background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-        
-        .page-description {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-        
-        /* Hacker-style navigation */
-        nav {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-        
-        nav a {
-            color: var(--text-primary);
-            text-decoration: none;
-            padding: 0.8rem 1.5rem;
-            background: rgba(42, 59, 90, 0.6);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            font-family: 'Roboto Mono', monospace;
-            font-weight: 500;
-            position: relative;
-            overflow: hidden;
-            font-size: 0.95rem;
-        }
-        
-        nav a::before {
-            content: '>';
-            margin-right: 8px;
-            color: var(--accent-green);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        
-        nav a:hover {
-            background: rgba(0, 255, 136, 0.1);
-            border-color: var(--accent-green);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.2);
-        }
-        
-        nav a:hover::before {
-            opacity: 1;
-        }
-        
-        .container {
-            display: grid;
-            grid-template-columns: 1fr 350px;
-            gap: 2.5rem;
-        }
-        
-        main {
-            background: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border-color);
-        }
-        
-        /* Terminal-style posts grid */
-        .posts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 2.5rem;
-        }
-        
-        .post-card {
-            background: rgba(16, 24, 38, 0.8);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-        }
-        
-        .post-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-green), transparent);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s;
-        }
-        
-        .post-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 
-                0 15px 35px rgba(0, 255, 136, 0.15),
-                0 5px 15px rgba(0, 0, 0, 0.3);
-            border-color: var(--accent-green);
-        }
-        
-        .post-card:hover::before {
-            transform: scaleX(1);
-        }
-        
-        .post-card-content {
-            padding: 2rem;
-        }
-        
-        .post-card-title {
-            font-size: 1.5rem;
-            color: var(--text-primary);
-            margin-bottom: 1rem;
-            font-weight: 700;
-            line-height: 1.4;
-        }
-        
-        .post-card-title a {
-            color: inherit;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .post-card-title a:hover {
-            color: var(--accent-green);
-        }
-        
-        .post-card-excerpt {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-            font-family: 'Source Code Pro', monospace;
-        }
-        
-        .post-card-meta {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid var(--border-color);
-            padding-top: 1rem;
-            font-family: 'IBM Plex Mono', monospace;
-        }
-        
-        .post-card-category {
-            background: linear-gradient(90deg, var(--primary-dark), var(--secondary-dark));
-            color: var(--accent-cyan);
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border: 1px solid var(--accent-cyan);
-            letter-spacing: 0.5px;
-        }
-        
-        .no-posts {
-            text-align: center;
-            padding: 5rem 3rem;
-            color: var(--text-secondary);
-            background: rgba(16, 24, 38, 0.6);
-            border-radius: 12px;
-            border: 2px dashed var(--border-color);
-        }
-        
-        .no-posts h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent-green);
-        }
-        
-        /* Hacker-style sidebar */
-        aside {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border-color);
-            height: fit-content;
-            position: sticky;
-            top: 20px;
-        }
-        
-        .sidebar-section {
-            margin-bottom: 2.5rem;
-        }
-        
-        .sidebar-section:last-child {
-            margin-bottom: 0;
-        }
-        
-        .sidebar-section h3 {
-            color: var(--accent-green);
-            margin-bottom: 1.2rem;
-            padding-bottom: 0.8rem;
-            border-bottom: 2px solid var(--border-color);
-            font-size: 1.4rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .sidebar-section h3::before {
-            content: '>>>';
-            color: var(--accent-cyan);
-            font-size: 1rem;
-        }
-        
-        .social-links {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 1rem;
-            background: rgba(42, 59, 90, 0.6);
-            color: var(--text-primary);
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            transition: all 0.3s;
-            border: 1px solid transparent;
-        }
-        
-        .social-links a:hover {
-            background: rgba(0, 255, 136, 0.1);
-            border-color: var(--accent-green);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.2);
-        }
-        
-        .social-links i {
-            font-size: 1.2rem;
-            color: var(--accent-green);
-        }
-        
-        .category-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-        
-        .category-links a {
-            display: flex;
-            align-items: center;
-            padding: 1rem 1.2rem;
-            background: rgba(42, 59, 90, 0.4);
-            color: var(--text-secondary);
-            text-decoration: none;
-            border-radius: 8px;
-            transition: all 0.3s;
-            font-family: 'Source Code Pro', monospace;
-        }
-        
-        .category-links a::before {
-            content: '$';
-            margin-right: 10px;
-            color: var(--terminal-green);
-            font-weight: bold;
-        }
-        
-        .category-links a:hover {
-            background: rgba(0, 224, 255, 0.1);
-            color: var(--text-primary);
-            transform: translateX(5px);
-            border-left: 3px solid var(--accent-cyan);
-        }
-        
-        /* Hacker footer */
-        footer {
-            margin-top: 4rem;
-            padding-top: 2.5rem;
-            border-top: 2px solid var(--border-color);
-            text-align: center;
-            color: var(--text-secondary);
-            background: rgba(16, 24, 38, 0.7);
-            padding: 2.5rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-        
-        .footer-links a {
-            color: var(--text-primary);
-            text-decoration: none;
-            padding: 0.8rem 1.5rem;
-            background: rgba(42, 59, 90, 0.4);
-            border-radius: 8px;
-            transition: all 0.3s;
-            border: 1px solid transparent;
-        }
-        
-        .footer-links a:hover {
-            background: rgba(0, 255, 136, 0.1);
-            border-color: var(--accent-green);
-            transform: translateY(-2px);
-        }
-        
-        /* Image handling for extra-wide images */
-        .post-content img,
-        .page-content img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-            margin: 2rem auto;
-            display: block;
-            background: var(--secondary-dark);
-            padding: 8px;
-        }
-        
-        /* Code blocks */
-        code, pre {
-            font-family: 'JetBrains Mono', 'Source Code Pro', monospace;
-            background: rgba(10, 14, 23, 0.9) !important;
-            border: 1px solid var(--border-color) !important;
-            border-radius: 8px !important;
-            overflow-x: auto !important;
-        }
-        
-        pre {
-            padding: 1.5rem !important;
-            margin: 1.5rem 0 !important;
-            position: relative;
-        }
-        
-        pre::before {
-            content: 'TERMINAL';
-            position: absolute;
-            top: 0;
-            right: 0;
-            background: var(--accent-green);
-            color: var(--primary-dark);
-            padding: 0.3rem 1rem;
-            font-size: 0.8rem;
-            font-weight: bold;
-            border-bottom-left-radius: 8px;
-            border-top-right-radius: 8px;
-        }
-        
-        /* Responsive design */
-        @media (max-width: 1024px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-            
-            aside {
-                position: static;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                padding: 15px;
-            }
-            
-            .posts-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            header {
-                padding: 2rem;
-            }
-            
-            .site-title {
-                font-size: 2.2rem;
-            }
-            
-            .page-title {
-                font-size: 2.2rem;
-            }
-            
-            nav {
-                flex-direction: column;
-                gap: 0.8rem;
-            }
-            
-            nav a {
-                text-align: center;
-            }
-            
-            .social-links {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
-        }
-        
-        /* Terminal cursor effect */
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-        
-        .cursor {
-            display: inline-block;
-            width: 10px;
-            height: 20px;
-            background-color: var(--accent-green);
-            animation: blink 1s infinite;
-            vertical-align: middle;
-            margin-left: 5px;
-        }
-        
-        /* Scrollbar styling */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: var(--primary-dark);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--border-color);
-            border-radius: 5px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-green);
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1 class="site-title">{{ site.title }}<span class="cursor"></span></h1>
-        <p class="site-tagline">{{ site.tagline }}</p>
-        
-        <nav>
-            <a href="/"><i class="fas fa-home"></i> HOME</a>
-            <a href="/posts/hackthebox"><i class="fas fa-cube"></i> HTB</a>
-            <a href="/posts/tryhackme"><i class="fas fa-tv"></i> THM</a>
-            <a href="/posts/offsec"><i class="fas fa-shield-alt"></i> OFFSEC</a>
-            <a href="/posts/vulnhub"><i class="fas fa-server"></i> VULNHUB</a>
-            <a href="/posts/bugbounty"><i class="fas fa-bug"></i> BUG BOUNTY</a>
-            <a href="/posts/blog"><i class="fas fa-blog"></i> BLOG</a>
-            <a href="{{ site.portfolio }}"><i class="fas fa-briefcase"></i> PORTFOLIO</a>
-            <a href="{{ site.main_site }}"><i class="fas fa-globe"></i> MAIN SITE</a>
-        </nav>
-    </header>
-    
-    <div class="page-header">
-        <h1 class="page-title">
-            {% if page.title %}
-                {{ page.title }}
-            {% else %}
-                {% if page.path contains 'hackthebox' %}<i class="fas fa-cube"></i> HackTheBox Writeups
-                {% elsif page.path contains 'tryhackme' %}<i class="fas fa-tv"></i> TryHackMe Writeups
-                {% elsif page.path contains 'offsec' %}<i class="fas fa-shield-alt"></i> OffSec Writeups
-                {% elsif page.path contains 'vulnhub' %}<i class="fas fa-server"></i> VulnHub Writeups
-                {% elsif page.path contains 'bugbounty' %}<i class="fas fa-bug"></i> Bug Bounty Reports
-                {% elsif page.path contains 'blog' %}<i class="fas fa-blog"></i> Blog Posts
-                {% else %}<i class="fas fa-terminal"></i> All Posts{% endif %}
-            {% endif %}
-        </h1>
-        <p class="page-description">
-            {% if page.path contains 'hackthebox' %}<i class="fas fa-terminal"></i> Detailed solutions and walkthroughs for HackTheBox machines
-            {% elsif page.path contains 'tryhackme' %}<i class="fas fa-terminal"></i> Guides and solutions for TryHackMe rooms
-            {% elsif page.path contains 'offsec' %}<i class="fas fa-terminal"></i> Offensive Security certification and lab writeups
-            {% elsif page.path contains 'vulnhub' %}<i class="fas fa-terminal"></i> Vulnerable machine walkthroughs from VulnHub
-            {% elsif page.path contains 'bugbounty' %}<i class="fas fa-terminal"></i> Real-world bug bounty reports and methodologies
-            {% elsif page.path contains 'blog' %}<i class="fas fa-terminal"></i> Cybersecurity articles, tips, and tutorials
-            {% else %}<i class="fas fa-terminal"></i> All cybersecurity writeups and reports{% endif %}
-        </p>
+<main>
+    {% if page.content %}
+    <div class="page-content">
+        {{ content }}
     </div>
+    {% endif %}
     
-    <div class="container">
-        <main>
-            {% if page.content %}
-            <div class="page-content">
-                {{ content }}
-            </div>
+    <!-- Get category from page or URL -->
+    {% assign current_category = page.category %}
+    {% unless current_category %}
+        {% assign url_parts = page.url | split: '/' %}
+        {% for part in url_parts %}
+            {% if part == 'hackthebox' or part == 'tryhackme' or part == 'offsec' or part == 'vulnhub' or part == 'bugbounty' or part == 'blog' %}
+                {% assign current_category = part %}
             {% endif %}
-            
-            {% assign category_posts = site.posts | where_exp: "post", "post.path contains page.path" %}
-            
-            {% if category_posts.size > 0 %}
-            <div class="posts-grid">
-                {% for post in category_posts %}
-                <article class="post-card">
-                    <div class="post-card-content">
-                        <h2 class="post-card-title">
-                            <a href="{{ post.url }}">{{ post.title }}</a>
-                        </h2>
-                        
-                        {% if post.excerpt %}
-                        <p class="post-card-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
-                        {% endif %}
-                        
-                        <div class="post-card-meta">
-                            <span><i class="far fa-calendar"></i> {{ post.date | date: "%B %d, %Y" }}</span>
-                            <span class="post-card-category">
-                                {% if post.path contains 'hackthebox' %}<i class="fas fa-cube"></i> HTB
-                                {% elsif post.path contains 'tryhackme' %}<i class="fas fa-tv"></i> THM
-                                {% elsif post.path contains 'offsec' %}<i class="fas fa-shield-alt"></i> OffSec
-                                {% elsif post.path contains 'vulnhub' %}<i class="fas fa-server"></i> VulnHub
-                                {% elsif post.path contains 'bugbounty' %}<i class="fas fa-bug"></i> Bug Bounty
-                                {% elsif post.path contains 'blog' %}<i class="fas fa-blog"></i> Blog
-                                {% else %}<i class="fas fa-file-code"></i> Post{% endif %}
-                            </span>
-                        </div>
-                    </div>
-                </article>
-                {% endfor %}
-            </div>
-            {% else %}
-            <div class="no-posts">
-                <h2><i class="fas fa-exclamation-triangle"></i> No posts found in this category</h2>
-                <p>The directory is empty. Check back soon for new content!</p>
-                <div style="margin-top: 2.5rem; display: flex; gap: 1rem; justify-content: center;">
-                    <a href="/" style="
-                        display: inline-flex;
-                        align-items: center;
-                        gap: 10px;
-                        padding: 1rem 2rem;
-                        background: linear-gradient(90deg, var(--primary-dark), var(--secondary-dark));
-                        color: var(--accent-green);
-                        text-decoration: none;
-                        border-radius: 8px;
-                        border: 1px solid var(--accent-green);
-                        font-weight: 600;
-                        transition: all 0.3s;
-                    ">
-                        <i class="fas fa-home"></i> Go Home
-                    </a>
-                    <a href="/posts" style="
-                        display: inline-flex;
-                        align-items: center;
-                        gap: 10px;
-                        padding: 1rem 2rem;
-                        background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
-                        color: var(--primary-dark);
-                        text-decoration: none;
-                        border-radius: 8px;
-                        border: 1px solid var(--accent-green);
-                        font-weight: 600;
-                        transition: all 0.3s;
-                    ">
-                        <i class="fas fa-terminal"></i> View All Posts
-                    </a>
+        {% endfor %}
+    {% endunless %}
+    
+    <!-- Filter posts by category -->
+    {% if current_category %}
+        {% assign category_posts = site.posts | where: "category", current_category %}
+    {% else %}
+        {% assign category_posts = site.posts %}
+    {% endif %}
+    
+    <!-- Fallback: If no posts found with category, try filtering by path -->
+    {% if category_posts.size == 0 and current_category %}
+        {% assign category_posts = site.posts | where_exp: "post", "post.path contains current_category" %}
+    {% endif %}
+    
+    {% if category_posts.size > 0 %}
+    <div class="posts-grid">
+        {% for post in category_posts %}
+        <article class="post-card">
+            <div class="post-card-content">
+                <h2 class="post-card-title">
+                    <a href="{{ post.url }}">{{ post.title }}</a>
+                </h2>
+                
+                {% if post.excerpt %}
+                <p class="post-card-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
+                {% elsif post.description %}
+                <p class="post-card-excerpt">{{ post.description | truncate: 200 }}</p>
+                {% endif %}
+                
+                <div class="post-card-meta">
+                    <span><i class="far fa-calendar"></i> {{ post.date | date: "%B %d, %Y" }}</span>
+                    <span class="post-card-category">
+                        {% if post.category == 'hackthebox' %}<i class="fas fa-cube"></i> HTB
+                        {% elsif post.category == 'tryhackme' %}<i class="fas fa-tv"></i> THM
+                        {% elsif post.category == 'offsec' %}<i class="fas fa-shield-alt"></i> OffSec
+                        {% elsif post.category == 'vulnhub' %}<i class="fas fa-server"></i> VulnHub
+                        {% elsif post.category == 'bugbounty' %}<i class="fas fa-bug"></i> Bug Bounty
+                        {% elsif post.category == 'blog' %}<i class="fas fa-blog"></i> Blog
+                        {% else %}<i class="fas fa-file-code"></i> {{ post.category | default: "Post" }}{% endif %}
+                    </span>
                 </div>
             </div>
-            {% endif %}
-        </main>
-        
-        <aside>
-            <div class="sidebar-section">
-                <h3>About</h3>
-                <p style="color: var(--text-secondary); line-height: 1.7;">{{ site.description }}</p>
-                <div style="margin-top: 1rem;">
-                    <p><i class="fas fa-user-secret" style="color: var(--accent-green);"></i> <strong>Author:</strong> {{ site.author }}</p>
-                    <p><i class="fas fa-envelope" style="color: var(--accent-cyan);"></i> <strong>Email:</strong> {{ site.email }}</p>
-                </div>
-            </div>
-            
-            <div class="sidebar-section">
-                <h3>Connect</h3>
-                <div class="social-links">
-                    {% if site.github %}
-                    <a href="https://github.com/{{ site.github }}" target="_blank">
-                        <i class="fab fa-github"></i> GitHub
-                    </a>
-                    {% endif %}
-                    {% if site.twitter %}
-                    <a href="https://twitter.com/{{ site.twitter }}" target="_blank">
-                        <i class="fab fa-twitter"></i> Twitter
-                    </a>
-                    {% endif %}
-                    {% if site.linkedin %}
-                    <a href="https://linkedin.com/in/{{ site.linkedin }}" target="_blank">
-                        <i class="fab fa-linkedin"></i> LinkedIn
-                    </a>
-                    {% endif %}
-                    {% if site.youtube %}
-                    <a href="https://youtube.com/{{ site.youtube }}" target="_blank">
-                        <i class="fab fa-youtube"></i> YouTube
-                    </a>
-                    {% endif %}
-                    {% if site.linktree %}
-                    <a href="{{ site.linktree }}" target="_blank">
-                        <i class="fas fa-tree"></i> Linktree
-                    </a>
-                    {% endif %}
-                    {% if site.sponsors %}
-                    <a href="{{ site.sponsors }}" target="_blank">
-                        <i class="fas fa-heart"></i> Sponsor
-                    </a>
-                    {% endif %}
-                </div>
-            </div>
-            
-            <div class="sidebar-section">
-                <h3>Categories</h3>
-                <div class="category-links">
-                    <a href="/posts/hackthebox">HackTheBox Writeups</a>
-                    <a href="/posts/tryhackme">TryHackMe Writeups</a>
-                    <a href="/posts/offsec">OffSec Writeups</a>
-                    <a href="/posts/vulnhub">VulnHub Writeups</a>
-                    <a href="/posts/bugbounty">Bug Bounty Reports</a>
-                    <a href="/posts/blog">Blog Posts</a>
-                </div>
-            </div>
-            
-            <div class="sidebar-section">
-                <h3>Recent Posts</h3>
-                <div class="category-links">
-                    {% for post in site.posts limit:8 %}
-                    <a href="{{ post.url }}"><i class="fas fa-chevron-right" style="color: var(--accent-green);"></i> {{ post.title | truncate: 40 }}</a>
-                    {% endfor %}
-                </div>
-            </div>
-        </aside>
+        </article>
+        {% endfor %}
     </div>
-    
-    <footer>
-        <div class="footer-links">
-            <a href="{{ site.url }}"><i class="fas fa-home"></i> Home</a>
-            <a href="{{ site.main_site }}"><i class="fas fa-globe"></i> Main Site</a>
-            <a href="{{ site.portfolio }}"><i class="fas fa-briefcase"></i> Portfolio</a>
-            {% if site.sponsors %}
-            <a href="{{ site.sponsors }}"><i class="fas fa-heart"></i> Sponsor</a>
-            {% endif %}
+    {% else %}
+    <div class="no-posts">
+        <h2><i class="fas fa-exclamation-triangle"></i> No posts found in this category</h2>
+        <p>Check back soon for new content!</p>
+        
+        <!-- Debug info -->
+        <div style="background: rgba(255,0,60,0.1); padding: 1rem; border-radius: 8px; margin: 2rem 0; border: 1px solid #ff003c;">
+            <p style="color: #ff003c; margin: 0; font-family: 'Source Code Pro', monospace; font-size: 0.9rem;">
+                <i class="fas fa-bug"></i> Debug: 
+                Current Category: {{ current_category }} | 
+                Page Category: {{ page.category }} | 
+                Total Posts: {{ site.posts.size }}
+            </p>
         </div>
-        <p style="margin-top: 1.5rem; color: var(--accent-cyan);">
-            <i class="fas fa-terminal"></i> &copy; {{ site.time | date: '%Y' }} {{ site.author }}. All rights reserved.
-        </p>
-        <p style="margin-top: 0.5rem; font-size: 0.9rem;">
-            <i class="fas fa-code"></i> Powered by Jekyll | <i class="fas fa-shield-alt"></i> Built for Infosec
-        </p>
-    </footer>
-</body>
-</html>
+        
+        <div style="margin-top: 2.5rem; display: flex; gap: 1rem; justify-content: center;">
+            <a href="/" style="
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                padding: 1rem 2rem;
+                background: linear-gradient(90deg, var(--primary-dark), var(--secondary-dark));
+                color: var(--accent-green);
+                text-decoration: none;
+                border-radius: 8px;
+                border: 1px solid var(--accent-green);
+                font-weight: 600;
+                transition: all 0.3s;
+            ">
+                <i class="fas fa-home"></i> Go Home
+            </a>
+            <a href="/posts" style="
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                padding: 1rem 2rem;
+                background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
+                color: var(--primary-dark);
+                text-decoration: none;
+                border-radius: 8px;
+                border: 1px solid var(--accent-green);
+                font-weight: 600;
+                transition: all 0.3s;
+            ">
+                <i class="fas fa-terminal"></i> View All Posts
+            </a>
+        </div>
+    </div>
+    {% endif %}
+</main>
