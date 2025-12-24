@@ -213,3 +213,102 @@ header {
   text-decoration: none;
 }
 
+
+/* ================= HEADER ================= */
+header {
+  background: linear-gradient(145deg, #0a0e17, #101826);
+  padding: 2.5rem;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  box-shadow: 0 0 20px rgba(0,255,136,.25);
+  position: relative;
+  z-index: 1000;
+}
+
+/* ================= NAV ================= */
+.nav-container {
+  position: relative;
+  z-index: 2000;
+  margin-bottom: 2rem;
+}
+
+.main-nav {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ================= DROPDOWN FIX ================= */
+.nav-dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+
+  min-width: 320px;
+  padding: 1rem;
+
+  background: linear-gradient(180deg, #0f1525, #0a0e17);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.85),
+    inset 0 0 20px rgba(0,255,136,.08);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px) scale(.97);
+  transition: all .25s ease;
+
+  z-index: 9999;
+}
+
+.nav-dropdown.open .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+/* ================= TITLE ================= */
+.site-title {
+  font-size: 2.8rem;
+  background: linear-gradient(90deg, var(--green), var(--cyan));
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 800;
+}
+
+.site-tagline {
+  color: var(--cyan);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .main-nav {
+    display: none;
+    flex-direction: column;
+  }
+
+  .main-nav.active {
+    display: flex;
+  }
+
+  .dropdown-content {
+    position: static;
+    grid-template-columns: 1fr;
+    box-shadow: none;
+    transform: none;
+  }
+}
+
