@@ -7,7 +7,7 @@ author: "Zishan Ahamed Thandar"
 email: "support@zishanhack.com"
 description: "Professional cybersecurity writeups, CTF solutions, and bug bounty reports."
 
-# Collections - CORRECTED for your structure
+# Collections - FIXED for proper post handling
 collections:
   posts:
     output: true
@@ -16,27 +16,24 @@ collections:
     output: true
     permalink: /:path/
 
-# Defaults - CORRECTED for your structure
+# Defaults
 defaults:
-  # For all pages (including index.md files)
   - scope:
       path: ""
       type: "pages"
     values:
       layout: "default"
   
-  # For category index pages
   - scope:
       path: "posts/*/index.md"
     values:
       layout: "list"
   
-  # For post markdown files in category directories
   - scope:
       path: "posts/**/*.md"
-      type: "pages"
     values:
       layout: "default"
+      type: "posts"
 
 # Category configurations
 categories:
@@ -61,6 +58,9 @@ categories:
   imaginaryctf:
     title: "ImaginaryCTF Writeups"
     description: "ImaginaryCTF challenge solutions"
+
+# Add posts_dir to specify where posts are
+posts_dir: "posts"
 
 # Plugins
 plugins:

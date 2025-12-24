@@ -11,49 +11,58 @@ layout: default
   </header>
 
   <div class="list-grid">
-
-    {% comment %}
-    Collect all markdown pages inside /posts/<category>/ excluding index.md
-    {% endcomment %}
-
-    {% assign items = site.pages
-      | where_exp: "p", "p.path contains 'posts/'"
-      | where_exp: "p", "p.path contains page.category"
-      | where_exp: "p", "p.name != 'index.md'" %}
-
+    {% comment %} Get category from the current directory path {% endcomment %}
+    {% assign current_category = page.dir | remove: '/posts/' | remove: '/' | remove: 'index.html' %}
+    
+    {% comment %} Get all pages in the current category directory {% endcomment %}
+    {% assign items = "" | split: "," %}
+    
+    {% for p in site.pages %}
+      {% if p.dir contains page.dir and p.path != page.path and p.name != 'index.md' and p.path contains '.md' %}
+        {% assign items = items | push: p %}
+      {% endif %}
+    {% endfor %}
+    
     {% if items.size > 0 %}
-
-      {% for post in items %}
+      {% comment %} Sort items by date if available {% endcomment %}
+      {% assign sorted_items = items | sort: "date" | reverse %}
+      
+      {% for post in sorted_items %}
         <article class="list-item">
           <a href="{{ post.url | relative_url }}">
-
             <h2 class="list-item-title">
               {{ post.title | default: post.name | replace: '.md','' }}
             </h2>
-
+            
             {% if post.description %}
               <p class="list-item-desc">
                 {{ post.description | truncate: 160 }}
               </p>
+            {% elsif post.excerpt %}
+              <p class="list-item-desc">
+                {{ post.excerpt | strip_html | truncate: 160 }}
+              </p>
             {% endif %}
-
+            
             <div class="list-meta">
-              <span class="list-tag">
-                {{ page.category | upcase }}
+              <span class="list-category">
+                {{ current_category | upcase }}
               </span>
+              {% if post.date %}
+                <span class="list-date">
+                  <i class="fas fa-calendar-alt"></i>
+                  {{ post.date | date: "%B %d, %Y" }}
+                </span>
+              {% endif %}
             </div>
-
           </a>
         </article>
       {% endfor %}
-
     {% else %}
       <article class="list-item empty">
         <h2>No content available</h2>
         <p>New writeups will be added soon.</p>
       </article>
     {% endif %}
-
   </div>
 </section>
-
