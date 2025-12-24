@@ -47,22 +47,28 @@
     <div class="sidebar-section">
       <h3>Recent Posts</h3>
       <ul class="recent-posts">
-        {% comment %} Get all markdown files from posts subdirectories {% endcomment %}
+        {% comment %} Get all markdown files from all posts subdirectories {% endcomment %}
         {% assign all_posts = "" | split: "," %}
         
         {% for p in site.pages %}
-          {% assign dir_parts = p.dir | split: '/' %}
-          {% if dir_parts[1] == "posts" and p.name != "index.md" and p.name != "README.md" and p.path contains '.md' %}
+          {% comment %} Check if file is in a posts directory but not an index file {% endcomment %}
+          {% if p.path contains 'posts/' and p.name != 'index.md' and p.name != 'README.md' and p.path contains '.md' %}
             {% assign all_posts = all_posts | push: p %}
           {% endif %}
         {% endfor %}
         
-        {% comment %} Sort by date, newest first {% endcomment %}
+        {% comment %} Sort by date, newest first (fallback to alphabetical if no date) {% endcomment %}
         {% assign sorted_posts = all_posts | sort: "date" | reverse %}
         
         {% for post in sorted_posts limit:8 %}
           <li>
-            <a href="{{ post.url | relative_url }}">{{ post.title | default: post.name | replace: '.md','' | truncate: 50 }}</a>
+            <a href="{{ post.url | relative_url }}">
+              {% if post.title %}
+                {{ post.title | truncate: 50 }}
+              {% else %}
+                {{ post.name | replace: '.md','' | truncate: 50 }}
+              {% endif %}
+            </a>
           </li>
         {% endfor %}
       </ul>

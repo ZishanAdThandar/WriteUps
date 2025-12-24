@@ -12,26 +12,31 @@ layout: default
 
   <div class="list-grid">
     {% comment %} Get category from the current directory path {% endcomment %}
-    {% assign current_category = page.dir | remove: '/posts/' | remove: '/' | remove: 'index.html' %}
+    {% assign current_path = page.dir %}
     
     {% comment %} Get all pages in the current category directory {% endcomment %}
     {% assign items = "" | split: "," %}
     
     {% for p in site.pages %}
-      {% if p.dir contains page.dir and p.path != page.path and p.name != 'index.md' and p.path contains '.md' %}
+      {% comment %} Check if page is in the same directory but not the index file {% endcomment %}
+      {% if p.dir == current_path and p.name != 'index.md' and p.path contains '.md' %}
         {% assign items = items | push: p %}
       {% endif %}
     {% endfor %}
     
     {% if items.size > 0 %}
-      {% comment %} Sort items by date if available {% endcomment %}
+      {% comment %} Sort items by date if available, otherwise by title {% endcomment %}
       {% assign sorted_items = items | sort: "date" | reverse %}
       
       {% for post in sorted_items %}
         <article class="list-item">
           <a href="{{ post.url | relative_url }}">
             <h2 class="list-item-title">
-              {{ post.title | default: post.name | replace: '.md','' }}
+              {% if post.title %}
+                {{ post.title }}
+              {% else %}
+                {{ post.name | replace: '.md','' }}
+              {% endif %}
             </h2>
             
             {% if post.description %}
@@ -45,8 +50,10 @@ layout: default
             {% endif %}
             
             <div class="list-meta">
+              {% comment %} Get category name from directory path {% endcomment %}
+              {% assign category_name = current_path | remove: '/posts/' | remove: '/' | capitalize %}
               <span class="list-category">
-                {{ current_category | upcase }}
+                {{ category_name }}
               </span>
               {% if post.date %}
                 <span class="list-date">

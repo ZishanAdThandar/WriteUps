@@ -7,14 +7,10 @@ author: "Zishan Ahamed Thandar"
 email: "support@zishanhack.com"
 description: "Professional cybersecurity writeups, CTF solutions, and bug bounty reports."
 
-# Collections - FIXED for proper post handling
+# Collections - Simplified
 collections:
-  posts:
-    output: true
-    permalink: /:path/
   pages:
     output: true
-    permalink: /:path/
 
 # Defaults
 defaults:
@@ -33,7 +29,6 @@ defaults:
       path: "posts/**/*.md"
     values:
       layout: "default"
-      type: "posts"
 
 # Category configurations
 categories:
@@ -58,9 +53,6 @@ categories:
   imaginaryctf:
     title: "ImaginaryCTF Writeups"
     description: "ImaginaryCTF challenge solutions"
-
-# Add posts_dir to specify where posts are
-posts_dir: "posts"
 
 # Plugins
 plugins:
