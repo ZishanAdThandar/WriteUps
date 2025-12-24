@@ -1,98 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }} | {{ site.title }}</title>
-    
-    <!-- SEO Tags -->
-    {% seo %}
-    
-    <!-- Jekyll Feed -->
-    {% feed_meta %}
-    
-    <!-- Hacker-style fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Space+Mono:wght@400;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="/assets/css/style.css">
+  <meta charset="UTF-8">
+  <title>{{ page.title }} | {{ site.title }}</title>
+  {% seo %}
+  <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
-    {% include header.html %}
-    
-    <div class="container">
-        <main>
-            <article class="post">
-                <header class="post-header">
-                    <h1 class="post-title">{{ page.title }}</h1>
-                    {% if page.date %}
-                    <div class="post-meta">
-                        <span><i class="far fa-calendar-alt"></i> Published: {{ page.date | date: "%B %d, %Y" }}</span>
-                        {% if page.author %}
-                        <span><i class="fas fa-user-secret"></i> Author: {{ page.author }}</span>
-                        {% else %}
-                        <span><i class="fas fa-user-secret"></i> Author: {{ site.author }}</span>
-                        {% endif %}
-                        {% if page.category %}
-                        <span><i class="fas fa-tag"></i> Category: {{ page.category }}</span>
-                        {% endif %}
-                    </div>
-                    {% endif %}
-                </header>
-                
-                <div class="post-content">
-                    {{ content }}
-{% if page.cta %}
-  {% include cta.html %}
-{% endif %}
 
-                </div>
-            </article>
-        </main>
-        
-        {% include sidebar.html %}
+{% include header.html %}
+
+<div class="container">
+
+  <main class="content">
+
+    {% if page.layout == "default" %}
+      <header class="post-header">
+        <h1 class="post-title">{{ page.title }}</h1>
+      </header>
+    {% endif %}
+
+    <div class="post-content">
+      {{ content }}
     </div>
-    
-    {% include footer.html %}
-    
-    <script>
-    {% raw %}
-    // Back to top button
-    const backToTop = document.getElementById('backToTop');
-    
-    if (backToTop) {
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        });
-        
-        backToTop.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    }
-    
-    // Image handling for wide images
-    document.addEventListener('DOMContentLoaded', () => {
-        const images = document.querySelectorAll('.post-content img');
-        images.forEach(img => {
-            if (img.naturalWidth > 1200) {
-                const wrapper = document.createElement('div');
-                wrapper.className = 'wide-image';
-                img.parentNode.insertBefore(wrapper, img);
-                wrapper.appendChild(img);
-            }
-        });
-    });
-    {% endraw %}
-    </script>
+
+  </main>
+
+  {% include sidebar.html %}
+
+</div>
+
+{% include footer.html %}
+
 </body>
 </html>
+

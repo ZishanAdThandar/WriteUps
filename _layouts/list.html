@@ -2,12 +2,12 @@
 layout: default
 ---
 
-<section class="list-wrapper">
+<section class="list-page">
 
   <header class="list-header">
     <h1 class="list-title">{{ page.title }}</h1>
     {% if page.description %}
-      <p class="list-subtitle">{{ page.description }}</p>
+      <p class="list-desc">{{ page.description }}</p>
     {% endif %}
   </header>
 
@@ -15,18 +15,10 @@ layout: default
     {% assign base = page.dir %}
 
     {% for p in site.pages %}
-      {% if p.path contains base and p.name != "index.md" and p.layout %}
+      {% if p.path contains base and p.name != "index.md" and p.layout == "default" %}
         <article class="list-item">
-          <a href="{{ p.url }}" class="list-link">
-            <h2 class="list-item-title">
-              {{ p.title | default: p.name | replace: ".md", "" }}
-            </h2>
-
-            {% if p.description %}
-              <p class="list-item-desc">
-                {{ p.description | truncate: 110 }}
-              </p>
-            {% endif %}
+          <a href="{{ p.url }}">
+            <h2>{{ p.title }}</h2>
           </a>
         </article>
       {% endif %}

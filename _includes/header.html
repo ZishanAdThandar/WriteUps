@@ -1,109 +1,50 @@
-<header>
-  <!-- ================= NAV FIRST (ABOVE TITLE) ================= -->
-  <div class="nav-container">
-    <!-- Mobile Toggle -->
-    <button class="mobile-nav-toggle" id="mobileNavToggle">
-      <i class="fas fa-bars"></i> Menu
-    </button>
+<header class="site-header">
 
-    <!-- Navigation -->
-    <nav class="main-nav" id="mainNav">
-      <a href="/" class="nav-link">
-        <i class="fas fa-home"></i> HOME
-      </a>
-
-      <!-- ===== CTF DROPDOWN ===== -->
-      <div class="nav-dropdown" id="ctfDropdown">
-        <button class="dropdown-btn" id="ctfBtn">
-          <i class="fas fa-flag"></i> CTF
-        </button>
-
-        <div class="dropdown-content" id="ctfMenu">
-          <a href="/posts/hackthebox">
-            <i class="fas fa-cube"></i>
-            <span>HackTheBox</span>
-          </a>
-
-          <a href="/posts/tryhackme">
-            <i class="fas fa-tv"></i>
-            <span>TryHackMe</span>
-          </a>
-
-          <a href="/posts/offsec">
-            <i class="fas fa-shield-alt"></i>
-            <span>OffSec</span>
-          </a>
-
-          <a href="/posts/vulnhub">
-            <i class="fas fa-server"></i>
-            <span>VulnHub</span>
-          </a>
-        </div>
-      </div>
-      <!-- ===== END DROPDOWN ===== -->
-
-      <a href="/posts/bugbounty" class="nav-link">
-        <i class="fas fa-bug"></i> BUG BOUNTY
-      </a>
-
-      <a href="/posts/blog" class="nav-link">
-        <i class="fas fa-blog"></i> BLOG
-      </a>
-
-      <a href="{{ site.portfolio }}" class="nav-link">
-        <i class="fas fa-briefcase"></i> PORTFOLIO
-      </a>
-
-      <a href="{{ site.main_site }}" class="nav-link">
-        <i class="fas fa-globe"></i> WEBSITE
-      </a>
-    </nav>
-  </div>
-
-  <!-- ================= TITLE AFTER NAV ================= -->
   <h1 class="site-title">
-    {{ site.title }}<span class="cursor"></span>
+    {{ site.title }}
   </h1>
 
   <p class="site-tagline">
     {{ site.tagline }}
   </p>
 
-  <!-- ================= SCRIPT ================= -->
+  <div class="nav-container">
+    <button class="mobile-nav-toggle" id="mobileNavToggle">
+      Menu
+    </button>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="/" class="nav-link">Home</a>
+
+      <div class="nav-dropdown" id="ctfDropdown">
+        <button class="dropdown-btn" id="ctfBtn">CTF</button>
+        <div class="dropdown-content">
+          <a href="/posts/hackthebox/">HackTheBox</a>
+          <a href="/posts/tryhackme/">TryHackMe</a>
+          <a href="/posts/offsec/">OffSec</a>
+          <a href="/posts/vulnhub/">VulnHub</a>
+        </div>
+      </div>
+
+      <a href="/posts/bugbounty/" class="nav-link">Bug Bounty</a>
+      <a href="/posts/blog/" class="nav-link">Blog</a>
+      <a href="{{ site.main_site }}" class="nav-link">Website</a>
+    </nav>
+  </div>
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const mobileToggle = document.getElementById("mobileNavToggle");
-      const mainNav = document.getElementById("mainNav");
+      const toggle = document.getElementById("mobileNavToggle");
+      const nav = document.getElementById("mainNav");
+      const btn = document.getElementById("ctfBtn");
+      const drop = document.getElementById("ctfDropdown");
 
-      const ctfBtn = document.getElementById("ctfBtn");
-      const ctfDropdown = document.getElementById("ctfDropdown");
-
-      /* Mobile menu */
-      mobileToggle.addEventListener("click", () => {
-        mainNav.classList.toggle("active");
-        mobileToggle.innerHTML = mainNav.classList.contains("active")
-          ? '<i class="fas fa-times"></i> Close'
-          : '<i class="fas fa-bars"></i> Menu';
-      });
-
-      /* Dropdown toggle */
-      ctfBtn.addEventListener("click", (e) => {
-        e.preventDefault();
+      toggle.onclick = () => nav.classList.toggle("active");
+      btn.onclick = (e) => {
         e.stopPropagation();
-        ctfDropdown.classList.toggle("open");
-      });
-
-      /* Close on outside click */
-      document.addEventListener("click", (e) => {
-        if (!ctfDropdown.contains(e.target)) {
-          ctfDropdown.classList.remove("open");
-        }
-      });
-
-      /* Close on resize */
-      window.addEventListener("resize", () => {
-        ctfDropdown.classList.remove("open");
-      });
+        drop.classList.toggle("open");
+      };
+      document.onclick = () => drop.classList.remove("open");
     });
   </script>
 </header>
