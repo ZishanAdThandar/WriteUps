@@ -11,19 +11,19 @@ layout: default
   </header>
 
   <div class="list-grid">
-    {% comment %} Debug: Get current category from page URL {% endcomment %}
+    {% comment %} Get current category from page URL {% endcomment %}
     {% assign current_path = page.url %}
     {% assign category_parts = current_path | split: '/' %}
     {% assign current_category = category_parts[2] %}
     
     {% comment %} Filter posts by path and exclude imaginaryctf {% endcomment %}
-    {% assign filtered_posts = site.posts | where_exp: "post", "post.path contains current_category and post.path != page.path" %}
+    {% assign filtered_posts = site.posts | where_exp: "post", "post.path contains current_category" %}
 
     {% if filtered_posts.size > 0 %}
       {% assign sorted_items = filtered_posts | sort: "date" | reverse %}
 
       {% for post in sorted_items %}
-        {% unless post.path contains 'imaginaryctf' %}
+        {% unless post.path contains 'imaginaryctf' or post.path contains 'index' %}
           <article class="list-item">
             <a href="{{ post.url | relative_url }}">
               <h2 class="list-item-title">
