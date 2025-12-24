@@ -11,23 +11,22 @@ layout: default
     </header>
 
     <div class="list-grid">
-        {% assign category_name = page.url | split: '/' | last | remove: '/' %}
+        {% comment %} Get the category name from the URL {% endcomment %}
+        {% assign url_parts = page.url | split: '/' %}
+        {% assign category_name = url_parts[2] %}
         
-        {% comment %} Debug info (remove in production) {% endcomment %}
-        <!-- Category: {{ category_name }} -->
-        <!-- Page URL: {{ page.url }} -->
-        
+        {% comment %} Collect all posts in this category {% endcomment %}
         {% assign category_posts = "" | split: "," %}
         
         {% for post in site.pages %}
-            {% comment %} Check if post is in this category {% endcomment %}
-            {% if post.dir contains category_name and post.name != "index.md" and post.ext == ".md" %}
+            {% comment %} Check if the post is in the right directory {% endcomment %}
+            {% if post.path contains 'posts/' and post.path contains category_name and post.name != "index.md" %}
                 {% assign category_posts = category_posts | push: post %}
             {% endif %}
         {% endfor %}
         
         {% if category_posts.size > 0 %}
-            {% comment %} Sort posts by modification time or date {% endcomment %}
+            {% comment %} Sort posts by date or title {% endcomment %}
             {% assign sorted_posts = category_posts | sort: "date" | reverse %}
             
             {% for post in sorted_posts %}
@@ -35,14 +34,10 @@ layout: default
                     <a href="{{ post.url | relative_url }}">
                         <h2>{{ post.title }}</h2>
                         
-                        {% if post.excerpt %}
-                            <p style="color: var(--text-secondary); margin: 0.75rem 0; font-size: 0.95rem; line-height: 1.5;">
-                                {{ post.excerpt | strip_html | truncate: 150 }}
-                            </p>
-                        {% elsif post.description %}
-                            <p style="color: var(--text-secondary); margin: 0.75rem 0; font-size: 0.95rem; line-height: 1.5;">
-                                {{ post.description | truncate: 150 }}
-                            </p>
+                        {% if post.description %}
+                            <p>{{ post.description | truncate: 150 }}</p>
+                        {% elsif post.excerpt %}
+                            <p>{{ post.excerpt | strip_html | truncate: 150 }}</p>
                         {% endif %}
                         
                         <div class="list-meta">
@@ -55,17 +50,17 @@ layout: default
                                 {% endif %}
                             </span>
                             <span class="list-category">
-                                {{ category_name | capitalize }}
+                                {{ category_name | replace: 'hackthebox', 'HTB' | replace: 'tryhackme', 'THM' | capitalize }}
                             </span>
                         </div>
                     </a>
                 </article>
             {% endfor %}
         {% else %}
-            <article class="list-item" style="grid-column: 1 / -1; text-align: center;">
-                <h2>No posts found</h2>
+            <article class="list-item" style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+                <h2>No posts found in this category</h2>
                 <p style="color: var(--text-secondary); margin-top: 1rem;">
-                    There are no posts in this category yet. Check back soon!
+                    Check back soon for new content!
                 </p>
             </article>
         {% endif %}

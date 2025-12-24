@@ -6,6 +6,12 @@
   {% seo %}
   <!-- Font Awesome CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Prevent browser link styling -->
+  <meta name="theme-color" content="#0a0e17">
+  <meta name="msapplication-navbutton-color" content="#0a0e17">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#0a0e17">
+  <!-- Viewport for mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
@@ -19,6 +25,11 @@
     {% if page.layout == "default" %}
       <header class="post-header">
         <h1 class="post-title">{{ page.title }}</h1>
+        {% if page.date %}
+          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">
+            <i class="fas fa-calendar-alt"></i> {{ page.date | date: "%B %d, %Y" }}
+          </p>
+        {% endif %}
       </header>
     {% endif %}
 

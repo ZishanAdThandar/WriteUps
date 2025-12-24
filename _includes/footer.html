@@ -22,7 +22,7 @@
     // Back to Top functionality
     const backToTop = document.getElementById('backToTop');
     
-    window.addEventListener('scroll', () => {
+    window.addEventListener('scroll', function() {
         if (window.pageYOffset > 300) {
             backToTop.classList.add('visible');
         } else {
@@ -30,7 +30,7 @@
         }
     });
     
-    backToTop.addEventListener('click', (e) => {
+    backToTop.addEventListener('click', function(e) {
         e.preventDefault();
         window.scrollTo({ 
             top: 0, 
@@ -38,22 +38,20 @@
         });
     });
     
-    // Make sure dropdowns close on mobile when clicking outside
-    document.addEventListener('click', (e) => {
-        const dropdown = document.getElementById('ctfDropdown');
-        const dropdownBtn = document.getElementById('ctfBtn');
-        const nav = document.getElementById('mainNav');
-        
-        // If click is outside dropdown AND not on dropdown button
-        if (!dropdown.contains(e.target) && !dropdownBtn.contains(e.target)) {
-            dropdown.classList.remove('open');
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check initial scroll position
+        if (window.pageYOffset > 300) {
+            backToTop.classList.add('visible');
         }
         
-        // If click is outside mobile nav AND not on mobile toggle button
-        const mobileToggle = document.getElementById('mobileNavToggle');
-        if (!nav.contains(e.target) && !mobileToggle.contains(e.target) && window.innerWidth <= 768) {
-            nav.classList.remove('active');
-        }
+        // Add keyboard navigation for accessibility
+        backToTop.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
     });
     </script>
 </footer>

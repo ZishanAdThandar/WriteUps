@@ -10,7 +10,7 @@
 
   <div class="nav-container">
     <button class="mobile-nav-toggle" id="mobileNavToggle">
-      <i class="fas fa-bars"></i>
+      <i class="fas fa-bars"></i> Menu
     </button>
 
     <nav class="main-nav" id="mainNav">
@@ -25,6 +25,7 @@
           <a href="/posts/tryhackme/"><i class="fas fa-tv"></i> TryHackMe</a>
           <a href="/posts/offsec/"><i class="fas fa-shield-alt"></i> OffSec</a>
           <a href="/posts/vulnhub/"><i class="fas fa-server"></i> VulnHub</a>
+          <a href="/posts/imaginaryctf/"><i class="fas fa-flag-checkered"></i> ImaginaryCTF</a>
         </div>
       </div>
 
@@ -35,43 +36,71 @@
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", function() {
       const toggle = document.getElementById("mobileNavToggle");
       const nav = document.getElementById("mainNav");
       const dropdownBtn = document.getElementById("ctfBtn");
       const dropdown = document.getElementById("ctfDropdown");
       
       // Mobile menu toggle
-      toggle.addEventListener("click", (e) => {
+      toggle.addEventListener("click", function(e) {
         e.stopPropagation();
         nav.classList.toggle("active");
-        // Close dropdown when mobile menu toggles
+        // Toggle aria-expanded for accessibility
+        const isExpanded = nav.classList.contains("active");
+        toggle.setAttribute("aria-expanded", isExpanded);
+        
+        // Close dropdown when mobile menu opens
         dropdown.classList.remove("open");
       });
       
       // Desktop dropdown toggle
-      dropdownBtn.addEventListener("click", (e) => {
+      dropdownBtn.addEventListener("click", function(e) {
         e.stopPropagation();
         dropdown.classList.toggle("open");
       });
       
       // Close dropdown when clicking outside
-      document.addEventListener("click", () => {
-        dropdown.classList.remove("open");
-        // Don't close mobile menu on outside click for better UX
+      document.addEventListener("click", function(e) {
+        if (!dropdown.contains(e.target) && !dropdownBtn.contains(e.target)) {
+          dropdown.classList.remove("open");
+        }
+        
+        // Close mobile menu when clicking outside on mobile
+        if (window.innerWidth <= 768 && !nav.contains(e.target) && !toggle.contains(e.target)) {
+          nav.classList.remove("active");
+          toggle.setAttribute("aria-expanded", "false");
+        }
       });
       
-      // Close mobile menu when clicking a link
-      document.querySelectorAll('.main-nav a').forEach(link => {
-        link.addEventListener('click', () => {
-          nav.classList.remove("active");
+      // Close dropdown when clicking a link inside it
+      dropdown.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
           dropdown.classList.remove("open");
+          // Close mobile menu too if open
+          if (window.innerWidth <= 768) {
+            nav.classList.remove("active");
+            toggle.setAttribute("aria-expanded", "false");
+          }
         });
       });
       
-      // Close dropdown when window is resized (mobile/desktop switch)
-      window.addEventListener('resize', () => {
-        dropdown.classList.remove("open");
+      // Close mobile menu when clicking any nav link
+      document.querySelectorAll('.main-nav a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          if (window.innerWidth <= 768) {
+            nav.classList.remove("active");
+            toggle.setAttribute("aria-expanded", "false");
+          }
+        });
+      });
+      
+      // Close dropdown when window is resized
+      window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+          nav.classList.remove("active");
+          toggle.setAttribute("aria-expanded", "false");
+        }
       });
     });
   </script>
