@@ -54,7 +54,7 @@ plugins:
 # Sitemap settings
 sitemap:
   changefreq: "daily"
-  priority: 0.8
+  priority: 1
 
 # Exclude
 exclude:
