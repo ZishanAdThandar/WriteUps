@@ -1,0 +1,60 @@
+---
+layout: default
+title: Debug Posts
+---
+<h2>Debug: All Posts Information</h2>
+
+<h3>Site Configuration:</h3>
+<p>Total Posts: {{ site.posts.size }}</p>
+
+<h3>Current Page Info:</h3>
+<p>Page URL: {{ page.url }}</p>
+<p>Page Path: {{ page.path }}</p>
+<p>Page Category: {{ page.category }}</p>
+
+<h3>All Posts List:</h3>
+<table border="1" style="width: 100%; border-collapse: collapse;">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>URL</th>
+            <th>Path</th>
+            <th>Category</th>
+            <th>Date</th>
+            <th>Layout</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for post in site.posts %}
+        <tr>
+            <td>{{ post.title }}</td>
+            <td>{{ post.url }}</td>
+            <td>{{ post.path }}</td>
+            <td>{{ post.category }}</td>
+            <td>{{ post.date }}</td>
+            <td>{{ post.layout }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3>Test Category Filtering:</h3>
+<h4>Posts with category='hackthebox':</h4>
+<ul>
+    {% assign htb_posts = site.posts | where: "category", "hackthebox" %}
+    {% for post in htb_posts %}
+    <li>{{ post.title }} - {{ post.path }}</li>
+    {% else %}
+    <li>No posts with category='hackthebox'</li>
+    {% endfor %}
+</ul>
+
+<h4>Posts with path containing 'hackthebox':</h4>
+<ul>
+    {% assign htb_path_posts = site.posts | where_exp: "post", "post.path contains 'hackthebox'" %}
+    {% for post in htb_path_posts %}
+    <li>{{ post.title }} - {{ post.path }}</li>
+    {% else %}
+    <li>No posts with path containing 'hackthebox'</li>
+    {% endfor %}
+</ul>

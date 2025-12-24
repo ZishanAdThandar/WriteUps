@@ -60,7 +60,45 @@
             </div>
             {% endif %}
             
-            <!-- FIXED: Get current category from page or URL -->
+            <!-- DEBUG SECTION - Show what's happening -->
+            <div style="background: rgba(255,0,60,0.1); padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; border: 1px solid #ff003c;">
+                <h3 style="color: #ff003c; margin-bottom: 1rem;"><i class="fas fa-bug"></i> Debug Information:</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 5px; overflow-x: auto; color: var(--accent-green); font-family: 'Source Code Pro', monospace; font-size: 0.9rem;">
+Page URL: {{ page.url }}
+Page Path: {{ page.path }}
+Page Category: {{ page.category }}
+Total Posts in Site: {{ site.posts.size }}
+
+URL Parts: 
+{% assign url_parts = page.url | split: '/' %}
+{% for part in url_parts %}- {{ part }}
+{% endfor %}
+
+Attempting to find category from URL parts:
+{% assign current_category = '' %}
+{% for part in url_parts %}
+    {% if part == 'hackthebox' or part == 'tryhackme' or part == 'offsec' or part == 'vulnhub' or part == 'bugbounty' or part == 'blog' %}
+        Found category: {{ part }}
+        {% assign current_category = part %}
+    {% endif %}
+{% endfor %}
+
+Current Category: '{{ current_category }}'
+
+Testing filtering methods:
+1. Using where: "category", "{{ current_category }}" 
+   Result: {{ site.posts | where: "category", current_category | size }} posts
+
+2. Using where_exp: "post.path contains '{{ current_category }}'"
+   Result: {{ site.posts | where_exp: "post.path contains current_category" | size }} posts
+
+3. All posts paths:
+{% for post in site.posts %}- {{ post.title }}: path="{{ post.path }}", category="{{ post.category }}", url="{{ post.url }}"
+{% endfor %}
+                </pre>
+            </div>
+            
+            <!-- ORIGINAL FILTERING CODE -->
             {% assign current_category = page.category %}
             
             {% unless current_category %}
@@ -72,16 +110,28 @@
                 {% endfor %}
             {% endunless %}
             
-            <!-- FIXED: Filter posts - using both category field and path -->
-            {% assign category_posts = site.posts | where: "category", current_category %}
+            <!-- SIMPLIFIED FILTERING - Just show all posts for now -->
+            {% assign category_posts = site.posts %}
             
-            {% if category_posts.size == 0 %}
-                {% assign category_posts = site.posts | where_exp: "post", "post.path contains current_category" %}
+            <!-- If we have a category, try to filter -->
+            {% if current_category and current_category != '' %}
+                {% assign cat_filtered = site.posts | where: "category", current_category %}
+                {% if cat_filtered.size > 0 %}
+                    {% assign category_posts = cat_filtered %}
+                {% else %}
+                    {% assign path_filtered = site.posts | where_exp: "post", "post.path contains current_category" %}
+                    {% if path_filtered.size > 0 %}
+                        {% assign category_posts = path_filtered %}
+                    {% endif %}
+                {% endif %}
             {% endif %}
             
-            {% if category_posts.size == 0 and current_category == '' %}
-                {% assign category_posts = site.posts %}
-            {% endif %}
+            <h3 style="margin-bottom: 2rem; color: var(--accent-green);">
+                <i class="fas fa-list"></i> Showing {{ category_posts.size }} post{{ category_posts.size | pluralize }}
+                {% if current_category and current_category != '' %}
+                    in {{ current_category }}
+                {% endif %}
+            </h3>
             
             {% if category_posts.size > 0 %}
             <div class="posts-grid">
@@ -116,19 +166,8 @@
             </div>
             {% else %}
             <div class="no-posts">
-                <h2><i class="fas fa-exclamation-triangle"></i> No posts found in this category</h2>
-                <p>Check back soon for new content!</p>
-                
-                <!-- Debug info -->
-                <div style="background: rgba(255,0,60,0.1); padding: 1rem; border-radius: 8px; margin: 2rem 0; border: 1px solid #ff003c;">
-                    <p style="color: #ff003c; margin: 0; font-family: 'Source Code Pro', monospace; font-size: 0.9rem;">
-                        <i class="fas fa-bug"></i> Debug: 
-                        Current Category: {{ current_category }} | 
-                        Page Category: {{ page.category }} | 
-                        Page URL: {{ page.url }} | 
-                        Total Posts: {{ site.posts.size }}
-                    </p>
-                </div>
+                <h2><i class="fas fa-exclamation-triangle"></i> No posts found</h2>
+                <p>There are {{ site.posts.size }} total posts in the site, but none matched the current filter.</p>
                 
                 <div style="margin-top: 2.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
                     <a href="/" style="
@@ -146,20 +185,20 @@
                     ">
                         <i class="fas fa-home"></i> Go Home
                     </a>
-                    <a href="/posts" style="
+                    <a href="/debug" style="
                         display: inline-flex;
                         align-items: center;
                         gap: 10px;
                         padding: 1rem 2rem;
-                        background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
-                        color: var(--primary-dark);
+                        background: linear-gradient(90deg, #ff003c, #ff6600);
+                        color: white;
                         text-decoration: none;
                         border-radius: 8px;
-                        border: 1px solid var(--accent-green);
+                        border: 1px solid #ff003c;
                         font-weight: 600;
                         transition: all 0.3s;
                     ">
-                        <i class="fas fa-terminal"></i> View All Posts
+                        <i class="fas fa-bug"></i> Debug Info
                     </a>
                 </div>
             </div>
