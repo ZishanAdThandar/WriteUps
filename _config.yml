@@ -1,5 +1,4 @@
 # File: _config.yml
-# Jekyll Configuration
 title: "Zishan Hack"
 tagline: "Cybersecurity CTF & Bug Bounty Solutions"
 url: "https://blog.zishanhack.com"
@@ -8,18 +7,15 @@ author: "Zishan Ahamed Thandar"
 email: "support@zishanhack.com"
 description: "Professional cybersecurity writeups, CTF solutions, and bug bounty reports."
 
-# Build settings
-markdown: kramdown
-highlighter: rouge
-permalink: pretty
-
-# Collections
+# Collections configuration - FIXED
 collections:
   posts:
     output: true
     permalink: /posts/:path/
+    sort_by: date
+    sort_direction: descending
 
-# Defaults
+# Defaults - FIXED
 defaults:
   # Default for all posts
   - scope:
@@ -28,9 +24,10 @@ defaults:
     values:
       layout: "default"
   
-  # Category index pages
+  # Category index pages - FIXED
   - scope:
       path: "posts/hackthebox"
+      type: "pages"
     values:
       layout: "list"
       title: "HackTheBox Writeups"
@@ -38,6 +35,7 @@ defaults:
   
   - scope:
       path: "posts/tryhackme"
+      type: "pages"
     values:
       layout: "list"
       title: "TryHackMe Writeups"
@@ -45,6 +43,7 @@ defaults:
   
   - scope:
       path: "posts/offsec"
+      type: "pages"
     values:
       layout: "list"
       title: "OffSec Writeups"
@@ -52,6 +51,7 @@ defaults:
   
   - scope:
       path: "posts/vulnhub"
+      type: "pages"
     values:
       layout: "list"
       title: "VulnHub Writeups"
@@ -59,6 +59,7 @@ defaults:
   
   - scope:
       path: "posts/bugbounty"
+      type: "pages"
     values:
       layout: "list"
       title: "Bug Bounty Reports"
@@ -66,6 +67,7 @@ defaults:
   
   - scope:
       path: "posts/blog"
+      type: "pages"
     values:
       layout: "list"
       title: "Blog Posts"
@@ -76,11 +78,6 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
-
-# Sitemap settings
-sitemap:
-  changefreq: "daily"
-  priority: 1
 
 # Exclude
 exclude:
@@ -98,3 +95,9 @@ linktree: "https://go.zishanhack.com"
 portfolio: "https://portfolio.zishanhack.com"
 main_site: "https://zishanhack.com"
 sponsors: "https://github.com/sponsors/ZishanAdThandar"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+timezone: UTC
