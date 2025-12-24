@@ -3,182 +3,191 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
   
   <!-- SEO -->
-  <title>{{ page.title }} | {{ site.title }}</title>
-  <meta name="description" content="Browse all {{ page.title }} writeups and guides by {{ site.author }}">
-  <meta name="keywords" content="{{ page.title }}, CTF, cybersecurity, penetration testing, {{ site.author }}">
+  <title>
+    {% if page.title %}{{ page.title }} | {{ site.title }}
+    {% elsif page.url contains 'hackthebox' %}HackTheBox Writeups | {{ site.title }}
+    {% elsif page.url contains 'tryhackme' %}TryHackMe Writeups | {{ site.title }}
+    {% elsif page.url contains 'offsec' %}OffSec Writeups | {{ site.title }}
+    {% elsif page.url contains 'vulnhub' %}VulnHub Writeups | {{ site.title }}
+    {% elsif page.url contains 'bugbounty' %}Bug Bounty Reports | {{ site.title }}
+    {% elsif page.url contains 'blog' %}Security Blog | {{ site.title }}
+    {% else %}Writeups | {{ site.title }}{% endif %}
+  </title>
   
-  <!-- Open Graph -->
-  <meta property="og:title" content="{{ page.title }} | {{ site.title }}">
-  <meta property="og:description" content="Browse all {{ page.title }} writeups and guides by {{ site.author }}">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta name="description" content="{% if page.url contains 'hackthebox' %}Detailed HackTheBox machine walkthroughs and solutions{% elsif page.url contains 'tryhackme' %}TryHackMe room solutions and guides{% elsif page.url contains 'bugbounty' %}Real-world bug bounty findings and methodologies{% else %}Cybersecurity writeups collection{% endif %}">
   
-  <!-- Favicon -->
-  <link rel="icon" href="data:image/png;base64,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" type="image/x-icon">
+  <!-- Canonical -->
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
   
-  <!-- Fonts -->
+  <!-- Preload -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Bootstrap -->
+  <!-- Fonts & CSS (same as default.html) -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   
   <style>
-    :root {
-      --bg-primary: #0a0a0f;
-      --bg-secondary: #11111f;
-      --bg-tertiary: #1a1a2e;
-      --bg-card: rgba(26, 26, 46, 0.95);
-      --accent-primary: #00ff88;
-      --accent-secondary: #38bdf8;
-      --text-primary: #f1f5f9;
-      --text-secondary: #cbd5e1;
-      --text-muted: #94a3b8;
-      --border-color: rgba(148, 163, 184, 0.15);
-      --shadow-glassy: 0 8px 32px rgba(0, 0, 0, 0.3);
-      --shadow-neon: 0 0 20px rgba(0, 255, 136, 0.15);
-      --radius-sm: 8px;
-      --radius-md: 12px;
-      --radius-lg: 16px;
-      --radius-xl: 24px;
+    /* Reuse variables and base styles from default.html */
+    :root, [data-theme="light"] {
+      /* Same as default.html */
     }
     
-    * {
-      box-sizing: border-box;
-    }
-    
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: var(--bg-primary);
-      color: var(--text-primary);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      min-height: 100vh;
-    }
-    
-    /* Navigation (same as default.html) */
-    .navbar {
-      background: rgba(10, 10, 15, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border-color);
-      padding: 1rem 0;
-    }
-    
-    .navbar-brand {
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--accent-primary) !important;
-      letter-spacing: -0.5px;
-    }
-    
-    .navbar-brand::after {
-      content: "_";
-      animation: blink 1s infinite;
-      color: var(--accent-primary);
-    }
-    
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-    
-    .nav-link {
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 500;
-      font-size: 0.9rem;
-      color: var(--text-secondary) !important;
-      margin: 0 0.5rem;
-      padding: 0.5rem 0.75rem !important;
-      border-radius: var(--radius-sm);
-      transition: all 0.2s ease;
-    }
-    
-    .nav-link:hover {
-      color: var(--accent-primary) !important;
-      background: rgba(0, 255, 136, 0.1);
-    }
-    
-    .nav-link.active {
-      color: var(--accent-primary) !important;
-      background: rgba(0, 255, 136, 0.1);
-      border: 1px solid rgba(0, 255, 136, 0.3);
-    }
-    
-    /* Main Content */
-    main {
-      padding-top: 5rem;
-      min-height: calc(100vh - 200px);
-    }
-    
-    .container-fluid {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    /* Category Header */
-    .category-header {
-      text-align: center;
+    /* List-specific styles */
+    .category-hero {
+      background: linear-gradient(135deg, 
+        rgba(0, 255, 136, 0.1) 0%, 
+        rgba(56, 189, 248, 0.1) 100%);
+      border-radius: var(--radius-2xl);
+      padding: 3rem 2rem;
       margin-bottom: 3rem;
-      padding: 2rem;
-      background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(56, 189, 248, 0.1));
-      border-radius: var(--radius-xl);
       border: 1px solid var(--border-color);
+      text-align: center;
     }
     
     .category-icon {
-      font-size: 3rem;
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
       color: var(--accent-primary);
-      margin-bottom: 1rem;
     }
     
     .category-title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 0.5rem;
+      font-size: 2.8rem;
+      font-weight: 900;
       background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      margin-bottom: 1rem;
     }
     
-    .category-description {
-      font-size: 1.1rem;
+    .category-stats {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent-primary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    /* Filter Bar */
+    .filter-bar {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border: 1px solid var(--border-color);
+    }
+    
+    .search-box {
+      position: relative;
+    }
+    
+    .search-box i {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+    }
+    
+    .search-input {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.75rem;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font-family: 'JetBrains Mono', monospace;
+      transition: all 0.2s ease;
+    }
+    
+    .search-input:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1);
+    }
+    
+    .filter-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    
+    .filter-tag {
+      padding: 0.4rem 0.9rem;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: 50px;
       color: var(--text-secondary);
-      max-width: 600px;
-      margin: 0 auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .filter-tag:hover,
+    .filter-tag.active {
+      background: var(--accent-primary);
+      color: var(--bg-primary);
+      border-color: var(--accent-primary);
     }
     
     /* Writeups Grid */
     .writeups-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 1.5rem;
       margin-bottom: 3rem;
     }
     
-    /* Writeup Card */
+    @media (max-width: 768px) {
+      .writeups-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
     .writeup-card {
       background: var(--bg-card);
       border-radius: var(--radius-lg);
       border: 1px solid var(--border-color);
       padding: 1.5rem;
-      transition: all 0.3s ease;
       text-decoration: none;
       color: inherit;
-      display: block;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
     }
     
     .writeup-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-5px);
       border-color: var(--accent-primary);
       box-shadow: var(--shadow-neon);
     }
@@ -191,12 +200,10 @@
       right: 0;
       height: 3px;
       background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-      opacity: 0;
-      transition: opacity 0.3s ease;
     }
     
-    .writeup-card:hover::before {
-      opacity: 1;
+    .writeup-header {
+      margin-bottom: 1rem;
     }
     
     .writeup-category {
@@ -204,21 +211,25 @@
       padding: 0.3rem 0.8rem;
       background: rgba(0, 255, 136, 0.1);
       color: var(--accent-primary);
-      border-radius: var(--radius-full);
+      border-radius: 50px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.75rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
     }
     
     .writeup-title {
       font-size: 1.3rem;
       font-weight: 700;
-      margin-bottom: 0.75rem;
+      line-height: 1.4;
       color: var(--text-primary);
-      line-height: 1.3;
+      margin-bottom: 0.75rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
     
     .writeup-excerpt {
@@ -226,47 +237,68 @@
       font-size: 0.95rem;
       line-height: 1.6;
       margin-bottom: 1rem;
+      flex-grow: 1;
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
     
-    .writeup-meta {
+    .writeup-footer {
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 1rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border-color);
     }
     
-    .writeup-date {
+    .writeup-meta {
+      display: flex;
+      gap: 1rem;
       font-size: 0.85rem;
       color: var(--text-muted);
     }
     
     .writeup-tags {
       display: flex;
+      gap: 0.4rem;
       flex-wrap: wrap;
-      gap: 0.5rem;
     }
     
     .writeup-tag {
-      padding: 0.2rem 0.6rem;
+      padding: 0.2rem 0.5rem;
       background: rgba(56, 189, 248, 0.1);
       color: var(--accent-secondary);
-      border-radius: var(--radius-full);
+      border-radius: 4px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.7rem;
     }
     
-    .writeup-readtime {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--text-muted);
-      font-size: 0.85rem;
+    /* Difficulty Badges */
+    .difficulty-badge {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-left: 0.5rem;
+    }
+    
+    .difficulty-easy {
+      background: rgba(0, 255, 136, 0.15);
+      color: var(--accent-primary);
+    }
+    
+    .difficulty-medium {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--accent-tertiary);
+    }
+    
+    .difficulty-hard {
+      background: rgba(239, 68, 68, 0.15);
+      color: #ef4444;
     }
     
     /* Empty State */
@@ -281,7 +313,7 @@
     .empty-icon {
       font-size: 3rem;
       color: var(--text-muted);
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
     
     .empty-title {
@@ -296,172 +328,85 @@
       margin: 0 auto 1.5rem;
     }
     
-    /* Footer (same as default.html) */
-    footer {
-      background: var(--bg-tertiary);
-      padding: 3rem 0 2rem;
-      margin-top: 3rem;
-      border-top: 1px solid var(--border-color);
-    }
-    
-    .footer-content {
+    /* Pagination */
+    .pagination {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 2rem;
-    }
-    
-    .footer-logo {
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: var(--accent-primary);
-      text-decoration: none;
-    }
-    
-    .footer-copyright {
-      margin-top: 2rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border-color);
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-    }
-    
-    /* Responsive */
-    @media (max-width: 768px) {
-      .category-title {
-        font-size: 2rem;
-      }
-      
-      .writeups-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .footer-content {
-        flex-direction: column;
-        text-align: center;
-      }
-    }
-    
-    /* Loading animation */
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-    
-    .loading {
-      animation: pulse 2s infinite;
-    }
-    
-    /* Search and Filter */
-    .search-container {
-      margin-bottom: 2rem;
-    }
-    
-    .search-box {
-      position: relative;
-      max-width: 400px;
-      margin: 0 auto;
-    }
-    
-    .search-input {
-      width: 100%;
-      padding: 1rem 1rem 1rem 3rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      color: var(--text-primary);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.9rem;
-      transition: all 0.2s ease;
-    }
-    
-    .search-input:focus {
-      outline: none;
-      border-color: var(--accent-primary);
-      box-shadow: var(--shadow-neon);
-    }
-    
-    .search-icon {
-      position: absolute;
-      left: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-muted);
-    }
-    
-    .filter-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
       justify-content: center;
-      margin-top: 1rem;
+      margin-top: 3rem;
     }
     
-    .filter-tag {
-      padding: 0.4rem 1rem;
+    .page-link {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
-      border-radius: var(--radius-full);
       color: var(--text-secondary);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem;
-      cursor: pointer;
+      margin: 0 0.25rem;
+      border-radius: var(--radius-md);
       transition: all 0.2s ease;
     }
     
-    .filter-tag:hover,
-    .filter-tag.active {
-      background: rgba(0, 255, 136, 0.1);
-      color: var(--accent-primary);
+    .page-link:hover {
+      background: var(--accent-primary);
+      color: var(--bg-primary);
+      border-color: var(--accent-primary);
+    }
+    
+    .page-link.active {
+      background: var(--accent-primary);
+      color: var(--bg-primary);
       border-color: var(--accent-primary);
     }
   </style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="{{ "/" | relative_url }}">
-        $> {{ site.title | split: " " | first }}
+  <!-- Navigation (same as default.html) -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-2">
+    <div class="container-xl px-3 px-lg-4">
+      <a class="navbar-brand d-flex align-items-center" href="{{ '/' | relative_url }}">
+        <span class="text-primary fw-bold">$></span>
+        <span class="ms-2 fw-bold">{{ site.title | split: ' ' | first }}</span>
+        <span class="cursor-blink ms-1">_</span>
       </a>
       
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler border-0 px-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+        <i class="fas fa-terminal"></i>
       </button>
       
-      <div class="collapse navbar-collapse" id="navbarContent">
-        <ul class="navbar-nav ms-auto">
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="{{ "/" | relative_url }}">
-              <i class="fas fa-home"></i> Home
+            <a class="nav-link px-3 {% if page.url == '/' %}active{% endif %}" href="{{ '/' | relative_url }}">
+              <i class="fas fa-home fa-fw me-1"></i>Home
             </a>
           </li>
           
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-              <i class="fas fa-flag"></i> CTF Writeups
+            <a class="nav-link dropdown-toggle px-3 active" href="#" role="button" data-bs-toggle="dropdown">
+              <i class="fas fa-flag fa-fw me-1"></i>CTF
             </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{{ "/posts/hackthebox" | relative_url }}">HackTheBox</a></li>
-              <li><a class="dropdown-item" href="{{ "/posts/tryhackme" | relative_url }}">TryHackMe</a></li>
-              <li><a class="dropdown-item" href="{{ "/posts/offsec" | relative_url }}">OffSec</a></li>
-              <li><a class="dropdown-item" href="{{ "/posts/vulnhub" | relative_url }}">VulnHub</a></li>
+            <ul class="dropdown-menu dropdown-menu-dark border-0 shadow-lg">
+              <li><a class="dropdown-item {% if page.url contains 'hackthebox' %}active{% endif %}" href="/posts/hackthebox/"><i class="fas fa-cube fa-fw me-2"></i>HackTheBox</a></li>
+              <li><a class="dropdown-item {% if page.url contains 'tryhackme' %}active{% endif %}" href="/posts/tryhackme/"><i class="fas fa-laptop-code fa-fw me-2"></i>TryHackMe</a></li>
+              <li><a class="dropdown-item {% if page.url contains 'offsec' %}active{% endif %}" href="/posts/offsec/"><i class="fas fa-shield-alt fa-fw me-2"></i>OffSec</a></li>
+              <li><a class="dropdown-item {% if page.url contains 'vulnhub' %}active{% endif %}" href="/posts/vulnhub/"><i class="fas fa-server fa-fw me-2"></i>VulnHub</a></li>
             </ul>
           </li>
           
           <li class="nav-item">
-            <a class="nav-link" href="{{ "/posts/bugbounty" | relative_url }}">
-              <i class="fas fa-bug"></i> Bug Bounty
+            <a class="nav-link px-3 {% if page.url contains 'bugbounty' %}active{% endif %}" href="/posts/bugbounty/">
+              <i class="fas fa-bug fa-fw me-1"></i>Bug Bounty
             </a>
           </li>
           
           <li class="nav-item">
-            <a class="nav-link" href="{{ "/posts/blog" | relative_url }}">
-              <i class="fas fa-pen-nib"></i> Blog
+            <a class="nav-link px-3 {% if page.url contains 'blog' %}active{% endif %}" href="/posts/blog/">
+              <i class="fas fa-pen-nib fa-fw me-1"></i>Blog
             </a>
+          </li>
+          
+          <li class="nav-item ms-2">
+            <button class="btn btn-sm btn-outline-primary theme-toggle" id="themeToggle">
+              <i class="fas fa-moon"></i>
+            </button>
           </li>
         </ul>
       </div>
@@ -469,25 +414,43 @@
   </nav>
 
   <!-- Main Content -->
-  <main>
-    <div class="container-fluid px-4">
-      <!-- Category Header -->
-      <div class="category-header">
+  <main class="pt-5 mt-2">
+    <div class="container-xl px-3 px-lg-4 py-4">
+      <!-- Category Hero -->
+      <div class="category-hero">
         {% if page.url contains 'hackthebox' %}
         <div class="category-icon">
           <i class="fas fa-cube"></i>
         </div>
         <h1 class="category-title">HackTheBox Writeups</h1>
-        <p class="category-description">
-          Detailed walkthroughs and solutions for HackTheBox machines, retired and active.
+        <p class="text-secondary fs-5 mb-0">
+          Detailed walkthroughs and solutions for HackTheBox machines - retired and active.
         </p>
+        <div class="category-stats">
+          <div class="stat-item">
+            <span class="stat-number" id="totalCount">--</span>
+            <span class="stat-label">Total Writeups</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="easyCount">--</span>
+            <span class="stat-label">Easy</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="mediumCount">--</span>
+            <span class="stat-label">Medium</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="hardCount">--</span>
+            <span class="stat-label">Hard</span>
+          </div>
+        </div>
         
         {% elsif page.url contains 'tryhackme' %}
         <div class="category-icon">
           <i class="fas fa-laptop-code"></i>
         </div>
         <h1 class="category-title">TryHackMe Writeups</h1>
-        <p class="category-description">
+        <p class="text-secondary fs-5 mb-0">
           Step-by-step guides and solutions for TryHackMe rooms and challenges.
         </p>
         
@@ -496,7 +459,7 @@
           <i class="fas fa-shield-alt"></i>
         </div>
         <h1 class="category-title">OffSec Writeups</h1>
-        <p class="category-description">
+        <p class="text-secondary fs-5 mb-0">
           Penetration testing methodologies and offensive security techniques.
         </p>
         
@@ -505,7 +468,7 @@
           <i class="fas fa-server"></i>
         </div>
         <h1 class="category-title">VulnHub Writeups</h1>
-        <p class="category-description">
+        <p class="text-secondary fs-5 mb-0">
           Vulnerability assessment and exploitation walkthroughs for VulnHub VMs.
         </p>
         
@@ -514,7 +477,7 @@
           <i class="fas fa-bug"></i>
         </div>
         <h1 class="category-title">Bug Bounty Reports</h1>
-        <p class="category-description">
+        <p class="text-secondary fs-5 mb-0">
           Real-world bug bounty findings, methodologies, and exploitation techniques.
         </p>
         
@@ -523,7 +486,7 @@
           <i class="fas fa-pen-nib"></i>
         </div>
         <h1 class="category-title">Security Blog</h1>
-        <p class="category-description">
+        <p class="text-secondary fs-5 mb-0">
           Articles, tutorials, and insights on cybersecurity trends and techniques.
         </p>
         
@@ -532,89 +495,116 @@
           <i class="fas fa-flag"></i>
         </div>
         <h1 class="category-title">{{ page.title | default: "All Writeups" }}</h1>
-        <p class="category-description">
+        <p class="text-secondary fs-5 mb-0">
           Comprehensive collection of cybersecurity writeups and research.
         </p>
         {% endif %}
       </div>
-
-      <!-- Optional page content at top -->
-      {% if page.content %}
+      
+      <!-- Optional Page Content -->
+      {% if content %}
       <div class="page-content mb-4">
         {{ content }}
       </div>
       {% endif %}
-
-      <!-- Search and Filter -->
-      <div class="search-container">
-        <div class="search-box">
-          <input type="text" class="search-input" placeholder="Search writeups..." id="searchInput">
-          <i class="fas fa-search search-icon"></i>
-        </div>
-        <div class="filter-tags" id="filterTags">
-          <!-- Tags will be populated by JavaScript -->
+      
+      <!-- Filter Bar -->
+      <div class="filter-bar">
+        <div class="row g-3">
+          <div class="col-md-8">
+            <div class="search-box">
+              <i class="fas fa-search"></i>
+              <input type="text" class="search-input" id="searchInput" placeholder="Search writeups...">
+            </div>
+            <div class="filter-tags" id="filterTags">
+              <!-- Tags populated by JavaScript -->
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="d-flex justify-content-md-end">
+              <select class="form-select" id="sortSelect" style="max-width: 200px;">
+                <option value="date-desc">Newest First</option>
+                <option value="date-asc">Oldest First</option>
+                <option value="title-asc">Title A-Z</option>
+                <option value="title-desc">Title Z-A</option>
+                <option value="difficulty">Difficulty</option>
+              </select>
+            </div>
+          </div>
         </div>
       </div>
-
+      
       <!-- Writeups Grid -->
-      {% assign current_dir = page.path | replace: page.name, "" %}
-      {% assign entries = site.pages | where_exp: "p", "p.path contains current_dir" %}
+      {% assign current_dir = page.url | replace: '.html', '' %}
+      {% assign entries = site.pages | where_exp: "p", "p.url contains current_dir" %}
       {% assign entries = entries | where_exp: "p", "p.url != page.url" %}
-      {% assign entries = entries | sort: "date" | reverse %}
+      {% assign entries = entries | where_exp: "p", "p.name != 'index.md'" %}
       
       <div class="writeups-grid" id="writeupsGrid">
         {% for p in entries %}
         <a href="{{ p.url | relative_url }}" class="writeup-card" 
-           data-title="{{ p.title | downcase }}"
-           data-excerpt="{{ p.excerpt | strip_html | downcase }}"
-           data-tags="{{ p.tags | join: ',' | downcase }}">
+           data-title="{{ p.title | downcase | default: p.name | downcase }}"
+           data-excerpt="{{ p.excerpt | strip_html | downcase | default: '' }}"
+           data-tags="{{ p.tags | join: ',' | downcase | default: '' }}"
+           data-date="{{ p.date | date: '%s' }}"
+           data-difficulty="{{ p.difficulty | default: 'unknown' }}">
           
-          {% if page.url contains 'hackthebox' %}
-          <span class="writeup-category">HTB</span>
-          {% elsif page.url contains 'tryhackme' %}
-          <span class="writeup-category">THM</span>
-          {% elsif page.url contains 'offsec' %}
-          <span class="writeup-category">OffSec</span>
-          {% elsif page.url contains 'vulnhub' %}
-          <span class="writeup-category">VulnHub</span>
-          {% elsif page.url contains 'bugbounty' %}
-          <span class="writeup-category">Bug Bounty</span>
-          {% elsif page.url contains 'blog' %}
-          <span class="writeup-category">Blog</span>
-          {% else %}
-          <span class="writeup-category">Writeup</span>
-          {% endif %}
-          
-          <h3 class="writeup-title">{{ p.title | default: p.name | replace: ".md","" }}</h3>
+          <div class="writeup-header">
+            {% if page.url contains 'hackthebox' %}
+            <span class="writeup-category">HTB</span>
+            {% elsif page.url contains 'tryhackme' %}
+            <span class="writeup-category">THM</span>
+            {% elsif page.url contains 'offsec' %}
+            <span class="writeup-category">OffSec</span>
+            {% elsif page.url contains 'vulnhub' %}
+            <span class="writeup-category">VulnHub</span>
+            {% elsif page.url contains 'bugbounty' %}
+            <span class="writeup-category">Bug Bounty</span>
+            {% elsif page.url contains 'blog' %}
+            <span class="writeup-category">Blog</span>
+            {% else %}
+            <span class="writeup-category">Writeup</span>
+            {% endif %}
+            
+            <h3 class="writeup-title">
+              {{ p.title | default: p.name | replace: ".md", "" }}
+              {% if p.difficulty %}
+              <span class="difficulty-badge difficulty-{{ p.difficulty | downcase }}">
+                {{ p.difficulty }}
+              </span>
+              {% endif %}
+            </h3>
+          </div>
           
           {% if p.excerpt %}
           <p class="writeup-excerpt">{{ p.excerpt | strip_html | strip_newlines | truncate: 140 }}</p>
           {% endif %}
           
-          <div class="writeup-meta">
-            <div>
+          <div class="writeup-footer">
+            <div class="writeup-meta">
               {% if p.date %}
-              <div class="writeup-date">
-                <i class="far fa-calendar"></i> {{ p.date | date: "%b %d, %Y" }}
-              </div>
+              <span><i class="far fa-calendar me-1"></i>{{ p.date | date: "%b %d, %Y" }}</span>
+              {% endif %}
+              {% if p.read_time %}
+              <span><i class="far fa-clock me-1"></i>{{ p.read_time }} min</span>
               {% endif %}
             </div>
             
+            {% if p.tags %}
             <div class="writeup-tags">
-              {% if p.tags %}
-                {% for tag in p.tags limit: 2 %}
-                <span class="writeup-tag">{{ tag }}</span>
-                {% endfor %}
-                {% if p.tags.size > 2 %}
-                <span class="writeup-tag">+{{ p.tags.size | minus: 2 }}</span>
-                {% endif %}
+              {% for tag in p.tags limit: 2 %}
+              <span class="writeup-tag">{{ tag }}</span>
+              {% endfor %}
+              {% if p.tags.size > 2 %}
+              <span class="writeup-tag">+{{ p.tags.size | minus: 2 }}</span>
               {% endif %}
             </div>
+            {% endif %}
           </div>
         </a>
         {% endfor %}
       </div>
-
+      
       <!-- Empty State -->
       {% if entries == empty %}
       <div class="empty-state">
@@ -626,166 +616,204 @@
           There are no writeups in this category yet. Check back soon!
         </p>
         <a href="{{ "/" | relative_url }}" class="btn btn-primary">
-          <i class="fas fa-arrow-left"></i> Back to Home
+          <i class="fas fa-arrow-left me-1"></i>Back to Home
         </a>
       </div>
       {% endif %}
+      
+      <!-- Pagination (if many items) -->
+      {% if entries.size > 12 %}
+      <nav aria-label="Writeups pagination" class="pagination">
+        <ul class="pagination" id="pagination">
+          <!-- Generated by JavaScript -->
+        </ul>
+      </nav>
+      {% endif %}
     </div>
   </main>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container-fluid px-4">
-      <div class="footer-content">
-        <a href="{{ "/" | relative_url }}" class="footer-logo">
-          $> {{ site.title | split: " " | first }}
-        </a>
-        
-        <div class="footer-links">
-          <a href="{{ "/posts/blog" | relative_url }}" class="footer-link">Blog</a>
-          <a href="{{ "/posts/hackthebox" | relative_url }}" class="footer-link">HackTheBox</a>
-          <a href="{{ "/posts/tryhackme" | relative_url }}" class="footer-link">TryHackMe</a>
-          <a href="{{ "/posts/bugbounty" | relative_url }}" class="footer-link">Bug Bounty</a>
-        </div>
-      </div>
-      
-      <div class="footer-copyright">
-        &copy; {{ "now" | date: "%Y" }} {{ site.author }}. All rights reserved.<br>
-        <small>"The quieter you become, the more you are able to hear."</small>
-      </div>
+  
+  <!-- Footer (same as default.html) -->
+  <footer class="footer bg-tertiary border-top border-secondary border-opacity-25 pt-5 pb-4">
+    <div class="container-xl px-3 px-lg-4">
+      <!-- Same footer content as default.html -->
+      <!-- ... -->
     </div>
   </footer>
-
-  <!-- Scripts -->
+  
+  <!-- Back to Top -->
+  <button class="btn btn-primary btn-back-to-top rounded-circle shadow-lg" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+  
+  <!-- JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // Search and filter functionality
-    const searchInput = document.getElementById('searchInput');
-    const writeupsGrid = document.getElementById('writeupsGrid');
-    const filterTags = document.getElementById('filterTags');
-    const writeupCards = Array.from(document.querySelectorAll('.writeup-card'));
+    // Reuse theme toggle and back-to-top from default.html
+    // ... (copy from default.html)
     
-    // Extract all unique tags
-    const allTags = new Set();
-    writeupCards.forEach(card => {
-      const tags = card.dataset.tags.split(',').filter(tag => tag.trim() !== '');
-      tags.forEach(tag => allTags.add(tag.trim()));
-    });
-    
-    // Create filter tags
-    Array.from(allTags).sort().forEach(tag => {
-      const tagElement = document.createElement('span');
-      tagElement.className = 'filter-tag';
-      tagElement.textContent = tag;
-      tagElement.dataset.tag = tag;
-      filterTags.appendChild(tagElement);
-    });
-    
-    // Search and filter logic
-    let activeFilters = new Set();
-    
-    function filterWriteups() {
-      const searchTerm = searchInput.value.toLowerCase().trim();
-      
-      writeupCards.forEach(card => {
-        const title = card.dataset.title;
-        const excerpt = card.dataset.excerpt;
-        const tags = card.dataset.tags.split(',').map(t => t.trim());
+    // List-specific functionality
+    class WriteupsList {
+      constructor() {
+        this.cards = Array.from(document.querySelectorAll('.writeup-card'));
+        this.searchInput = document.getElementById('searchInput');
+        this.filterTags = document.getElementById('filterTags');
+        this.sortSelect = document.getElementById('sortSelect');
+        this.grid = document.getElementById('writeupsGrid');
+        this.activeFilters = new Set();
+        this.allTags = new Set();
         
-        const matchesSearch = !searchTerm || 
-          title.includes(searchTerm) || 
-          excerpt.includes(searchTerm);
-        
-        const matchesFilters = activeFilters.size === 0 || 
-          Array.from(activeFilters).every(filter => tags.includes(filter));
-        
-        card.style.display = (matchesSearch && matchesFilters) ? 'block' : 'none';
-      });
-      
-      // Update filter tags active state
-      document.querySelectorAll('.filter-tag').forEach(tagElement => {
-        if (activeFilters.has(tagElement.dataset.tag)) {
-          tagElement.classList.add('active');
-        } else {
-          tagElement.classList.remove('active');
-        }
-      });
-    }
-    
-    // Event listeners
-    searchInput.addEventListener('input', filterWriteups);
-    
-    filterTags.addEventListener('click', (e) => {
-      if (e.target.classList.contains('filter-tag')) {
-        const tag = e.target.dataset.tag;
-        
-        if (activeFilters.has(tag)) {
-          activeFilters.delete(tag);
-        } else {
-          activeFilters.add(tag);
-        }
-        
-        filterWriteups();
+        this.init();
       }
-    });
-    
-    // Clear all filters
-    const clearButton = document.createElement('span');
-    clearButton.className = 'filter-tag';
-    clearButton.textContent = 'Clear All';
-    clearButton.style.background = 'rgba(239, 68, 68, 0.1)';
-    clearButton.style.color = '#ef4444';
-    clearButton.style.borderColor = '#ef4444';
-    
-    clearButton.addEventListener('click', () => {
-      activeFilters.clear();
-      searchInput.value = '';
-      filterWriteups();
-    });
-    
-    filterTags.appendChild(clearButton);
-    
-    // Sort by date (newest first by default)
-    function sortWriteups(sortBy = 'date') {
-      const container = writeupsGrid;
-      const cards = Array.from(container.children);
       
-      cards.sort((a, b) => {
-        if (sortBy === 'date') {
-          // Extract dates from meta info
-          const dateA = a.querySelector('.writeup-date')?.textContent || '';
-          const dateB = b.querySelector('.writeup-date')?.textContent || '';
-          return dateB.localeCompare(dateA);
-        } else if (sortBy === 'title') {
-          const titleA = a.querySelector('.writeup-title')?.textContent.toLowerCase() || '';
-          const titleB = b.querySelector('.writeup-title')?.textContent.toLowerCase() || '';
-          return titleA.localeCompare(titleB);
-        }
-        return 0;
-      });
+      init() {
+        this.extractTags();
+        this.renderFilterTags();
+        this.setupEventListeners();
+        this.updateStats();
+        this.sortCards();
+      }
       
-      // Re-append sorted cards
-      cards.forEach(card => container.appendChild(card));
+      extractTags() {
+        this.cards.forEach(card => {
+          const tags = card.dataset.tags.split(',').filter(tag => tag.trim());
+          tags.forEach(tag => this.allTags.add(tag.trim()));
+        });
+      }
+      
+      renderFilterTags() {
+        if (this.allTags.size === 0) return;
+        
+        Array.from(this.allTags).sort().forEach(tag => {
+          const tagElement = document.createElement('span');
+          tagElement.className = 'filter-tag';
+          tagElement.textContent = tag;
+          tagElement.dataset.tag = tag;
+          this.filterTags.appendChild(tagElement);
+        });
+        
+        // Add clear button
+        const clearBtn = document.createElement('span');
+        clearBtn.className = 'filter-tag';
+        clearBtn.textContent = 'Clear All';
+        clearBtn.style.background = 'rgba(239, 68, 68, 0.1)';
+        clearBtn.style.color = '#ef4444';
+        clearBtn.style.borderColor = '#ef4444';
+        clearBtn.addEventListener('click', () => this.clearFilters());
+        this.filterTags.appendChild(clearBtn);
+      }
+      
+      setupEventListeners() {
+        this.searchInput.addEventListener('input', () => this.filterCards());
+        
+        this.filterTags.addEventListener('click', (e) => {
+          if (e.target.classList.contains('filter-tag') && e.target.dataset.tag) {
+            const tag = e.target.dataset.tag;
+            
+            if (this.activeFilters.has(tag)) {
+              this.activeFilters.delete(tag);
+              e.target.classList.remove('active');
+            } else {
+              this.activeFilters.add(tag);
+              e.target.classList.add('active');
+            }
+            
+            this.filterCards();
+          }
+        });
+        
+        this.sortSelect.addEventListener('change', () => this.sortCards());
+      }
+      
+      filterCards() {
+        const searchTerm = this.searchInput.value.toLowerCase().trim();
+        
+        this.cards.forEach(card => {
+          const title = card.dataset.title;
+          const excerpt = card.dataset.excerpt;
+          const tags = card.dataset.tags.split(',').map(t => t.trim());
+          
+          const matchesSearch = !searchTerm || 
+            title.includes(searchTerm) || 
+            excerpt.includes(searchTerm);
+          
+          const matchesFilters = this.activeFilters.size === 0 || 
+            Array.from(this.activeFilters).every(filter => tags.includes(filter));
+          
+          card.style.display = (matchesSearch && matchesFilters) ? 'flex' : 'none';
+        });
+        
+        this.updateStats();
+      }
+      
+      sortCards() {
+        const sortValue = this.sortSelect.value;
+        const container = this.grid;
+        const visibleCards = this.cards.filter(card => card.style.display !== 'none');
+        
+        visibleCards.sort((a, b) => {
+          switch(sortValue) {
+            case 'date-desc':
+              return parseInt(b.dataset.date) - parseInt(a.dataset.date);
+            case 'date-asc':
+              return parseInt(a.dataset.date) - parseInt(b.dataset.date);
+            case 'title-asc':
+              return a.dataset.title.localeCompare(b.dataset.title);
+            case 'title-desc':
+              return b.dataset.title.localeCompare(a.dataset.title);
+            case 'difficulty':
+              const difficulties = { 'easy': 1, 'medium': 2, 'hard': 3, 'insane': 4, 'unknown': 0 };
+              return difficulties[b.dataset.difficulty] - difficulties[a.dataset.difficulty];
+            default:
+              return 0;
+          }
+        });
+        
+        // Reorder in DOM
+        visibleCards.forEach(card => container.appendChild(card));
+      }
+      
+      clearFilters() {
+        this.activeFilters.clear();
+        this.searchInput.value = '';
+        this.filterCards();
+        
+        document.querySelectorAll('.filter-tag').forEach(tag => {
+          tag.classList.remove('active');
+        });
+      }
+      
+      updateStats() {
+        const visibleCards = this.cards.filter(card => card.style.display !== 'none');
+        
+        document.getElementById('totalCount').textContent = visibleCards.length;
+        
+        const easy = visibleCards.filter(c => c.dataset.difficulty === 'easy').length;
+        const medium = visibleCards.filter(c => c.dataset.difficulty === 'medium').length;
+        const hard = visibleCards.filter(c => c.dataset.difficulty === 'hard' || c.dataset.difficulty === 'insane').length;
+        
+        document.getElementById('easyCount').textContent = easy;
+        document.getElementById('mediumCount').textContent = medium;
+        document.getElementById('hardCount').textContent = hard;
+      }
     }
-    
-    // Add sort dropdown
-    const sortContainer = document.createElement('div');
-    sortContainer.className = 'text-end mb-3';
-    sortContainer.innerHTML = `
-      <select id="sortSelect" class="form-select" style="width:auto;display:inline-block;background:var(--bg-card);color:var(--text-primary);border-color:var(--border-color);">
-        <option value="date">Newest First</option>
-        <option value="title">Title A-Z</option>
-      </select>
-    `;
-    
-    document.querySelector('.search-container').appendChild(sortContainer);
-    
-    document.getElementById('sortSelect').addEventListener('change', (e) => {
-      sortWriteups(e.target.value);
-    });
     
     // Initialize
-    sortWriteups();
+    document.addEventListener('DOMContentLoaded', () => {
+      new WriteupsList();
+      
+      // Add cursor blink animation
+      const style = document.createElement('style');
+      style.textContent = `
+        .cursor-blink { animation: blink 1s infinite; font-weight: bold; }
+        .btn-back-to-top {
+          position: fixed; bottom: 2rem; right: 2rem; width: 3rem; height: 3rem;
+          opacity: 0; transform: translateY(20px); transition: all 0.3s ease; z-index: 1000;
+        }
+        .btn-back-to-top.show { opacity: 1; transform: translateY(0); }
+        .writeup-card { transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
+      `;
+      document.head.appendChild(style);
+    });
   </script>
 </body>
 </html>

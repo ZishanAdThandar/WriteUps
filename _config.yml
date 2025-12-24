@@ -1,10 +1,18 @@
+# Jekyll Configuration
 title: "InfoSec WriteUps"
 tagline: "Cybersecurity CTF & Bug Bounty Solutions"
 url: "https://blog.zishanhack.com"
 baseurl: ""
 author: "Zishan Ahamed Thandar"
-email: "zishanadthandar@wearehackerone.com"
-description: "Professional cybersecurity writeups, CTF solutions, and bug bounty reports."
+email: "support@zishanhack.com"
+description: "Professional cybersecurity writeups, CTF solutions, and bug bounty reports by Zishan Ahamed Thandar."
+
+# Timezone
+timezone: "Asia/Dhaka"
+
+# Markdown Processor
+markdown: kramdown
+highlighter: rouge
 
 # Collections (auto-load content)
 collections:
@@ -15,15 +23,46 @@ collections:
 # Defaults
 defaults:
   - scope:
-      path: "posts"
+      path: ""
+      type: "writeups"
     values:
       layout: "default"
       author: "Zishan Ahamed Thandar"
       share: true
       comments: false
       sitemap:
-        changefreq: "daily"
+        changefreq: "weekly"
         priority: 0.9
+  - scope:
+      path: "posts/hackthebox"
+    values:
+      layout: "list"
+      category: "HackTheBox"
+  - scope:
+      path: "posts/tryhackme"
+    values:
+      layout: "list"
+      category: "TryHackMe"
+  - scope:
+      path: "posts/offsec"
+    values:
+      layout: "list"
+      category: "OffSec"
+  - scope:
+      path: "posts/vulnhub"
+    values:
+      layout: "list"
+      category: "VulnHub"
+  - scope:
+      path: "posts/bugbounty"
+    values:
+      layout: "list"
+      category: "Bug Bounty"
+  - scope:
+      path: "posts/blog"
+    values:
+      layout: "list"
+      category: "Blog"
 
 # Plugins
 plugins:
@@ -33,22 +72,57 @@ plugins:
 
 # Sitemap settings
 sitemap:
-  changefreq: "daily"
-  priority: 0.9
-  include:
-    - "posts/**/*.md"
+  changefreq: "weekly"
+  priority: 0.8
   exclude:
     - "/feed.xml"
     - "/404.html"
+    - "/admin/"
+    - "*.json"
+    - "*.txt"
 
-# Social links
-linktree: "https://go.zishanhack.com"
-portfolio: "https://portfolio.zishanhack.com"
-github: "ZishanAdThandar"
-twitter: "zishanadthandar"
-linkedin: "zishanadthandar"
+# Social links (use your actual usernames)
+social:
+  github: "ZishanAdThandar"
+  twitter: "zishanadthandar"
+  linkedin: "zishanadthandar"
+  youtube: "ZishanAdThandar"
+  telegram: "zishanadthandar"
+  portfolio: "https://zishanadthandar.github.io"
+  linktree: "https://zishanadthandar.github.io/linktree"
 
-# Navigation
+# Analytics (optional)
+google_analytics: ""  # UA-XXXXX-Y or G-XXXXXXX
+twitter_username: "zishanadthandar"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - README.md
+
+# Custom variables
+ctf_platforms:
+  - name: "HackTheBox"
+    url: "https://app.hackthebox.com/profile/4477"
+    icon: "fas fa-cube"
+    badge: "https://www.hackthebox.com/badge/image/4477"
+  - name: "TryHackMe"
+    url: "https://tryhackme.com/p/ZishanAdThandar"
+    icon: "fas fa-laptop-code"
+    badge: "https://tryhackme-badges.s3.amazonaws.com/ZishanAdThandar.png"
+  - name: "Bugcrowd"
+    url: "https://bugcrowd.com/"
+    icon: "fas fa-bug"
+  - name: "HackerOne"
+    url: "https://hackerone.com/"
+    icon: "fas fa-shield-alt"
+
 navigation:
   - name: "Home"
     url: "/"
@@ -56,15 +130,33 @@ navigation:
   - name: "Bug Bounty"
     url: "/posts/bugbounty/"
     icon: "fas fa-bug"
-  - name: "HackTheBox"
-    url: "/posts/hackthebox/"
-    icon: "fas fa-cube"
-  - name: "TryHackMe"
-    url: "/posts/tryhackme/"
+    dropdown:
+      - name: "Reports"
+        url: "/posts/bugbounty/"
+      - name: "Methodology"
+        url: "/posts/bugbounty/methodology"
+  - name: "CTF Writeups"
+    url: "#"
     icon: "fas fa-flag"
+    dropdown:
+      - name: "HackTheBox"
+        url: "/posts/hackthebox/"
+        icon: "fas fa-cube"
+      - name: "TryHackMe"
+        url: "/posts/tryhackme/"
+        icon: "fas fa-laptop-code"
+      - name: "OffSec"
+        url: "/posts/offsec/"
+        icon: "fas fa-shield-alt"
+      - name: "VulnHub"
+        url: "/posts/vulnhub/"
+        icon: "fas fa-server"
   - name: "Blog"
     url: "/posts/blog/"
     icon: "fas fa-pen-nib"
-  - name: "Portfolio"
-    url: "https://portfolio.zishanhack.com"
+  - name: "Tools"
+    url: "/posts/tools/"
+    icon: "fas fa-tools"
+  - name: "About"
+    url: "/about/"
     icon: "fas fa-user-secret"
