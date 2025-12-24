@@ -11,29 +11,32 @@ layout: default
   </header>
 
   <div class="list-grid">
-    {% comment %} Get current category from page URL {% endcomment %}
-    {% assign current_path = page.url %}
-    {% assign category_parts = current_path | split: '/' %}
-    {% assign current_category = category_parts[2] %}
+    {% comment %} Simple approach: get category from page.category or page.url {% endcomment %}
+    {% assign target_category = page.category | default: page.url | split: '/' | slice: 2 | first %}
     
-    {% comment %} Debug info (remove after testing) {% endcomment %}
-    <!-- Current category: {{ current_category }} -->
+    {% comment %} Debug info {% endcomment %}
+    <!-- Target category: {{ target_category }} -->
+    <!-- Page category: {{ page.category }} -->
     <!-- Page URL: {{ page.url }} -->
-    <!-- Total site posts: {{ site.posts.size }} -->
-    
-    {% comment %} Filter posts by category path {% endcomment %}
-    {% assign filtered_posts = site.posts | where_exp: "post", "post.path contains current_category" %}
-    
-    {% comment %} Debug filtered posts {% endcomment %}
-    <!-- Filtered posts count: {{ filtered_posts.size }} -->
-    <!-- Sample post paths: -->
-    <!-- {% for post in filtered_posts limit:3 %}{{ post.path }}|{% endfor %} -->
+    <!-- All posts count: {{ site.posts.size }} -->
 
-    {% if filtered_posts.size > 0 %}
-      {% assign sorted_items = filtered_posts | sort: "date" | reverse %}
-
-      {% for post in sorted_items %}
-        {% unless post.path contains 'imaginaryctf' or post.path contains 'index' %}
+    {% assign found_posts = false %}
+    
+    {% for post in site.posts %}
+      {% unless post.path contains 'imaginaryctf' or post.path contains 'index' %}
+        {% comment %} Check if post belongs to this category {% endcomment %}
+        {% assign post_in_category = false %}
+        
+        {% if post.categories contains target_category %}
+          {% assign post_in_category = true %}
+        {% elsif post.path contains target_category %}
+          {% assign post_in_category = true %}
+        {% elsif post.url contains target_category %}
+          {% assign post_in_category = true %}
+        {% endif %}
+        
+        {% if post_in_category %}
+          {% assign found_posts = true %}
           <article class="list-item">
             <a href="{{ post.url | relative_url }}">
               <h2 class="list-item-title">
@@ -51,7 +54,7 @@ layout: default
               {% endif %}
               
               <div class="list-meta">
-                <span class="list-category">{{ current_category | capitalize }}</span>
+                <span class="list-category">{{ target_category | capitalize }}</span>
                 {% if post.date %}
                   <span class="list-date">
                     <i class="fas fa-calendar-alt"></i>
@@ -61,20 +64,22 @@ layout: default
               </div>
             </a>
           </article>
-        {% endunless %}
-      {% endfor %}
-    {% else %}
+        {% endif %}
+      {% endunless %}
+    {% endfor %}
+    
+    {% unless found_posts %}
       <article class="list-item empty">
         <h2>No content available</h2>
-        <p>Category: {{ current_category }}</p>
-        <p>Looking for posts in: posts/{{ current_category }}/</p>
-        <p>Total posts in site: {{ site.posts.size }}</p>
-        <p>Debug - Sample post paths:</p>
-        {% for post in site.posts limit:5 %}
-          <p>- {{ post.path }}</p>
+        <p>Target category: {{ target_category }}</p>
+        <p>Page category: {{ page.category }}</p>
+        <p>Page URL: {{ page.url }}</p>
+        <p>Total posts: {{ site.posts.size }}</p>
+        <h3>All post paths:</h3>
+        {% for post in site.posts %}
+          <p>- {{ post.path }} (categories: {{ post.categories | join: ', ' }})</p>
         {% endfor %}
-        <p>New writeups will be added soon.</p>
       </article>
-    {% endif %}
+    {% endunless %}
   </div>
 </section>
