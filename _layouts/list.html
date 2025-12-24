@@ -11,53 +11,63 @@ layout: default
     </header>
 
     <div class="list-grid">
-        {% assign category_path = page.dir %}
-        {% assign category_name = category_path | split: '/' | last %}
+        {% assign category_name = page.url | split: '/' | last | remove: '/' %}
         
-        {% comment %} Get all posts in this category {% endcomment %}
+        {% comment %} Debug info (remove in production) {% endcomment %}
+        <!-- Category: {{ category_name }} -->
+        <!-- Page URL: {{ page.url }} -->
+        
         {% assign category_posts = "" | split: "," %}
         
-        {% for p in site.pages %}
-            {% assign p_category = p.dir | split: '/' | last %}
-            {% if p_category == category_name and p.name != "index.md" and p.path contains '.md' %}
-                {% assign category_posts = category_posts | push: p %}
+        {% for post in site.pages %}
+            {% comment %} Check if post is in this category {% endcomment %}
+            {% if post.dir contains category_name and post.name != "index.md" and post.ext == ".md" %}
+                {% assign category_posts = category_posts | push: post %}
             {% endif %}
         {% endfor %}
         
-        {% comment %} Sort posts by date if available, otherwise by title {% endcomment %}
-        {% assign sorted_posts = category_posts | sort: "date" | reverse %}
-        
-        {% for post in sorted_posts %}
-            <article class="list-item">
-                <a href="{{ post.url }}">
-                    <h2>{{ post.title }}</h2>
-                    {% if post.description %}
-                        <p style="color: var(--text-secondary); margin-top: 0.5rem; font-size: 0.95rem;">
-                            {{ post.description | truncate: 120 }}
-                        </p>
-                    {% endif %}
-                    
-                    {% if post.date %}
-                        <div style="margin-top: 1rem; display: flex; align-items: center; gap: 1rem;">
-                            <span style="color: var(--text-muted); font-size: 0.85rem;">
-                                <i class="fas fa-calendar-alt"></i> {{ post.date | date: "%B %d, %Y" }}
+        {% if category_posts.size > 0 %}
+            {% comment %} Sort posts by modification time or date {% endcomment %}
+            {% assign sorted_posts = category_posts | sort: "date" | reverse %}
+            
+            {% for post in sorted_posts %}
+                <article class="list-item">
+                    <a href="{{ post.url | relative_url }}">
+                        <h2>{{ post.title }}</h2>
+                        
+                        {% if post.excerpt %}
+                            <p style="color: var(--text-secondary); margin: 0.75rem 0; font-size: 0.95rem; line-height: 1.5;">
+                                {{ post.excerpt | strip_html | truncate: 150 }}
+                            </p>
+                        {% elsif post.description %}
+                            <p style="color: var(--text-secondary); margin: 0.75rem 0; font-size: 0.95rem; line-height: 1.5;">
+                                {{ post.description | truncate: 150 }}
+                            </p>
+                        {% endif %}
+                        
+                        <div class="list-meta">
+                            <span class="list-date">
+                                <i class="fas fa-calendar-alt"></i>
+                                {% if post.date %}
+                                    {{ post.date | date: "%b %d, %Y" }}
+                                {% else %}
+                                    {{ site.time | date: "%b %d, %Y" }}
+                                {% endif %}
                             </span>
-                            {% if post.tags %}
-                                <span style="color: var(--accent-green); font-size: 0.85rem;">
-                                    <i class="fas fa-tags"></i> {{ post.tags | first }}
-                                </span>
-                            {% endif %}
+                            <span class="list-category">
+                                {{ category_name | capitalize }}
+                            </span>
                         </div>
-                    {% endif %}
-                </a>
-            </article>
+                    </a>
+                </article>
+            {% endfor %}
         {% else %}
-            <article class="list-item">
-                <h2>No posts yet</h2>
-                <p style="color: var(--text-secondary); margin-top: 0.5rem;">
-                    Check back soon for new content in this category.
+            <article class="list-item" style="grid-column: 1 / -1; text-align: center;">
+                <h2>No posts found</h2>
+                <p style="color: var(--text-secondary); margin-top: 1rem;">
+                    There are no posts in this category yet. Check back soon!
                 </p>
             </article>
-        {% endfor %}
+        {% endif %}
     </div>
 </section>
