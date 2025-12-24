@@ -36,7 +36,6 @@
             --border-color: #2a3b5a;
             --glow-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
             --terminal-green: #00ff00;
-            --hacker-red: #ff003c;
         }
         
         * {
@@ -113,6 +112,135 @@
             opacity: 0.95;
         }
         
+        /* Improved responsive navigation */
+        .nav-container {
+            margin-top: 2rem;
+        }
+        
+        .main-nav {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .nav-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-btn {
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            background: rgba(42, 59, 90, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .dropdown-btn::after {
+            content: '▼';
+            font-size: 0.8rem;
+            margin-left: 5px;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--card-bg);
+            min-width: 200px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            z-index: 1000;
+            margin-top: 5px;
+        }
+        
+        .dropdown-content a {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+        
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-content a:hover {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--accent-green);
+            padding-left: 2rem;
+        }
+        
+        .nav-dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown-btn:hover {
+            background: rgba(0, 255, 136, 0.1);
+            border-color: var(--accent-green);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.2);
+        }
+        
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            background: rgba(42, 59, 90, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .nav-link::before {
+            content: '>';
+            color: var(--accent-green);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-link:hover {
+            background: rgba(0, 255, 136, 0.1);
+            border-color: var(--accent-green);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.2);
+        }
+        
+        .nav-link:hover::before {
+            opacity: 1;
+        }
+        
+        .mobile-nav-toggle {
+            display: none;
+            background: rgba(42, 59, 90, 0.6);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        
         .page-header {
             text-align: center;
             margin-bottom: 3rem;
@@ -139,48 +267,6 @@
             max-width: 800px;
             margin: 0 auto;
             line-height: 1.8;
-        }
-        
-        /* Hacker-style navigation */
-        nav {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-        
-        nav a {
-            color: var(--text-primary);
-            text-decoration: none;
-            padding: 0.8rem 1.5rem;
-            background: rgba(42, 59, 90, 0.6);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            font-family: 'Roboto Mono', monospace;
-            font-weight: 500;
-            position: relative;
-            overflow: hidden;
-            font-size: 0.95rem;
-        }
-        
-        nav a::before {
-            content: '>';
-            margin-right: 8px;
-            color: var(--accent-green);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        
-        nav a:hover {
-            background: rgba(0, 255, 136, 0.1);
-            border-color: var(--accent-green);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.2);
-        }
-        
-        nav a:hover::before {
-            opacity: 1;
         }
         
         .container {
@@ -446,47 +532,17 @@
             transform: translateY(-2px);
         }
         
-        /* Image handling for extra-wide images */
-        .post-content img,
-        .page-content img {
+        /* Banner image fix - prevent overflow */
+        .banner-image {
             max-width: 100%;
             height: auto;
-            border-radius: 8px;
+            border-radius: 12px;
             border: 1px solid var(--border-color);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
             margin: 2rem auto;
             display: block;
             background: var(--secondary-dark);
             padding: 8px;
-        }
-        
-        /* Code blocks */
-        code, pre {
-            font-family: 'JetBrains Mono', 'Source Code Pro', monospace;
-            background: rgba(10, 14, 23, 0.9) !important;
-            border: 1px solid var(--border-color) !important;
-            border-radius: 8px !important;
-            overflow-x: auto !important;
-        }
-        
-        pre {
-            padding: 1.5rem !important;
-            margin: 1.5rem 0 !important;
-            position: relative;
-        }
-        
-        pre::before {
-            content: 'TERMINAL';
-            position: absolute;
-            top: 0;
-            right: 0;
-            background: var(--accent-green);
-            color: var(--primary-dark);
-            padding: 0.3rem 1rem;
-            font-size: 0.8rem;
-            font-weight: bold;
-            border-bottom-left-radius: 8px;
-            border-top-right-radius: 8px;
+            box-sizing: border-box;
         }
         
         /* Responsive design */
@@ -510,24 +566,59 @@
             }
             
             header {
-                padding: 2rem;
+                padding: 1.5rem;
             }
             
             .site-title {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
             
             .page-title {
-                font-size: 2.2rem;
+                font-size: 1.8rem;
             }
             
-            nav {
+            .mobile-nav-toggle {
+                display: block;
+                margin-top: 1rem;
+            }
+            
+            .main-nav {
+                display: none;
                 flex-direction: column;
-                gap: 0.8rem;
+                gap: 0.5rem;
+                margin-top: 1rem;
             }
             
-            nav a {
-                text-align: center;
+            .main-nav.active {
+                display: flex;
+            }
+            
+            .nav-dropdown {
+                width: 100%;
+            }
+            
+            .dropdown-btn {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .dropdown-content {
+                position: static;
+                display: none;
+                width: 100%;
+                box-shadow: none;
+                border-radius: 0 0 8px 8px;
+                margin-top: 0;
+            }
+            
+            .nav-dropdown:hover .dropdown-content,
+            .nav-dropdown.active .dropdown-content {
+                display: block;
+            }
+            
+            .nav-link {
+                width: 100%;
+                text-align: left;
             }
             
             .social-links {
@@ -581,17 +672,31 @@
         <h1 class="site-title">{{ site.title }}<span class="cursor"></span></h1>
         <p class="site-tagline">{{ site.tagline }}</p>
         
-        <nav>
-            <a href="/"><i class="fas fa-home"></i> HOME</a>
-            <a href="/posts/hackthebox"><i class="fas fa-cube"></i> HTB</a>
-            <a href="/posts/tryhackme"><i class="fas fa-tv"></i> THM</a>
-            <a href="/posts/offsec"><i class="fas fa-shield-alt"></i> OFFSEC</a>
-            <a href="/posts/vulnhub"><i class="fas fa-server"></i> VULNHUB</a>
-            <a href="/posts/bugbounty"><i class="fas fa-bug"></i> BUG BOUNTY</a>
-            <a href="/posts/blog"><i class="fas fa-blog"></i> BLOG</a>
-            <a href="{{ site.portfolio }}"><i class="fas fa-briefcase"></i> PORTFOLIO</a>
-            <a href="{{ site.main_site }}"><i class="fas fa-globe"></i> MAIN SITE</a>
-        </nav>
+        <div class="nav-container">
+            <button class="mobile-nav-toggle" id="mobileNavToggle">
+                <i class="fas fa-bars"></i> Menu
+            </button>
+            
+            <nav class="main-nav" id="mainNav">
+                <a href="/" class="nav-link"><i class="fas fa-home"></i> HOME</a>
+                
+                <!-- CTF Dropdown -->
+                <div class="nav-dropdown">
+                    <button class="dropdown-btn"><i class="fas fa-flag"></i> CTF</button>
+                    <div class="dropdown-content">
+                        <a href="/posts/hackthebox"><i class="fas fa-cube"></i> HackTheBox</a>
+                        <a href="/posts/tryhackme"><i class="fas fa-tv"></i> TryHackMe</a>
+                        <a href="/posts/offsec"><i class="fas fa-shield-alt"></i> OffSec</a>
+                        <a href="/posts/vulnhub"><i class="fas fa-server"></i> VulnHub</a>
+                    </div>
+                </div>
+                
+                <a href="/posts/bugbounty" class="nav-link"><i class="fas fa-bug"></i> BUG BOUNTY</a>
+                <a href="/posts/blog" class="nav-link"><i class="fas fa-blog"></i> BLOG</a>
+                <a href="{{ site.portfolio }}" class="nav-link"><i class="fas fa-briefcase"></i> PORTFOLIO</a>
+                <a href="{{ site.main_site }}" class="nav-link"><i class="fas fa-globe"></i> WEBSITE</a>
+            </nav>
+        </div>
     </header>
     
     <div class="page-header">
@@ -627,26 +732,32 @@
             </div>
             {% endif %}
             
-            <!-- Get current category from URL -->
-            {% assign url_parts = page.url | split: '/' %}
-            {% assign current_category = '' %}
+            <!-- FIXED: Get current category from page or URL -->
+            {% assign current_category = page.category %}
             
-            {% for part in url_parts %}
-                {% if part == 'hackthebox' or part == 'tryhackme' or part == 'offsec' or part == 'vulnhub' or part == 'bugbounty' or part == 'blog' %}
-                    {% assign current_category = part %}
-                {% endif %}
-            {% endfor %}
+            {% unless current_category %}
+                {% assign url_parts = page.url | split: '/' %}
+                {% for part in url_parts %}
+                    {% if part == 'hackthebox' or part == 'tryhackme' or part == 'offsec' or part == 'vulnhub' or part == 'bugbounty' or part == 'blog' %}
+                        {% assign current_category = part %}
+                    {% endif %}
+                {% endfor %}
+            {% endunless %}
             
-            <!-- Filter posts based on category -->
-            {% if current_category != '' %}
-                {% assign filtered_posts = site.posts | where_exp: "post", "post.path contains current_category" %}
-            {% else %}
-                {% assign filtered_posts = site.posts %}
+            <!-- FIXED: Filter posts - using both category field and path -->
+            {% assign category_posts = site.posts | where: "category", current_category %}
+            
+            {% if category_posts.size == 0 %}
+                {% assign category_posts = site.posts | where_exp: "post", "post.path contains current_category" %}
             {% endif %}
             
-            {% if filtered_posts.size > 0 %}
+            {% if category_posts.size == 0 and current_category == '' %}
+                {% assign category_posts = site.posts %}
+            {% endif %}
+            
+            {% if category_posts.size > 0 %}
             <div class="posts-grid">
-                {% for post in filtered_posts %}
+                {% for post in category_posts %}
                 <article class="post-card">
                     <div class="post-card-content">
                         <h2 class="post-card-title">
@@ -655,17 +766,19 @@
                         
                         {% if post.excerpt %}
                         <p class="post-card-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
+                        {% elsif post.description %}
+                        <p class="post-card-excerpt">{{ post.description | truncate: 200 }}</p>
                         {% endif %}
                         
                         <div class="post-card-meta">
                             <span><i class="far fa-calendar"></i> {{ post.date | date: "%B %d, %Y" }}</span>
                             <span class="post-card-category">
-                                {% if post.path contains 'hackthebox' %}<i class="fas fa-cube"></i> HTB
-                                {% elsif post.path contains 'tryhackme' %}<i class="fas fa-tv"></i> THM
-                                {% elsif post.path contains 'offsec' %}<i class="fas fa-shield-alt"></i> OffSec
-                                {% elsif post.path contains 'vulnhub' %}<i class="fas fa-server"></i> VulnHub
-                                {% elsif post.path contains 'bugbounty' %}<i class="fas fa-bug"></i> Bug Bounty
-                                {% elsif post.path contains 'blog' %}<i class="fas fa-blog"></i> Blog
+                                {% if post.category == 'hackthebox' or post.path contains 'hackthebox' %}<i class="fas fa-cube"></i> HTB
+                                {% elsif post.category == 'tryhackme' or post.path contains 'tryhackme' %}<i class="fas fa-tv"></i> THM
+                                {% elsif post.category == 'offsec' or post.path contains 'offsec' %}<i class="fas fa-shield-alt"></i> OffSec
+                                {% elsif post.category == 'vulnhub' or post.path contains 'vulnhub' %}<i class="fas fa-server"></i> VulnHub
+                                {% elsif post.category == 'bugbounty' or post.path contains 'bugbounty' %}<i class="fas fa-bug"></i> Bug Bounty
+                                {% elsif post.category == 'blog' or post.path contains 'blog' %}<i class="fas fa-blog"></i> Blog
                                 {% else %}<i class="fas fa-file-code"></i> Post{% endif %}
                             </span>
                         </div>
@@ -675,60 +788,19 @@
             </div>
             {% else %}
             <div class="no-posts">
-                <h2><i class="fas fa-exclamation-triangle"></i> No posts found</h2>
-                <p>There are no posts to display. Here are all available posts:</p>
+                <h2><i class="fas fa-exclamation-triangle"></i> No posts found in this category</h2>
+                <p>Check back soon for new content!</p>
                 
-                <!-- Debug: Show all posts -->
-                <div style="background: rgba(255,0,60,0.1); padding: 1.5rem; border-radius: 8px; margin: 2rem 0; border: 1px solid #ff003c;">
-                    <h3 style="color: #ff003c; margin-bottom: 1rem;"><i class="fas fa-code"></i> Debug Information:</h3>
-                    <p style="color: var(--accent-green); font-family: 'Source Code Pro', monospace; font-size: 0.9rem;">
-                        Current Category: {{ current_category }}<br>
-                        Page URL: {{ page.url }}<br>
-                        Total Posts: {{ site.posts.size }}<br>
-                        All Posts Paths:<br>
-                        {% for post in site.posts %}
-                        - {{ post.path }}<br>
-                        {% endfor %}
+                <!-- Debug info -->
+                <div style="background: rgba(255,0,60,0.1); padding: 1rem; border-radius: 8px; margin: 2rem 0; border: 1px solid #ff003c;">
+                    <p style="color: #ff003c; margin: 0; font-family: 'Source Code Pro', monospace; font-size: 0.9rem;">
+                        <i class="fas fa-bug"></i> Debug: 
+                        Current Category: {{ current_category }} | 
+                        Page Category: {{ page.category }} | 
+                        Page URL: {{ page.url }} | 
+                        Total Posts: {{ site.posts.size }}
                     </p>
                 </div>
-                
-                <!-- Show all posts as fallback -->
-                {% if site.posts.size > 0 %}
-                <div class="page-header" style="margin-bottom: 2rem;">
-                    <h2 class="page-title"><i class="fas fa-terminal"></i> All Posts ({{ site.posts.size }})</h2>
-                </div>
-                
-                <div class="posts-grid">
-                    {% for post in site.posts %}
-                    <article class="post-card">
-                        <div class="post-card-content">
-                            <h2 class="post-card-title">
-                                <a href="{{ post.url }}">{{ post.title }}</a>
-                            </h2>
-                            
-                            {% if post.excerpt %}
-                            <p class="post-card-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
-                            {% endif %}
-                            
-                            <div class="post-card-meta">
-                                <span><i class="far fa-calendar"></i> {{ post.date | date: "%B %d, %Y" }}</span>
-                                <span class="post-card-category">
-                                    {% if post.path contains 'hackthebox' %}<i class="fas fa-cube"></i> HTB
-                                    {% elsif post.path contains 'tryhackme' %}<i class="fas fa-tv"></i> THM
-                                    {% elsif post.path contains 'offsec' %}<i class="fas fa-shield-alt"></i> OffSec
-                                    {% elsif post.path contains 'vulnhub' %}<i class="fas fa-server"></i> VulnHub
-                                    {% elsif post.path contains 'bugbounty' %}<i class="fas fa-bug"></i> Bug Bounty
-                                    {% elsif post.path contains 'blog' %}<i class="fas fa-blog"></i> Blog
-                                    {% else %}<i class="fas fa-file-code"></i> Post{% endif %}
-                                </span>
-                            </div>
-                        </div>
-                    </article>
-                    {% endfor %}
-                </div>
-                {% else %}
-                <p>No posts found in the entire site. Please add markdown files to the posts directory.</p>
-                {% endif %}
                 
                 <div style="margin-top: 2.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
                     <a href="/" style="
@@ -838,7 +910,7 @@
     <footer>
         <div class="footer-links">
             <a href="{{ site.url }}"><i class="fas fa-home"></i> Home</a>
-            <a href="{{ site.main_site }}"><i class="fas fa-globe"></i> Main Site</a>
+            <a href="{{ site.main_site }}"><i class="fas fa-globe"></i> Website</a>
             <a href="{{ site.portfolio }}"><i class="fas fa-briefcase"></i> Portfolio</a>
             {% if site.sponsors %}
             <a href="{{ site.sponsors }}"><i class="fas fa-heart"></i> Sponsor</a>
@@ -854,29 +926,38 @@
     
     <script>
     {% raw %}
-    // Terminal typing effect for titles
+    // Mobile navigation toggle
     document.addEventListener('DOMContentLoaded', () => {
-        const titles = document.querySelectorAll('.site-title, .page-title');
-        titles.forEach(title => {
-            // Skip if title contains dynamic content markers
-            if (title.textContent.includes('{{') || title.textContent.includes('}}') || 
-                title.textContent.includes('{%') || title.textContent.includes('%}')) {
-                return;
-            }
+        const mobileNavToggle = document.getElementById('mobileNavToggle');
+        const mainNav = document.getElementById('mainNav');
+        
+        if (mobileNavToggle && mainNav) {
+            mobileNavToggle.addEventListener('click', () => {
+                mainNav.classList.toggle('active');
+                mobileNavToggle.innerHTML = mainNav.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i> Close' 
+                    : '<i class="fas fa-bars"></i> Menu';
+            });
             
-            const text = title.textContent;
-            title.textContent = '';
-            let i = 0;
-            
-            function typeWriter() {
-                if (i < text.length) {
-                    title.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(typeWriter, 50);
+            // Close dropdowns when clicking outside on mobile
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768 && !e.target.closest('.nav-container')) {
+                    mainNav.classList.remove('active');
+                    mobileNavToggle.innerHTML = '<i class="fas fa-bars"></i> Menu';
                 }
-            }
-            
-            typeWriter();
+            });
+        }
+        
+        // Mobile dropdown toggle
+        const dropdownBtns = document.querySelectorAll('.dropdown-btn');
+        dropdownBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const dropdown = btn.closest('.nav-dropdown');
+                    dropdown.classList.toggle('active');
+                }
+            });
         });
     });
     {% endraw %}

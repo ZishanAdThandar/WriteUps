@@ -1,5 +1,7 @@
 ---
 layout: list
-title: Bug Bounty Writeups
+title: Bug Bounty Reports
+category: bugbounty
+description: "Real-world bug bounty reports and methodologies"
+permalink: /posts/bugbounty/
 ---
-

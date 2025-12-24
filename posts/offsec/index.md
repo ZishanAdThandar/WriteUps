@@ -1,5 +1,7 @@
 ---
 layout: list
-title: Bug Bounty Writeups
+title: OffSec Writeups
+category: offsec
+description: "Offensive Security certification and lab writeups"
+permalink: /posts/offsec/
 ---
-

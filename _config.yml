@@ -17,7 +17,7 @@ permalink: pretty
 collections:
   posts:
     output: true
-    permalink: /:collection/:path/
+    permalink: /posts/:path/
 
 # Defaults
 defaults:
@@ -28,7 +28,7 @@ defaults:
     values:
       layout: "default"
   
-  # Category pages
+  # Category index pages
   - scope:
       path: "posts/hackthebox"
     values:
@@ -98,12 +98,3 @@ linktree: "https://go.zishanhack.com"
 portfolio: "https://portfolio.zishanhack.com"
 main_site: "https://zishanhack.com"
 sponsors: "https://github.com/sponsors/ZishanAdThandar"
-
-# Safe mode (prevents custom plugins)
-safe: true
-
-# Whitelist for GitHub Pages
-whitelist:
-  - jekyll-feed
-  - jekyll-seo-tag
-  - jekyll-sitemap

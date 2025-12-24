@@ -1,5 +1,7 @@
 ---
 layout: list
-title: Bug Bounty Writeups
+title: TryHackMe Writeups
+category: tryhackme
+description: "Guides and solutions for TryHackMe rooms"
+permalink: /posts/tryhackme/
 ---
-

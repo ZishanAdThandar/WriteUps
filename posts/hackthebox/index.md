@@ -1,5 +1,7 @@
 ---
 layout: list
-title: Bug Bounty Writeups
+title: HackTheBox Writeups
+category: hackthebox
+description: "Detailed solutions and walkthroughs for HackTheBox machines"
+permalink: /posts/hackthebox/
 ---
-

@@ -1,7 +1,7 @@
 ---
-title: Blog
 layout: list
-category: Blog
+title: Blog Posts
+category: blog
+description: "Cybersecurity articles, tips, and tutorials"
+permalink: /posts/blog/
 ---
-
-Welcome to my main blog. Here I share practical bug bounty strategies, methodology breakdowns, and security case studies.

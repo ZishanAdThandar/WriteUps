@@ -1,5 +1,7 @@
 ---
 layout: list
-title: Bug Bounty Writeups
+title: VulnHub Writeups
+category: vulnhub
+description: "Vulnerable machine walkthroughs from VulnHub"
+permalink: /posts/vulnhub/
 ---
-
