@@ -1,29 +1,60 @@
+# Jekyll Configuration
 title: "InfoSec WriteUps"
 tagline: "Cybersecurity CTF & Bug Bounty Solutions"
 url: "https://blog.zishanhack.com"
 baseurl: ""
 author: "Zishan Ahamed Thandar"
 email: "support@zishanhack.com"
-description: "Professional cybersecurity writeups, CTF solutions, and bug bounty reports."
+description: "Professional cybersecurity writeups, CTF solutions, and bug bounty reports by Zishan Ahamed Thandar."
 
 # Collections (auto-load content)
 collections:
-  writeups:
+  posts:
     output: true
     permalink: /:collection/:path/
     
 # Defaults
 defaults:
   - scope:
+      path: "posts/hackthebox"
+    values:
+      layout: "list"
+      category: "HackTheBox"
+  - scope:
+      path: "posts/tryhackme"
+    values:
+      layout: "list"
+      category: "TryHackMe"
+  - scope:
+      path: "posts/offsec"
+    values:
+      layout: "list"
+      category: "OffSec"
+  - scope:
+      path: "posts/vulnhub"
+    values:
+      layout: "list"
+      category: "VulnHub"
+  - scope:
+      path: "posts/bugbounty"
+    values:
+      layout: "list"
+      category: "Bug Bounty"
+  - scope:
+      path: "posts/blog"
+    values:
+      layout: "list"
+      category: "Blog"
+  - scope:
       path: "posts"
     values:
       layout: "default"
-      author: "Zishan Ahamed Thandar"
-      share: true
-      comments: false
-      sitemap:
-        changefreq: "daily"
-        priority: 0.9
+
+# Exclude from processing
+exclude:
+  - README.md
+  - CNAME
+  - banner.png
 
 # Plugins
 plugins:
@@ -33,20 +64,18 @@ plugins:
 
 # Sitemap settings
 sitemap:
-  changefreq: "daily"
-  priority: 0.9
-  include:
-    - "posts/**/*.md"
-  exclude:
-    - "/feed.xml"
-    - "/404.html"
+  changefreq: "weekly"
+  priority: 0.8
 
-# Social links
-linktree: "https://go.zishanhack.com"
-portfolio: "https://portfolio.zishanhack.com"
+# Social links (use your actual usernames)
 github: "ZishanAdThandar"
 twitter: "zishanadthandar"
 linkedin: "zishanadthandar"
+youtube: "ZishanAdThandar"
+linktree: "https://go.zishanhack.com"
+portfolio: "https://portfolio.zishanhack.com"
+main_site: "https://zishanhack.com"
+sponsors: "https://github.com/sponsors/ZishanAdThandar"
 
 # Navigation
 navigation:
@@ -61,10 +90,19 @@ navigation:
     icon: "fas fa-cube"
   - name: "TryHackMe"
     url: "/posts/tryhackme/"
-    icon: "fas fa-flag"
+    icon: "fas fa-laptop-code"
+  - name: "OffSec"
+    url: "/posts/offsec/"
+    icon: "fas fa-shield-alt"
+  - name: "VulnHub"
+    url: "/posts/vulnhub/"
+    icon: "fas fa-server"
   - name: "Blog"
     url: "/posts/blog/"
     icon: "fas fa-pen-nib"
   - name: "Portfolio"
     url: "https://portfolio.zishanhack.com"
     icon: "fas fa-user-secret"
+  - name: "Sponsor"
+    url: "https://github.com/sponsors/ZishanAdThandar"
+    icon: "fas fa-heart"
