@@ -10,25 +10,27 @@
 
   <div class="nav-container">
     <button class="mobile-nav-toggle" id="mobileNavToggle">
-      Menu
+      <i class="fas fa-bars"></i>
     </button>
 
     <nav class="main-nav" id="mainNav">
-      <a href="/" class="nav-link">Home</a>
+      <a href="/" class="nav-link"><i class="fas fa-home"></i> Home</a>
 
       <div class="nav-dropdown" id="ctfDropdown">
-        <button class="dropdown-btn" id="ctfBtn">CTF</button>
+        <button class="dropdown-btn" id="ctfBtn">
+          <i class="fas fa-flag"></i> CTF <i class="fas fa-chevron-down dropdown-icon"></i>
+        </button>
         <div class="dropdown-content">
-          <a href="/posts/hackthebox/">HackTheBox</a>
-          <a href="/posts/tryhackme/">TryHackMe</a>
-          <a href="/posts/offsec/">OffSec</a>
-          <a href="/posts/vulnhub/">VulnHub</a>
+          <a href="/posts/hackthebox/"><i class="fas fa-cube"></i> HackTheBox</a>
+          <a href="/posts/tryhackme/"><i class="fas fa-tv"></i> TryHackMe</a>
+          <a href="/posts/offsec/"><i class="fas fa-shield-alt"></i> OffSec</a>
+          <a href="/posts/vulnhub/"><i class="fas fa-server"></i> VulnHub</a>
         </div>
       </div>
 
-      <a href="/posts/bugbounty/" class="nav-link">Bug Bounty</a>
-      <a href="/posts/blog/" class="nav-link">Blog</a>
-      <a href="{{ site.main_site }}" class="nav-link">Website</a>
+      <a href="/posts/bugbounty/" class="nav-link"><i class="fas fa-bug"></i> Bug Bounty</a>
+      <a href="/posts/blog/" class="nav-link"><i class="fas fa-blog"></i> Blog</a>
+      <a href="{{ site.main_site }}" class="nav-link"><i class="fas fa-globe"></i> Website</a>
     </nav>
   </div>
 
@@ -36,16 +38,41 @@
     document.addEventListener("DOMContentLoaded", () => {
       const toggle = document.getElementById("mobileNavToggle");
       const nav = document.getElementById("mainNav");
-      const btn = document.getElementById("ctfBtn");
-      const drop = document.getElementById("ctfDropdown");
-
-      toggle.onclick = () => nav.classList.toggle("active");
-      btn.onclick = (e) => {
+      const dropdownBtn = document.getElementById("ctfBtn");
+      const dropdown = document.getElementById("ctfDropdown");
+      
+      // Mobile menu toggle
+      toggle.addEventListener("click", (e) => {
         e.stopPropagation();
-        drop.classList.toggle("open");
-      };
-      document.onclick = () => drop.classList.remove("open");
+        nav.classList.toggle("active");
+        // Close dropdown when mobile menu toggles
+        dropdown.classList.remove("open");
+      });
+      
+      // Desktop dropdown toggle
+      dropdownBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle("open");
+      });
+      
+      // Close dropdown when clicking outside
+      document.addEventListener("click", () => {
+        dropdown.classList.remove("open");
+        // Don't close mobile menu on outside click for better UX
+      });
+      
+      // Close mobile menu when clicking a link
+      document.querySelectorAll('.main-nav a').forEach(link => {
+        link.addEventListener('click', () => {
+          nav.classList.remove("active");
+          dropdown.classList.remove("open");
+        });
+      });
+      
+      // Close dropdown when window is resized (mobile/desktop switch)
+      window.addEventListener('resize', () => {
+        dropdown.classList.remove("open");
+      });
     });
   </script>
 </header>
-

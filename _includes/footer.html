@@ -17,55 +17,43 @@
     <p style="margin-top: 0.5rem; font-size: 0.9rem;">
         <i class="fas fa-code"></i> Powered by Jekyll | <i class="fas fa-shield-alt"></i> Built for Infosec
     </p>
-<script>
-// Back to Top functionality
-const backToTop = document.getElementById('backToTop');
-
-window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
-        backToTop.classList.add('visible');
-    } else {
-        backToTop.classList.remove('visible');
-    }
-});
-
-backToTop.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-// Fix dropdown staying open on mobile
-document.addEventListener('DOMContentLoaded', () => {
-    const toggle = document.getElementById('mobileNavToggle');
-    const nav = document.getElementById('mainNav');
-    const dropdownBtn = document.getElementById('ctfBtn');
-    const dropdown = document.getElementById('ctfDropdown');
     
-    toggle.addEventListener('click', () => {
-        nav.classList.toggle('active');
-        // Close dropdown when mobile menu opens
-        dropdown.classList.remove('open');
-    });
+    <script>
+    // Back to Top functionality
+    const backToTop = document.getElementById('backToTop');
     
-    dropdownBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        dropdown.classList.toggle('open');
-    });
-    
-    // Close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!dropdown.contains(e.target) && !dropdownBtn.contains(e.target)) {
-            dropdown.classList.remove('open');
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
         }
     });
     
-    // Close mobile menu when clicking a link
-    document.querySelectorAll('.main-nav a').forEach(link => {
-        link.addEventListener('click', () => {
-            nav.classList.remove('active');
-            dropdown.classList.remove('open');
+    backToTop.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ 
+            top: 0, 
+            behavior: 'smooth' 
         });
     });
-});
-</script>
+    
+    // Make sure dropdowns close on mobile when clicking outside
+    document.addEventListener('click', (e) => {
+        const dropdown = document.getElementById('ctfDropdown');
+        const dropdownBtn = document.getElementById('ctfBtn');
+        const nav = document.getElementById('mainNav');
+        
+        // If click is outside dropdown AND not on dropdown button
+        if (!dropdown.contains(e.target) && !dropdownBtn.contains(e.target)) {
+            dropdown.classList.remove('open');
+        }
+        
+        // If click is outside mobile nav AND not on mobile toggle button
+        const mobileToggle = document.getElementById('mobileNavToggle');
+        if (!nav.contains(e.target) && !mobileToggle.contains(e.target) && window.innerWidth <= 768) {
+            nav.classList.remove('active');
+        }
+    });
+    </script>
 </footer>
