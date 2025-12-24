@@ -1,6 +1,7 @@
 ---
 layout: default
 title: ​Proving Grounds - Easy Windows - Algernon
+category: offsec
 ---
 
 # ​Proving Grounds - Easy Windows - Algernon

@@ -1,6 +1,7 @@
 ---
 layout: default
 title: ​Proving Grounds - Intermediate Windows - AuthBy
+category: offsec
 ---
 
 # ​Proving Grounds - Intermediate Windows - AuthBy
