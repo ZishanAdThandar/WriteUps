@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- SEO -->
   <title>
     {% if page.url contains 'hackthebox' %}HackTheBox Writeups
     {% elsif page.url contains 'tryhackme' %}TryHackMe Writeups
@@ -15,7 +14,9 @@
     {% else %}All Writeups{% endif %} | {{ site.title }}
   </title>
   
-  <!-- Fonts & CSS -->
+  <meta name="description" content="{{ page.description | default: site.description }}">
+  
+  <!-- Styles -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -36,46 +37,31 @@
       --border-color: rgba(148, 163, 184, 0.15);
       --shadow-glassy: 0 8px 32px rgba(0, 0, 0, 0.3);
       --shadow-neon: 0 0 20px rgba(0, 255, 136, 0.15);
-      --radius-sm: 8px;
-      --radius-md: 12px;
-      --radius-lg: 16px;
-      --radius-xl: 24px;
-    }
-    
-    * {
-      box-sizing: border-box;
     }
     
     body {
-      margin: 0;
-      padding: 0;
-      background-color: var(--bg-primary);
+      background: var(--bg-primary);
       color: var(--text-primary);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: 'Inter', sans-serif;
       min-height: 100vh;
     }
     
     /* Navigation */
     .navbar {
-      background: rgba(10, 10, 15, 0.95);
+      background: rgba(10, 10, 15, 0.95) !important;
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border-color);
-      padding: 0.8rem 0;
     }
     
     .navbar-brand {
       font-family: 'JetBrains Mono', monospace;
       font-weight: 700;
-      font-size: 1.1rem;
       color: var(--accent-primary) !important;
-      letter-spacing: -0.5px;
-      padding: 0.5rem 0;
     }
     
     .navbar-brand::after {
       content: "_";
       animation: blink 1s infinite;
-      color: var(--accent-primary);
     }
     
     @keyframes blink {
@@ -86,12 +72,10 @@
     .nav-link {
       font-family: 'JetBrains Mono', monospace;
       font-weight: 500;
-      font-size: 0.9rem;
       color: var(--text-secondary) !important;
-      margin: 0 0.3rem;
+      border-radius: 6px;
       padding: 0.5rem 0.75rem !important;
-      border-radius: var(--radius-sm);
-      transition: all 0.2s ease;
+      margin: 0 0.1rem;
     }
     
     .nav-link:hover,
@@ -102,11 +86,11 @@
     
     /* Main Content */
     main {
-      padding-top: 80px;
+      padding-top: 76px;
       min-height: calc(100vh - 200px);
     }
     
-    .container-fluid {
+    .container-main {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 1rem;
@@ -114,41 +98,32 @@
     
     /* Category Header */
     .category-header {
-      text-align: center;
-      margin-bottom: 2.5rem;
-      padding: 2rem;
       background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(56, 189, 248, 0.1));
-      border-radius: var(--radius-xl);
+      border-radius: 20px;
       border: 1px solid var(--border-color);
-      overflow: hidden;
+      padding: 2.5rem 2rem;
+      margin: 2rem 0 3rem;
+      text-align: center;
     }
     
     .category-icon {
-      font-size: 2.5rem;
+      font-size: 3rem;
       color: var(--accent-primary);
       margin-bottom: 1rem;
     }
     
     .category-title {
-      font-size: 2rem;
+      font-size: 2.5rem;
       font-weight: 800;
-      margin-bottom: 0.5rem;
       background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      word-wrap: break-word;
+      margin-bottom: 0.5rem;
     }
     
-    .category-description {
-      font-size: 1rem;
-      color: var(--text-secondary);
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    
-    /* Writeups Grid */
-    .writeups-grid {
+    /* Cards Grid */
+    .cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 1.5rem;
@@ -156,192 +131,152 @@
     }
     
     @media (max-width: 768px) {
-      .writeups-grid {
+      .cards-grid {
         grid-template-columns: 1fr;
       }
-      
-      .category-title {
-        font-size: 1.6rem;
-      }
-      
       .category-header {
         padding: 1.5rem;
+        margin: 1.5rem 0;
+      }
+      .category-title {
+        font-size: 2rem;
       }
     }
     
-    /* Writeup Card */
-    .writeup-card {
+    .card-item {
       background: var(--bg-card);
-      border-radius: var(--radius-lg);
       border: 1px solid var(--border-color);
-      padding: 1.25rem;
-      transition: all 0.3s ease;
+      border-radius: 16px;
+      padding: 1.5rem;
       text-decoration: none;
       color: inherit;
       display: block;
-      position: relative;
-      overflow: hidden;
+      transition: all 0.3s ease;
       height: 100%;
     }
     
-    .writeup-card:hover {
-      transform: translateY(-4px);
+    .card-item:hover {
+      transform: translateY(-5px);
       border-color: var(--accent-primary);
       box-shadow: var(--shadow-neon);
     }
     
-    .writeup-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    .writeup-card:hover::before {
-      opacity: 1;
-    }
-    
-    .writeup-category {
+    .card-badge {
       display: inline-block;
-      padding: 0.25rem 0.75rem;
+      padding: 0.3rem 0.8rem;
       background: rgba(0, 255, 136, 0.1);
       color: var(--accent-primary);
       border-radius: 50px;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      margin-bottom: 0.75rem;
+      margin-bottom: 1rem;
     }
     
-    .writeup-title {
-      font-size: 1.1rem;
+    .card-title {
+      font-size: 1.25rem;
       font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: var(--text-primary);
-      line-height: 1.3;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+      margin-bottom: 0.75rem;
+      line-height: 1.4;
     }
     
-    .writeup-excerpt {
+    .card-excerpt {
       color: var(--text-secondary);
-      font-size: 0.9rem;
-      line-height: 1.5;
-      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
     
-    .writeup-meta {
+    .card-meta {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 0.75rem;
-      padding-top: 0.75rem;
+      padding-top: 1rem;
       border-top: 1px solid var(--border-color);
-      font-size: 0.8rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
     }
     
-    .writeup-date {
+    /* Search */
+    .search-box {
+      max-width: 400px;
+      margin: 0 auto 2rem;
+      position: relative;
+    }
+    
+    .search-input {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      color: var(--text-primary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    .search-input:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1);
+    }
+    
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
       color: var(--text-muted);
     }
     
     /* Footer */
     footer {
       background: var(--bg-tertiary);
-      padding: 2rem 0 1.5rem;
+      padding: 3rem 0 2rem;
+      border-top: 1px solid var(--border-color);
+      margin-top: 3rem;
+    }
+    
+    .footer-copyright {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      padding-top: 2rem;
       margin-top: 2rem;
       border-top: 1px solid var(--border-color);
     }
     
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-    
-    .footer-logo {
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--accent-primary);
-      text-decoration: none;
-    }
-    
-    .footer-copyright {
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border-color);
+    /* Empty State */
+    .empty-state {
       text-align: center;
-      color: var(--text-muted);
-      font-size: 0.8rem;
-      width: 100%;
+      padding: 4rem 2rem;
     }
     
-    /* Search Box */
-    .search-container {
+    .empty-icon {
+      font-size: 3rem;
+      color: var(--text-muted);
       margin-bottom: 1.5rem;
-    }
-    
-    .search-box {
-      position: relative;
-      max-width: 400px;
-      margin: 0 auto 1rem;
-    }
-    
-    .search-input {
-      width: 100%;
-      padding: 0.75rem 0.75rem 0.75rem 2.5rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      color: var(--text-primary);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.9rem;
-      transition: all 0.2s ease;
-    }
-    
-    .search-input:focus {
-      outline: none;
-      border-color: var(--accent-primary);
-      box-shadow: var(--shadow-neon);
-    }
-    
-    .search-icon {
-      position: absolute;
-      left: 0.75rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-muted);
     }
   </style>
 </head>
 <body>
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-    <div class="container-fluid">
+    <div class="container-main">
       <a class="navbar-brand" href="{{ "/" | relative_url }}">
         $> {{ site.title | split: " " | first }}
       </a>
       
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
         <span class="navbar-toggler-icon"></span>
       </button>
       
-      <div class="collapse navbar-collapse" id="navbarContent">
+      <div class="collapse navbar-collapse" id="navbarMain">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
             <a class="nav-link {% if page.url == '/' %}active{% endif %}" href="{{ "/" | relative_url }}">
@@ -349,45 +284,33 @@
             </a>
           </li>
           
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              <i class="fas fa-flag fa-fw"></i> CTF Writeups
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><a class="dropdown-item {% if page.url contains 'hackthebox' %}active{% endif %}" href="/posts/hackthebox/"><i class="fas fa-cube fa-fw me-2"></i>HackTheBox</a></li>
+              <li><a class="dropdown-item {% if page.url contains 'tryhackme' %}active{% endif %}" href="/posts/tryhackme/"><i class="fas fa-laptop-code fa-fw me-2"></i>TryHackMe</a></li>
+              <li><a class="dropdown-item {% if page.url contains 'offsec' %}active{% endif %}" href="/posts/offsec/"><i class="fas fa-shield-alt fa-fw me-2"></i>OffSec</a></li>
+              <li><a class="dropdown-item {% if page.url contains 'vulnhub' %}active{% endif %}" href="/posts/vulnhub/"><i class="fas fa-server fa-fw me-2"></i>VulnHub</a></li>
+            </ul>
+          </li>
+          
           <li class="nav-item">
-            <a class="nav-link {% if page.url contains 'bugbounty' %}active{% endif %}" href="{{ "/posts/bugbounty/" | relative_url }}">
+            <a class="nav-link {% if page.url contains 'bugbounty' %}active{% endif %}" href="/posts/bugbounty/">
               <i class="fas fa-bug fa-fw"></i> Bug Bounty
             </a>
           </li>
           
           <li class="nav-item">
-            <a class="nav-link {% if page.url contains 'hackthebox' %}active{% endif %}" href="{{ "/posts/hackthebox/" | relative_url }}">
-              <i class="fas fa-cube fa-fw"></i> HTB
-            </a>
-          </li>
-          
-          <li class="nav-item">
-            <a class="nav-link {% if page.url contains 'tryhackme' %}active{% endif %}" href="{{ "/posts/tryhackme/" | relative_url }}">
-              <i class="fas fa-laptop-code fa-fw"></i> THM
-            </a>
-          </li>
-          
-          <li class="nav-item">
-            <a class="nav-link {% if page.url contains 'offsec' %}active{% endif %}" href="{{ "/posts/offsec/" | relative_url }}">
-              <i class="fas fa-shield-alt fa-fw"></i> OffSec
-            </a>
-          </li>
-          
-          <li class="nav-item">
-            <a class="nav-link {% if page.url contains 'vulnhub' %}active{% endif %}" href="{{ "/posts/vulnhub/" | relative_url }}">
-              <i class="fas fa-server fa-fw"></i> VulnHub
-            </a>
-          </li>
-          
-          <li class="nav-item">
-            <a class="nav-link {% if page.url contains 'blog' %}active{% endif %}" href="{{ "/posts/blog/" | relative_url }}">
+            <a class="nav-link {% if page.url contains 'blog' %}active{% endif %}" href="/posts/blog/">
               <i class="fas fa-pen-nib fa-fw"></i> Blog
             </a>
           </li>
           
           <li class="nav-item">
-            <a class="nav-link" href="{{ site.portfolio }}" target="_blank">
-              <i class="fas fa-user-secret fa-fw"></i> About
+            <a class="nav-link" href="{{ site.portfolio_url }}" target="_blank">
+              <i class="fas fa-user-secret fa-fw"></i> Portfolio
             </a>
           </li>
           
@@ -403,7 +326,7 @@
 
   <!-- Main Content -->
   <main>
-    <div class="container-fluid">
+    <div class="container-main">
       <!-- Category Header -->
       <div class="category-header">
         {% if page.url contains 'hackthebox' %}
@@ -411,89 +334,74 @@
           <i class="fas fa-cube"></i>
         </div>
         <h1 class="category-title">HackTheBox Writeups</h1>
-        <p class="category-description">
+        <p class="text-secondary">
           Detailed walkthroughs and solutions for HackTheBox machines.
         </p>
-        
         {% elsif page.url contains 'tryhackme' %}
         <div class="category-icon">
           <i class="fas fa-laptop-code"></i>
         </div>
         <h1 class="category-title">TryHackMe Writeups</h1>
-        <p class="category-description">
-          Step-by-step guides and solutions for TryHackMe rooms and challenges.
+        <p class="text-secondary">
+          Step-by-step guides for TryHackMe rooms and challenges.
         </p>
-        
         {% elsif page.url contains 'offsec' %}
         <div class="category-icon">
           <i class="fas fa-shield-alt"></i>
         </div>
         <h1 class="category-title">OffSec Writeups</h1>
-        <p class="category-description">
-          Penetration testing methodologies and offensive security techniques.
+        <p class="text-secondary">
+          Penetration testing methodologies and offensive security.
         </p>
-        
         {% elsif page.url contains 'vulnhub' %}
         <div class="category-icon">
           <i class="fas fa-server"></i>
         </div>
         <h1 class="category-title">VulnHub Writeups</h1>
-        <p class="category-description">
-          Vulnerability assessment and exploitation walkthroughs for VulnHub VMs.
+        <p class="text-secondary">
+          Vulnerability assessment for VulnHub virtual machines.
         </p>
-        
         {% elsif page.url contains 'bugbounty' %}
         <div class="category-icon">
           <i class="fas fa-bug"></i>
         </div>
         <h1 class="category-title">Bug Bounty Reports</h1>
-        <p class="category-description">
-          Real-world bug bounty findings, methodologies, and exploitation techniques.
+        <p class="text-secondary">
+          Real-world bug bounty findings and methodologies.
         </p>
-        
         {% elsif page.url contains 'blog' %}
         <div class="category-icon">
           <i class="fas fa-pen-nib"></i>
         </div>
         <h1 class="category-title">Security Blog</h1>
-        <p class="category-description">
-          Articles, tutorials, and insights on cybersecurity trends and techniques.
+        <p class="text-secondary">
+          Articles, tutorials, and cybersecurity insights.
         </p>
-        
         {% else %}
         <div class="category-icon">
           <i class="fas fa-flag"></i>
         </div>
         <h1 class="category-title">All Writeups</h1>
-        <p class="category-description">
-          Comprehensive collection of cybersecurity writeups and research.
+        <p class="text-secondary">
+          Comprehensive collection of cybersecurity writeups.
         </p>
         {% endif %}
       </div>
 
-      <!-- Search Box -->
-      <div class="search-container">
-        <div class="search-box">
-          <input type="text" class="search-input" placeholder="Search writeups..." id="searchInput">
-          <i class="fas fa-search search-icon"></i>
-        </div>
+      <!-- Search -->
+      <div class="search-box">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" class="search-input" id="searchInput" placeholder="Search writeups...">
       </div>
 
-      <!-- Writeups Grid -->
-      {% comment %}
-      Get all pages that are in the current directory but exclude:
-      1. The current list page itself
-      2. Any index.md files
-      3. Image directories
-      {% endcomment %}
-      
-      {% assign base_path = page.url | remove: ".html" | append: "/" %}
+      <!-- Cards Grid -->
+      {% assign current_dir = page.url | remove: ".html" | append: "/" %}
       {% assign all_pages = site.pages %}
       {% assign entries = "" | split: "" %}
       
       {% for p in all_pages %}
-        {% if p.url contains base_path and p.url != page.url %}
-          {% unless p.url contains '/img/' or p.url contains 'index.md' or p.name == 'index.md' %}
+        {% if p.url contains current_dir and p.url != page.url %}
+          {% unless p.url contains '/img/' or p.name == 'index.md' %}
             {% assign entries = entries | push: p %}
           {% endunless %}
         {% endif %}
@@ -501,61 +409,58 @@
       
       {% assign entries = entries | sort: "title" %}
       
-      <div class="writeups-grid" id="writeupsGrid">
+      <div class="cards-grid" id="cardsGrid">
         {% for p in entries %}
-          <a href="{{ p.url | relative_url }}" class="writeup-card" 
-             data-title="{{ p.title | downcase | default: p.name | downcase }}"
-             data-excerpt="{{ p.excerpt | strip_html | downcase | default: '' }}">
-            
-            {% if page.url contains 'hackthebox' %}
-            <span class="writeup-category">HTB</span>
-            {% elsif page.url contains 'tryhackme' %}
-            <span class="writeup-category">THM</span>
-            {% elsif page.url contains 'offsec' %}
-            <span class="writeup-category">OffSec</span>
-            {% elsif page.url contains 'vulnhub' %}
-            <span class="writeup-category">VulnHub</span>
-            {% elsif page.url contains 'bugbounty' %}
-            <span class="writeup-category">Bug Bounty</span>
-            {% elsif page.url contains 'blog' %}
-            <span class="writeup-category">Blog</span>
-            {% else %}
-            <span class="writeup-category">Writeup</span>
+        <a href="{{ p.url | relative_url }}" class="card-item" 
+           data-title="{{ p.title | default: p.name | replace: '.md', '' | downcase }}"
+           data-excerpt="{{ p.excerpt | default: p.content | strip_html | truncate: 200 | downcase }}">
+          
+          {% if page.url contains 'hackthebox' %}
+          <span class="card-badge">HTB</span>
+          {% elsif page.url contains 'tryhackme' %}
+          <span class="card-badge">THM</span>
+          {% elsif page.url contains 'offsec' %}
+          <span class="card-badge">OffSec</span>
+          {% elsif page.url contains 'vulnhub' %}
+          <span class="card-badge">VulnHub</span>
+          {% elsif page.url contains 'bugbounty' %}
+          <span class="card-badge">Bug Bounty</span>
+          {% elsif page.url contains 'blog' %}
+          <span class="card-badge">Blog</span>
+          {% else %}
+          <span class="card-badge">Writeup</span>
+          {% endif %}
+          
+          <h3 class="card-title">
+            {{ p.title | default: p.name | replace: ".md", "" | replace: "-", " " }}
+          </h3>
+          
+          {% if p.excerpt %}
+          <p class="card-excerpt">{{ p.excerpt | strip_html | truncate: 140 }}</p>
+          {% elsif p.content %}
+          <p class="card-excerpt">{{ p.content | strip_html | truncate: 140 }}</p>
+          {% endif %}
+          
+          <div class="card-meta">
+            {% if p.date %}
+            <span><i class="far fa-calendar me-1"></i>{{ p.date | date: "%b %d, %Y" }}</span>
             {% endif %}
-            
-            <h3 class="writeup-title">
-              {{ p.title | default: p.name | replace: ".md", "" | replace: "-", " " }}
-            </h3>
-            
-            {% if p.excerpt %}
-            <p class="writeup-excerpt">{{ p.excerpt | strip_html | strip_newlines | truncate: 120 }}</p>
-            {% elsif p.content %}
-            <p class="writeup-excerpt">{{ p.content | strip_html | strip_newlines | truncate: 120 }}</p>
-            {% endif %}
-            
-            <div class="writeup-meta">
-              <div class="writeup-date">
-                {% if p.date %}
-                <i class="far fa-calendar"></i> {{ p.date | date: "%b %d, %Y" }}
-                {% endif %}
-              </div>
-            </div>
-          </a>
+            <span><i class="far fa-file-alt"></i></span>
+          </div>
+        </a>
         {% endfor %}
       </div>
 
       <!-- Empty State -->
       {% if entries.size == 0 %}
-      <div class="text-center py-5">
-        <div class="empty-icon mb-3">
-          <i class="fas fa-file-alt fa-3x text-muted"></i>
+      <div class="empty-state">
+        <div class="empty-icon">
+          <i class="fas fa-file-alt"></i>
         </div>
-        <h3 class="empty-title">No writeups found</h3>
-        <p class="empty-description mb-4">
-          There are no writeups in this category yet. Check back soon!
-        </p>
+        <h3 class="mb-3">No content found</h3>
+        <p class="text-secondary mb-4">Check back soon for new writeups!</p>
         <a href="{{ "/" | relative_url }}" class="btn btn-primary">
-          <i class="fas fa-arrow-left"></i> Back to Home
+          <i class="fas fa-arrow-left me-1"></i>Back to Home
         </a>
       </div>
       {% endif %}
@@ -564,23 +469,55 @@
 
   <!-- Footer -->
   <footer>
-    <div class="container-fluid">
-      <div class="footer-content">
-        <a href="{{ "/" | relative_url }}" class="footer-logo">
-          $> {{ site.title | split: " " | first }}
-        </a>
+    <div class="container-main">
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <a href="{{ "/" | relative_url }}" class="navbar-brand mb-3 d-inline-block">
+            $> {{ site.title | split: " " | first }}
+          </a>
+          <p class="text-secondary">{{ site.description }}</p>
+        </div>
         
-        <div class="footer-links">
-          <a href="{{ site.main_site }}" class="text-secondary text-decoration-none me-3" target="_blank">Main Site</a>
-          <a href="{{ site.portfolio }}" class="text-secondary text-decoration-none me-3" target="_blank">Portfolio</a>
-          <a href="{{ site.linktree }}" class="text-secondary text-decoration-none me-3" target="_blank">LinkTree</a>
-          <a href="{{ site.sponsors }}" class="text-secondary text-decoration-none" target="_blank">Sponsor</a>
+        <div class="col-lg-2 col-6 mb-4">
+          <h6 class="fw-bold mb-3">Writeups</h6>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="/posts/hackthebox/" class="text-secondary text-decoration-none">HackTheBox</a></li>
+            <li class="mb-2"><a href="/posts/tryhackme/" class="text-secondary text-decoration-none">TryHackMe</a></li>
+            <li class="mb-2"><a href="/posts/bugbounty/" class="text-secondary text-decoration-none">Bug Bounty</a></li>
+            <li class="mb-2"><a href="/posts/blog/" class="text-secondary text-decoration-none">Blog</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-2 col-6 mb-4">
+          <h6 class="fw-bold mb-3">Links</h6>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="{{ site.main_site }}" class="text-secondary text-decoration-none" target="_blank">Main Site</a></li>
+            <li class="mb-2"><a href="{{ site.portfolio_url }}" class="text-secondary text-decoration-none" target="_blank">Portfolio</a></li>
+            <li class="mb-2"><a href="{{ site.linktree }}" class="text-secondary text-decoration-none" target="_blank">LinkTree</a></li>
+            <li class="mb-2"><a href="{{ site.sponsors }}" class="text-secondary text-decoration-none" target="_blank">Sponsor</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+          <h6 class="fw-bold mb-3">Contact</h6>
+          <p class="text-secondary mb-3">{{ site.email }}</p>
+          <div class="d-flex gap-2">
+            <a href="https://github.com/{{ site.github_username }}" class="btn btn-sm btn-outline-secondary" target="_blank">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://twitter.com/{{ site.twitter_username }}" class="btn btn-sm btn-outline-secondary" target="_blank">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://linkedin.com/in/{{ site.linkedin_username }}" class="btn btn-sm btn-outline-secondary" target="_blank">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
         </div>
       </div>
       
       <div class="footer-copyright">
         &copy; {{ "now" | date: "%Y" }} {{ site.author }}. All rights reserved.<br>
-        <small>"The quieter you become, the more you are able to hear."</small>
+        <small class="text-muted">"The quieter you become, the more you are able to hear."</small>
       </div>
     </div>
   </footer>
@@ -588,18 +525,18 @@
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // Simple search functionality
+    // Search functionality
     const searchInput = document.getElementById('searchInput');
-    const writeupCards = document.querySelectorAll('.writeup-card');
+    const cards = document.querySelectorAll('.card-item');
     
     searchInput.addEventListener('input', function() {
-      const searchTerm = this.value.toLowerCase().trim();
+      const term = this.value.toLowerCase().trim();
       
-      writeupCards.forEach(card => {
+      cards.forEach(card => {
         const title = card.dataset.title;
         const excerpt = card.dataset.excerpt;
         
-        if (searchTerm === '' || title.includes(searchTerm) || excerpt.includes(searchTerm)) {
+        if (!term || title.includes(term) || excerpt.includes(term)) {
           card.style.display = 'block';
         } else {
           card.style.display = 'none';
@@ -607,17 +544,26 @@
       });
     });
     
-    // Set active nav link
+    // Active nav highlighting
     document.addEventListener('DOMContentLoaded', function() {
       const currentPath = window.location.pathname;
       const navLinks = document.querySelectorAll('.nav-link');
       
       navLinks.forEach(link => {
-        const linkPath = link.getAttribute('href');
-        if (linkPath && currentPath.includes(linkPath.replace(/\/$/, '')) && linkPath !== '/') {
+        const href = link.getAttribute('href');
+        if (href && href !== '/' && currentPath.includes(href)) {
           link.classList.add('active');
         }
       });
+      
+      // Also highlight dropdown parent if child is active
+      const activeDropdownItem = document.querySelector('.dropdown-item.active');
+      if (activeDropdownItem) {
+        const dropdownToggle = document.querySelector('.nav-link.dropdown-toggle');
+        if (dropdownToggle) {
+          dropdownToggle.classList.add('active');
+        }
+      }
     });
   </script>
 </body>
