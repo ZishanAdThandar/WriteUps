@@ -11,13 +11,16 @@ layout: default
   </header>
 
   <div class="list-grid">
-    {% comment %} Filter posts by current category directory {% endcomment %}
-    {% assign current_category = page.dir | remove: '/' | remove: 'posts/' %}
+    {% comment %} Debug: Get current category from page URL {% endcomment %}
+    {% assign current_path = page.url %}
+    {% assign category_parts = current_path | split: '/' %}
+    {% assign current_category = category_parts[2] %}
     
-    {% assign items = site.posts | where_exp: "post", "post.path contains current_category" %}
+    {% comment %} Filter posts by path and exclude imaginaryctf {% endcomment %}
+    {% assign filtered_posts = site.posts | where_exp: "post", "post.path contains current_category and post.path != page.path" %}
 
-    {% if items.size > 0 %}
-      {% assign sorted_items = items | sort: "date" | reverse %}
+    {% if filtered_posts.size > 0 %}
+      {% assign sorted_items = filtered_posts | sort: "date" | reverse %}
 
       {% for post in sorted_items %}
         {% unless post.path contains 'imaginaryctf' %}
@@ -53,6 +56,9 @@ layout: default
     {% else %}
       <article class="list-item empty">
         <h2>No content available</h2>
+        <p>Current category: {{ current_category }}</p>
+        <p>Debug - Page URL: {{ page.url }}</p>
+        <p>Debug - Total posts: {{ site.posts.size }}</p>
         <p>New writeups will be added soon.</p>
       </article>
     {% endif %}
