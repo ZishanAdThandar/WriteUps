@@ -23,13 +23,12 @@
     {% assign current_category = page.category %}
     {% assign category_posts = "" | split: "," %}
 
-    {% for p in site.pages %}
-      {% if p.category == current_category and p.path contains 'posts/' and p.title %}
-        {% assign category_posts = category_posts | push: p %}
+    <!-- Fix: Use site.posts instead of site.pages for posts collection -->
+    {% for post in site.posts %}
+      {% if post.category == current_category %}
+        {% assign category_posts = category_posts | push: post %}
       {% endif %}
     {% endfor %}
-
-    {% assign category_posts = category_posts | sort: "date" | reverse %}
 
     {% if category_posts.size > 0 %}
       <div class="posts-grid">
@@ -74,4 +73,3 @@
 
 </body>
 </html>
-
