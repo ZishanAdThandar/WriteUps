@@ -3,66 +3,57 @@ layout: default
 ---
 
 <section class="list-page">
-    <header class="list-header">
-        <h1 class="list-title">{{ page.title }}</h1>
-        {% if page.description %}
-            <p class="list-desc">{{ page.description }}</p>
-        {% endif %}
-    </header>
+  <header class="list-header">
+    <h1 class="list-title">{{ page.title }}</h1>
+    {% if page.description %}
+      <p class="list-desc">{{ page.description }}</p>
+    {% endif %}
+  </header>
 
-    <div class="list-grid">
-        {% comment %} Get the category name from the URL {% endcomment %}
-        {% assign url_parts = page.url | split: '/' %}
-        {% assign category_name = url_parts[2] %}
-        
-        {% comment %} Collect all posts in this category {% endcomment %}
-        {% assign category_posts = "" | split: "," %}
-        
-        {% for post in site.pages %}
-            {% comment %} Check if the post is in the right directory {% endcomment %}
-            {% if post.path contains 'posts/' and post.path contains category_name and post.name != "index.md" %}
-                {% assign category_posts = category_posts | push: post %}
+  <div class="list-grid">
+
+    {% comment %}
+    Collect all markdown pages inside /posts/<category>/ excluding index.md
+    {% endcomment %}
+
+    {% assign items = site.pages
+      | where_exp: "p", "p.path contains 'posts/'"
+      | where_exp: "p", "p.path contains page.category"
+      | where_exp: "p", "p.name != 'index.md'" %}
+
+    {% if items.size > 0 %}
+
+      {% for post in items %}
+        <article class="list-item">
+          <a href="{{ post.url | relative_url }}">
+
+            <h2 class="list-item-title">
+              {{ post.title | default: post.name | replace: '.md','' }}
+            </h2>
+
+            {% if post.description %}
+              <p class="list-item-desc">
+                {{ post.description | truncate: 160 }}
+              </p>
             {% endif %}
-        {% endfor %}
-        
-        {% if category_posts.size > 0 %}
-            {% comment %} Sort posts by date or title {% endcomment %}
-            {% assign sorted_posts = category_posts | sort: "date" | reverse %}
-            
-            {% for post in sorted_posts %}
-                <article class="list-item">
-                    <a href="{{ post.url | relative_url }}">
-                        <h2>{{ post.title }}</h2>
-                        
-                        {% if post.description %}
-                            <p>{{ post.description | truncate: 150 }}</p>
-                        {% elsif post.excerpt %}
-                            <p>{{ post.excerpt | strip_html | truncate: 150 }}</p>
-                        {% endif %}
-                        
-                        <div class="list-meta">
-                            <span class="list-date">
-                                <i class="fas fa-calendar-alt"></i>
-                                {% if post.date %}
-                                    {{ post.date | date: "%b %d, %Y" }}
-                                {% else %}
-                                    {{ site.time | date: "%b %d, %Y" }}
-                                {% endif %}
-                            </span>
-                            <span class="list-category">
-                                {{ category_name | replace: 'hackthebox', 'HTB' | replace: 'tryhackme', 'THM' | capitalize }}
-                            </span>
-                        </div>
-                    </a>
-                </article>
-            {% endfor %}
-        {% else %}
-            <article class="list-item" style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
-                <h2>No posts found in this category</h2>
-                <p style="color: var(--text-secondary); margin-top: 1rem;">
-                    Check back soon for new content!
-                </p>
-            </article>
-        {% endif %}
-    </div>
+
+            <div class="list-meta">
+              <span class="list-tag">
+                {{ page.category | upcase }}
+              </span>
+            </div>
+
+          </a>
+        </article>
+      {% endfor %}
+
+    {% else %}
+      <article class="list-item empty">
+        <h2>No content available</h2>
+        <p>New writeups will be added soon.</p>
+      </article>
+    {% endif %}
+
+  </div>
 </section>
+
