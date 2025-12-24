@@ -1,3 +1,4 @@
+# File: _config.yml
 # Jekyll Configuration
 title: "Zishan Hack"
 tagline: "Cybersecurity CTF & Bug Bounty Solutions"
@@ -7,6 +8,11 @@ author: "Zishan Ahamed Thandar"
 email: "support@zishanhack.com"
 description: "Professional cybersecurity writeups, CTF solutions, and bug bounty reports."
 
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
 # Collections
 collections:
   posts:
@@ -15,35 +21,55 @@ collections:
 
 # Defaults
 defaults:
+  # Default for all posts
   - scope:
       path: ""
       type: "posts"
     values:
       layout: "default"
+  
+  # Category pages
   - scope:
       path: "posts/hackthebox"
     values:
       layout: "list"
+      title: "HackTheBox Writeups"
+      category: "hackthebox"
+  
   - scope:
       path: "posts/tryhackme"
     values:
       layout: "list"
+      title: "TryHackMe Writeups"
+      category: "tryhackme"
+  
   - scope:
       path: "posts/offsec"
     values:
       layout: "list"
+      title: "OffSec Writeups"
+      category: "offsec"
+  
   - scope:
       path: "posts/vulnhub"
     values:
       layout: "list"
+      title: "VulnHub Writeups"
+      category: "vulnhub"
+  
   - scope:
       path: "posts/bugbounty"
     values:
       layout: "list"
+      title: "Bug Bounty Reports"
+      category: "bugbounty"
+  
   - scope:
       path: "posts/blog"
     values:
       layout: "list"
+      title: "Blog Posts"
+      category: "blog"
 
 # Plugins
 plugins:
@@ -60,8 +86,10 @@ sitemap:
 exclude:
   - CNAME
   - node_modules/
+  - Gemfile
+  - Gemfile.lock
 
-# Social links (use your actual usernames)
+# Social links
 github: "ZishanAdThandar"
 twitter: "zishanadthandar"
 linkedin: "zishanadthandar"
@@ -71,3 +99,11 @@ portfolio: "https://portfolio.zishanhack.com"
 main_site: "https://zishanhack.com"
 sponsors: "https://github.com/sponsors/ZishanAdThandar"
 
+# Safe mode (prevents custom plugins)
+safe: true
+
+# Whitelist for GitHub Pages
+whitelist:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap

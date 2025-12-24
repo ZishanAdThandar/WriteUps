@@ -757,54 +757,36 @@
     </footer>
     
     <script>
-        // Back to top button
-        const backToTop = document.getElementById('backToTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
+    {% raw %}
+    // Back to top button
+    const backToTop = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    });
+    
+    backToTop.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // Image handling for wide images
+    document.addEventListener('DOMContentLoaded', () => {
+        const images = document.querySelectorAll('.post-content img');
+        images.forEach(img => {
+            if (img.naturalWidth > 1200) {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'wide-image';
+                img.parentNode.insertBefore(wrapper, img);
+                wrapper.appendChild(img);
             }
         });
-        
-        backToTop.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-        
-        // Image handling for wide images
-        document.addEventListener('DOMContentLoaded', () => {
-            const images = document.querySelectorAll('.post-content img');
-            images.forEach(img => {
-                if (img.naturalWidth > 1200) {
-                    const wrapper = document.createElement('div');
-                    wrapper.className = 'wide-image';
-                    img.parentNode.insertBefore(wrapper, img);
-                    wrapper.appendChild(img);
-                }
-            });
-        });
-        
-        // Terminal typing effect for titles
-        const titles = document.querySelectorAll('.site-title, .page-title, .post-title');
-        titles.forEach(title => {
-            if (title.textContent.includes('{{')) return; // Skip dynamic titles
-            
-            const text = title.textContent;
-            title.textContent = '';
-            let i = 0;
-            
-            function typeWriter() {
-                if (i < text.length) {
-                    title.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(typeWriter, 50);
-                }
-            }
-            
-            typeWriter();
-        });
+    });
+    {% endraw %}
     </script>
 </body>
 </html>
