@@ -14,44 +14,44 @@ layout: default
     {% comment %} Get the directory name from the current page's URL {% endcomment %}
     {% assign current_dir = page.url | split: '/' | slice: 2 | first %}
     
-    {% comment %} Debug info {% endcomment %}
-    <!-- Current directory from URL: {{ current_dir }} -->
-    <!-- Page URL: {{ page.url }} -->
-    <!-- Page category: {{ page.category }} -->
-    <!-- Site posts count: {{ site.posts.size }} -->
+    {% comment %} Debug Jekyll processing {% endcomment %}
+    <!-- Current directory: {{ current_dir }} -->
+    <!-- Site posts: {{ site.posts.size }} -->
+    <!-- Site pages: {{ site.pages.size }} -->
+    <!-- Site documents: {{ site.documents.size }} -->
 
-    {% assign display_posts = false %}
+    {% assign found_content = false %}
     
-    {% comment %} Loop through all posts to find ones in this directory {% endcomment %}
-    {% for post in site.posts %}
-      {% unless post.path contains 'imaginaryctf' or post.path contains 'index' or post.path contains 'README' %}
-        {% comment %} Check if post is in the current directory {% endcomment %}
-        {% assign post_dir = post.path | split: '/' | slice: 1 | first %}
+    {% comment %} Try using site.pages instead of site.posts {% endcomment %}
+    {% for page_item in site.pages %}
+      {% unless page_item.path contains 'imaginaryctf' or page_item.path contains 'index' or page_item.path contains 'README' %}
+        {% comment %} Check if page is in the current directory {% endcomment %}
+        {% assign page_dir = page_item.path | split: '/' | slice: 1 | first %}
         
-        {% if post_dir == current_dir %}
-          {% assign display_posts = true %}
+        {% if page_dir == current_dir %}
+          {% assign found_content = true %}
           <article class="list-item">
-            <a href="{{ post.url | relative_url }}">
+            <a href="{{ page_item.url | relative_url }}">
               <h2 class="list-item-title">
-                {{ post.title | default: post.name }}
+                {{ page_item.title | default: page_item.name }}
               </h2>
               
-              {% if post.description %}
+              {% if page_item.description %}
                 <p class="list-item-desc">
-                  {{ post.description | truncate: 160 }}
+                  {{ page_item.description | truncate: 160 }}
                 </p>
-              {% elsif post.excerpt %}
+              {% elsif page_item.excerpt %}
                 <p class="list-item-desc">
-                  {{ post.excerpt | strip_html | truncate: 160 }}
+                  {{ page_item.excerpt | strip_html | truncate: 160 }}
                 </p>
               {% endif %}
               
               <div class="list-meta">
                 <span class="list-category">{{ current_dir | capitalize }}</span>
-                {% if post.date %}
+                {% if page_item.date %}
                   <span class="list-date">
                     <i class="fas fa-calendar-alt"></i>
-                    {{ post.date | date: "%B %d, %Y" }}
+                    {{ page_item.date | date: "%B %d, %Y" }}
                   </span>
                 {% endif %}
               </div>
@@ -61,20 +61,16 @@ layout: default
       {% endunless %}
     {% endfor %}
     
-    {% unless display_posts %}
+    {% unless found_content %}
       <article class="list-item empty">
         <h2>No content available</h2>
         <p>Current directory: {{ current_dir }}</p>
-        <p>Looking for posts in directory: posts/{{ current_dir }}/</p>
-        <p>Total posts found: {{ site.posts.size }}</p>
-        <h3>Post directory analysis:</h3>
-        {% for post in site.posts %}
-          {% assign post_path_parts = post.path | split: '/' %}
-          {% if post_path_parts.size > 1 %}
-            <p>- Path: {{ post.path }} | Directory: {{ post_path_parts[1] }} | Title: {{ post.title }}</p>
-          {% else %}
-            <p>- Path: {{ post.path }} | No directory | Title: {{ post.title }}</p>
-          {% endif %}
+        <p>Looking in: posts/{{ current_dir }}/</p>
+        <p>Site pages: {{ site.pages.size }}</p>
+        <p>Site posts: {{ site.posts.size }}</p>
+        <h3>All site pages:</h3>
+        {% for page_item in site.pages %}
+          <p>- Path: {{ page_item.path }} | Title: {{ page_item.title }} | URL: {{ page_item.url }}</p>
         {% endfor %}
       </article>
     {% endunless %}
