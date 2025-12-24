@@ -1,48 +1,70 @@
-title: InfoSec WriteUps by Zishan Ahamed Thandar
-slogan: Deep-dive cyber security, CTF & bug bounty
+title: "InfoSec WriteUps"
+tagline: "Cybersecurity CTF & Bug Bounty Solutions"
 url: "https://blog.zishanhack.com"
-baseurl: ""   # keep empty for root
+baseurl: ""
 author: "Zishan Ahamed Thandar"
 email: "zishanadthandar@wearehackerone.com"
-description: "Professional cybersecurity writeups, CTF solutions, and bug bounty reports by Zishan Ahamed Thandar. HackTheBox, TryHackMe, VulnHub, and real-world security research."
+description: "Professional cybersecurity writeups, CTF solutions, and bug bounty reports."
 
-# Collections
+# Collections (auto-load content)
 collections:
-  posts:
+  writeups:
     output: true
     permalink: /:collection/:path/
-
+    
 # Defaults
 defaults:
   - scope:
-      path: ""
-    values:
-      layout: default
-  - scope:
       path: "posts"
-      type: "posts"
     values:
-      layout: default
+      layout: "default"
       author: "Zishan Ahamed Thandar"
+      share: true
+      comments: false
+      sitemap:
+        changefreq: "daily"
+        priority: 0.9
 
 # Plugins
 plugins:
-  - jekyll-sitemap
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-sitemap
 
-# SEO
-logo: "/assets/images/logo.png"
-twitter_username: "zishanadthandar"
-github_username: "zishanadthandar"
-linkedin_username: "zishanadthandar"
+# Sitemap settings
+sitemap:
+  changefreq: "daily"
+  priority: 0.9
+  include:
+    - "posts/**/*.md"
+  exclude:
+    - "/feed.xml"
+    - "/404.html"
 
-# Exclude from processing
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - node_modules
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
+# Social links
+linktree: "https://go.zishanhack.com"
+portfolio: "https://portfolio.zishanhack.com"
+github: "ZishanAdThandar"
+twitter: "zishanadthandar"
+linkedin: "zishanadthandar"
+
+# Navigation
+navigation:
+  - name: "Home"
+    url: "/"
+    icon: "fas fa-home"
+  - name: "Bug Bounty"
+    url: "/posts/bugbounty/"
+    icon: "fas fa-bug"
+  - name: "HackTheBox"
+    url: "/posts/hackthebox/"
+    icon: "fas fa-cube"
+  - name: "TryHackMe"
+    url: "/posts/tryhackme/"
+    icon: "fas fa-flag"
+  - name: "Blog"
+    url: "/posts/blog/"
+    icon: "fas fa-pen-nib"
+  - name: "Portfolio"
+    url: "https://portfolio.zishanhack.com"
+    icon: "fas fa-user-secret"

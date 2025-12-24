@@ -1,791 +1,544 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- SEO -->
-  <title>{{ page.title }} | {{ site.title }}</title>
-  <meta name="description" content="Browse all {{ page.title }} writeups and guides by {{ site.author }}">
-  <meta name="keywords" content="{{ page.title }}, CTF, cybersecurity, penetration testing, {{ site.author }}">
-  
-  <!-- Open Graph -->
-  <meta property="og:title" content="{{ page.title }} | {{ site.title }}">
-  <meta property="og:description" content="Browse all {{ page.title }} writeups and guides by {{ site.author }}">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="{{ page.url | absolute_url }}">
-  
-  <!-- Favicon -->
-  <link rel="icon" href="data:image/png;base64,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" type="image/x-icon">
-  
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  
-  <style>
-    :root {
-      --bg-primary: #0a0a0f;
-      --bg-secondary: #11111f;
-      --bg-tertiary: #1a1a2e;
-      --bg-card: rgba(26, 26, 46, 0.95);
-      --accent-primary: #00ff88;
-      --accent-secondary: #38bdf8;
-      --text-primary: #f1f5f9;
-      --text-secondary: #cbd5e1;
-      --text-muted: #94a3b8;
-      --border-color: rgba(148, 163, 184, 0.15);
-      --shadow-glassy: 0 8px 32px rgba(0, 0, 0, 0.3);
-      --shadow-neon: 0 0 20px rgba(0, 255, 136, 0.15);
-      --radius-sm: 8px;
-      --radius-md: 12px;
-      --radius-lg: 16px;
-      --radius-xl: 24px;
-    }
-    
-    * {
-      box-sizing: border-box;
-    }
-    
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: var(--bg-primary);
-      color: var(--text-primary);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      min-height: 100vh;
-    }
-    
-    /* Navigation (same as default.html) */
-    .navbar {
-      background: rgba(10, 10, 15, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border-color);
-      padding: 1rem 0;
-    }
-    
-    .navbar-brand {
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--accent-primary) !important;
-      letter-spacing: -0.5px;
-    }
-    
-    .navbar-brand::after {
-      content: "_";
-      animation: blink 1s infinite;
-      color: var(--accent-primary);
-    }
-    
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-    
-    .nav-link {
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 500;
-      font-size: 0.9rem;
-      color: var(--text-secondary) !important;
-      margin: 0 0.5rem;
-      padding: 0.5rem 0.75rem !important;
-      border-radius: var(--radius-sm);
-      transition: all 0.2s ease;
-    }
-    
-    .nav-link:hover {
-      color: var(--accent-primary) !important;
-      background: rgba(0, 255, 136, 0.1);
-    }
-    
-    .nav-link.active {
-      color: var(--accent-primary) !important;
-      background: rgba(0, 255, 136, 0.1);
-      border: 1px solid rgba(0, 255, 136, 0.3);
-    }
-    
-    /* Main Content */
-    main {
-      padding-top: 5rem;
-      min-height: calc(100vh - 200px);
-    }
-    
-    .container-fluid {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    /* Category Header */
+---
+layout: default
+---
+
+<style>
+    /* Category-specific styles */
     .category-header {
-      text-align: center;
-      margin-bottom: 3rem;
-      padding: 2rem;
-      background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(56, 189, 248, 0.1));
-      border-radius: var(--radius-xl);
-      border: 1px solid var(--border-color);
+        text-align: center;
+        margin: 60px 0 40px;
+        padding: 40px 20px;
+        background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(56, 189, 248, 0.1));
+        border-radius: 15px;
+        border: 1px solid var(--border);
     }
     
     .category-icon {
-      font-size: 3rem;
-      color: var(--accent-primary);
-      margin-bottom: 1rem;
+        font-size: 3rem;
+        color: var(--accent);
+        margin-bottom: 20px;
     }
     
     .category-title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 0.5rem;
-      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 15px;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
     }
     
     .category-description {
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-      max-width: 600px;
-      margin: 0 auto;
+        color: var(--text2);
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin: 0 auto;
     }
     
-    /* Writeups Grid */
-    .writeups-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-    }
-    
-    /* Writeup Card */
-    .writeup-card {
-      background: var(--bg-card);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-color);
-      padding: 1.5rem;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .writeup-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--accent-primary);
-      box-shadow: var(--shadow-neon);
-    }
-    
-    .writeup-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    .writeup-card:hover::before {
-      opacity: 1;
-    }
-    
-    .writeup-category {
-      display: inline-block;
-      padding: 0.3rem 0.8rem;
-      background: rgba(0, 255, 136, 0.1);
-      color: var(--accent-primary);
-      border-radius: var(--radius-full);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 1rem;
-    }
-    
-    .writeup-title {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-      color: var(--text-primary);
-      line-height: 1.3;
-    }
-    
-    .writeup-excerpt {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    
-    .writeup-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 1rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border-color);
-    }
-    
-    .writeup-date {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-    
-    .writeup-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    
-    .writeup-tag {
-      padding: 0.2rem 0.6rem;
-      background: rgba(56, 189, 248, 0.1);
-      color: var(--accent-secondary);
-      border-radius: var(--radius-full);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-    }
-    
-    .writeup-readtime {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-    }
-    
-    /* Empty State */
-    .empty-state {
-      text-align: center;
-      padding: 4rem 2rem;
-      background: var(--bg-tertiary);
-      border-radius: var(--radius-xl);
-      border: 2px dashed var(--border-color);
-    }
-    
-    .empty-icon {
-      font-size: 3rem;
-      color: var(--text-muted);
-      margin-bottom: 1rem;
-    }
-    
-    .empty-title {
-      font-size: 1.5rem;
-      color: var(--text-secondary);
-      margin-bottom: 0.5rem;
-    }
-    
-    .empty-description {
-      color: var(--text-muted);
-      max-width: 400px;
-      margin: 0 auto 1.5rem;
-    }
-    
-    /* Footer (same as default.html) */
-    footer {
-      background: var(--bg-tertiary);
-      padding: 3rem 0 2rem;
-      margin-top: 3rem;
-      border-top: 1px solid var(--border-color);
-    }
-    
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 2rem;
-    }
-    
-    .footer-logo {
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: var(--accent-primary);
-      text-decoration: none;
-    }
-    
-    .footer-copyright {
-      margin-top: 2rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border-color);
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-    }
-    
-    /* Responsive */
-    @media (max-width: 768px) {
-      .category-title {
-        font-size: 2rem;
-      }
-      
-      .writeups-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .footer-content {
-        flex-direction: column;
-        text-align: center;
-      }
-    }
-    
-    /* Loading animation */
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-    
-    .loading {
-      animation: pulse 2s infinite;
-    }
-    
-    /* Search and Filter */
-    .search-container {
-      margin-bottom: 2rem;
+    /* Filter/Search */
+    .search-filter {
+        margin: 40px auto;
+        max-width: 800px;
     }
     
     .search-box {
-      position: relative;
-      max-width: 400px;
-      margin: 0 auto;
+        position: relative;
+        margin-bottom: 20px;
     }
     
     .search-input {
-      width: 100%;
-      padding: 1rem 1rem 1rem 3rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      color: var(--text-primary);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.9rem;
-      transition: all 0.2s ease;
+        width: 100%;
+        padding: 15px 15px 15px 45px;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        color: var(--text);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 1rem;
+        transition: all 0.3s;
     }
     
     .search-input:focus {
-      outline: none;
-      border-color: var(--accent-primary);
-      box-shadow: var(--shadow-neon);
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.2);
     }
     
     .search-icon {
-      position: absolute;
-      left: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-muted);
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text2);
     }
     
     .filter-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      justify-content: center;
-      margin-top: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
     }
     
     .filter-tag {
-      padding: 0.4rem 1rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-full);
-      color: var(--text-secondary);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
+        padding: 8px 16px;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        color: var(--text2);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s;
     }
     
     .filter-tag:hover,
     .filter-tag.active {
-      background: rgba(0, 255, 136, 0.1);
-      color: var(--accent-primary);
-      border-color: var(--accent-primary);
+        background: rgba(0, 255, 136, 0.1);
+        color: var(--accent);
+        border-color: var(--accent);
     }
-  </style>
-</head>
-<body>
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="{{ "/" | relative_url }}">
-        $> {{ site.title | split: " " | first }}
-      </a>
-      
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      
-      <div class="collapse navbar-collapse" id="navbarContent">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="{{ "/" | relative_url }}">
-              <i class="fas fa-home"></i> Home
-            </a>
-          </li>
-          
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-              <i class="fas fa-flag"></i> CTF Writeups
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{{ "/posts/hackthebox" | relative_url }}">HackTheBox</a></li>
-              <li><a class="dropdown-item" href="{{ "/posts/tryhackme" | relative_url }}">TryHackMe</a></li>
-              <li><a class="dropdown-item" href="{{ "/posts/offsec" | relative_url }}">OffSec</a></li>
-              <li><a class="dropdown-item" href="{{ "/posts/vulnhub" | relative_url }}">VulnHub</a></li>
-            </ul>
-          </li>
-          
-          <li class="nav-item">
-            <a class="nav-link" href="{{ "/posts/bugbounty" | relative_url }}">
-              <i class="fas fa-bug"></i> Bug Bounty
-            </a>
-          </li>
-          
-          <li class="nav-item">
-            <a class="nav-link" href="{{ "/posts/blog" | relative_url }}">
-              <i class="fas fa-pen-nib"></i> Blog
-            </a>
-          </li>
-        </ul>
-      </div>
+    
+    /* Writeups Grid */
+    .writeups-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 25px;
+        margin: 40px 0;
+    }
+    
+    .writeup-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 25px;
+        transition: all 0.3s;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        height: 100%;
+    }
+    
+    .writeup-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 255, 136, 0.1);
+    }
+    
+    .writeup-badge {
+        display: inline-block;
+        padding: 5px 12px;
+        background: rgba(0, 255, 136, 0.1);
+        color: var(--accent);
+        border-radius: 20px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+    }
+    
+    .writeup-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+        color: var(--text);
+        line-height: 1.3;
+    }
+    
+    .writeup-excerpt {
+        color: var(--text2);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 15px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    .writeup-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border);
+        color: var(--text2);
+        font-size: 0.85rem;
+    }
+    
+    .writeup-meta i {
+        margin-right: 5px;
+        color: var(--accent);
+    }
+    
+    .writeup-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 15px;
+    }
+    
+    .writeup-tag {
+        padding: 4px 10px;
+        background: rgba(56, 189, 248, 0.1);
+        color: var(--accent2);
+        border-radius: 15px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.75rem;
+    }
+    
+    /* Empty State */
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        background: var(--bg-card);
+        border-radius: 15px;
+        border: 2px dashed var(--border);
+        margin: 40px 0;
+    }
+    
+    .empty-icon {
+        font-size: 3rem;
+        color: var(--text2);
+        margin-bottom: 20px;
+    }
+    
+    .empty-title {
+        font-size: 1.5rem;
+        color: var(--text2);
+        margin-bottom: 10px;
+    }
+    
+    .empty-description {
+        color: var(--text2);
+        max-width: 400px;
+        margin: 0 auto 20px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .category-title {
+            font-size: 2rem;
+        }
+        
+        .writeups-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .filter-tags {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>
+
+<div class="category-header">
+    {% if page.url contains 'bugbounty' %}
+    <div class="category-icon">
+        <i class="fas fa-bug"></i>
     </div>
-  </nav>
+    <h1 class="category-title">Bug Bounty Reports</h1>
+    <p class="category-description">
+        Real-world bug bounty findings, exploitation methodologies, and vulnerability analysis.
+    </p>
+    
+    {% elsif page.url contains 'hackthebox' %}
+    <div class="category-icon">
+        <i class="fas fa-cube"></i>
+    </div>
+    <h1 class="category-title">HackTheBox Writeups</h1>
+    <p class="category-description">
+        Detailed walkthroughs and solutions for HackTheBox machines, retired and active.
+    </p>
+    
+    {% elsif page.url contains 'tryhackme' %}
+    <div class="category-icon">
+        <i class="fas fa-flag"></i>
+    </div>
+    <h1 class="category-title">TryHackMe Writeups</h1>
+    <p class="category-description">
+        Step-by-step guides and solutions for TryHackMe rooms and challenges.
+    </p>
+    
+    {% elsif page.url contains 'vulnhub' %}
+    <div class="category-icon">
+        <i class="fas fa-server"></i>
+    </div>
+    <h1 class="category-title">VulnHub Writeups</h1>
+    <p class="category-description">
+        Vulnerability assessment and exploitation walkthroughs for VulnHub VMs.
+    </p>
+    
+    {% elsif page.url contains 'blog' %}
+    <div class="category-icon">
+        <i class="fas fa-pen-nib"></i>
+    </div>
+    <h1 class="category-title">Security Blog</h1>
+    <p class="category-description">
+        Articles, tutorials, and insights on cybersecurity trends and techniques.
+    </p>
+    
+    {% else %}
+    <div class="category-icon">
+        <i class="fas fa-flag"></i>
+    </div>
+    <h1 class="category-title">All Writeups</h1>
+    <p class="category-description">
+        Comprehensive collection of cybersecurity writeups and research.
+    </p>
+    {% endif %}
+</div>
 
-  <!-- Main Content -->
-  <main>
-    <div class="container-fluid px-4">
-      <!-- Category Header -->
-      <div class="category-header">
-        {% if page.url contains 'hackthebox' %}
-        <div class="category-icon">
-          <i class="fas fa-cube"></i>
-        </div>
-        <h1 class="category-title">HackTheBox Writeups</h1>
-        <p class="category-description">
-          Detailed walkthroughs and solutions for HackTheBox machines, retired and active.
-        </p>
-        
-        {% elsif page.url contains 'tryhackme' %}
-        <div class="category-icon">
-          <i class="fas fa-laptop-code"></i>
-        </div>
-        <h1 class="category-title">TryHackMe Writeups</h1>
-        <p class="category-description">
-          Step-by-step guides and solutions for TryHackMe rooms and challenges.
-        </p>
-        
-        {% elsif page.url contains 'offsec' %}
-        <div class="category-icon">
-          <i class="fas fa-shield-alt"></i>
-        </div>
-        <h1 class="category-title">OffSec Writeups</h1>
-        <p class="category-description">
-          Penetration testing methodologies and offensive security techniques.
-        </p>
-        
-        {% elsif page.url contains 'vulnhub' %}
-        <div class="category-icon">
-          <i class="fas fa-server"></i>
-        </div>
-        <h1 class="category-title">VulnHub Writeups</h1>
-        <p class="category-description">
-          Vulnerability assessment and exploitation walkthroughs for VulnHub VMs.
-        </p>
-        
-        {% elsif page.url contains 'bugbounty' %}
-        <div class="category-icon">
-          <i class="fas fa-bug"></i>
-        </div>
-        <h1 class="category-title">Bug Bounty Reports</h1>
-        <p class="category-description">
-          Real-world bug bounty findings, methodologies, and exploitation techniques.
-        </p>
-        
-        {% elsif page.url contains 'blog' %}
-        <div class="category-icon">
-          <i class="fas fa-pen-nib"></i>
-        </div>
-        <h1 class="category-title">Security Blog</h1>
-        <p class="category-description">
-          Articles, tutorials, and insights on cybersecurity trends and techniques.
-        </p>
-        
-        {% else %}
-        <div class="category-icon">
-          <i class="fas fa-flag"></i>
-        </div>
-        <h1 class="category-title">{{ page.title | default: "All Writeups" }}</h1>
-        <p class="category-description">
-          Comprehensive collection of cybersecurity writeups and research.
-        </p>
-        {% endif %}
-      </div>
+<!-- Page content (if any) -->
+{% if content %}
+<div class="page-content">
+    {{ content }}
+</div>
+{% endif %}
 
-      <!-- Optional page content at top -->
-      {% if page.content %}
-      <div class="page-content mb-4">
-        {{ content }}
-      </div>
-      {% endif %}
+<!-- Search and Filter -->
+<div class="search-filter">
+    <div class="search-box">
+        <input type="text" class="search-input" placeholder="Search writeups..." id="searchInput">
+        <i class="fas fa-search search-icon"></i>
+    </div>
+    
+    <div class="filter-tags" id="filterTags">
+        <!-- Tags will be populated by JavaScript -->
+    </div>
+</div>
 
-      <!-- Search and Filter -->
-      <div class="search-container">
-        <div class="search-box">
-          <input type="text" class="search-input" placeholder="Search writeups..." id="searchInput">
-          <i class="fas fa-search search-icon"></i>
-        </div>
-        <div class="filter-tags" id="filterTags">
-          <!-- Tags will be populated by JavaScript -->
-        </div>
-      </div>
+<!-- Writeups Grid -->
+{% assign category_path = page.path | split: '/' %}
+{% assign category = category_path[1] %}
+{% assign writeups = site.pages | where_exp: "p", "p.path contains 'posts/'" | where_exp: "p", "p.path != 'posts/'" | where_exp: "p", "p.path contains category" | sort: "date" | reverse %}
 
-      <!-- Writeups Grid -->
-      {% assign current_dir = page.path | replace: page.name, "" %}
-      {% assign entries = site.pages | where_exp: "p", "p.path contains current_dir" %}
-      {% assign entries = entries | where_exp: "p", "p.url != page.url" %}
-      {% assign entries = entries | sort: "date" | reverse %}
-      
-      <div class="writeups-grid" id="writeupsGrid">
-        {% for p in entries %}
-        <a href="{{ p.url | relative_url }}" class="writeup-card" 
-           data-title="{{ p.title | downcase }}"
-           data-excerpt="{{ p.excerpt | strip_html | downcase }}"
-           data-tags="{{ p.tags | join: ',' | downcase }}">
-          
-          {% if page.url contains 'hackthebox' %}
-          <span class="writeup-category">HTB</span>
-          {% elsif page.url contains 'tryhackme' %}
-          <span class="writeup-category">THM</span>
-          {% elsif page.url contains 'offsec' %}
-          <span class="writeup-category">OffSec</span>
-          {% elsif page.url contains 'vulnhub' %}
-          <span class="writeup-category">VulnHub</span>
-          {% elsif page.url contains 'bugbounty' %}
-          <span class="writeup-category">Bug Bounty</span>
-          {% elsif page.url contains 'blog' %}
-          <span class="writeup-category">Blog</span>
-          {% else %}
-          <span class="writeup-category">Writeup</span>
-          {% endif %}
-          
-          <h3 class="writeup-title">{{ p.title | default: p.name | replace: ".md","" }}</h3>
-          
-          {% if p.excerpt %}
-          <p class="writeup-excerpt">{{ p.excerpt | strip_html | strip_newlines | truncate: 140 }}</p>
-          {% endif %}
-          
-          <div class="writeup-meta">
-            <div>
-              {% if p.date %}
-              <div class="writeup-date">
-                <i class="far fa-calendar"></i> {{ p.date | date: "%b %d, %Y" }}
-              </div>
-              {% endif %}
-            </div>
-            
-            <div class="writeup-tags">
-              {% if p.tags %}
-                {% for tag in p.tags limit: 2 %}
-                <span class="writeup-tag">{{ tag }}</span>
-                {% endfor %}
-                {% if p.tags.size > 2 %}
-                <span class="writeup-tag">+{{ p.tags.size | minus: 2 }}</span>
+<div class="writeups-grid" id="writeupsGrid">
+    {% for writeup in writeups %}
+        {% if writeup.title and writeup.url != page.url %}
+            {% assign writeup_category = writeup.path | split: '/' | shift | first %}
+            <a href="{{ writeup.url | relative_url }}" class="writeup-card" 
+               data-title="{{ writeup.title | downcase }}"
+               data-excerpt="{{ writeup.excerpt | strip_html | downcase }}"
+               data-tags="{{ writeup.tags | join: ',' | downcase }}">
+                
+                <div class="writeup-badge">
+                    {{ writeup_category | upcase }}
+                </div>
+                
+                <h3 class="writeup-title">{{ writeup.title }}</h3>
+                
+                {% if writeup.excerpt %}
+                    <p class="writeup-excerpt">{{ writeup.excerpt | strip_html | truncate: 120 }}</p>
                 {% endif %}
-              {% endif %}
-            </div>
-          </div>
-        </a>
-        {% endfor %}
-      </div>
+                
+                {% if writeup.tags %}
+                    <div class="writeup-tags">
+                        {% for tag in writeup.tags limit: 3 %}
+                            <span class="writeup-tag">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                
+                <div class="writeup-meta">
+                    <div>
+                        {% if writeup.date %}
+                            <div>
+                                <i class="far fa-calendar"></i> {{ writeup.date | date: "%b %d, %Y" }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div>
+                        <i class="far fa-clock"></i> 
+                        {% assign words = writeup.content | strip_html | number_of_words %}
+                        {% if words < 360 %}1 min{% else %}{{ words | divided_by: 180 }} min{% endif %}
+                    </div>
+                </div>
+            </a>
+        {% endif %}
+    {% endfor %}
+</div>
 
-      <!-- Empty State -->
-      {% if entries == empty %}
-      <div class="empty-state">
-        <div class="empty-icon">
-          <i class="fas fa-file-alt"></i>
-        </div>
-        <h3 class="empty-title">No writeups found</h3>
-        <p class="empty-description">
-          There are no writeups in this category yet. Check back soon!
-        </p>
-        <a href="{{ "/" | relative_url }}" class="btn btn-primary">
-          <i class="fas fa-arrow-left"></i> Back to Home
-        </a>
-      </div>
-      {% endif %}
+<!-- Empty State -->
+{% if writeups.size == 0 %}
+<div class="empty-state">
+    <div class="empty-icon">
+        <i class="fas fa-file-alt"></i>
     </div>
-  </main>
+    <h3 class="empty-title">No writeups found</h3>
+    <p class="empty-description">
+        There are no writeups in this category yet. Check back soon!
+    </p>
+    <a href="{{ "/" | relative_url }}" class="btn btn-outline">
+        <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+</div>
+{% endif %}
 
-  <!-- Footer -->
-  <footer>
-    <div class="container-fluid px-4">
-      <div class="footer-content">
-        <a href="{{ "/" | relative_url }}" class="footer-logo">
-          $> {{ site.title | split: " " | first }}
-        </a>
+<script>
+    // Search and filter functionality for category pages
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('searchInput');
+        const writeupsGrid = document.getElementById('writeupsGrid');
+        const filterTags = document.getElementById('filterTags');
+        const writeupCards = writeupsGrid ? Array.from(writeupsGrid.querySelectorAll('.writeup-card')) : [];
         
-        <div class="footer-links">
-          <a href="{{ "/posts/blog" | relative_url }}" class="footer-link">Blog</a>
-          <a href="{{ "/posts/hackthebox" | relative_url }}" class="footer-link">HackTheBox</a>
-          <a href="{{ "/posts/tryhackme" | relative_url }}" class="footer-link">TryHackMe</a>
-          <a href="{{ "/posts/bugbounty" | relative_url }}" class="footer-link">Bug Bounty</a>
-        </div>
-      </div>
-      
-      <div class="footer-copyright">
-        &copy; {{ "now" | date: "%Y" }} {{ site.author }}. All rights reserved.<br>
-        <small>"The quieter you become, the more you are able to hear."</small>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    // Search and filter functionality
-    const searchInput = document.getElementById('searchInput');
-    const writeupsGrid = document.getElementById('writeupsGrid');
-    const filterTags = document.getElementById('filterTags');
-    const writeupCards = Array.from(document.querySelectorAll('.writeup-card'));
-    
-    // Extract all unique tags
-    const allTags = new Set();
-    writeupCards.forEach(card => {
-      const tags = card.dataset.tags.split(',').filter(tag => tag.trim() !== '');
-      tags.forEach(tag => allTags.add(tag.trim()));
-    });
-    
-    // Create filter tags
-    Array.from(allTags).sort().forEach(tag => {
-      const tagElement = document.createElement('span');
-      tagElement.className = 'filter-tag';
-      tagElement.textContent = tag;
-      tagElement.dataset.tag = tag;
-      filterTags.appendChild(tagElement);
-    });
-    
-    // Search and filter logic
-    let activeFilters = new Set();
-    
-    function filterWriteups() {
-      const searchTerm = searchInput.value.toLowerCase().trim();
-      
-      writeupCards.forEach(card => {
-        const title = card.dataset.title;
-        const excerpt = card.dataset.excerpt;
-        const tags = card.dataset.tags.split(',').map(t => t.trim());
+        // Extract all unique tags from writeups
+        const allTags = new Set();
+        writeupCards.forEach(card => {
+            const tags = card.dataset.tags.split(',').filter(tag => tag.trim() !== '');
+            tags.forEach(tag => allTags.add(tag.trim()));
+        });
         
-        const matchesSearch = !searchTerm || 
-          title.includes(searchTerm) || 
-          excerpt.includes(searchTerm);
-        
-        const matchesFilters = activeFilters.size === 0 || 
-          Array.from(activeFilters).every(filter => tags.includes(filter));
-        
-        card.style.display = (matchesSearch && matchesFilters) ? 'block' : 'none';
-      });
-      
-      // Update filter tags active state
-      document.querySelectorAll('.filter-tag').forEach(tagElement => {
-        if (activeFilters.has(tagElement.dataset.tag)) {
-          tagElement.classList.add('active');
-        } else {
-          tagElement.classList.remove('active');
-        }
-      });
-    }
-    
-    // Event listeners
-    searchInput.addEventListener('input', filterWriteups);
-    
-    filterTags.addEventListener('click', (e) => {
-      if (e.target.classList.contains('filter-tag')) {
-        const tag = e.target.dataset.tag;
-        
-        if (activeFilters.has(tag)) {
-          activeFilters.delete(tag);
-        } else {
-          activeFilters.add(tag);
+        // Create filter tags
+        if (filterTags) {
+            Array.from(allTags).sort().forEach(tag => {
+                const tagElement = document.createElement('span');
+                tagElement.className = 'filter-tag';
+                tagElement.textContent = tag;
+                tagElement.dataset.tag = tag;
+                filterTags.appendChild(tagElement);
+            });
+            
+            // Add "Clear All" button
+            if (allTags.size > 0) {
+                const clearButton = document.createElement('span');
+                clearButton.className = 'filter-tag';
+                clearButton.textContent = 'Clear All';
+                clearButton.style.background = 'rgba(239, 68, 68, 0.1)';
+                clearButton.style.color = '#ef4444';
+                clearButton.style.borderColor = '#ef4444';
+                
+                clearButton.addEventListener('click', function() {
+                    activeFilters.clear();
+                    if (searchInput) searchInput.value = '';
+                    filterWriteups();
+                    updateFilterTags();
+                });
+                
+                filterTags.appendChild(clearButton);
+            }
         }
         
+        // Search and filter logic
+        let activeFilters = new Set();
+        
+        function filterWriteups() {
+            const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
+            
+            writeupCards.forEach(card => {
+                const title = card.dataset.title;
+                const excerpt = card.dataset.excerpt;
+                const tags = card.dataset.tags.split(',').map(t => t.trim());
+                
+                const matchesSearch = !searchTerm || 
+                    title.includes(searchTerm) || 
+                    excerpt.includes(searchTerm);
+                
+                const matchesFilters = activeFilters.size === 0 || 
+                    Array.from(activeFilters).every(filter => tags.includes(filter));
+                
+                card.style.display = (matchesSearch && matchesFilters) ? 'block' : 'none';
+            });
+        }
+        
+        function updateFilterTags() {
+            if (!filterTags) return;
+            
+            filterTags.querySelectorAll('.filter-tag').forEach(tagElement => {
+                if (tagElement.textContent === 'Clear All') return;
+                
+                if (activeFilters.has(tagElement.dataset.tag)) {
+                    tagElement.classList.add('active');
+                } else {
+                    tagElement.classList.remove('active');
+                }
+            });
+        }
+        
+        // Event listeners
+        if (searchInput) {
+            searchInput.addEventListener('input', filterWriteups);
+        }
+        
+        if (filterTags) {
+            filterTags.addEventListener('click', function(e) {
+                if (e.target.classList.contains('filter-tag') && e.target.textContent !== 'Clear All') {
+                    const tag = e.target.dataset.tag;
+                    
+                    if (activeFilters.has(tag)) {
+                        activeFilters.delete(tag);
+                    } else {
+                        activeFilters.add(tag);
+                    }
+                    
+                    filterWriteups();
+                    updateFilterTags();
+                }
+            });
+        }
+        
+        // Sort functionality
+        const sortSelect = document.createElement('select');
+        sortSelect.className = 'sort-select';
+        sortSelect.innerHTML = `
+            <option value="date-desc">Newest First</option>
+            <option value="date-asc">Oldest First</option>
+            <option value="title-asc">Title A-Z</option>
+            <option value="title-desc">Title Z-A</option>
+        `;
+        
+        sortSelect.style.cssText = `
+            background: var(--bg-card);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 15px;
+            font-family: 'JetBrains Mono', monospace;
+            margin-left: auto;
+            display: block;
+            margin: 20px auto;
+        `;
+        
+        sortSelect.addEventListener('change', function() {
+            const value = this.value;
+            const [field, order] = value.split('-');
+            
+            writeupCards.sort((a, b) => {
+                let aValue, bValue;
+                
+                if (field === 'date') {
+                    aValue = a.querySelector('.writeup-meta div:first-child')?.textContent || '';
+                    bValue = b.querySelector('.writeup-meta div:first-child')?.textContent || '';
+                } else {
+                    aValue = a.querySelector('.writeup-title')?.textContent.toLowerCase() || '';
+                    bValue = b.querySelector('.writeup-title')?.textContent.toLowerCase() || '';
+                }
+                
+                if (order === 'desc') {
+                    return bValue.localeCompare(aValue);
+                } else {
+                    return aValue.localeCompare(bValue);
+                }
+            });
+            
+            // Re-append sorted cards
+            writeupCards.forEach(card => {
+                writeupsGrid.appendChild(card);
+            });
+        });
+        
+        // Insert sort dropdown before the grid
+        if (writeupsGrid) {
+            writeupsGrid.parentNode.insertBefore(sortSelect, writeupsGrid);
+        }
+        
+        // Initialize
         filterWriteups();
-      }
+        updateFilterTags();
     });
-    
-    // Clear all filters
-    const clearButton = document.createElement('span');
-    clearButton.className = 'filter-tag';
-    clearButton.textContent = 'Clear All';
-    clearButton.style.background = 'rgba(239, 68, 68, 0.1)';
-    clearButton.style.color = '#ef4444';
-    clearButton.style.borderColor = '#ef4444';
-    
-    clearButton.addEventListener('click', () => {
-      activeFilters.clear();
-      searchInput.value = '';
-      filterWriteups();
-    });
-    
-    filterTags.appendChild(clearButton);
-    
-    // Sort by date (newest first by default)
-    function sortWriteups(sortBy = 'date') {
-      const container = writeupsGrid;
-      const cards = Array.from(container.children);
-      
-      cards.sort((a, b) => {
-        if (sortBy === 'date') {
-          // Extract dates from meta info
-          const dateA = a.querySelector('.writeup-date')?.textContent || '';
-          const dateB = b.querySelector('.writeup-date')?.textContent || '';
-          return dateB.localeCompare(dateA);
-        } else if (sortBy === 'title') {
-          const titleA = a.querySelector('.writeup-title')?.textContent.toLowerCase() || '';
-          const titleB = b.querySelector('.writeup-title')?.textContent.toLowerCase() || '';
-          return titleA.localeCompare(titleB);
-        }
-        return 0;
-      });
-      
-      // Re-append sorted cards
-      cards.forEach(card => container.appendChild(card));
-    }
-    
-    // Add sort dropdown
-    const sortContainer = document.createElement('div');
-    sortContainer.className = 'text-end mb-3';
-    sortContainer.innerHTML = `
-      <select id="sortSelect" class="form-select" style="width:auto;display:inline-block;background:var(--bg-card);color:var(--text-primary);border-color:var(--border-color);">
-        <option value="date">Newest First</option>
-        <option value="title">Title A-Z</option>
-      </select>
-    `;
-    
-    document.querySelector('.search-container').appendChild(sortContainer);
-    
-    document.getElementById('sortSelect').addEventListener('change', (e) => {
-      sortWriteups(e.target.value);
-    });
-    
-    // Initialize
-    sortWriteups();
-  </script>
-</body>
-</html>
+</script>
