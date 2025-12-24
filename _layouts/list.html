@@ -232,30 +232,52 @@
             </div>
             {% endif %}
             
-            <!-- DEBUG SECTION (Comment out after fixing) -->
-            <!--
-            <div class="debug-info">
-                <h3><i class="fas fa-bug"></i> Debug Information:</h3>
-                <pre>
-Page URL: {{ page.url }}
-Page Path: {{ page.path }}
-Page Category: {{ page.category }}
-Total Posts in Site: {{ site.posts.size }}
+          <!-- FIXED: Access posts collection properly -->
+{% assign all_posts = site.posts %}
 
-URL Parts: 
-{% assign url_parts = page.url | split: '/' %}
-{% for part in url_parts %}- {{ part }}
-{% endfor %}
+<!-- For debugging, show what we have -->
+<div class="debug-info" style="display: none;"> <!-- Change to style="display: block;" to see debug -->
+    <h3><i class="fas fa-bug"></i> Debug Information:</h3>
+    <pre>
+Total Posts: {{ all_posts.size }}
+Is collection? {{ site.collections.posts }}
 
 All Posts:
-{% for post in site.posts %}
-- {{ post.title }} | path: {{ post.path }} | category: {{ post.category }} | date: {{ post.date }} | url: {{ post.url }}
+{% for post in all_posts %}
+- {{ post.title }} | path: {{ post.path }} | category: {{ post.category }} | url: {{ post.url }}
 {% endfor %}
-                </pre>
-            </div>
-            -->
-            
-            <!-- GET CURRENT CATEGORY -->
+
+Page Info:
+URL: {{ page.url }}
+Path: {{ page.path }}
+Category: {{ page.category }}
+    </pre>
+</div>
+
+<!-- GET CURRENT CATEGORY -->
+{% assign current_category = page.category %}
+
+{% unless current_category %}
+    {% assign url_parts = page.url | split: '/' %}
+    {% for part in url_parts %}
+        {% if part == 'hackthebox' or part == 'tryhackme' or part == 'offsec' or part == 'vulnhub' or part == 'bugbounty' or part == 'blog' %}
+            {% assign current_category = part %}
+        {% endif %}
+    {% endfor %}
+{% endunless %}
+
+<!-- SIMPLE FILTERING - Show all posts first to test -->
+{% assign category_posts = all_posts %}
+
+{% if current_category and current_category != '' %}
+    {% assign filtered_posts = "" | split: "," %}
+    {% for post in all_posts %}
+        {% if post.category == current_category or post.path contains current_category %}
+            {% assign filtered_posts = filtered_posts | push: post %}
+        {% endif %}
+    {% endfor %}
+    {% assign category_posts = filtered_posts %}
+{% endif %}
             {% assign current_category = page.category %}
             
             {% unless current_category %}
