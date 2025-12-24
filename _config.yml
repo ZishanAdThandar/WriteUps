@@ -4,7 +4,8 @@ url: "https://blog.zishanhack.com"
 baseurl: ""
 author: "Zishan Ahamed Thandar"
 email: "support@zishanhack.com"
-description: "Professional cybersecurity writeups, CTF solutions, and bug bounty reports."
+description: "Professional cybersecurity writeups, articles, CTF solutions, and bug bounty reports."
+
 
 # Defaults
 defaults:

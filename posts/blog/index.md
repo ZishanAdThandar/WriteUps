@@ -1,7 +1,8 @@
 ---
 layout: list
-title: Blog Posts
+title: Articles
 category: blog
-description: "Cybersecurity articles, tips, and tutorials"
+description: In-depth cybersecurity articles, tutorials, and technical notes
 permalink: /posts/blog/
 ---
+
