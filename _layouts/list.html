@@ -12,22 +12,51 @@ layout: default
 
   <div class="list-grid">
 
- {% assign base_path = page.dir | remove_first: "/" %}
-{% assign has_items = false %}
+    {% assign base_path = page.dir | remove_first: "/" %}
+    {% assign has_items = false %}
 
-{% for p in site.collections['writeups'].docs %}
-  {% if p.path contains base_path %}
-    {% unless p.path contains 'index.md' or p.path contains 'README' or p.path contains 'imaginaryctf' %}
-      {% assign has_items = true %}
+    {% for doc in site.collections['posts'].docs %}
+
+      {% if doc.path contains base_path %}
+        {% unless
+          doc.path contains 'index.md' or
+          doc.path contains 'README' or
+          doc.path contains 'imaginaryctf'
+        %}
+
+          {% assign has_items = true %}
+          <article class="list-item">
+            <a href="{{ doc.url | relative_url }}">
+              <h2>{{ doc.title | default: doc.name }}</h2>
+
+              {% if doc.description %}
+                <p>{{ doc.description | truncate: 150 }}</p>
+              {% elsif doc.excerpt %}
+                <p>{{ doc.excerpt | strip_html | truncate: 150 }}</p>
+              {% endif %}
+
+              <div class="list-meta">
+                <span class="list-category">{{ page.title }}</span>
+                {% if doc.date %}
+                  <span class="list-date">
+                    {{ doc.date | date: "%B %d, %Y" }}
+                  </span>
+                {% endif %}
+              </div>
+            </a>
+          </article>
+
+        {% endunless %}
+      {% endif %}
+
+    {% endfor %}
+
+    {% unless has_items %}
       <article class="list-item">
-        <a href="{{ p.url | relative_url }}">
-          <h2>{{ p.title | default: p.name }}</h2>
-        </a>
+        <h2>No content yet</h2>
+        <p>This section will populate automatically when pages are added.</p>
       </article>
     {% endunless %}
-  {% endif %}
-{% endfor %}
-
 
   </div>
 </section>
