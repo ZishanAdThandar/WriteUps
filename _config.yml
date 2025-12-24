@@ -50,9 +50,6 @@ categories:
   blog:
     title: "Blog Posts"
     description: "Cybersecurity articles and tutorials"
-  imaginaryctf:
-    title: "ImaginaryCTF Writeups"
-    description: "ImaginaryCTF challenge solutions"
 
 # Plugins
 plugins:

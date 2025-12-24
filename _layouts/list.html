@@ -11,68 +11,52 @@ layout: default
   </header>
 
   <div class="list-grid">
-    {% comment %} Get the directory name from the current page's URL {% endcomment %}
-    {% assign current_dir = page.url | split: '/' | slice: 2 | first %}
-    
-    {% comment %} Debug Jekyll processing {% endcomment %}
-    <!-- Current directory: {{ current_dir }} -->
-    <!-- Site posts: {{ site.posts.size }} -->
-    <!-- Site pages: {{ site.pages.size }} -->
-    <!-- Site documents: {{ site.documents.size }} -->
 
-    {% assign found_content = false %}
-    
-    {% comment %} Try using site.pages instead of site.posts {% endcomment %}
-    {% for page_item in site.pages %}
-      {% unless page_item.path contains 'imaginaryctf' or page_item.path contains 'index' or page_item.path contains 'README' %}
-        {% comment %} Check if page is in the current directory {% endcomment %}
-        {% assign page_dir = page_item.path | split: '/' | slice: 1 | first %}
-        
-        {% if page_dir == current_dir %}
-          {% assign found_content = true %}
+    {% assign base_path = page.dir %}
+    {% assign has_items = false %}
+
+    {% for p in site.pages %}
+      {% if p.path contains base_path %}
+        {% unless
+          p.path contains 'index.md' or
+          p.path contains 'README' or
+          p.path contains 'imaginaryctf'
+        %}
+          {% assign has_items = true %}
           <article class="list-item">
-            <a href="{{ page_item.url | relative_url }}">
-              <h2 class="list-item-title">
-                {{ page_item.title | default: page_item.name }}
-              </h2>
-              
-              {% if page_item.description %}
-                <p class="list-item-desc">
-                  {{ page_item.description | truncate: 160 }}
-                </p>
-              {% elsif page_item.excerpt %}
-                <p class="list-item-desc">
-                  {{ page_item.excerpt | strip_html | truncate: 160 }}
-                </p>
+            <a href="{{ p.url | relative_url }}">
+              <h2>{{ p.title | default: p.name }}</h2>
+
+              {% if p.description %}
+                <p>{{ p.description | truncate: 150 }}</p>
+              {% elsif p.excerpt %}
+                <p>{{ p.excerpt | strip_html | truncate: 150 }}</p>
               {% endif %}
-              
+
               <div class="list-meta">
-                <span class="list-category">{{ current_dir | capitalize }}</span>
-                {% if page_item.date %}
+                <span class="list-category">
+                  {{ page.title }}
+                </span>
+                {% if p.date %}
                   <span class="list-date">
                     <i class="fas fa-calendar-alt"></i>
-                    {{ page_item.date | date: "%B %d, %Y" }}
+                    {{ p.date | date: "%B %d, %Y" }}
                   </span>
                 {% endif %}
               </div>
             </a>
           </article>
-        {% endif %}
-      {% endunless %}
+        {% endunless %}
+      {% endif %}
     {% endfor %}
-    
-    {% unless found_content %}
-      <article class="list-item empty">
-        <h2>No content available</h2>
-        <p>Current directory: {{ current_dir }}</p>
-        <p>Looking in: posts/{{ current_dir }}/</p>
-        <p>Site pages: {{ site.pages.size }}</p>
-        <p>Site posts: {{ site.posts.size }}</p>
-        <h3>All site pages:</h3>
-        {% for page_item in site.pages %}
-          <p>- Path: {{ page_item.path }} | Title: {{ page_item.title }} | URL: {{ page_item.url }}</p>
-        {% endfor %}
+
+    {% unless has_items %}
+      <article class="list-item">
+        <h2>No content yet</h2>
+        <p>This section will populate automatically when pages are added.</p>
       </article>
     {% endunless %}
+
   </div>
 </section>
+

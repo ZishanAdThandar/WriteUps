@@ -44,22 +44,31 @@
         </div>
     </div>
     
-   <div class="sidebar-section">
+  <div class="sidebar-section">
   <h3>Recent Posts</h3>
   <ul class="recent-posts">
-    {% assign recent_posts = site.posts | sort: "date" | reverse %}
-    
-    {% for post in recent_posts limit:8 %}
-      {% unless post.path contains 'imaginaryctf' %}
-        <li>
-          <a href="{{ post.url | relative_url }}">
-            {{ post.title | default: post.name | truncate: 50 }}
-          </a>
-        </li>
-      {% endunless %}
+
+    {% assign recent_pages = site.pages | sort: "path" | reverse %}
+
+    {% for p in recent_pages limit:8 %}
+      {% if p.path contains 'posts/' %}
+        {% unless
+          p.path contains 'index.md' or
+          p.path contains 'README' or
+          p.path contains 'imaginaryctf'
+        %}
+          <li>
+            <a href="{{ p.url | relative_url }}">
+              {{ p.title | default: p.name | truncate: 50 }}
+            </a>
+          </li>
+        {% endunless %}
+      {% endif %}
     {% endfor %}
+
   </ul>
 </div>
+
     
     <div class="sidebar-section">
         <h3>Categories</h3>
