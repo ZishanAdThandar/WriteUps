@@ -12,42 +12,44 @@ layout: default
 
   <div class="list-grid">
 
-    {% assign base_path = page.dir %}
+    {% assign base_path = page.dir | remove_first: "/" %}
     {% assign has_items = false %}
 
     {% for p in site.pages %}
-      {% if p.path contains base_path %}
-        {% unless
+      {% if p.path startswith base_path %}
+
+        {% if
           p.path contains 'index.md' or
           p.path contains 'README' or
           p.path contains 'imaginaryctf' or
-      p.url == page.url
+          p.url == page.url
         %}
-          {% assign has_items = true %}
-          <article class="list-item">
-            <a href="{{ p.url | relative_url }}">
-              <h2>{{ p.title | default: p.name }}</h2>
+          {% continue %}
+        {% endif %}
 
-              {% if p.description %}
-                <p>{{ p.description | truncate: 150 }}</p>
-              {% elsif p.excerpt %}
-                <p>{{ p.excerpt | strip_html | truncate: 150 }}</p>
-              {% endif %}
+        {% assign has_items = true %}
+        <article class="list-item">
+          <a href="{{ p.url | relative_url }}">
+            <h2>{{ p.title | default: p.name }}</h2>
 
-              <div class="list-meta">
-                <span class="list-category">
-                  {{ page.title }}
+            {% if p.description %}
+              <p>{{ p.description | truncate: 150 }}</p>
+            {% elsif p.excerpt %}
+              <p>{{ p.excerpt | strip_html | truncate: 150 }}</p>
+            {% endif %}
+
+            <div class="list-meta">
+              <span class="list-category">{{ page.title }}</span>
+              {% if p.date %}
+                <span class="list-date">
+                  <i class="fas fa-calendar-alt"></i>
+                  {{ p.date | date: "%B %d, %Y" }}
                 </span>
-                {% if p.date %}
-                  <span class="list-date">
-                    <i class="fas fa-calendar-alt"></i>
-                    {{ p.date | date: "%B %d, %Y" }}
-                  </span>
-                {% endif %}
-              </div>
-            </a>
-          </article>
-        {% endunless %}
+              {% endif %}
+            </div>
+          </a>
+        </article>
+
       {% endif %}
     {% endfor %}
 
