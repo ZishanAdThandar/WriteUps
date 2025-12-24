@@ -12,6 +12,7 @@ collections:
   pages:
     output: true
 
+
 # Defaults
 defaults:
   - scope:

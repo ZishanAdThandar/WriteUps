@@ -12,53 +12,22 @@ layout: default
 
   <div class="list-grid">
 
-    {% assign base_path = page.dir | remove_first: "/" %}
-    {% assign has_items = false %}
+ {% assign base_path = page.dir | remove_first: "/" %}
+{% assign has_items = false %}
 
-    {% for p in site.pages %}
-
-      {% if p.path contains base_path %}
-        {% unless p.path contains 'index.md' %}
-          {% unless p.path contains 'README' %}
-            {% unless p.path contains 'imaginaryctf' %}
-              {% unless p.url == page.url %}
-
-                {% assign has_items = true %}
-                <article class="list-item">
-                  <a href="{{ p.url | relative_url }}">
-                    <h2>{{ p.title | default: p.name }}</h2>
-
-                    {% if p.description %}
-                      <p>{{ p.description | truncate: 150 }}</p>
-                    {% elsif p.excerpt %}
-                      <p>{{ p.excerpt | strip_html | truncate: 150 }}</p>
-                    {% endif %}
-
-                    <div class="list-meta">
-                      <span class="list-category">{{ page.title }}</span>
-                      {% if p.date %}
-                        <span class="list-date">
-                          {{ p.date | date: "%B %d, %Y" }}
-                        </span>
-                      {% endif %}
-                    </div>
-                  </a>
-                </article>
-
-              {% endunless %}
-            {% endunless %}
-          {% endunless %}
-        {% endunless %}
-      {% endif %}
-
-    {% endfor %}
-
-    {% unless has_items %}
+{% for p in site.collections['writeups'].docs %}
+  {% if p.path contains base_path %}
+    {% unless p.path contains 'index.md' or p.path contains 'README' or p.path contains 'imaginaryctf' %}
+      {% assign has_items = true %}
       <article class="list-item">
-        <h2>No content yet</h2>
-        <p>This section will populate automatically when pages are added.</p>
+        <a href="{{ p.url | relative_url }}">
+          <h2>{{ p.title | default: p.name }}</h2>
+        </a>
       </article>
     {% endunless %}
+  {% endif %}
+{% endfor %}
+
 
   </div>
 </section>
