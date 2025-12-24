@@ -59,7 +59,6 @@ sitemap:
 # Exclude
 exclude:
   - CNAME
-  - banner.png
   - node_modules/
 
 # Social links (use your actual usernames)
