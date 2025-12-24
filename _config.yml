@@ -7,71 +7,60 @@ author: "Zishan Ahamed Thandar"
 email: "support@zishanhack.com"
 description: "Professional cybersecurity writeups, CTF solutions, and bug bounty reports."
 
-# Collections configuration - FIXED
+# Collections - CORRECTED for your structure
 collections:
   posts:
     output: true
-    permalink: /posts/:path/
-    sort_by: date
-    sort_direction: descending
+    permalink: /:path/
+  pages:
+    output: true
+    permalink: /:path/
 
-# Defaults - FIXED
+# Defaults - CORRECTED for your structure
 defaults:
-  # Default for all posts
+  # For all pages (including index.md files)
   - scope:
       path: ""
-      type: "posts"
+      type: "pages"
     values:
       layout: "default"
   
-  # Category index pages - FIXED
+  # For category index pages
   - scope:
-      path: "posts/hackthebox"
-      type: "pages"
+      path: "posts/*/index.md"
     values:
       layout: "list"
-      title: "HackTheBox Writeups"
-      category: "hackthebox"
   
+  # For post markdown files in category directories
   - scope:
-      path: "posts/tryhackme"
+      path: "posts/**/*.md"
       type: "pages"
     values:
-      layout: "list"
-      title: "TryHackMe Writeups"
-      category: "tryhackme"
-  
-  - scope:
-      path: "posts/offsec"
-      type: "pages"
-    values:
-      layout: "list"
-      title: "OffSec Writeups"
-      category: "offsec"
-  
-  - scope:
-      path: "posts/vulnhub"
-      type: "pages"
-    values:
-      layout: "list"
-      title: "VulnHub Writeups"
-      category: "vulnhub"
-  
-  - scope:
-      path: "posts/bugbounty"
-      type: "pages"
-    values:
-      layout: "list"
-      title: "Bug Bounty Reports"
-      category: "bugbounty"
-  
-  - scope:
-      path: "posts/blog"
-      type: "pages"
-    values:
-      layout: "list"
-      title: "Blog Posts"
-      category: "blog"
+      layout: "default"
+
+# Category configurations
+categories:
+  hackthebox:
+    title: "HackTheBox Writeups"
+    description: "Detailed solutions for HackTheBox machines"
+  tryhackme:
+    title: "TryHackMe Writeups"
+    description: "Walkthroughs for TryHackMe rooms"
+  offsec:
+    title: "OffSec Writeups"
+    description: "Offensive Security lab solutions"
+  vulnhub:
+    title: "VulnHub Writeups"
+    description: "VulnHub VM walkthroughs"
+  bugbounty:
+    title: "Bug Bounty Reports"
+    description: "Bug bounty findings and methodology"
+  blog:
+    title: "Blog Posts"
+    description: "Cybersecurity articles and tutorials"
+  imaginaryctf:
+    title: "ImaginaryCTF Writeups"
+    description: "ImaginaryCTF challenge solutions"
 
 # Plugins
 plugins:

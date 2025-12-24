@@ -47,10 +47,19 @@
     <div class="sidebar-section">
       <h3>Recent Posts</h3>
       <ul class="recent-posts">
-        <!-- Fix: Use site.posts instead of site.pages -->
-        {% assign recent_posts = site.posts | sort: "date" | reverse %}
+        {% assign all_posts = "" | split: "," %}
         
-        {% for post in recent_posts limit:8 %}
+        <!-- Get all non-index markdown files from posts directories -->
+        {% for p in site.pages %}
+          {% assign dir_parts = p.dir | split: '/' %}
+          {% if dir_parts[0] == "posts" and p.name != "index.md" and p.path contains '.md' %}
+            {% assign all_posts = all_posts | push: p %}
+          {% endif %}
+        {% endfor %}
+        
+        {% assign sorted_posts = all_posts | sort: "date" | reverse %}
+        
+        {% for post in sorted_posts limit:8 %}
           <li>
             <a href="{{ post.url }}">{{ post.title | truncate: 50 }}</a>
           </li>
@@ -61,12 +70,13 @@
     <div class="sidebar-section">
         <h3>Categories</h3>
         <div class="social-links">
-            <a href="/posts/hackthebox"><i class="fas fa-cube"></i> HTB</a>
-            <a href="/posts/tryhackme"><i class="fas fa-tv"></i> THM</a>
-            <a href="/posts/offsec"><i class="fas fa-shield-alt"></i> OffSec</a>
-            <a href="/posts/vulnhub"><i class="fas fa-server"></i> VulnHub</a>
-            <a href="/posts/bugbounty"><i class="fas fa-bug"></i> Bug Bounty</a>
-            <a href="/posts/blog"><i class="fas fa-blog"></i> Blog</a>
+            <a href="/posts/hackthebox/"><i class="fas fa-cube"></i> HTB</a>
+            <a href="/posts/tryhackme/"><i class="fas fa-tv"></i> THM</a>
+            <a href="/posts/offsec/"><i class="fas fa-shield-alt"></i> OffSec</a>
+            <a href="/posts/vulnhub/"><i class="fas fa-server"></i> VulnHub</a>
+            <a href="/posts/bugbounty/"><i class="fas fa-bug"></i> Bug Bounty</a>
+            <a href="/posts/blog/"><i class="fas fa-blog"></i> Blog</a>
+            <a href="/posts/imaginaryctf/"><i class="fas fa-flag"></i> ImaginaryCTF</a>
         </div>
     </div>
 </aside>
