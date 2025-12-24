@@ -2,37 +2,31 @@
 layout: default
 ---
 
-<section class="list-page">
+<section class="list-wrapper">
 
   <header class="list-header">
     <h1 class="list-title">{{ page.title }}</h1>
     {% if page.description %}
-      <p class="list-description">{{ page.description }}</p>
+      <p class="list-subtitle">{{ page.description }}</p>
     {% endif %}
   </header>
 
   <div class="list-grid">
-    {% assign current_dir = page.dir %}
+    {% assign base = page.dir %}
 
     {% for p in site.pages %}
-      {% if p.dir == current_dir and p.name != "index.md" %}
-        <article class="list-card">
-          <a href="{{ p.url }}" class="list-card-link">
-
-            <h2 class="list-card-title">
+      {% if p.path contains base and p.name != "index.md" and p.layout %}
+        <article class="list-item">
+          <a href="{{ p.url }}" class="list-link">
+            <h2 class="list-item-title">
               {{ p.title | default: p.name | replace: ".md", "" }}
             </h2>
 
             {% if p.description %}
-              <p class="list-card-desc">
-                {{ p.description | truncate: 120 }}
+              <p class="list-item-desc">
+                {{ p.description | truncate: 110 }}
               </p>
             {% endif %}
-
-            <span class="list-card-meta">
-              {% if p.category %}{{ p.category }}{% else %}Write-up{% endif %}
-            </span>
-
           </a>
         </article>
       {% endif %}

@@ -378,4 +378,86 @@ header {
   color: var(--cyan);
   text-transform: uppercase;
 }
+/* ================= LIST PAGES ================= */
+
+.list-wrapper {
+  margin-top: 3rem;
+}
+
+.list-header {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1rem;
+}
+
+.list-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.list-subtitle {
+  margin-top: .5rem;
+  color: var(--text-dim);
+  max-width: 720px;
+}
+
+/* Grid */
+.list-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.6rem;
+}
+
+/* Card */
+.list-item {
+  background: #0f1525;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: all .2s ease;
+}
+
+.list-item:hover {
+  border-color: var(--cyan);
+  transform: translateY(-3px);
+}
+
+/* Link */
+.list-link {
+  display: block;
+  padding: 1.4rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.list-item-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: .4rem;
+}
+
+.list-item-desc {
+  font-size: .9rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+
+/* ================= HEADER POLISH ================= */
+
+header {
+  margin-bottom: 2.5rem;
+}
+
+.nav-container {
+  margin-bottom: 1.5rem;
+}
+
+.site-title {
+  margin-top: .5rem;
+}
+
+.site-tagline {
+  opacity: .85;
+}
 
