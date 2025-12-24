@@ -11,10 +11,10 @@ layout: default
   </header>
 
   <div class="list-grid">
-    {% comment %} Use site.posts instead of site.pages + filter by current directory {% endcomment %}
-    {% assign current_dir = page.dir | remove_first: '/' %}
-
-    {% assign items = site.posts | where: "dir", page.dir %}
+    {% comment %} Filter posts by current category directory {% endcomment %}
+    {% assign current_category = page.dir | remove: '/' | remove: 'posts/' %}
+    
+    {% assign items = site.posts | where_exp: "post", "post.path contains current_category" %}
 
     {% if items.size > 0 %}
       {% assign sorted_items = items | sort: "date" | reverse %}
@@ -38,8 +38,7 @@ layout: default
               {% endif %}
               
               <div class="list-meta">
-                {% assign category_name = current_dir | remove: 'posts/' | capitalize %}
-                <span class="list-category">{{ category_name }}</span>
+                <span class="list-category">{{ current_category | capitalize }}</span>
                 {% if post.date %}
                   <span class="list-date">
                     <i class="fas fa-calendar-alt"></i>
