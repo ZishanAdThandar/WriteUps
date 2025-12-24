@@ -6,7 +6,18 @@
 [![Sponser](https://img.shields.io/github/sponsors/ZishanAdThandar)](https://github.com/sponsors/ZishanAdThandar)
 [![ZishanAdThandar's WriteUps Repo stars](https://img.shields.io/github/stars/ZishanAdThandar/WriteUps)](https://github.com/ZishanAdThandar/WriteUps)
 
-![Banner InfoSec Writeups](./banner.png)
+<div align="center">
+  <img src="./banner.png" alt="InfoSec Writeups Banner" style="
+    max-width: 100%; 
+    height: auto; 
+    border-radius: 12px; 
+    border: 2px solid #00ff88;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+    margin: 20px auto;
+    display: block;
+  ">
+</div>
+
 
 ## Contents
 
