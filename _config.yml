@@ -1,4 +1,3 @@
-# File: _config.yml
 title: "Zishan Hack"
 tagline: "Cybersecurity CTF & Bug Bounty Solutions"
 url: "https://blog.zishanhack.com"
@@ -7,7 +6,6 @@ author: "Zishan Ahamed Thandar"
 email: "support@zishanhack.com"
 description: "Professional cybersecurity writeups, CTF solutions, and bug bounty reports."
 
-
 # Defaults
 defaults:
   - scope:
@@ -15,37 +13,12 @@ defaults:
       type: "pages"
     values:
       layout: "default"
-  
+
   - scope:
-      path: "posts/*/index.md"
-    values:
-      layout: "list"
-  
-  - scope:
-      path: "posts/**/*.md"
+      path: ""
+      type: "posts"
     values:
       layout: "default"
-
-# Category configurations
-categories:
-  hackthebox:
-    title: "HackTheBox Writeups"
-    description: "Detailed solutions for HackTheBox machines"
-  tryhackme:
-    title: "TryHackMe Writeups"
-    description: "Walkthroughs for TryHackMe rooms"
-  offsec:
-    title: "OffSec Writeups"
-    description: "Offensive Security lab solutions"
-  vulnhub:
-    title: "VulnHub Writeups"
-    description: "VulnHub VM walkthroughs"
-  bugbounty:
-    title: "Bug Bounty Reports"
-    description: "Bug bounty findings and methodology"
-  blog:
-    title: "Blog Posts"
-    description: "Cybersecurity articles and tutorials"
 
 # Plugins
 plugins:
@@ -60,7 +33,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
 
-# Social links
+# Social
 github: "ZishanAdThandar"
 twitter: "zishanadthandar"
 linkedin: "zishanadthandar"
@@ -70,8 +43,9 @@ portfolio: "https://portfolio.zishanhack.com"
 main_site: "https://zishanhack.com"
 sponsors: "https://github.com/sponsors/ZishanAdThandar"
 
-# Build settings
+# Build
 markdown: kramdown
 highlighter: rouge
 permalink: pretty
 timezone: UTC
+
