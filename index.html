@@ -1,0 +1,143 @@
+---
+layout: default
+title: "Home"
+---
+<div class="home-content">
+    <div class="banner-container">
+        <img src="/banner.png" alt="InfoSec Writeups Banner" class="banner-image" onerror="this.style.display='none'">
+    </div>
+    
+    <div class="welcome-section">
+        <h2><i class="fas fa-terminal"></i> Welcome to Zishan Hack</h2>
+        <p>A collection of cybersecurity writeups, CTF solutions, and bug bounty reports.</p>
+    </div>
+    
+    <div class="featured-posts">
+        <h3><i class="fas fa-fire"></i> Featured Content</h3>
+        <div class="posts-grid">
+            {% for post in site.posts limit:6 %}
+            <article class="post-card">
+                <div class="post-card-content">
+                    <h2 class="post-card-title">
+                        <a href="{{ post.url }}">{{ post.title }}</a>
+                    </h2>
+                    
+                    {% if post.excerpt %}
+                    <p class="post-card-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
+                    {% endif %}
+                    
+                    <div class="post-card-meta">
+                        <span><i class="far fa-calendar"></i> {{ post.date | date: "%B %d, %Y" }}</span>
+                        <span class="post-card-category">
+                            {% if post.category == 'hackthebox' %}<i class="fas fa-cube"></i> HTB
+                            {% elsif post.category == 'tryhackme' %}<i class="fas fa-tv"></i> THM
+                            {% elsif post.category == 'offsec' %}<i class="fas fa-shield-alt"></i> OffSec
+                            {% elsif post.category == 'vulnhub' %}<i class="fas fa-server"></i> VulnHub
+                            {% elsif post.category == 'bugbounty' %}<i class="fas fa-bug"></i> Bug Bounty
+                            {% elsif post.category == 'blog' %}<i class="fas fa-blog"></i> Blog
+                            {% else %}<i class="fas fa-file-code"></i> Post{% endif %}
+                        </span>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        
+        <div class="view-all">
+            <a href="/posts" class="cta-button">
+                <i class="fas fa-terminal"></i> View All Posts
+            </a>
+        </div>
+    </div>
+    
+    <style>
+        .home-content {
+            padding: 2rem 0;
+        }
+        
+        .banner-container {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .banner-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            background: var(--secondary-dark);
+            padding: 8px;
+        }
+        
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 2rem;
+            background: rgba(26, 31, 46, 0.7);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .welcome-section h2 {
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+            font-size: 2.2rem;
+        }
+        
+        .welcome-section p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .featured-posts {
+            margin-top: 3rem;
+        }
+        
+        .featured-posts h3 {
+            color: var(--accent-cyan);
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .view-all {
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
+            color: var(--primary-dark);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: 1px solid var(--accent-green);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .welcome-section {
+                padding: 1.5rem;
+            }
+            
+            .welcome-section h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</div>
