@@ -12,37 +12,39 @@ layout: default
 
   <div class="list-grid">
 
-    {% assign base_path = page.category | append: "/" %}
     {% assign has_items = false %}
+    {% assign category_path = page.category | append: "/" %}
 
     {% for post in site.posts %}
-      {% if post.path contains base_path %}
+      {% if post.path contains category_path %}
+        {% unless post.path contains 'imaginaryctf' %}
 
-        {% assign has_items = true %}
-        <article class="list-item">
-          <a href="{{ post.url | relative_url }}">
-            <h2>{{ post.title }}</h2>
+          {% assign has_items = true %}
+          <article class="list-item">
+            <a href="{{ post.url | relative_url }}">
+              <h2>{{ post.title }}</h2>
 
-            {% if post.excerpt %}
-              <p>{{ post.excerpt | strip_html | truncate: 150 }}</p>
-            {% endif %}
+              {% if post.excerpt %}
+                <p>{{ post.excerpt | strip_html | truncate: 150 }}</p>
+              {% endif %}
 
-            <div class="list-meta">
-              <span class="list-category">{{ page.title }}</span>
-              <span class="list-date">
-                {{ post.date | date: "%B %d, %Y" }}
-              </span>
-            </div>
-          </a>
-        </article>
+              <div class="list-meta">
+                <span class="list-category">{{ page.title }}</span>
+                <span class="list-date">
+                  {{ post.date | date: "%B %d, %Y" }}
+                </span>
+              </div>
+            </a>
+          </article>
 
+        {% endunless %}
       {% endif %}
     {% endfor %}
 
     {% unless has_items %}
       <article class="list-item">
         <h2>No content yet</h2>
-        <p>Add posts to this category to populate the list.</p>
+        <p>Add posts to this section to populate the list.</p>
       </article>
     {% endunless %}
 

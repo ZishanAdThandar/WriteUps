@@ -7,11 +7,6 @@ author: "Zishan Ahamed Thandar"
 email: "support@zishanhack.com"
 description: "Professional cybersecurity writeups, CTF solutions, and bug bounty reports."
 
-# Collections - Simplified
-collections:
-  pages:
-    output: true
-
 
 # Defaults
 defaults:
