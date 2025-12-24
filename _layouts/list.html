@@ -20,7 +20,8 @@ layout: default
         {% unless
           p.path contains 'index.md' or
           p.path contains 'README' or
-          p.path contains 'imaginaryctf'
+          p.path contains 'imaginaryctf' or
+      p.url == page.url
         %}
           {% assign has_items = true %}
           <article class="list-item">
