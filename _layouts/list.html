@@ -11,59 +11,45 @@ layout: default
   </header>
 
   <div class="list-grid">
-    {% comment %} Get category from the current directory path {% endcomment %}
-    {% assign current_path = page.dir %}
-    
-    {% comment %} Get all pages in the current category directory {% endcomment %}
-    {% assign items = "" | split: "," %}
-    
-    {% for p in site.pages %}
-      {% comment %} Check if page is in the same directory but not the index file {% endcomment %}
-      {% if p.dir == current_path and p.name != 'index.md' and p.path contains '.md' %}
-        {% assign items = items | push: p %}
-      {% endif %}
-    {% endfor %}
-    
+    {% comment %} Use site.posts instead of site.pages + filter by current directory {% endcomment %}
+    {% assign current_dir = page.dir | remove_first: '/' %}
+
+    {% assign items = site.posts | where: "dir", page.dir %}
+
     {% if items.size > 0 %}
-      {% comment %} Sort items by date if available, otherwise by title {% endcomment %}
       {% assign sorted_items = items | sort: "date" | reverse %}
-      
+
       {% for post in sorted_items %}
-        <article class="list-item">
-          <a href="{{ post.url | relative_url }}">
-            <h2 class="list-item-title">
-              {% if post.title %}
-                {{ post.title }}
-              {% else %}
-                {{ post.name | replace: '.md','' }}
+        {% unless post.path contains 'imaginaryctf' %}
+          <article class="list-item">
+            <a href="{{ post.url | relative_url }}">
+              <h2 class="list-item-title">
+                {{ post.title | default: post.name }}
+              </h2>
+              
+              {% if post.description %}
+                <p class="list-item-desc">
+                  {{ post.description | truncate: 160 }}
+                </p>
+              {% elsif post.excerpt %}
+                <p class="list-item-desc">
+                  {{ post.excerpt | strip_html | truncate: 160 }}
+                </p>
               {% endif %}
-            </h2>
-            
-            {% if post.description %}
-              <p class="list-item-desc">
-                {{ post.description | truncate: 160 }}
-              </p>
-            {% elsif post.excerpt %}
-              <p class="list-item-desc">
-                {{ post.excerpt | strip_html | truncate: 160 }}
-              </p>
-            {% endif %}
-            
-            <div class="list-meta">
-              {% comment %} Get category name from directory path {% endcomment %}
-              {% assign category_name = current_path | remove: '/posts/' | remove: '/' | capitalize %}
-              <span class="list-category">
-                {{ category_name }}
-              </span>
-              {% if post.date %}
-                <span class="list-date">
-                  <i class="fas fa-calendar-alt"></i>
-                  {{ post.date | date: "%B %d, %Y" }}
-                </span>
-              {% endif %}
-            </div>
-          </a>
-        </article>
+              
+              <div class="list-meta">
+                {% assign category_name = current_dir | remove: 'posts/' | capitalize %}
+                <span class="list-category">{{ category_name }}</span>
+                {% if post.date %}
+                  <span class="list-date">
+                    <i class="fas fa-calendar-alt"></i>
+                    {{ post.date | date: "%B %d, %Y" }}
+                  </span>
+                {% endif %}
+              </div>
+            </a>
+          </article>
+        {% endunless %}
       {% endfor %}
     {% else %}
       <article class="list-item empty">
