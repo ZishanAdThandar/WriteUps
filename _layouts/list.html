@@ -11,32 +11,25 @@ layout: default
   </header>
 
   <div class="list-grid">
-    {% comment %} Simple approach: get category from page.category or page.url {% endcomment %}
-    {% assign target_category = page.category | default: page.url | split: '/' | slice: 2 | first %}
+    {% comment %} Get the directory name from the current page's URL {% endcomment %}
+    {% assign current_dir = page.url | split: '/' | slice: 2 | first %}
     
     {% comment %} Debug info {% endcomment %}
-    <!-- Target category: {{ target_category }} -->
-    <!-- Page category: {{ page.category }} -->
+    <!-- Current directory from URL: {{ current_dir }} -->
     <!-- Page URL: {{ page.url }} -->
-    <!-- All posts count: {{ site.posts.size }} -->
+    <!-- Page category: {{ page.category }} -->
+    <!-- Site posts count: {{ site.posts.size }} -->
 
-    {% assign found_posts = false %}
+    {% assign display_posts = false %}
     
+    {% comment %} Loop through all posts to find ones in this directory {% endcomment %}
     {% for post in site.posts %}
-      {% unless post.path contains 'imaginaryctf' or post.path contains 'index' %}
-        {% comment %} Check if post belongs to this category {% endcomment %}
-        {% assign post_in_category = false %}
+      {% unless post.path contains 'imaginaryctf' or post.path contains 'index' or post.path contains 'README' %}
+        {% comment %} Check if post is in the current directory {% endcomment %}
+        {% assign post_dir = post.path | split: '/' | slice: 1 | first %}
         
-        {% if post.categories contains target_category %}
-          {% assign post_in_category = true %}
-        {% elsif post.path contains target_category %}
-          {% assign post_in_category = true %}
-        {% elsif post.url contains target_category %}
-          {% assign post_in_category = true %}
-        {% endif %}
-        
-        {% if post_in_category %}
-          {% assign found_posts = true %}
+        {% if post_dir == current_dir %}
+          {% assign display_posts = true %}
           <article class="list-item">
             <a href="{{ post.url | relative_url }}">
               <h2 class="list-item-title">
@@ -54,7 +47,7 @@ layout: default
               {% endif %}
               
               <div class="list-meta">
-                <span class="list-category">{{ target_category | capitalize }}</span>
+                <span class="list-category">{{ current_dir | capitalize }}</span>
                 {% if post.date %}
                   <span class="list-date">
                     <i class="fas fa-calendar-alt"></i>
@@ -68,16 +61,20 @@ layout: default
       {% endunless %}
     {% endfor %}
     
-    {% unless found_posts %}
+    {% unless display_posts %}
       <article class="list-item empty">
         <h2>No content available</h2>
-        <p>Target category: {{ target_category }}</p>
-        <p>Page category: {{ page.category }}</p>
-        <p>Page URL: {{ page.url }}</p>
-        <p>Total posts: {{ site.posts.size }}</p>
-        <h3>All post paths:</h3>
+        <p>Current directory: {{ current_dir }}</p>
+        <p>Looking for posts in directory: posts/{{ current_dir }}/</p>
+        <p>Total posts found: {{ site.posts.size }}</p>
+        <h3>Post directory analysis:</h3>
         {% for post in site.posts %}
-          <p>- {{ post.path }} (categories: {{ post.categories | join: ', ' }})</p>
+          {% assign post_path_parts = post.path | split: '/' %}
+          {% if post_path_parts.size > 1 %}
+            <p>- Path: {{ post.path }} | Directory: {{ post_path_parts[1] }} | Title: {{ post.title }}</p>
+          {% else %}
+            <p>- Path: {{ post.path }} | No directory | Title: {{ post.title }}</p>
+          {% endif %}
         {% endfor %}
       </article>
     {% endunless %}
