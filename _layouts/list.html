@@ -12,49 +12,37 @@ layout: default
 
   <div class="list-grid">
 
-    {% assign base_path = page.dir | remove_first: "/" %}
+    {% assign base_path = page.category | append: "/" %}
     {% assign has_items = false %}
 
-    {% for doc in site.collections['posts'].docs %}
+    {% for post in site.posts %}
+      {% if post.path contains base_path %}
 
-      {% if doc.path contains base_path %}
-        {% unless
-          doc.path contains 'index.md' or
-          doc.path contains 'README' or
-          doc.path contains 'imaginaryctf'
-        %}
+        {% assign has_items = true %}
+        <article class="list-item">
+          <a href="{{ post.url | relative_url }}">
+            <h2>{{ post.title }}</h2>
 
-          {% assign has_items = true %}
-          <article class="list-item">
-            <a href="{{ doc.url | relative_url }}">
-              <h2>{{ doc.title | default: doc.name }}</h2>
+            {% if post.excerpt %}
+              <p>{{ post.excerpt | strip_html | truncate: 150 }}</p>
+            {% endif %}
 
-              {% if doc.description %}
-                <p>{{ doc.description | truncate: 150 }}</p>
-              {% elsif doc.excerpt %}
-                <p>{{ doc.excerpt | strip_html | truncate: 150 }}</p>
-              {% endif %}
+            <div class="list-meta">
+              <span class="list-category">{{ page.title }}</span>
+              <span class="list-date">
+                {{ post.date | date: "%B %d, %Y" }}
+              </span>
+            </div>
+          </a>
+        </article>
 
-              <div class="list-meta">
-                <span class="list-category">{{ page.title }}</span>
-                {% if doc.date %}
-                  <span class="list-date">
-                    {{ doc.date | date: "%B %d, %Y" }}
-                  </span>
-                {% endif %}
-              </div>
-            </a>
-          </article>
-
-        {% endunless %}
       {% endif %}
-
     {% endfor %}
 
     {% unless has_items %}
       <article class="list-item">
         <h2>No content yet</h2>
-        <p>This section will populate automatically when pages are added.</p>
+        <p>Add posts to this category to populate the list.</p>
       </article>
     {% endunless %}
 
