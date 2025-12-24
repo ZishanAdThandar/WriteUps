@@ -312,3 +312,70 @@ header {
   }
 }
 
+/* ================= LIST PAGE ================= */
+
+.list-page {
+  margin-top: 2.5rem;
+}
+
+.list-header {
+  margin-bottom: 2rem;
+}
+
+.list-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.list-description {
+  margin-top: .5rem;
+  color: var(--text-dim);
+  max-width: 700px;
+}
+
+.list-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.list-card {
+  background: rgba(26,31,46,.9);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: all .25s ease;
+}
+
+.list-card:hover {
+  border-color: var(--green);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(0,0,0,.4);
+}
+
+.list-card-link {
+  display: block;
+  padding: 1.6rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.list-card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: .4rem;
+}
+
+.list-card-desc {
+  font-size: .95rem;
+  color: var(--text-dim);
+  margin-bottom: .8rem;
+}
+
+.list-card-meta {
+  font-size: .75rem;
+  letter-spacing: .08em;
+  color: var(--cyan);
+  text-transform: uppercase;
+}
+
