@@ -20,21 +20,15 @@
       {% endif %}
     </header>
 
-    {% assign current_category = page.dir | split: '/' | last %}
+    {% assign current_category = page.category %}
     {% assign category_posts = "" | split: "," %}
 
-    <!-- Get all pages in the current category directory -->
-    {% for p in site.pages %}
-      {% assign page_dir = p.dir | split: '/' %}
-      {% assign category = page_dir[1] %}
-      {% assign is_post = p.name != 'index.md' and p.path contains '.md' %}
-      
-      {% if category == current_category and is_post %}
-        {% assign category_posts = category_posts | push: p %}
+    <!-- Fix: Use site.posts instead of site.pages for posts collection -->
+    {% for post in site.posts %}
+      {% if post.category == current_category %}
+        {% assign category_posts = category_posts | push: post %}
       {% endif %}
     {% endfor %}
-
-    {% assign category_posts = category_posts | sort: "date" | reverse %}
 
     {% if category_posts.size > 0 %}
       <div class="posts-grid">
@@ -56,7 +50,7 @@
                   <span>{{ post.date | date: "%B %d, %Y" }}</span>
                 {% endif %}
                 <span class="post-card-category">
-                  {{ current_category | capitalize }}
+                  {{ post.category | capitalize }}
                 </span>
               </div>
             </div>
