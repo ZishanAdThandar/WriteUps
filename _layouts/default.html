@@ -47,6 +47,10 @@
                 
                 <div class="post-content">
                     {{ content }}
+{% if page.cta %}
+  {% include cta.html %}
+{% endif %}
+
                 </div>
             </article>
         </main>

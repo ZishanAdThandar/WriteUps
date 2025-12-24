@@ -718,3 +718,37 @@ footer {
         border-right: none;
     }
 }
+
+.cta-box {
+  margin-top: 3rem;
+  padding: 2rem;
+  border: 2px solid var(--accent-green);
+  border-radius: 12px;
+  background: rgba(16, 24, 38, 0.85);
+}
+
+.cta-box h2 {
+  color: var(--accent-green);
+  margin-bottom: 1rem;
+}
+
+.cta-box ul {
+  margin: 1rem 0;
+  padding-left: 1.2rem;
+}
+
+.cta-price {
+  font-size: 1.4rem;
+  margin: 1rem 0;
+  font-weight: bold;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 0.9rem 1.8rem;
+  border: 1px solid var(--accent-green);
+  color: var(--accent-green);
+  text-decoration: none;
+  border-radius: 6px;
+}
+

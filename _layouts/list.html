@@ -1,385 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        {% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}
-    </title>
-    
-    <!-- SEO Tags -->
-    {% seo %}
-    
-    <!-- Jekyll Feed -->
-    {% feed_meta %}
-    
-    <!-- Hacker-style fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Space+Mono:wght@400;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="/assets/css/style.css">
-    
-    <style>
-        .page-header {
-            text-align: center;
-            margin-bottom: 3rem;
-            padding: 2rem;
-            background: rgba(26, 31, 46, 0.7);
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            backdrop-filter: blur(10px);
-        }
-        
-        .page-title {
-            font-size: 2.8rem;
-            background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-        
-        .page-description {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-        
-        /* Terminal-style posts grid */
-        .posts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 2.5rem;
-        }
-        
-        .post-card {
-            background: rgba(16, 24, 38, 0.8);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-        }
-        
-        .post-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-green), transparent);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s;
-        }
-        
-        .post-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 
-                0 15px 35px rgba(0, 255, 136, 0.15),
-                0 5px 15px rgba(0, 0, 0, 0.3);
-            border-color: var(--accent-green);
-        }
-        
-        .post-card:hover::before {
-            transform: scaleX(1);
-        }
-        
-        .post-card-content {
-            padding: 2rem;
-        }
-        
-        .post-card-title {
-            font-size: 1.5rem;
-            color: var(--text-primary);
-            margin-bottom: 1rem;
-            font-weight: 700;
-            line-height: 1.4;
-        }
-        
-        .post-card-title a {
-            color: inherit;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .post-card-title a:hover {
-            color: var(--accent-green);
-        }
-        
-        .post-card-excerpt {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-            font-family: 'Source Code Pro', monospace;
-        }
-        
-        .post-card-meta {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid var(--border-color);
-            padding-top: 1rem;
-            font-family: 'IBM Plex Mono', monospace;
-        }
-        
-        .post-card-category {
-            background: linear-gradient(90deg, var(--primary-dark), var(--secondary-dark));
-            color: var(--accent-cyan);
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border: 1px solid var(--accent-cyan);
-            letter-spacing: 0.5px;
-        }
-        
-        .no-posts {
-            text-align: center;
-            padding: 5rem 3rem;
-            color: var(--text-secondary);
-            background: rgba(16, 24, 38, 0.6);
-            border-radius: 12px;
-            border: 2px dashed var(--border-color);
-        }
-        
-        .no-posts h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent-green);
-        }
-        
-        .debug-info {
-            background: rgba(255,0,60,0.1);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            border: 1px solid #ff003c;
-        }
-        
-        .debug-info h3 {
-            color: #ff003c;
-            margin-bottom: 1rem;
-        }
-        
-        .debug-info pre {
-            background: rgba(0,0,0,0.3);
-            padding: 1rem;
-            border-radius: 5px;
-            overflow-x: auto;
-            color: var(--accent-green);
-            font-family: 'Source Code Pro', monospace;
-            font-size: 0.9rem;
-        }
-        
-        @media (max-width: 768px) {
-            .posts-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .page-title {
-                font-size: 2.2rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>{{ page.title }} | {{ site.title }}</title>
+  {% seo %}
+  <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
-    {% include header.html %}
-    
-    <div class="page-header">
-        <h1 class="page-title">
-            {% if page.title %}
-                {{ page.title }}
-            {% else %}
-                {% if page.url contains 'hackthebox' %}<i class="fas fa-cube"></i> HackTheBox Writeups
-                {% elsif page.url contains 'tryhackme' %}<i class="fas fa-tv"></i> TryHackMe Writeups
-                {% elsif page.url contains 'offsec' %}<i class="fas fa-shield-alt"></i> OffSec Writeups
-                {% elsif page.url contains 'vulnhub' %}<i class="fas fa-server"></i> VulnHub Writeups
-                {% elsif page.url contains 'bugbounty' %}<i class="fas fa-bug"></i> Bug Bounty Reports
-                {% elsif page.url contains 'blog' %}<i class="fas fa-blog"></i> Blog Posts
-                {% else %}<i class="fas fa-terminal"></i> All Posts{% endif %}
-            {% endif %}
-        </h1>
-        <p class="page-description">
-            {% if page.url contains 'hackthebox' %}<i class="fas fa-terminal"></i> Detailed solutions and walkthroughs for HackTheBox machines
-            {% elsif page.url contains 'tryhackme' %}<i class="fas fa-terminal"></i> Guides and solutions for TryHackMe rooms
-            {% elsif page.url contains 'offsec' %}<i class="fas fa-terminal"></i> Offensive Security certification and lab writeups
-            {% elsif page.url contains 'vulnhub' %}<i class="fas fa-terminal"></i> Vulnerable machine walkthroughs from VulnHub
-            {% elsif page.url contains 'bugbounty' %}<i class="fas fa-terminal"></i> Real-world bug bounty reports and methodologies
-            {% elsif page.url contains 'blog' %}<i class="fas fa-terminal"></i> Cybersecurity articles, tips, and tutorials
-            {% else %}<i class="fas fa-terminal"></i> All cybersecurity writeups and reports{% endif %}
-        </p>
-    </div>
-    
-    <div class="container">
-        <main>
-            {% if page.content %}
-            <div class="page-content">
-                {{ content }}
-            </div>
-            {% endif %}
-            
-            <!-- DEBUG: Show what's happening -->
-            <div class="debug-info">
-                <h3><i class="fas fa-bug"></i> Debug Information:</h3>
-                <pre>
-Page URL: {{ page.url }}
-Page Path: {{ page.path }}
-Page Category: {{ page.category }}
 
-Total Posts: {{ site.posts.size }}
+{% include header.html %}
 
-Accessing posts collection:
-Method 1 - site.posts: {{ site.posts.size }} items
-Method 2 - collections: 
-{% for collection in site.collections %}
-- {{ collection.label }}: {{ collection.docs.size }} docs
-{% endfor %}
+<div class="container">
 
-All Posts in site.posts:
-{% for post in site.posts %}
-- {{ post.title }} | path: {{ post.path }} | category: {{ post.category }} | url: {{ post.url }}
-{% endfor %}
-                </pre>
-            </div>
-            
-            <!-- GET CURRENT CATEGORY FROM URL -->
-            {% assign url_parts = page.url | split: '/' %}
-            {% assign current_category = '' %}
-            
-            {% for part in url_parts %}
-                {% if part == 'hackthebox' or part == 'tryhackme' or part == 'offsec' or part == 'vulnhub' or part == 'bugbounty' or part == 'blog' %}
-                    {% assign current_category = part %}
+  <main>
+    <header class="page-header">
+      <h1 class="page-title">{{ page.title }}</h1>
+      {% if page.description %}
+        <p class="page-description">{{ page.description }}</p>
+      {% endif %}
+    </header>
+
+    {% assign current_category = page.category %}
+    {% assign category_posts = "" | split: "," %}
+
+    {% for p in site.pages %}
+      {% if p.category == current_category and p.path contains 'posts/' and p.title %}
+        {% assign category_posts = category_posts | push: p %}
+      {% endif %}
+    {% endfor %}
+
+    {% assign category_posts = category_posts | sort: "date" | reverse %}
+
+    {% if category_posts.size > 0 %}
+      <div class="posts-grid">
+        {% for post in category_posts %}
+          <article class="post-card">
+            <div class="post-card-content">
+              <h2 class="post-card-title">
+                <a href="{{ post.url }}">{{ post.title }}</a>
+              </h2>
+
+              {% if post.description %}
+                <p class="post-card-excerpt">
+                  {{ post.description | truncate: 180 }}
+                </p>
+              {% endif %}
+
+              <div class="post-card-meta">
+                {% if post.date %}
+                  <span>{{ post.date | date: "%B %d, %Y" }}</span>
                 {% endif %}
-            {% endfor %}
-            
-            <!-- FIX: Use site.collections.posts.docs to access posts -->
-            {% assign all_posts = site.collections.posts.docs %}
-            
-            <!-- FILTER POSTS BY CATEGORY -->
-            {% assign category_posts = "" | split: "," %}
-            
-            {% if all_posts.size > 0 %}
-                {% for doc in all_posts %}
-                    {% if doc.category == current_category or doc.path contains current_category %}
-                        {% assign category_posts = category_posts | push: doc %}
-                    {% endif %}
-                {% endfor %}
-            {% else %}
-                <!-- Fallback to site.posts if collections method doesn't work -->
-                {% assign category_posts = site.posts %}
-            {% endif %}
-            
-            <!-- DISPLAY RESULTS -->
-            <h3 style="margin-bottom: 2rem; color: var(--accent-green);">
-                <i class="fas fa-list"></i> Showing {{ category_posts.size }} post{{ category_posts.size | pluralize }}
-                {% if current_category != '' %}
-                    in <span style="color: var(--accent-cyan);">{{ current_category | replace: '-', ' ' | capitalize }}</span>
-                {% endif %}
-            </h3>
-            
-            {% if category_posts.size > 0 %}
-            <div class="posts-grid">
-                {% for post in category_posts %}
-                <article class="post-card">
-                    <div class="post-card-content">
-                        <h2 class="post-card-title">
-                            <a href="{{ post.url }}">{{ post.title }}</a>
-                        </h2>
-                        
-                        {% if post.excerpt %}
-                        <p class="post-card-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
-                        {% elsif post.description %}
-                        <p class="post-card-excerpt">{{ post.description | truncate: 200 }}</p>
-                        {% endif %}
-                        
-                        <div class="post-card-meta">
-                            <span><i class="far fa-calendar"></i> 
-                                {% if post.date %}
-                                    {{ post.date | date: "%B %d, %Y" }}
-                                {% else %}
-                                    Unknown date
-                                {% endif %}
-                            </span>
-                            <span class="post-card-category">
-                                {% if post.category == 'hackthebox' or post.path contains 'hackthebox' %}<i class="fas fa-cube"></i> HTB
-                                {% elsif post.category == 'tryhackme' or post.path contains 'tryhackme' %}<i class="fas fa-tv"></i> THM
-                                {% elsif post.category == 'offsec' or post.path contains 'offsec' %}<i class="fas fa-shield-alt"></i> OffSec
-                                {% elsif post.category == 'vulnhub' or post.path contains 'vulnhub' %}<i class="fas fa-server"></i> VulnHub
-                                {% elsif post.category == 'bugbounty' or post.path contains 'bugbounty' %}<i class="fas fa-bug"></i> Bug Bounty
-                                {% elsif post.category == 'blog' or post.path contains 'blog' %}<i class="fas fa-blog"></i> Blog
-                                {% else %}<i class="fas fa-file-code"></i> Post{% endif %}
-                            </span>
-                        </div>
-                    </div>
-                </article>
-                {% endfor %}
+                <span class="post-card-category">
+                  {{ post.category | capitalize }}
+                </span>
+              </div>
             </div>
-            {% else %}
-            <div class="no-posts">
-                <h2><i class="fas fa-exclamation-triangle"></i> No posts found</h2>
-                <p>There are {{ site.posts.size }} posts in the site, but none matched the current filter.</p>
-                
-                <div style="margin-top: 2.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="/" style="
-                        display: inline-flex;
-                        align-items: center;
-                        gap: 10px;
-                        padding: 1rem 2rem;
-                        background: linear-gradient(90deg, var(--primary-dark), var(--secondary-dark));
-                        color: var(--accent-green);
-                        text-decoration: none;
-                        border-radius: 8px;
-                        border: 1px solid var(--accent-green);
-                        font-weight: 600;
-                        transition: all 0.3s;
-                    ">
-                        <i class="fas fa-home"></i> Go Home
-                    </a>
-                    <a href="/debug" style="
-                        display: inline-flex;
-                        align-items: center;
-                        gap: 10px;
-                        padding: 1rem 2rem;
-                        background: linear-gradient(90deg, #ff003c, #ff6600);
-                        color: white;
-                        text-decoration: none;
-                        border-radius: 8px;
-                        border: 1px solid #ff003c;
-                        font-weight: 600;
-                        transition: all 0.3s;
-                    ">
-                        <i class="fas fa-bug"></i> More Debug Info
-                    </a>
-                </div>
-            </div>
-            {% endif %}
-        </main>
-        
-        {% include sidebar.html %}
-    </div>
-    
-    {% include footer.html %}
-    
-    <script>
-    {% raw %}
-    // Simple debug to console
-    console.log('List page loaded');
-    console.log('Current URL:', window.location.pathname);
-    {% endraw %}
-    </script>
+          </article>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="no-posts">
+        <h2>No posts found</h2>
+        <p>Nothing published in this category yet.</p>
+      </div>
+    {% endif %}
+  </main>
+
+  {% include sidebar.html %}
+
+</div>
+
+{% include footer.html %}
+
 </body>
 </html>
+
