@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}
+    </title>
+    
+    <!-- SEO Tags -->
+    {% seo %}
+    
+    <!-- Jekyll Feed -->
+    {% feed_meta %}
+    
+    <!-- Styles -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .site-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .site-tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .page-title {
+            font-size: 2.5rem;
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+        }
+        
+        .page-description {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+        }
+        
+        main {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .post-card {
+            background: white;
+            border: 1px solid #eaeaea;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .post-card-content {
+            padding: 1.5rem;
+        }
+        
+        .post-card-title {
+            font-size: 1.3rem;
+            color: #1a1a2e;
+            margin-bottom: 0.8rem;
+        }
+        
+        .post-card-title a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        .post-card-title a:hover {
+            color: #0f3460;
+        }
+        
+        .post-card-excerpt {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        
+        .post-card-meta {
+            color: #888;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .post-card-category {
+            background: #1a1a2e;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+        
+        .no-posts {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #666;
+        }
+        
+        .no-posts h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+        
+        aside {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+        
+        .sidebar-section {
+            margin-bottom: 2rem;
+        }
+        
+        .sidebar-section h3 {
+            color: #16213e;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #1a1a2e;
+        }
+        
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #1a1a2e;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: transform 0.2s;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-2px);
+            background: #16213e;
+        }
+        
+        .category-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .category-links a {
+            display: block;
+            padding: 0.8rem 1rem;
+            background: #f8f9fa;
+            color: #1a1a2e;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .category-links a:hover {
+            background: #e9ecef;
+        }
+        
+        footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #eee;
+            text-align: center;
+            color: #666;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            color: #1a1a2e;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            header {
+                padding: 1.5rem;
+            }
+            
+            .site-title {
+                font-size: 2rem;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            nav {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="site-title">{{ site.title }}</h1>
+        <p class="site-tagline">{{ site.tagline }}</p>
+        
+        <nav>
+            <a href="/">Home</a>
+            <a href="/posts/hackthebox">HackTheBox</a>
+            <a href="/posts/tryhackme">TryHackMe</a>
+            <a href="/posts/offsec">OffSec</a>
+            <a href="/posts/vulnhub">VulnHub</a>
+            <a href="/posts/bugbounty">Bug Bounty</a>
+            <a href="/posts/blog">Blog</a>
+            <a href="{{ site.portfolio }}">Portfolio</a>
+            <a href="{{ site.main_site }}">Main Site</a>
+        </nav>
+    </header>
+    
+    <div class="page-header">
+        <h1 class="page-title">
+            {% if page.title %}
+                {{ page.title }}
+            {% else %}
+                {% if page.path contains 'hackthebox' %}HackTheBox Writeups
+                {% elsif page.path contains 'tryhackme' %}TryHackMe Writeups
+                {% elsif page.path contains 'offsec' %}OffSec Writeups
+                {% elsif page.path contains 'vulnhub' %}VulnHub Writeups
+                {% elsif page.path contains 'bugbounty' %}Bug Bounty Reports
+                {% elsif page.path contains 'blog' %}Blog Posts
+                {% else %}All Posts{% endif %}
+            {% endif %}
+        </h1>
+        <p class="page-description">
+            {% if page.path contains 'hackthebox' %}Detailed solutions and walkthroughs for HackTheBox machines
+            {% elsif page.path contains 'tryhackme' %}Guides and solutions for TryHackMe rooms
+            {% elsif page.path contains 'offsec' %}Offensive Security certification and lab writeups
+            {% elsif page.path contains 'vulnhub' %}Vulnerable machine walkthroughs from VulnHub
+            {% elsif page.path contains 'bugbounty' %}Real-world bug bounty reports and methodologies
+            {% elsif page.path contains 'blog' %}Cybersecurity articles, tips, and tutorials
+            {% else %}All cybersecurity writeups and reports{% endif %}
+        </p>
+    </div>
+    
+    <div class="container">
+        <main>
+            {% if page.content %}
+            <div class="page-content">
+                {{ content }}
+            </div>
+            {% endif %}
+            
+            {% assign category_posts = site.posts | where_exp: "post", "post.path contains page.path" %}
+            
+            {% if category_posts.size > 0 %}
+            <div class="posts-grid">
+                {% for post in category_posts %}
+                <article class="post-card">
+                    <div class="post-card-content">
+                        <h2 class="post-card-title">
+                            <a href="{{ post.url }}">{{ post.title }}</a>
+                        </h2>
+                        
+                        {% if post.excerpt %}
+                        <p class="post-card-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
+                        {% endif %}
+                        
+                        <div class="post-card-meta">
+                            <span>{{ post.date | date: "%B %d, %Y" }}</span>
+                            <span class="post-card-category">
+                                {% if post.path contains 'hackthebox' %}HTB
+                                {% elsif post.path contains 'tryhackme' %}THM
+                                {% elsif post.path contains 'offsec' %}OffSec
+                                {% elsif post.path contains 'vulnhub' %}VulnHub
+                                {% elsif post.path contains 'bugbounty' %}Bug Bounty
+                                {% elsif post.path contains 'blog' %}Blog
+                                {% else %}Post{% endif %}
+                            </span>
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="no-posts">
+                <h2>No posts found in this category</h2>
+                <p>Check back soon for new content!</p>
+                <div style="margin-top: 2rem;">
+                    <a href="/" style="
+                        display: inline-block;
+                        padding: 0.8rem 1.5rem;
+                        background: #1a1a2e;
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 5px;
+                        margin: 0 0.5rem;
+                    ">Go Home</a>
+                    <a href="/posts" style="
+                        display: inline-block;
+                        padding: 0.8rem 1.5rem;
+                        background: #16213e;
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 5px;
+                        margin: 0 0.5rem;
+                    ">View All Posts</a>
+                </div>
+            </div>
+            {% endif %}
+        </main>
+        
+        <aside>
+            <div class="sidebar-section">
+                <h3>About</h3>
+                <p>{{ site.description }}</p>
+                <p><strong>Author:</strong> {{ site.author }}</p>
+                <p><strong>Email:</strong> {{ site.email }}</p>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>Connect</h3>
+                <div class="social-links">
+                    {% if site.github %}
+                    <a href="https://github.com/{{ site.github }}" target="_blank">GitHub</a>
+                    {% endif %}
+                    {% if site.twitter %}
+                    <a href="https://twitter.com/{{ site.twitter }}" target="_blank">Twitter</a>
+                    {% endif %}
+                    {% if site.linkedin %}
+                    <a href="https://linkedin.com/in/{{ site.linkedin }}" target="_blank">LinkedIn</a>
+                    {% endif %}
+                    {% if site.youtube %}
+                    <a href="https://youtube.com/{{ site.youtube }}" target="_blank">YouTube</a>
+                    {% endif %}
+                    {% if site.linktree %}
+                    <a href="{{ site.linktree }}" target="_blank">Linktree</a>
+                    {% endif %}
+                    {% if site.sponsors %}
+                    <a href="{{ site.sponsors }}" target="_blank">Sponsor</a>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>Categories</h3>
+                <div class="category-links">
+                    <a href="/posts/hackthebox">HackTheBox Writeups</a>
+                    <a href="/posts/tryhackme">TryHackMe Writeups</a>
+                    <a href="/posts/offsec">OffSec Writeups</a>
+                    <a href="/posts/vulnhub">VulnHub Writeups</a>
+                    <a href="/posts/bugbounty">Bug Bounty Reports</a>
+                    <a href="/posts/blog">Blog Posts</a>
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>Recent Posts</h3>
+                <div class="category-links">
+                    {% for post in site.posts limit:8 %}
+                    <a href="{{ post.url }}">{{ post.title | truncate: 40 }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </aside>
+    </div>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="{{ site.url }}">Home</a>
+            <a href="{{ site.main_site }}">Main Site</a>
+            <a href="{{ site.portfolio }}">Portfolio</a>
+            {% if site.sponsors %}
+            <a href="{{ site.sponsors }}">Sponsor</a>
+            {% endif %}
+        </div>
+        <p>&copy; {{ site.time | date: '%Y' }} {{ site.author }}. All rights reserved.</p>
+        <p>Powered by Jekyll</p>
+    </footer>
+</body>
+</html>
