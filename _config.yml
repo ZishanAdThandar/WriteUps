@@ -50,11 +50,6 @@ defaults:
     values:
       layout: "default"
 
-# Exclude from processing
-exclude:
-  - README.md
-  - CNAME
-  - banner.png
 
 # Plugins
 plugins:
@@ -64,7 +59,7 @@ plugins:
 
 # Sitemap settings
 sitemap:
-  changefreq: "weekly"
+  changefreq: "daily"
   priority: 0.8
 
 # Social links (use your actual usernames)

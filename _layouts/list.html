@@ -257,22 +257,41 @@
       color: var(--text-muted);
     }
     
-    .writeup-tags {
+    /* Footer */
+    footer {
+      background: var(--bg-tertiary);
+      padding: 2rem 0 1.5rem;
+      margin-top: 2rem;
+      border-top: 1px solid var(--border-color);
+    }
+    
+    .footer-content {
       display: flex;
+      justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
-      gap: 0.3rem;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
     }
     
-    .writeup-tag {
-      padding: 0.15rem 0.4rem;
-      background: rgba(56, 189, 248, 0.1);
-      color: var(--accent-secondary);
-      border-radius: 4px;
+    .footer-logo {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--accent-primary);
+      text-decoration: none;
     }
     
-    /* Search and Filter */
+    .footer-copyright {
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      width: 100%;
+    }
+    
+    /* Search Box */
     .search-container {
       margin-bottom: 1.5rem;
     }
@@ -307,40 +326,6 @@
       top: 50%;
       transform: translateY(-50%);
       color: var(--text-muted);
-    }
-    
-    /* Footer */
-    footer {
-      background: var(--bg-tertiary);
-      padding: 2rem 0 1.5rem;
-      margin-top: 2rem;
-      border-top: 1px solid var(--border-color);
-    }
-    
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-    
-    .footer-logo {
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--accent-primary);
-      text-decoration: none;
-    }
-    
-    .footer-copyright {
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border-color);
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.8rem;
-      width: 100%;
     }
   </style>
 </head>
@@ -495,15 +480,29 @@
       </div>
 
       <!-- Writeups Grid -->
-      {% assign current_dir = page.url | remove: ".html" %}
-      {% assign entries = site.pages | where_exp: "p", "p.url contains current_dir" %}
-      {% assign entries = entries | where_exp: "p", "p.url != page.url" %}
-      {% assign entries = entries | where_exp: "p", "p.name != 'index.md'" %}
+      {% comment %}
+      Get all pages that are in the current directory but exclude:
+      1. The current list page itself
+      2. Any index.md files
+      3. Image directories
+      {% endcomment %}
+      
+      {% assign base_path = page.url | remove: ".html" | append: "/" %}
+      {% assign all_pages = site.pages %}
+      {% assign entries = "" | split: "" %}
+      
+      {% for p in all_pages %}
+        {% if p.url contains base_path and p.url != page.url %}
+          {% unless p.url contains '/img/' or p.url contains 'index.md' or p.name == 'index.md' %}
+            {% assign entries = entries | push: p %}
+          {% endunless %}
+        {% endif %}
+      {% endfor %}
+      
       {% assign entries = entries | sort: "title" %}
       
       <div class="writeups-grid" id="writeupsGrid">
         {% for p in entries %}
-          {% unless p.url contains '/img/' %}
           <a href="{{ p.url | relative_url }}" class="writeup-card" 
              data-title="{{ p.title | downcase | default: p.name | downcase }}"
              data-excerpt="{{ p.excerpt | strip_html | downcase | default: '' }}">
@@ -530,6 +529,8 @@
             
             {% if p.excerpt %}
             <p class="writeup-excerpt">{{ p.excerpt | strip_html | strip_newlines | truncate: 120 }}</p>
+            {% elsif p.content %}
+            <p class="writeup-excerpt">{{ p.content | strip_html | strip_newlines | truncate: 120 }}</p>
             {% endif %}
             
             <div class="writeup-meta">
@@ -540,7 +541,6 @@
               </div>
             </div>
           </a>
-          {% endunless %}
         {% endfor %}
       </div>
 
@@ -613,7 +613,8 @@
       const navLinks = document.querySelectorAll('.nav-link');
       
       navLinks.forEach(link => {
-        if (link.getAttribute('href') === currentPath) {
+        const linkPath = link.getAttribute('href');
+        if (linkPath && currentPath.includes(linkPath.replace(/\/$/, '')) && linkPath !== '/') {
           link.classList.add('active');
         }
       });
