@@ -1,0 +1,69 @@
+<header>
+    <h1 class="site-title">{{ site.title }}<span class="cursor"></span></h1>
+    <p class="site-tagline">{{ site.tagline }}</p>
+    
+    <div class="nav-container">
+        <button class="mobile-nav-toggle" id="mobileNavToggle">
+            <i class="fas fa-bars"></i> Menu
+        </button>
+        
+        <nav class="main-nav" id="mainNav">
+            <a href="/" class="nav-link"><i class="fas fa-home"></i> HOME</a>
+            
+            <!-- CTF Dropdown -->
+            <div class="nav-dropdown">
+                <button class="dropdown-btn"><i class="fas fa-flag"></i> CTF</button>
+                <div class="dropdown-content">
+                    <a href="/posts/hackthebox"><i class="fas fa-cube"></i> HackTheBox</a>
+                    <a href="/posts/tryhackme"><i class="fas fa-tv"></i> TryHackMe</a>
+                    <a href="/posts/offsec"><i class="fas fa-shield-alt"></i> OffSec</a>
+                    <a href="/posts/vulnhub"><i class="fas fa-server"></i> VulnHub</a>
+                </div>
+            </div>
+            
+            <a href="/posts/bugbounty" class="nav-link"><i class="fas fa-bug"></i> BUG BOUNTY</a>
+            <a href="/posts/blog" class="nav-link"><i class="fas fa-blog"></i> BLOG</a>
+            <a href="{{ site.portfolio }}" class="nav-link"><i class="fas fa-briefcase"></i> PORTFOLIO</a>
+            <a href="{{ site.main_site }}" class="nav-link"><i class="fas fa-globe"></i> WEBSITE</a>
+        </nav>
+    </div>
+    
+    <script>
+    {% raw %}
+    // Mobile navigation toggle
+    document.addEventListener('DOMContentLoaded', () => {
+        const mobileNavToggle = document.getElementById('mobileNavToggle');
+        const mainNav = document.getElementById('mainNav');
+        
+        if (mobileNavToggle && mainNav) {
+            mobileNavToggle.addEventListener('click', () => {
+                mainNav.classList.toggle('active');
+                mobileNavToggle.innerHTML = mainNav.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i> Close' 
+                    : '<i class="fas fa-bars"></i> Menu';
+            });
+            
+            // Close dropdowns when clicking outside on mobile
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768 && !e.target.closest('.nav-container')) {
+                    mainNav.classList.remove('active');
+                    mobileNavToggle.innerHTML = '<i class="fas fa-bars"></i> Menu';
+                }
+            });
+        }
+        
+        // Mobile dropdown toggle
+        const dropdownBtns = document.querySelectorAll('.dropdown-btn');
+        dropdownBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const dropdown = btn.closest('.nav-dropdown');
+                    dropdown.classList.toggle('active');
+                }
+            });
+        });
+    });
+    {% endraw %}
+    </script>
+</header>

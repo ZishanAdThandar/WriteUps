@@ -1,0 +1,20 @@
+<a href="#" class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+</a>
+
+<footer>
+    <div class="footer-links">
+        <a href="{{ site.url }}"><i class="fas fa-home"></i> Home</a>
+        <a href="{{ site.main_site }}"><i class="fas fa-globe"></i> Website</a>
+        <a href="{{ site.portfolio }}"><i class="fas fa-briefcase"></i> Portfolio</a>
+        {% if site.sponsors %}
+        <a href="{{ site.sponsors }}"><i class="fas fa-heart"></i> Sponsor</a>
+        {% endif %}
+    </div>
+    <p style="margin-top: 1.5rem; color: var(--accent-cyan);">
+        <i class="fas fa-terminal"></i> &copy; {{ site.time | date: '%Y' }} {{ site.author }}. All rights reserved.
+    </p>
+    <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+        <i class="fas fa-code"></i> Powered by Jekyll | <i class="fas fa-shield-alt"></i> Built for Infosec
+    </p>
+</footer>

@@ -22,682 +22,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Styles -->
-    <style>
-        :root {
-            --primary-dark: #0a0e17;
-            --secondary-dark: #101826;
-            --accent-green: #00ff88;
-            --accent-cyan: #00e0ff;
-            --accent-purple: #8a2be2;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0c0;
-            --text-muted: #6c757d;
-            --card-bg: #1a1f2e;
-            --border-color: #2a3b5a;
-            --glow-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
-            --terminal-green: #00ff00;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            font-family: 'JetBrains Mono', 'Source Code Pro', 'Courier New', monospace;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background-color: var(--primary-dark);
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(0, 255, 136, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(0, 224, 255, 0.05) 0%, transparent 20%);
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-        
-        /* Terminal-style header */
-        header {
-            background: linear-gradient(145deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
-            color: var(--text-primary);
-            padding: 2.5rem;
-            border-radius: 12px;
-            margin-bottom: 2.5rem;
-            box-shadow: var(--glow-shadow);
-            border: 1px solid var(--border-color);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
-            animation: scanline 3s linear infinite;
-        }
-        
-        @keyframes scanline {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-        
-        .site-title {
-            font-size: 2.8rem;
-            margin-bottom: 0.8rem;
-            background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-weight: 800;
-            letter-spacing: -1px;
-            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
-        }
-        
-        .site-tagline {
-            font-size: 1.3rem;
-            color: var(--accent-cyan);
-            margin-bottom: 2rem;
-            font-weight: 500;
-            opacity: 0.95;
-        }
-        
-        /* Improved responsive navigation */
-        .nav-container {
-            margin-top: 2rem;
-        }
-        
-        .main-nav {
-            display: flex;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-        
-        .nav-dropdown {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .dropdown-btn {
-            color: var(--text-primary);
-            text-decoration: none;
-            padding: 0.8rem 1.5rem;
-            background: rgba(42, 59, 90, 0.6);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            font-family: 'Roboto Mono', monospace;
-            font-weight: 500;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.95rem;
-        }
-        
-        .dropdown-btn::after {
-            content: '▼';
-            font-size: 0.8rem;
-            margin-left: 5px;
-        }
-        
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: var(--card-bg);
-            min-width: 200px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            z-index: 1000;
-            margin-top: 5px;
-        }
-        
-        .dropdown-content a {
-            display: block;
-            padding: 0.8rem 1.5rem;
-            color: var(--text-secondary);
-            text-decoration: none;
-            border-bottom: 1px solid var(--border-color);
-            transition: all 0.3s;
-        }
-        
-        .dropdown-content a:last-child {
-            border-bottom: none;
-        }
-        
-        .dropdown-content a:hover {
-            background: rgba(0, 255, 136, 0.1);
-            color: var(--accent-green);
-            padding-left: 2rem;
-        }
-        
-        .nav-dropdown:hover .dropdown-content {
-            display: block;
-        }
-        
-        .dropdown-btn:hover {
-            background: rgba(0, 255, 136, 0.1);
-            border-color: var(--accent-green);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.2);
-        }
-        
-        .nav-link {
-            color: var(--text-primary);
-            text-decoration: none;
-            padding: 0.8rem 1.5rem;
-            background: rgba(42, 59, 90, 0.6);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            font-family: 'Roboto Mono', monospace;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.95rem;
-        }
-        
-        .nav-link::before {
-            content: '>';
-            color: var(--accent-green);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        
-        .nav-link:hover {
-            background: rgba(0, 255, 136, 0.1);
-            border-color: var(--accent-green);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.2);
-        }
-        
-        .nav-link:hover::before {
-            opacity: 1;
-        }
-        
-        .mobile-nav-toggle {
-            display: none;
-            background: rgba(42, 59, 90, 0.6);
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-            padding: 0.8rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-        
-        .page-header {
-            text-align: center;
-            margin-bottom: 3rem;
-            padding: 2rem;
-            background: rgba(26, 31, 46, 0.7);
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            backdrop-filter: blur(10px);
-        }
-        
-        .page-title {
-            font-size: 2.8rem;
-            background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-        
-        .page-description {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-        
-        .container {
-            display: grid;
-            grid-template-columns: 1fr 350px;
-            gap: 2.5rem;
-        }
-        
-        main {
-            background: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border-color);
-        }
-        
-        /* Terminal-style posts grid */
-        .posts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 2.5rem;
-        }
-        
-        .post-card {
-            background: rgba(16, 24, 38, 0.8);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-        }
-        
-        .post-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-green), transparent);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s;
-        }
-        
-        .post-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 
-                0 15px 35px rgba(0, 255, 136, 0.15),
-                0 5px 15px rgba(0, 0, 0, 0.3);
-            border-color: var(--accent-green);
-        }
-        
-        .post-card:hover::before {
-            transform: scaleX(1);
-        }
-        
-        .post-card-content {
-            padding: 2rem;
-        }
-        
-        .post-card-title {
-            font-size: 1.5rem;
-            color: var(--text-primary);
-            margin-bottom: 1rem;
-            font-weight: 700;
-            line-height: 1.4;
-        }
-        
-        .post-card-title a {
-            color: inherit;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .post-card-title a:hover {
-            color: var(--accent-green);
-        }
-        
-        .post-card-excerpt {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-            font-family: 'Source Code Pro', monospace;
-        }
-        
-        .post-card-meta {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid var(--border-color);
-            padding-top: 1rem;
-            font-family: 'IBM Plex Mono', monospace;
-        }
-        
-        .post-card-category {
-            background: linear-gradient(90deg, var(--primary-dark), var(--secondary-dark));
-            color: var(--accent-cyan);
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border: 1px solid var(--accent-cyan);
-            letter-spacing: 0.5px;
-        }
-        
-        .no-posts {
-            text-align: center;
-            padding: 5rem 3rem;
-            color: var(--text-secondary);
-            background: rgba(16, 24, 38, 0.6);
-            border-radius: 12px;
-            border: 2px dashed var(--border-color);
-        }
-        
-        .no-posts h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent-green);
-        }
-        
-        /* Hacker-style sidebar */
-        aside {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border-color);
-            height: fit-content;
-            position: sticky;
-            top: 20px;
-        }
-        
-        .sidebar-section {
-            margin-bottom: 2.5rem;
-        }
-        
-        .sidebar-section:last-child {
-            margin-bottom: 0;
-        }
-        
-        .sidebar-section h3 {
-            color: var(--accent-green);
-            margin-bottom: 1.2rem;
-            padding-bottom: 0.8rem;
-            border-bottom: 2px solid var(--border-color);
-            font-size: 1.4rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .sidebar-section h3::before {
-            content: '>>>';
-            color: var(--accent-cyan);
-            font-size: 1rem;
-        }
-        
-        .social-links {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 1rem;
-            background: rgba(42, 59, 90, 0.6);
-            color: var(--text-primary);
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            transition: all 0.3s;
-            border: 1px solid transparent;
-        }
-        
-        .social-links a:hover {
-            background: rgba(0, 255, 136, 0.1);
-            border-color: var(--accent-green);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.2);
-        }
-        
-        .social-links i {
-            font-size: 1.2rem;
-            color: var(--accent-green);
-        }
-        
-        .category-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-        
-        .category-links a {
-            display: flex;
-            align-items: center;
-            padding: 1rem 1.2rem;
-            background: rgba(42, 59, 90, 0.4);
-            color: var(--text-secondary);
-            text-decoration: none;
-            border-radius: 8px;
-            transition: all 0.3s;
-            font-family: 'Source Code Pro', monospace;
-        }
-        
-        .category-links a::before {
-            content: '$';
-            margin-right: 10px;
-            color: var(--terminal-green);
-            font-weight: bold;
-        }
-        
-        .category-links a:hover {
-            background: rgba(0, 224, 255, 0.1);
-            color: var(--text-primary);
-            transform: translateX(5px);
-            border-left: 3px solid var(--accent-cyan);
-        }
-        
-        /* Hacker footer */
-        footer {
-            margin-top: 4rem;
-            padding-top: 2.5rem;
-            border-top: 2px solid var(--border-color);
-            text-align: center;
-            color: var(--text-secondary);
-            background: rgba(16, 24, 38, 0.7);
-            padding: 2.5rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-        
-        .footer-links a {
-            color: var(--text-primary);
-            text-decoration: none;
-            padding: 0.8rem 1.5rem;
-            background: rgba(42, 59, 90, 0.4);
-            border-radius: 8px;
-            transition: all 0.3s;
-            border: 1px solid transparent;
-        }
-        
-        .footer-links a:hover {
-            background: rgba(0, 255, 136, 0.1);
-            border-color: var(--accent-green);
-            transform: translateY(-2px);
-        }
-        
-        /* Banner image fix - prevent overflow */
-        .banner-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            margin: 2rem auto;
-            display: block;
-            background: var(--secondary-dark);
-            padding: 8px;
-            box-sizing: border-box;
-        }
-        
-        /* Responsive design */
-        @media (max-width: 1024px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-            
-            aside {
-                position: static;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                padding: 15px;
-            }
-            
-            .posts-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            header {
-                padding: 1.5rem;
-            }
-            
-            .site-title {
-                font-size: 2rem;
-            }
-            
-            .page-title {
-                font-size: 1.8rem;
-            }
-            
-            .mobile-nav-toggle {
-                display: block;
-                margin-top: 1rem;
-            }
-            
-            .main-nav {
-                display: none;
-                flex-direction: column;
-                gap: 0.5rem;
-                margin-top: 1rem;
-            }
-            
-            .main-nav.active {
-                display: flex;
-            }
-            
-            .nav-dropdown {
-                width: 100%;
-            }
-            
-            .dropdown-btn {
-                width: 100%;
-                justify-content: space-between;
-            }
-            
-            .dropdown-content {
-                position: static;
-                display: none;
-                width: 100%;
-                box-shadow: none;
-                border-radius: 0 0 8px 8px;
-                margin-top: 0;
-            }
-            
-            .nav-dropdown:hover .dropdown-content,
-            .nav-dropdown.active .dropdown-content {
-                display: block;
-            }
-            
-            .nav-link {
-                width: 100%;
-                text-align: left;
-            }
-            
-            .social-links {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
-        }
-        
-        /* Terminal cursor effect */
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-        
-        .cursor {
-            display: inline-block;
-            width: 10px;
-            height: 20px;
-            background-color: var(--accent-green);
-            animation: blink 1s infinite;
-            vertical-align: middle;
-            margin-left: 5px;
-        }
-        
-        /* Scrollbar styling */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: var(--primary-dark);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--border-color);
-            border-radius: 5px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-green);
-        }
-    </style>
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
-    <header>
-        <h1 class="site-title">{{ site.title }}<span class="cursor"></span></h1>
-        <p class="site-tagline">{{ site.tagline }}</p>
-        
-        <div class="nav-container">
-            <button class="mobile-nav-toggle" id="mobileNavToggle">
-                <i class="fas fa-bars"></i> Menu
-            </button>
-            
-            <nav class="main-nav" id="mainNav">
-                <a href="/" class="nav-link"><i class="fas fa-home"></i> HOME</a>
-                
-                <!-- CTF Dropdown -->
-                <div class="nav-dropdown">
-                    <button class="dropdown-btn"><i class="fas fa-flag"></i> CTF</button>
-                    <div class="dropdown-content">
-                        <a href="/posts/hackthebox"><i class="fas fa-cube"></i> HackTheBox</a>
-                        <a href="/posts/tryhackme"><i class="fas fa-tv"></i> TryHackMe</a>
-                        <a href="/posts/offsec"><i class="fas fa-shield-alt"></i> OffSec</a>
-                        <a href="/posts/vulnhub"><i class="fas fa-server"></i> VulnHub</a>
-                    </div>
-                </div>
-                
-                <a href="/posts/bugbounty" class="nav-link"><i class="fas fa-bug"></i> BUG BOUNTY</a>
-                <a href="/posts/blog" class="nav-link"><i class="fas fa-blog"></i> BLOG</a>
-                <a href="{{ site.portfolio }}" class="nav-link"><i class="fas fa-briefcase"></i> PORTFOLIO</a>
-                <a href="{{ site.main_site }}" class="nav-link"><i class="fas fa-globe"></i> WEBSITE</a>
-            </nav>
-        </div>
-    </header>
+    {% include header.html %}
     
     <div class="page-header">
         <h1 class="page-title">
@@ -838,129 +166,147 @@
             {% endif %}
         </main>
         
-        <aside>
-            <div class="sidebar-section">
-                <h3>About</h3>
-                <p style="color: var(--text-secondary); line-height: 1.7;">{{ site.description }}</p>
-                <div style="margin-top: 1rem;">
-                    <p><i class="fas fa-user-secret" style="color: var(--accent-green);"></i> <strong>Author:</strong> {{ site.author }}</p>
-                    <p><i class="fas fa-envelope" style="color: var(--accent-cyan);"></i> <strong>Email:</strong> {{ site.email }}</p>
-                </div>
-            </div>
-            
-            <div class="sidebar-section">
-                <h3>Connect</h3>
-                <div class="social-links">
-                    {% if site.github %}
-                    <a href="https://github.com/{{ site.github }}" target="_blank">
-                        <i class="fab fa-github"></i> GitHub
-                    </a>
-                    {% endif %}
-                    {% if site.twitter %}
-                    <a href="https://twitter.com/{{ site.twitter }}" target="_blank">
-                        <i class="fab fa-twitter"></i> Twitter
-                    </a>
-                    {% endif %}
-                    {% if site.linkedin %}
-                    <a href="https://linkedin.com/in/{{ site.linkedin }}" target="_blank">
-                        <i class="fab fa-linkedin"></i> LinkedIn
-                    </a>
-                    {% endif %}
-                    {% if site.youtube %}
-                    <a href="https://youtube.com/{{ site.youtube }}" target="_blank">
-                        <i class="fab fa-youtube"></i> YouTube
-                    </a>
-                    {% endif %}
-                    {% if site.linktree %}
-                    <a href="{{ site.linktree }}" target="_blank">
-                        <i class="fas fa-tree"></i> Linktree
-                    </a>
-                    {% endif %}
-                    {% if site.sponsors %}
-                    <a href="{{ site.sponsors }}" target="_blank">
-                        <i class="fas fa-heart"></i> Sponsor
-                    </a>
-                    {% endif %}
-                </div>
-            </div>
-            
-            <div class="sidebar-section">
-                <h3>Categories</h3>
-                <div class="category-links">
-                    <a href="/posts/hackthebox">HackTheBox Writeups</a>
-                    <a href="/posts/tryhackme">TryHackMe Writeups</a>
-                    <a href="/posts/offsec">OffSec Writeups</a>
-                    <a href="/posts/vulnhub">VulnHub Writeups</a>
-                    <a href="/posts/bugbounty">Bug Bounty Reports</a>
-                    <a href="/posts/blog">Blog Posts</a>
-                </div>
-            </div>
-            
-            <div class="sidebar-section">
-                <h3>Recent Posts</h3>
-                <div class="category-links">
-                    {% for post in site.posts limit:8 %}
-                    <a href="{{ post.url }}"><i class="fas fa-chevron-right" style="color: var(--accent-green);"></i> {{ post.title | truncate: 40 }}</a>
-                    {% endfor %}
-                </div>
-            </div>
-        </aside>
+        {% include sidebar.html %}
     </div>
     
-    <footer>
-        <div class="footer-links">
-            <a href="{{ site.url }}"><i class="fas fa-home"></i> Home</a>
-            <a href="{{ site.main_site }}"><i class="fas fa-globe"></i> Website</a>
-            <a href="{{ site.portfolio }}"><i class="fas fa-briefcase"></i> Portfolio</a>
-            {% if site.sponsors %}
-            <a href="{{ site.sponsors }}"><i class="fas fa-heart"></i> Sponsor</a>
-            {% endif %}
-        </div>
-        <p style="margin-top: 1.5rem; color: var(--accent-cyan);">
-            <i class="fas fa-terminal"></i> &copy; {{ site.time | date: '%Y' }} {{ site.author }}. All rights reserved.
-        </p>
-        <p style="margin-top: 0.5rem; font-size: 0.9rem;">
-            <i class="fas fa-code"></i> Powered by Jekyll | <i class="fas fa-shield-alt"></i> Built for Infosec
-        </p>
-    </footer>
+    {% include footer.html %}
     
-    <script>
-    {% raw %}
-    // Mobile navigation toggle
-    document.addEventListener('DOMContentLoaded', () => {
-        const mobileNavToggle = document.getElementById('mobileNavToggle');
-        const mainNav = document.getElementById('mainNav');
-        
-        if (mobileNavToggle && mainNav) {
-            mobileNavToggle.addEventListener('click', () => {
-                mainNav.classList.toggle('active');
-                mobileNavToggle.innerHTML = mainNav.classList.contains('active') 
-                    ? '<i class="fas fa-times"></i> Close' 
-                    : '<i class="fas fa-bars"></i> Menu';
-            });
-            
-            // Close dropdowns when clicking outside on mobile
-            document.addEventListener('click', (e) => {
-                if (window.innerWidth <= 768 && !e.target.closest('.nav-container')) {
-                    mainNav.classList.remove('active');
-                    mobileNavToggle.innerHTML = '<i class="fas fa-bars"></i> Menu';
-                }
-            });
+    <style>
+    .page-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding: 2rem;
+        background: rgba(26, 31, 46, 0.7);
+        border-radius: 12px;
+        border: 1px solid var(--border-color);
+        backdrop-filter: blur(10px);
+    }
+    
+    .page-title {
+        font-size: 2.8rem;
+        background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        margin-bottom: 1rem;
+        font-weight: 700;
+    }
+    
+    .page-description {
+        color: var(--text-secondary);
+        font-size: 1.2rem;
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.8;
+    }
+    
+    /* Terminal-style posts grid */
+    .posts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-top: 2.5rem;
+    }
+    
+    .post-card {
+        background: rgba(16, 24, 38, 0.8);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+    }
+    
+    .post-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--accent-green), transparent);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s;
+    }
+    
+    .post-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 
+            0 15px 35px rgba(0, 255, 136, 0.15),
+            0 5px 15px rgba(0, 0, 0, 0.3);
+        border-color: var(--accent-green);
+    }
+    
+    .post-card:hover::before {
+        transform: scaleX(1);
+    }
+    
+    .post-card-content {
+        padding: 2rem;
+    }
+    
+    .post-card-title {
+        font-size: 1.5rem;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+        font-weight: 700;
+        line-height: 1.4;
+    }
+    
+    .post-card-title a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+    
+    .post-card-title a:hover {
+        color: var(--accent-green);
+    }
+    
+    .post-card-excerpt {
+        color: var(--text-secondary);
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.7;
+        font-family: 'Source Code Pro', monospace;
+    }
+    
+    .post-card-category {
+        background: linear-gradient(90deg, var(--primary-dark), var(--secondary-dark));
+        color: var(--accent-cyan);
+        padding: 0.4rem 1rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border: 1px solid var(--accent-cyan);
+        letter-spacing: 0.5px;
+    }
+    
+    .no-posts {
+        text-align: center;
+        padding: 5rem 3rem;
+        color: var(--text-secondary);
+        background: rgba(16, 24, 38, 0.6);
+        border-radius: 12px;
+        border: 2px dashed var(--border-color);
+    }
+    
+    .no-posts h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        color: var(--accent-green);
+    }
+    
+    @media (max-width: 768px) {
+        .posts-grid {
+            grid-template-columns: 1fr;
         }
         
-        // Mobile dropdown toggle
-        const dropdownBtns = document.querySelectorAll('.dropdown-btn');
-        dropdownBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    const dropdown = btn.closest('.nav-dropdown');
-                    dropdown.classList.toggle('active');
-                }
-            });
-        });
-    });
-    {% endraw %}
-    </script>
+        .page-title {
+            font-size: 2.2rem;
+        }
+    }
+    </style>
 </body>
 </html>
