@@ -17,6 +17,10 @@
 </div>
 
 
+
+[![TryHackMe](https://tryhackme-badges.s3.amazonaws.com/ZishanAdThandar.png)](https://tryhackme.com/p/ZishanAdThandar)
+[![HackTheBox](https://www.hackthebox.com/badge/image/4477)](https://app.hackthebox.com/public/users/4477)
+
 ## About Me
 
 | Platform  | Link  |
@@ -25,9 +29,6 @@
 | Portfolio | [portfolio.zishanhack.com](https://portfolio.zishanhack.com) |
 | Resume    | [ZishanAdThandar.github.io/CV.pdf](https://ZishanAdThandar.github.io/CV.pdf) |
 
-
-[![TryHackMe](https://tryhackme-badges.s3.amazonaws.com/ZishanAdThandar.png)](https://tryhackme.com/p/ZishanAdThandar)
-[![HackTheBox](https://www.hackthebox.com/badge/image/4477)](https://app.hackthebox.com/public/users/4477)
 
 
 
