@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Escalate My Privileges 1 Vulnhub Machine Solved
+title: Escalate My Privileges 1 Vulnhub Machine full Writeup
 ---
 
 # Escalate My Privileges: 1

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: FristiLeaks 1.3 vulnhub machine solution
+title: FristiLeaks 1.3 vulnhub machine full writeup
 ---
 
 # FristiLeaks: 1.3
