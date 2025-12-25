@@ -1,6 +1,6 @@
 ---
 layout: default
-title: HackLAB Vulnix Vulnhub Machine full writeup
+title: HackLAB Vulnix Vulnhub Machine manually solved sudo privilege escalation machine
 ---
 
 # HackLAB: Vulnix
