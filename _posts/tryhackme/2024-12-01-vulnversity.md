@@ -1,6 +1,6 @@
 ---
 layout: default
-title: VulnUniversity
+title: VulnUniversity THM - A detailed Writeup
 ---
 
 # VulnUniversity

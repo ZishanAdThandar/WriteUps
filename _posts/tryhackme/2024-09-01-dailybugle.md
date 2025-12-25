@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Daily Bugle
+title: Daily Bugle - TryHackMe room writeup
 ---
 
 # Daily Bugle
