@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Readme
+title: Imaginary CTF 2023 WriteUps
 ---
 
 <h2>WEB</h2>
