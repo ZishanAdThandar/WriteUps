@@ -1,6 +1,6 @@
 ---
 layout: default
-title: FristiLeaks: 1.3
+title: FristiLeaks 1.3
 ---
 
 # FristiLeaks: 1.3

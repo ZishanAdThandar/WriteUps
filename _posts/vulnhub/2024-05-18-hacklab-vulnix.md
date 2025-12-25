@@ -1,6 +1,6 @@
 ---
 layout: default
-title: HackLAB: Vulnix
+title: HackLAB Vulnix
 ---
 
 # HackLAB: Vulnix
