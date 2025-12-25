@@ -1,6 +1,6 @@
 ---
 layout: default
-title: HackLAB Vulnix
+title: HackLAB Vulnix Vulnhub Machine full writeup
 ---
 
 # HackLAB: Vulnix
