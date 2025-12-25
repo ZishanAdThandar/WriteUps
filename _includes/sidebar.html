@@ -41,21 +41,25 @@
   </div>
 
   <!-- Recent Posts -->
-  <div class="sidebar-section">
-    <h3><i class="fas fa-clock"></i> Recent Posts</h3>
+<div class="sidebar-section">
+  <h3><i class="fas fa-compass"></i> Discover an Article</h3>
+
+  {% assign blog_posts = site.posts
+     | where_exp: "p", "p.path contains '_posts/blog/'"
+     | where_exp: "p", "p.path contains 'imaginaryctf' == false"
+     | shuffle %}
+
+  {% assign random_post = blog_posts.first %}
     <ul class="recent-posts">
-      {% for post in site.posts limit:8 %}
-        {% unless post.path contains 'imaginaryctf' %}
-          <li>
-            <a href="{{ post.url | relative_url }}">
-              <i class="fas fa-file-alt"></i>
-              {{ post.title | truncate: 50 }}
-            </a>
-          </li>
-        {% endunless %}
-      {% endfor %}
+      <li>
+        <a href="{{ random_post.url | relative_url }}">
+          <i class="fas fa-file-alt"></i>
+          {{ random_post.title }}
+        </a>
+      </li>
     </ul>
-  </div>
+</div>
+
 
   <!-- Categories -->
   <div class="sidebar-section">
