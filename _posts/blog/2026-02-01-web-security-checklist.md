@@ -1,7 +1,6 @@
 ---
 title: Web Security Checklist – Real Bug Hunting, Systematically
 layout: default
-permalink: /web-security-checklist/
 ---
 
 ### BUG BOUNTY · WEB APPLICATION SECURITY

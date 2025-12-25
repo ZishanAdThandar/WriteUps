@@ -1,7 +1,6 @@
 ---
 title: OSCP Commands – Obsidian Notes for Real Exam Execution
 layout: default
-permalink: /oscp-commands/
 ---
 
 ### OSCP · PRACTICAL COMMAND EXECUTION

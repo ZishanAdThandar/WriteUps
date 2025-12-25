@@ -50,6 +50,8 @@
      | shuffle %}
 
   {% assign random_post = blog_posts.first %}
+
+  {% if random_post %}
     <ul class="recent-posts">
       <li>
         <a href="{{ random_post.url | relative_url }}">
@@ -58,6 +60,11 @@
         </a>
       </li>
     </ul>
+  {% else %}
+    <p style="color: var(--text-muted); font-size: 0.9rem;">
+      No articles available yet.
+    </p>
+  {% endif %}
 </div>
 
 

@@ -1,7 +1,6 @@
 ---
 title: CRTA Notes – Real-World Active Directory Red Team Playbook
 layout: default
-permalink: /crta-notes/
 ---
 
 ### ADVANCED RED TEAM TRAINING
