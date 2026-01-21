@@ -23,11 +23,8 @@
 
 ## About Me
 
-| Platform  | Link  |
-|-----------|-------|
-| LinkTree  | [go.zishanhack.com](https://go.zishanhack.com) |
-| Portfolio | [portfolio.zishanhack.com](https://portfolio.zishanhack.com) |
-| Resume    | [ZishanAdThandar.github.io/CV.pdf](https://ZishanAdThandar.github.io/CV.pdf) |
+- [Linktree](https://go.zishanhack.com) |
+- [Portfolio](https://portfolio.zishanhack.com) 
 
 
 
