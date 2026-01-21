@@ -51,19 +51,19 @@
      | shuffle %}
 
   {% if blog_posts %}
-    {% for post in blog_posts %}
-      {% unless post.path contains 'imaginaryctf' %}
-        <ul class="recent-posts">
+    <ul class="recent-posts">
+      {% for post in blog_posts %}
+        {% unless post.path contains 'imaginaryctf' %}
           <li>
             <a href="{{ post.url | relative_url }}">
               <i class="fas fa-file-alt"></i>
               {{ post.title }}
             </a>
           </li>
-        </ul>
-        {% break %}
-      {% endunless %}
-    {% endfor %}
+          {% break %}
+        {% endunless %}
+      {% endfor %}
+    </ul>
   {% endif %}
 </div>
 
