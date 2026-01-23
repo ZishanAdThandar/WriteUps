@@ -19,17 +19,17 @@ Everything published is written from hands-on experience and intended to be usab
 <div class="post-grid">
 
 <article class="post-card">
-  <h3><a href="/posts/blog/">Technical Blog</a></h3>
+  <h3><a href="/blog/posts/blog/">Technical Blog</a></h3>
   <p>Long-form explanations, deep dives, and structured notes on security concepts, tooling, and workflows.</p>
 </article>
 
 <article class="post-card">
-  <h3><a href="/posts/bugbounty/">Bug Bounty Notes</a></h3>
+  <h3><a href="/blog/posts/bugbounty/">Bug Bounty Notes</a></h3>
   <p>Realistic bug hunting notes, checklists, and patterns focused on modern web applications.</p>
 </article>
 
 <article class="post-card">
-  <h3><a href="/posts/hackthebox/">Hack The Box</a></h3>
+  <h3><a href="/blog/posts/hackthebox/">Hack The Box</a></h3>
   <p>Machine walkthroughs and methodology-driven approaches for labs and CTF-style environments.</p>
 </article>
 
